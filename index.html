@@ -401,6 +401,7 @@
         <button class="range-btn" data-range="mtd">Month to Date</button>
       </div>
       <div class="stat-row" id="times-stats"></div>
+      <div id="times-source" style="font-size:12px;color:var(--text-dim);margin:-2px 0 10px;"></div>
       <div class="section-sub">Cars hitting goal · Lane Total</div>
       <div class="goal-bar" id="goal-bar-lanetotal"></div>
       <div class="goal-legend" id="goal-legend-lanetotal"></div>
@@ -60376,14 +60377,27 @@ function makeGoalSplit(fastBias){
 const HOURS = ['6a','7a','8a','9a','10a','11a','12p','1p','2p','3p','4p','5p','6p','7p','8p','9p','10p','11p'];
 const HOUR_WEIGHTS = [0.015,0.045,0.085,0.095,0.065,0.05,0.045,0.05,0.07,0.09,0.085,0.06,0.05,0.045,0.04,0.035,0.03,0.02];
 
-const dailyOps = {}; // dailyOps[shop][d] = {totalCars, laneTotalSec, laneTotal2Sec, goalLaneTotal, goalLaneTotal2, netSales, dph, hourly[], sched, actualHrs, otHrs, laborCost}
+// Real drive-thru timer data from HME (injected by refresh_dashboard.py from timer_history.json).
+// Shape: { "<Shop>": { "YYYY-MM-DD": {laneTotalSec, laneTotal2Sec, totalCars} } }. Empty until injected.
+const REAL_TIMER_DATA = {"Lichen": {"2026-07-27": {"laneTotalSec": 81, "laneTotal2Sec": null, "totalCars": 561}}, "Mad": {"2026-07-27": {"laneTotalSec": 124, "laneTotal2Sec": 126, "totalCars": 717}}, "Manz": {"2026-07-27": {"laneTotalSec": 72, "laneTotal2Sec": null, "totalCars": 514}}};
+function isoForIndex(i){ const dt=dateForIndex(i); return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0'); }
+
+const dailyOps = {}; // dailyOps[shop][d] = {totalCars, laneTotalSec, laneTotal2Sec, isRealTimer, goalLaneTotal, goalLaneTotal2, netSales, dph, hourly[], sched, actualHrs, otHrs, laborCost}
 SHOPS.forEach(shop=>{
   dailyOps[shop] = [];
   const ticketBias = 6.2 + rand()*1.6; // this shop's typical avg ticket
   for(let d=0; d<days; d++){
-    const totalCars = 560 + Math.floor(rand()*220);
-    const laneTotalSec = 62 + Math.floor(rand()*45);
-    const laneTotal2Sec = 16 + Math.floor(rand()*26);
+    let totalCars = 560 + Math.floor(rand()*220);
+    let laneTotalSec = 62 + Math.floor(rand()*45);
+    let laneTotal2Sec = 16 + Math.floor(rand()*26);
+    // overlay real HME timer data on days we have it (mock values computed above keep the
+    // RNG sequence identical, so days without HME data are unchanged)
+    const realT = REAL_TIMER_DATA[shop] && REAL_TIMER_DATA[shop][isoForIndex(d)];
+    if(realT){
+      totalCars = realT.totalCars;
+      laneTotalSec = realT.laneTotalSec;
+      laneTotal2Sec = (realT.laneTotal2Sec != null) ? realT.laneTotal2Sec : realT.laneTotalSec;
+    }
     const netSales = totalCars * (ticketBias + (rand()*1.2-0.6));
     const drinksTotal = totalCars * (1.05 + rand()*0.35);
     const dph = drinksTotal / 17; // 17 operating hours
@@ -60394,7 +60408,7 @@ SHOPS.forEach(shop=>{
     const wage = 17 + rand()*3;
     const laborCost = actualHours*wage + overtimeHours*wage*0.5;
     dailyOps[shop].push({
-      totalCars, laneTotalSec, laneTotal2Sec,
+      totalCars, laneTotalSec, laneTotal2Sec, isRealTimer: !!realT,
       goalLaneTotal: makeGoalSplit(0.35), goalLaneTotal2: makeGoalSplit(0.85),
       netSales, dph, hourly,
       scheduledHours, actualHours, overtimeHours, laborCost
@@ -60870,6 +60884,10 @@ function renderTimes(){
     <div class="stat-card"><div class="v mono">${secsToClock(laneTotal2Avg)}</div><div class="l">Lane Total 2 avg</div></div>
     <div class="stat-card"><div class="v mono">${totalCars.toLocaleString()}</div><div class="l">Total cars</div></div>
   `;
+  const realDays = indices.filter(i => dailyOps[activeShop][i].isRealTimer).length;
+  document.getElementById('times-source').innerHTML = realDays > 0
+    ? `⏱ ${realDays} of ${indices.length} day(s) from real HME timers · other days simulated`
+    : `⏱ Simulated — no HME timer data for this stand in this range yet`;
   const avgSplit = key => {
     const out = {};
     ['A','B','C','D','over'].forEach(b=>{ out[b] = Math.round(indices.reduce((s,i)=>s+dailyOps[activeShop][i][key][b],0)/indices.length); });

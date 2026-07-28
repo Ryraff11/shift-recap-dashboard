@@ -7,6 +7,10 @@ pipeline/*_records_full_window.json
 # Intermediate prepped CSV (e.g. OV shift-inference), regenerated each run
 pipeline/*_recap_prepped.csv
 
+# Raw HME email bodies fetched from Gmail each run; the parsed result is committed
+# in pipeline/timer_history.json, so the raw bodies don't need to be tracked.
+pipeline/hme_data/
+
 # Python cache
 __pycache__/
 *.pyc

@@ -147,6 +147,16 @@ def main():
         html = html[:start_idx] + f"{start_marker}{payload}" + html[end_idx:]
         print(f'  injected {var_name} ({len(payload)} chars)')
 
+    # inject real HME drive-thru timer history (empty {} if timer_history.json isn't present yet)
+    timer = {}
+    if os.path.exists('timer_history.json'):
+        with open('timer_history.json') as f:
+            timer = json.load(f)
+    t_start = html.index("const REAL_TIMER_DATA = ")
+    t_end = html.index(";", t_start)
+    html = html[:t_start] + f"const REAL_TIMER_DATA = {json.dumps(timer)}" + html[t_end:]
+    print(f'  injected REAL_TIMER_DATA ({len(timer)} shop(s), {sum(len(v) for v in timer.values())} shop-day(s))')
+
     # keep the dashboard's internal "today" in sync with the actual current date
     today = datetime.now(ZoneInfo('America/Los_Angeles'))
     old_today_line_start = html.index("const TODAY_DATE = new Date(")

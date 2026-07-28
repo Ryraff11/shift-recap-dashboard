@@ -401,6 +401,7 @@
         <button class="range-btn" data-range="mtd">Month to Date</button>
       </div>
       <div class="stat-row" id="times-stats"></div>
+      <div id="times-source" style="font-size:12px;color:var(--text-dim);margin:-2px 0 10px;"></div>
       <div class="section-sub">Cars hitting goal · Lane Total</div>
       <div class="goal-bar" id="goal-bar-lanetotal"></div>
       <div class="goal-legend" id="goal-legend-lanetotal"></div>
@@ -566,7 +567,7 @@ const ACTIVE_SHOPS = SHOPS.filter(s=>!INACTIVE_SHOPS.has(s));
 const SHIFTS = ["Open","Mid","Close"];
 const days = 60; // 60-day data window powers the Late Submissions tally; the recaps day-strip below stays a fixed trailing 7 days so the grid is unchanged
 const TODAY_INDEX = days - 1;
-const TODAY_DATE = new Date(2026, 6, 28); // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
+const TODAY_DATE = new Date(2026, 6, 28); // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
 
 function dateForIndex(i){
   const dt = new Date(TODAY_DATE);
@@ -763,10 +764,10 @@ const REAL_ANTELOPE_RECORDS = [
   {
     "shop": "Antelope",
     "shift": "Close",
-    "dayIndex": 14,
+    "dayIndex": 13,
     "timestamp": "6/13/2026 0:59:29",
     "employee": "Ariana valencia",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -2443,10 +2444,10 @@ const REAL_ANTELOPE_RECORDS = [
   {
     "shop": "Antelope",
     "shift": "Close",
-    "dayIndex": 31,
+    "dayIndex": 30,
     "timestamp": "6/30/2026 0:09:39",
     "employee": "Katelyn Leake",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -2691,10 +2692,10 @@ const REAL_ANTELOPE_RECORDS = [
   {
     "shop": "Antelope",
     "shift": "Close",
-    "dayIndex": 34,
+    "dayIndex": 33,
     "timestamp": "7/3/2026 0:05:06",
     "employee": "Katelyn Leake",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -3788,10 +3789,10 @@ const REAL_ANTELOPE_RECORDS = [
   {
     "shop": "Antelope",
     "shift": "Close",
-    "dayIndex": 45,
+    "dayIndex": 44,
     "timestamp": "7/14/2026 0:51:39",
     "employee": "Daniel",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -4216,10 +4217,10 @@ const REAL_ANTELOPE_RECORDS = [
   {
     "shop": "Antelope",
     "shift": "Close",
-    "dayIndex": 49,
+    "dayIndex": 48,
     "timestamp": "7/18/2026 0:57:12",
     "employee": "Katelyn Leake",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -7064,10 +7065,10 @@ const REAL_FAIROAKS_RECORDS = [
   {
     "shop": "Fair Oaks",
     "shift": "Close",
-    "dayIndex": 13,
+    "dayIndex": 12,
     "timestamp": "6/12/2026 0:47:41",
     "employee": "Amari June",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -7203,10 +7204,10 @@ const REAL_FAIROAKS_RECORDS = [
   {
     "shop": "Fair Oaks",
     "shift": "Close",
-    "dayIndex": 14,
+    "dayIndex": 13,
     "timestamp": "6/13/2026 1:29:25",
     "employee": "Mel June",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -8386,10 +8387,10 @@ const REAL_FAIROAKS_RECORDS = [
   {
     "shop": "Fair Oaks",
     "shift": "Close",
-    "dayIndex": 25,
+    "dayIndex": 24,
     "timestamp": "6/24/2026 0:59:07",
     "employee": "Amari June",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -8684,10 +8685,10 @@ const REAL_FAIROAKS_RECORDS = [
   {
     "shop": "Fair Oaks",
     "shift": "Close",
-    "dayIndex": 28,
+    "dayIndex": 27,
     "timestamp": "6/27/2026 1:12:32",
     "employee": "Mel June",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -8794,10 +8795,10 @@ const REAL_FAIROAKS_RECORDS = [
   {
     "shop": "Fair Oaks",
     "shift": "Close",
-    "dayIndex": 29,
+    "dayIndex": 28,
     "timestamp": "6/28/2026 0:30:08",
     "employee": "Mel June",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -9202,10 +9203,10 @@ const REAL_FAIROAKS_RECORDS = [
   {
     "shop": "Fair Oaks",
     "shift": "Close",
-    "dayIndex": 33,
+    "dayIndex": 32,
     "timestamp": "7/2/2026 2:00:52",
     "employee": "Mel July",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -10803,10 +10804,10 @@ const REAL_FAIROAKS_RECORDS = [
   {
     "shop": "Fair Oaks",
     "shift": "Close",
-    "dayIndex": 47,
+    "dayIndex": 46,
     "timestamp": "7/16/2026 0:10:51",
     "employee": "Cass",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -11960,89 +11961,6 @@ const REAL_FAIROAKS_RECORDS = [
 const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
-    "shift": "Close",
-    "dayIndex": 0,
-    "timestamp": "5/30/2026 0:31:18",
-    "employee": "Michi",
-    "isLate": true,
-    "bestPlayer": null,
-    "needsHats": null,
-    "tardy": null,
-    "hazard": null,
-    "xbroStruggle": null,
-    "comment": "N/A",
-    "flags": [
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "No one really stood out today :("
-      },
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "Closing positionless helper: Cadence, Justin, and Jalissa were killing it tonight! Definitely helped a lot with back stocking and keeping the shop clean!"
-      },
-      {
-        "kind": "bad",
-        "employee": null,
-        "text": "Coached: Just reminded Justin to read back orders! Had a few drinks that were supposed to be different sizes and one drink was put in as a mocha instead of an Americano!"
-      },
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "N/A"
-      },
-      {
-        "kind": "bad",
-        "employee": null,
-        "text": "Recap submitted late \u2014 arrived 12:31 AM, after the 00:20 grace-period cutoff for Close."
-      }
-    ],
-    "fullRecap": {
-      "Shift time": "Closing shift 6pm-12am",
-      "Staffing": "Good staffing but rushes kept us on our toes!",
-      "Rush timing": "1) around 6:45-7:30\n2) 8:15-8:45\n3) small one, from around 11:30-11:45",
-      "Cleanest on bar": "",
-      "Line times / leaderboard": "Fluctuated up and down most of the shift!",
-      "Safety hazards": "N/A",
-      "Xbro / non-negotiables": "Biggest positive was having an extra body to help LB and get OA\u2019s ready in drink carriers and with stoppers",
-      "Coaching notes": "Just reminded Justin to read back orders! Had a few drinks that were supposed to be different sizes and one drink was put in as a mocha instead of an Americano!",
-      "Xbro effectiveness (1-5)": "4! Allowed us to get more orders on the board and allowed for us to cut back on window time by having drinks ready to be handed out.  ",
-      "Team player (system buy-in)": "No one really stood out today :(",
-      "Needs replacing / broken": "N/A",
-      "Quarterly comp tallies (OAs not ready)": "",
-      "Closing: Verifone WiFi": "Yes",
-      "Tardy / early-out": "N/A",
-      "Fridge seals check": "",
-      "XBRO staffing struggles": "N/A",
-      "Clamps": "Sent myself or our Pit to go out and help the LB",
-      "Closing: positionless helper": "Cadence, Justin, and Jalissa were killing it tonight! Definitely helped a lot with back stocking and keeping the shop clean! ",
-      "Closing: efficiency reflection": "Definitely could have started the tills sooner and started taking the pour spouts off! We almost forgot to take them off :\u2019)",
-      "Expired milk check": "DONE! It all looked good!",
-      "Additional comments": "N/A",
-      "Best team player / wear more hats": "",
-      "Culture competition": ""
-    },
-    "namedMentions": [
-      {
-        "name": "Cadence",
-        "kind": "good",
-        "source": "Cadence, Justin, and Jalissa were killing it tonight! Definitely helped a lot with back stocking and keeping the shop clean!"
-      },
-      {
-        "name": "Justin",
-        "kind": "good",
-        "source": "Cadence, Justin, and Jalissa were killing it tonight! Definitely helped a lot with back stocking and keeping the shop clean!"
-      },
-      {
-        "name": "Jalissa",
-        "kind": "good",
-        "source": "Cadence, Justin, and Jalissa were killing it tonight! Definitely helped a lot with back stocking and keeping the shop clean!"
-      }
-    ]
-  },
-  {
-    "shop": "Auburn",
     "shift": "Open",
     "dayIndex": 0,
     "timestamp": "5/30/2026 12:26:58",
@@ -12184,10 +12102,10 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 1,
+    "dayIndex": 0,
     "timestamp": "5/31/2026 0:11:27",
     "employee": "Unknown",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -12412,10 +12330,10 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 2,
+    "dayIndex": 1,
     "timestamp": "6/1/2026 0:17:21",
     "employee": "Grace",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -12772,7 +12690,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 4,
+    "dayIndex": 3,
     "timestamp": "6/3/2026 0:26:54",
     "employee": "Will",
     "isLate": true,
@@ -13016,7 +12934,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 5,
+    "dayIndex": 4,
     "timestamp": "6/4/2026 1:38:51",
     "employee": "Sophia Dunlap",
     "isLate": true,
@@ -13255,10 +13173,10 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 6,
+    "dayIndex": 5,
     "timestamp": "6/5/2026 0:09:40",
     "employee": "Greta Gantenbein",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -13696,10 +13614,10 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 8,
+    "dayIndex": 7,
     "timestamp": "6/7/2026 0:07:34",
     "employee": "Greta",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -13895,7 +13813,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 9,
+    "dayIndex": 8,
     "timestamp": "6/8/2026 1:13:19",
     "employee": "Cailey Albright",
     "isLate": true,
@@ -14084,7 +14002,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 10,
+    "dayIndex": 9,
     "timestamp": "6/9/2026 0:37:17",
     "employee": "Will",
     "isLate": true,
@@ -14288,7 +14206,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 11,
+    "dayIndex": 10,
     "timestamp": "6/10/2026 1:12:26",
     "employee": "Cailey Albright",
     "isLate": true,
@@ -14486,7 +14404,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 12,
+    "dayIndex": 11,
     "timestamp": "6/11/2026 0:56:52",
     "employee": "Haleigh",
     "isLate": true,
@@ -14652,7 +14570,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 13,
+    "dayIndex": 12,
     "timestamp": "6/12/2026 0:31:24",
     "employee": "Will",
     "isLate": true,
@@ -14823,7 +14741,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 14,
+    "dayIndex": 13,
     "timestamp": "6/13/2026 0:43:27",
     "employee": "Unknown",
     "isLate": true,
@@ -15009,10 +14927,10 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 15,
+    "dayIndex": 14,
     "timestamp": "6/14/2026 0:16:05",
     "employee": "Sully",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -15207,10 +15125,10 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 16,
+    "dayIndex": 15,
     "timestamp": "6/15/2026 0:17:06",
     "employee": "Sully",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -15532,10 +15450,10 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 18,
+    "dayIndex": 17,
     "timestamp": "6/17/2026 0:20:29",
     "employee": "Will",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -15935,10 +15853,10 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 20,
+    "dayIndex": 19,
     "timestamp": "6/19/2026 0:17:47",
     "employee": "Cailey Albright",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -16217,7 +16135,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 22,
+    "dayIndex": 21,
     "timestamp": "6/21/2026 0:37:24",
     "employee": "Cailey Albright",
     "isLate": true,
@@ -16274,7 +16192,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 22,
+    "dayIndex": 21,
     "timestamp": "6/21/2026 1:16:55",
     "employee": "Sully",
     "isLate": true,
@@ -16936,10 +16854,10 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 26,
+    "dayIndex": 25,
     "timestamp": "6/25/2026 0:09:55",
     "employee": "Greta Gantenbein",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -17130,7 +17048,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 27,
+    "dayIndex": 26,
     "timestamp": "6/26/2026 0:26:27",
     "employee": "Grace",
     "isLate": true,
@@ -17265,10 +17183,10 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 28,
+    "dayIndex": 27,
     "timestamp": "6/27/2026 0:13:49",
     "employee": "Sully",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -17569,10 +17487,10 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 30,
+    "dayIndex": 29,
     "timestamp": "6/29/2026 0:19:02",
     "employee": "Greta Gantenbein",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -17758,7 +17676,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 31,
+    "dayIndex": 30,
     "timestamp": "6/30/2026 3:12:40",
     "employee": "Cailey Albright",
     "isLate": true,
@@ -17962,7 +17880,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 32,
+    "dayIndex": 31,
     "timestamp": "7/1/2026 0:30:45",
     "employee": "Cailey Albright",
     "isLate": true,
@@ -18145,7 +18063,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 33,
+    "dayIndex": 32,
     "timestamp": "7/2/2026 0:28:00",
     "employee": "Greta Gantenbein",
     "isLate": true,
@@ -18349,10 +18267,10 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 34,
+    "dayIndex": 33,
     "timestamp": "7/3/2026 0:20:05",
     "employee": "Greta Gantenbein",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -18741,7 +18659,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 36,
+    "dayIndex": 35,
     "timestamp": "7/5/2026 0:52:54",
     "employee": "Grace",
     "isLate": true,
@@ -18970,10 +18888,10 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 37,
+    "dayIndex": 36,
     "timestamp": "7/6/2026 0:15:07",
     "employee": "Sully",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -19085,7 +19003,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 38,
+    "dayIndex": 37,
     "timestamp": "7/7/2026 0:58:42",
     "employee": "Michi",
     "isLate": true,
@@ -19246,7 +19164,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 39,
+    "dayIndex": 38,
     "timestamp": "7/8/2026 1:23:42",
     "employee": "Grace",
     "isLate": true,
@@ -19434,10 +19352,10 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 40,
+    "dayIndex": 39,
     "timestamp": "7/9/2026 0:16:30",
     "employee": "Sully",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -19601,10 +19519,10 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 41,
+    "dayIndex": 40,
     "timestamp": "7/10/2026 0:14:09",
     "employee": "Greta Gantenbein",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -19721,7 +19639,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 42,
+    "dayIndex": 41,
     "timestamp": "7/11/2026 2:04:13",
     "employee": "Haleigh",
     "isLate": true,
@@ -19920,10 +19838,10 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 43,
+    "dayIndex": 42,
     "timestamp": "7/12/2026 0:17:45",
     "employee": "Greta Gantenbein",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -20098,7 +20016,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 44,
+    "dayIndex": 43,
     "timestamp": "7/13/2026 0:29:19",
     "employee": "Michi",
     "isLate": true,
@@ -20286,10 +20204,10 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 45,
+    "dayIndex": 44,
     "timestamp": "7/14/2026 0:13:38",
     "employee": "Greta Gantenbein",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -20479,7 +20397,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 46,
+    "dayIndex": 45,
     "timestamp": "7/15/2026 2:26:22",
     "employee": "Haleigh",
     "isLate": true,
@@ -20663,7 +20581,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 47,
+    "dayIndex": 46,
     "timestamp": "7/16/2026 0:38:53",
     "employee": "Cailey Albright",
     "isLate": true,
@@ -20866,7 +20784,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 48,
+    "dayIndex": 47,
     "timestamp": "7/17/2026 1:00:36",
     "employee": "Haleigh",
     "isLate": true,
@@ -21049,7 +20967,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 49,
+    "dayIndex": 48,
     "timestamp": "7/18/2026 2:09:58",
     "employee": "Cailey Albright",
     "isLate": true,
@@ -21106,7 +21024,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 50,
+    "dayIndex": 49,
     "timestamp": "7/19/2026 1:04:45",
     "employee": "Grace",
     "isLate": true,
@@ -21426,7 +21344,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 52,
+    "dayIndex": 51,
     "timestamp": "7/21/2026 0:26:07",
     "employee": "Ashlee Standridge",
     "isLate": true,
@@ -21807,7 +21725,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 54,
+    "dayIndex": 53,
     "timestamp": "7/23/2026 1:27:54",
     "employee": "Cailey Albright",
     "isLate": true,
@@ -21985,7 +21903,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 55,
+    "dayIndex": 54,
     "timestamp": "7/24/2026 0:41:47",
     "employee": "Ashlee Standridge",
     "isLate": true,
@@ -22121,7 +22039,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 56,
+    "dayIndex": 55,
     "timestamp": "7/25/2026 0:43:20",
     "employee": "Ashlee Standridge",
     "isLate": true,
@@ -22299,7 +22217,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 57,
+    "dayIndex": 56,
     "timestamp": "7/26/2026 1:04:58",
     "employee": "Grace",
     "isLate": true,
@@ -22492,7 +22410,7 @@ const REAL_AUBURN_RECORDS = [
   {
     "shop": "Auburn",
     "shift": "Close",
-    "dayIndex": 58,
+    "dayIndex": 57,
     "timestamp": "7/27/2026 2:06:31",
     "employee": "Haleigh",
     "isLate": true,
@@ -22733,67 +22651,6 @@ const REAL_AUBURN_RECORDS = [
 const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
-    "shift": "Close",
-    "dayIndex": 0,
-    "timestamp": "5/30/2026 0:14:17",
-    "employee": "Sophia Drumright",
-    "isLate": false,
-    "bestPlayer": null,
-    "needsHats": null,
-    "tardy": null,
-    "hazard": null,
-    "xbroStruggle": null,
-    "comment": "I forgot to log my miles driving to another stand (FO) but i drove 5.2 miles",
-    "flags": [
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "gavin and taylor! Gavin absolutely went above and beyond today, he was extremely flexible on runner, he ran when he needed to, but he also was hopping inside and getting on whatever position the inside crew needed. His customers service was always amazing, and he brought an overall amazing vibe to the shift."
-      },
-      {
-        "kind": "bad",
-        "employee": null,
-        "text": "Tardy/early-out note: no, Lina wasn\u2019t able to clock in when she first got here. it says she clocked in at 5:31, but she was here on time. Gavin also forgot to clock into his 7-8 maintenance."
-      },
-      {
-        "kind": "bad",
-        "employee": null,
-        "text": "Xbro coaching: everyone did great today!"
-      },
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "I forgot to log my miles driving to another stand (FO) but i drove 5.2 miles"
-      }
-    ],
-    "fullRecap": {
-      "Staffing": "Just right",
-      "Line times / leaderboard": "amazing all day",
-      "Best team player / wear more hats": "gavin and taylor! Gavin absolutely went above and beyond today, he was extremely flexible on runner, he ran when he needed to, but he also was hopping inside and getting on whatever position the inside crew needed. His customers service was always amazing, and he brought an overall amazing vibe to the shift.",
-      "Tardy / early out": "no, Lina wasn\u2019t able to clock in when she first got here. it says she clocked in at 5:31, but she was here on time. Gavin also forgot to clock into his 7-8 maintenance. ",
-      "Morning SL: gravers feedback": "",
-      "Safety hazards": "",
-      "Additional comments": "I forgot to log my miles driving to another stand (FO) but i drove 5.2 miles",
-      "Xbro non-negotiables struggle": "everyone did great today!",
-      "Shift chore completed": "no i forgot:( it was to clean top of MCD machine ",
-      "Closing: Verifone WiFi": "Yes",
-      "Closing: bakery item inventory": ""
-    },
-    "namedMentions": [
-      {
-        "name": "Gavin",
-        "kind": "good",
-        "source": "gavin and taylor! Gavin absolutely went above and beyond today, he was extremely flexible on runner, he ran when he needed to, but he also was hopping inside an"
-      },
-      {
-        "name": "Taylor! Gavin",
-        "kind": "good",
-        "source": "gavin and taylor! Gavin absolutely went above and beyond today, he was extremely flexible on runner, he ran when he needed to, but he also was hopping inside an"
-      }
-    ]
-  },
-  {
-    "shop": "Mad",
     "shift": "Open",
     "dayIndex": 0,
     "timestamp": "5/30/2026 12:05:54",
@@ -22896,10 +22753,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 1,
+    "dayIndex": 0,
     "timestamp": "5/31/2026 0:06:08",
     "employee": "Kylie",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -23135,10 +22992,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 3,
+    "dayIndex": 2,
     "timestamp": "6/2/2026 0:07:52",
     "employee": "Sophia Drumright",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -23293,10 +23150,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 4,
+    "dayIndex": 3,
     "timestamp": "6/3/2026 0:03:37",
     "employee": "Bryan",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -23435,10 +23292,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 5,
+    "dayIndex": 4,
     "timestamp": "6/4/2026 0:12:07",
     "employee": "Sophia Drumright",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -23588,10 +23445,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 6,
+    "dayIndex": 5,
     "timestamp": "6/5/2026 0:11:55",
     "employee": "Delayah",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -23736,10 +23593,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 7,
+    "dayIndex": 6,
     "timestamp": "6/6/2026 0:06:44",
     "employee": "Kylie",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -23868,7 +23725,7 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 8,
+    "dayIndex": 7,
     "timestamp": "6/7/2026 0:30:00",
     "employee": "Diego Angelinaopen",
     "isLate": true,
@@ -24163,10 +24020,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 10,
+    "dayIndex": 9,
     "timestamp": "6/9/2026 0:04:05",
     "employee": "Warr.",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -24294,10 +24151,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 11,
+    "dayIndex": 10,
     "timestamp": "6/10/2026 0:04:31",
     "employee": "Sophia Drumright",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -24549,10 +24406,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 13,
+    "dayIndex": 12,
     "timestamp": "6/12/2026 0:05:23",
     "employee": "Bryan",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -24697,7 +24554,7 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 14,
+    "dayIndex": 13,
     "timestamp": "6/13/2026 1:27:27",
     "employee": "Sophia Drumright",
     "isLate": true,
@@ -24860,10 +24717,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 15,
+    "dayIndex": 14,
     "timestamp": "6/14/2026 0:13:28",
     "employee": "Bryan",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -24951,10 +24808,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 16,
+    "dayIndex": 15,
     "timestamp": "6/15/2026 0:12:12",
     "employee": "Warr.",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -25123,10 +24980,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 17,
+    "dayIndex": 16,
     "timestamp": "6/16/2026 0:07:24",
     "employee": "Sophia Drumright",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -25281,10 +25138,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 18,
+    "dayIndex": 17,
     "timestamp": "6/17/2026 0:08:29",
     "employee": "Warr.",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -25518,10 +25375,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 20,
+    "dayIndex": 19,
     "timestamp": "6/19/2026 0:04:19",
     "employee": "Bryan",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -25651,10 +25508,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 21,
+    "dayIndex": 20,
     "timestamp": "6/20/2026 0:14:49",
     "employee": "Sophia Drumright",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -26001,10 +25858,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 25,
+    "dayIndex": 24,
     "timestamp": "6/24/2026 0:11:43",
     "employee": "sophia Drumright",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -26144,10 +26001,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 26,
+    "dayIndex": 25,
     "timestamp": "6/25/2026 0:08:06",
     "employee": "Bryan",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -26296,10 +26153,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 27,
+    "dayIndex": 26,
     "timestamp": "6/26/2026 0:01:30",
     "employee": "Aria",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -26459,7 +26316,7 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 28,
+    "dayIndex": 27,
     "timestamp": "6/27/2026 0:17:28",
     "employee": "Kylie",
     "isLate": true,
@@ -26723,10 +26580,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 30,
+    "dayIndex": 29,
     "timestamp": "6/29/2026 0:01:19",
     "employee": "Aria",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -27014,7 +26871,7 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 32,
+    "dayIndex": 31,
     "timestamp": "7/1/2026 0:21:20",
     "employee": "Kylie",
     "isLate": true,
@@ -27156,10 +27013,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 33,
+    "dayIndex": 32,
     "timestamp": "7/2/2026 0:02:03",
     "employee": "Aria",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -27294,10 +27151,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 34,
+    "dayIndex": 33,
     "timestamp": "7/3/2026 0:03:24",
     "employee": "Aria",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -27432,10 +27289,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 35,
+    "dayIndex": 34,
     "timestamp": "7/4/2026 0:02:32",
     "employee": "Bryan",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -27565,7 +27422,7 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 36,
+    "dayIndex": 35,
     "timestamp": "7/5/2026 0:22:27",
     "employee": "Kylie",
     "isLate": true,
@@ -27718,10 +27575,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 37,
+    "dayIndex": 36,
     "timestamp": "7/6/2026 0:06:32",
     "employee": "Aria",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -27850,7 +27707,7 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 38,
+    "dayIndex": 37,
     "timestamp": "7/7/2026 0:35:13",
     "employee": "Diego Angelinaopen",
     "isLate": true,
@@ -27987,10 +27844,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 39,
+    "dayIndex": 38,
     "timestamp": "7/8/2026 0:03:43",
     "employee": "Kylie",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -28129,7 +27986,7 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 40,
+    "dayIndex": 39,
     "timestamp": "7/9/2026 0:19:36",
     "employee": "Aria",
     "isLate": true,
@@ -28415,10 +28272,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 42,
+    "dayIndex": 41,
     "timestamp": "7/11/2026 0:14:39",
     "employee": "Kylie",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -28572,10 +28429,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 43,
+    "dayIndex": 42,
     "timestamp": "7/12/2026 0:05:16",
     "employee": "Aria",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -28877,10 +28734,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 45,
+    "dayIndex": 44,
     "timestamp": "7/14/2026 0:08:03",
     "employee": "Sophia Drumright",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -29176,7 +29033,7 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 47,
+    "dayIndex": 46,
     "timestamp": "7/16/2026 0:18:17",
     "employee": "Diego Angelinaopen",
     "isLate": true,
@@ -29486,10 +29343,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 49,
+    "dayIndex": 48,
     "timestamp": "7/18/2026 0:13:33",
     "employee": "Diego Angelinaopen",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -29632,10 +29489,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 50,
+    "dayIndex": 49,
     "timestamp": "7/19/2026 0:13:37",
     "employee": "Katelan B",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -29790,10 +29647,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 51,
+    "dayIndex": 50,
     "timestamp": "7/20/2026 0:10:02",
     "employee": "Kylie",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -29921,10 +29778,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 52,
+    "dayIndex": 51,
     "timestamp": "7/21/2026 0:06:27",
     "employee": "Sophia Drumright",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -30084,10 +29941,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 53,
+    "dayIndex": 52,
     "timestamp": "7/22/2026 0:09:03",
     "employee": "Bryan",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -30251,10 +30108,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 54,
+    "dayIndex": 53,
     "timestamp": "7/23/2026 0:14:43",
     "employee": "Kylie",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -30393,10 +30250,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 55,
+    "dayIndex": 54,
     "timestamp": "7/24/2026 0:13:52",
     "employee": "Kylie",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -30550,10 +30407,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 56,
+    "dayIndex": 55,
     "timestamp": "7/25/2026 0:09:43",
     "employee": "Sophia Drumright",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -30718,7 +30575,7 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 57,
+    "dayIndex": 56,
     "timestamp": "7/26/2026 0:26:31",
     "employee": "Diego Angelinaopen",
     "isLate": true,
@@ -30865,10 +30722,10 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 58,
+    "dayIndex": 57,
     "timestamp": "7/27/2026 0:04:58",
     "employee": "Sophia Drumright",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -30997,7 +30854,7 @@ const REAL_MADHOUSE_RECORDS = [
   {
     "shop": "Mad",
     "shift": "Close",
-    "dayIndex": 59,
+    "dayIndex": 58,
     "timestamp": "7/28/2026 0:21:27",
     "employee": "Sophia Drumright",
     "isLate": true,
@@ -31057,62 +30914,6 @@ const REAL_MADHOUSE_RECORDS = [
   }
 ]
 const REAL_LICHEN_RECORDS = [
-  {
-    "shop": "Lichen",
-    "shift": "Close",
-    "dayIndex": 0,
-    "timestamp": "5/30/2026 0:28:45",
-    "employee": "Leshon",
-    "isLate": true,
-    "bestPlayer": null,
-    "needsHats": null,
-    "tardy": null,
-    "hazard": null,
-    "xbroStruggle": null,
-    "comment": "No",
-    "flags": [
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "Jacob and Dylan both!"
-      },
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "No"
-      },
-      {
-        "kind": "bad",
-        "employee": null,
-        "text": "Recap submitted late \u2014 arrived 12:28 AM, after the 00:15 grace-period cutoff for Close."
-      }
-    ],
-    "fullRecap": {
-      "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
-      "Line times / leaderboard": "1:20",
-      "Times throughout shift": "",
-      "Best team player / wear more hats": "Jacob and Dylan both!",
-      "Tardy / early out": "No",
-      "Coaching notes": "No",
-      "What could have gone smoother": "It was chill!! Just busy enough to fly by ",
-      "Safety hazards": "No",
-      "Additional comments": "No",
-      "Fridge seals cleaned": "yessss sirrr! sparkly clean!!",
-      "New staffing/XBRO: went well / challenging": "",
-      "XBRO effectiveness": "10/10! We were moving so fast! No hiccups and everyone gave it their all!",
-      "Bought into new system": "",
-      "Struggled with new staffing/XBRO": "",
-      "Clamps": "No clamps!",
-      "Closing checklist": "iPads plugged in, locked, and turned off of low power mode, verifones are covered by a rag, iPad locker is locked up, all doors & windows are locked, ALL keys are locked and put away, all money is locked up in the bottom safe, Alarm is about to be set and turned on",
-      "Quarterly contest tallies": "Dylan. No tallies",
-      "Xbro non-negotiables struggle": "",
-      "Chef position feedback": "",
-      "Closing: Verifone WiFi": "Yes",
-      "Aug contest: OA runner": "",
-      "Aug contest: why": ""
-    },
-    "namedMentions": []
-  },
   {
     "shop": "Lichen",
     "shift": "Mid",
@@ -31177,7 +30978,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 1,
+    "dayIndex": 0,
     "timestamp": "5/31/2026 0:30:55",
     "employee": "Magdelana Miller",
     "isLate": true,
@@ -31345,7 +31146,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 2,
+    "dayIndex": 1,
     "timestamp": "6/1/2026 0:49:58",
     "employee": "Matthew Warner",
     "isLate": true,
@@ -31519,7 +31320,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 3,
+    "dayIndex": 2,
     "timestamp": "6/2/2026 1:15:06",
     "employee": "Matthew",
     "isLate": true,
@@ -31697,7 +31498,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 4,
+    "dayIndex": 3,
     "timestamp": "6/3/2026 0:40:41",
     "employee": "Matthew Warner",
     "isLate": true,
@@ -31887,7 +31688,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 5,
+    "dayIndex": 4,
     "timestamp": "6/4/2026 0:34:39",
     "employee": "Matthew Warner",
     "isLate": true,
@@ -31994,7 +31795,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 6,
+    "dayIndex": 5,
     "timestamp": "6/5/2026 0:41:55",
     "employee": "Ethan Padilla",
     "isLate": true,
@@ -32106,10 +31907,10 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 7,
+    "dayIndex": 6,
     "timestamp": "6/6/2026 0:08:09",
     "employee": "Matthew Warner",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -32162,7 +31963,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 7,
+    "dayIndex": 6,
     "timestamp": "6/6/2026 1:06:04",
     "employee": "No L",
     "isLate": true,
@@ -32357,7 +32158,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 8,
+    "dayIndex": 7,
     "timestamp": "6/7/2026 0:20:42",
     "employee": "Kaylee Richardson",
     "isLate": true,
@@ -32536,10 +32337,10 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 9,
+    "dayIndex": 8,
     "timestamp": "6/8/2026 0:15:50",
     "employee": "Ethan Padilla",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -32721,10 +32522,10 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 10,
+    "dayIndex": 9,
     "timestamp": "6/9/2026 0:13:26",
     "employee": "Magdelana Miller",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -32916,7 +32717,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 11,
+    "dayIndex": 10,
     "timestamp": "6/10/2026 0:28:19",
     "employee": "Leshon",
     "isLate": true,
@@ -33235,7 +33036,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 13,
+    "dayIndex": 12,
     "timestamp": "6/12/2026 0:33:40",
     "employee": "Patricia Gilbert",
     "isLate": true,
@@ -33414,7 +33215,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 14,
+    "dayIndex": 13,
     "timestamp": "6/13/2026 0:31:19",
     "employee": "Magdelana Miller",
     "isLate": true,
@@ -33521,7 +33322,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 15,
+    "dayIndex": 14,
     "timestamp": "6/14/2026 0:27:38",
     "employee": "Matthew Warner June",
     "isLate": true,
@@ -33721,10 +33522,10 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 16,
+    "dayIndex": 15,
     "timestamp": "6/15/2026 0:15:40",
     "employee": "Ash Amos",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -33839,7 +33640,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 17,
+    "dayIndex": 16,
     "timestamp": "6/16/2026 0:26:13",
     "employee": "Magdelana Miller",
     "isLate": true,
@@ -33906,7 +33707,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 18,
+    "dayIndex": 17,
     "timestamp": "6/17/2026 0:34:50",
     "employee": "Patricia Gilbert",
     "isLate": true,
@@ -34162,10 +33963,10 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 20,
+    "dayIndex": 19,
     "timestamp": "6/19/2026 0:06:15",
     "employee": "Ethan Padilla",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -34415,7 +34216,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 22,
+    "dayIndex": 21,
     "timestamp": "6/21/2026 1:57:02",
     "employee": "Matthew Warner June",
     "isLate": true,
@@ -34636,7 +34437,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 23,
+    "dayIndex": 22,
     "timestamp": "6/22/2026 0:25:46",
     "employee": "Matthew Warner",
     "isLate": true,
@@ -34820,10 +34621,10 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 24,
+    "dayIndex": 23,
     "timestamp": "6/23/2026 0:00:12",
     "employee": "Ash Amos",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -34999,7 +34800,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 25,
+    "dayIndex": 24,
     "timestamp": "6/24/2026 0:35:05",
     "employee": "Patricia Gilbert",
     "isLate": true,
@@ -35168,7 +34969,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 26,
+    "dayIndex": 25,
     "timestamp": "6/25/2026 0:26:52",
     "employee": "Kaylee Richardson",
     "isLate": true,
@@ -35612,7 +35413,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 29,
+    "dayIndex": 28,
     "timestamp": "6/28/2026 0:17:40",
     "employee": "Magdelana Miller",
     "isLate": true,
@@ -35792,7 +35593,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 30,
+    "dayIndex": 29,
     "timestamp": "6/29/2026 0:36:35",
     "employee": "Sidney Bird",
     "isLate": true,
@@ -35978,10 +35779,10 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 31,
+    "dayIndex": 30,
     "timestamp": "6/30/2026 0:10:03",
     "employee": "Patricia Gilbert",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -36096,7 +35897,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 32,
+    "dayIndex": 31,
     "timestamp": "7/1/2026 1:32:40",
     "employee": "Sidney Bird",
     "isLate": true,
@@ -36352,7 +36153,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 33,
+    "dayIndex": 32,
     "timestamp": "7/2/2026 0:18:19",
     "employee": "Matthew Warner",
     "isLate": true,
@@ -36654,10 +36455,10 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 35,
+    "dayIndex": 34,
     "timestamp": "7/4/2026 0:09:40",
     "employee": "Ash Amos",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -36859,7 +36660,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 36,
+    "dayIndex": 35,
     "timestamp": "7/5/2026 0:34:59",
     "employee": "Patricia Gilbert",
     "isLate": true,
@@ -37253,7 +37054,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 38,
+    "dayIndex": 37,
     "timestamp": "7/7/2026 0:28:18",
     "employee": "Matthew Warner",
     "isLate": true,
@@ -37565,7 +37366,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 40,
+    "dayIndex": 39,
     "timestamp": "7/9/2026 0:18:51",
     "employee": "Kaylee Richardson",
     "isLate": true,
@@ -37749,7 +37550,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 41,
+    "dayIndex": 40,
     "timestamp": "7/10/2026 0:39:18",
     "employee": "Sidney Bird",
     "isLate": true,
@@ -37903,7 +37704,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 42,
+    "dayIndex": 41,
     "timestamp": "7/11/2026 0:39:35",
     "employee": "Sidney Bird",
     "isLate": true,
@@ -38088,7 +37889,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 43,
+    "dayIndex": 42,
     "timestamp": "7/12/2026 0:36:00",
     "employee": "Matthew Warner",
     "isLate": true,
@@ -38263,7 +38064,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 44,
+    "dayIndex": 43,
     "timestamp": "7/13/2026 0:31:04",
     "employee": "Magdelana Miller",
     "isLate": true,
@@ -38391,7 +38192,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 45,
+    "dayIndex": 44,
     "timestamp": "7/14/2026 0:41:33",
     "employee": "Magdelana Miller",
     "isLate": true,
@@ -38884,10 +38685,10 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 48,
+    "dayIndex": 47,
     "timestamp": "7/17/2026 0:14:27",
     "employee": "Kaylee Richardson JULY",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -39063,7 +38864,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 49,
+    "dayIndex": 48,
     "timestamp": "7/18/2026 0:36:27",
     "employee": "Sidney Bird",
     "isLate": true,
@@ -39196,10 +38997,10 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 50,
+    "dayIndex": 49,
     "timestamp": "7/19/2026 0:14:50",
     "employee": "Kaylee Richardson JULY",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -39392,10 +39193,10 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 51,
+    "dayIndex": 50,
     "timestamp": "7/20/2026 0:05:24",
     "employee": "Sidney Bird",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -39526,7 +39327,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 52,
+    "dayIndex": 51,
     "timestamp": "7/21/2026 0:23:50",
     "employee": "Sidney Bird",
     "isLate": true,
@@ -39870,7 +39671,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 54,
+    "dayIndex": 53,
     "timestamp": "7/23/2026 0:16:06",
     "employee": "Sidney Bird",
     "isLate": true,
@@ -40071,10 +39872,10 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 55,
+    "dayIndex": 54,
     "timestamp": "7/24/2026 0:10:24",
     "employee": "Kaylee Richardson JULY",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -40369,7 +40170,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 57,
+    "dayIndex": 56,
     "timestamp": "7/26/2026 0:18:10",
     "employee": "Ash Amos",
     "isLate": true,
@@ -40553,10 +40354,10 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 58,
+    "dayIndex": 57,
     "timestamp": "7/27/2026 0:13:11",
     "employee": "Magdelana Miller",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -40734,7 +40535,7 @@ const REAL_LICHEN_RECORDS = [
   {
     "shop": "Lichen",
     "shift": "Close",
-    "dayIndex": 59,
+    "dayIndex": 58,
     "timestamp": "7/28/2026 0:49:12",
     "employee": "Ash Amos",
     "isLate": true,
@@ -41000,10 +40801,10 @@ const REAL_FIRESIDE_RECORDS = [
   {
     "shop": "Fireside",
     "shift": "Close",
-    "dayIndex": 2,
+    "dayIndex": 1,
     "timestamp": "6/1/2026 1:53:54",
     "employee": "Taylor Richardson",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -41527,10 +41328,10 @@ const REAL_FIRESIDE_RECORDS = [
   {
     "shop": "Fireside",
     "shift": "Close",
-    "dayIndex": 6,
+    "dayIndex": 5,
     "timestamp": "6/5/2026 1:29:13",
     "employee": "Taylor Richardson",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -41655,10 +41456,10 @@ const REAL_FIRESIDE_RECORDS = [
   {
     "shop": "Fireside",
     "shift": "Close",
-    "dayIndex": 7,
+    "dayIndex": 6,
     "timestamp": "6/6/2026 1:26:14",
     "employee": "Taylor Richardson",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -41798,10 +41599,10 @@ const REAL_FIRESIDE_RECORDS = [
   {
     "shop": "Fireside",
     "shift": "Close",
-    "dayIndex": 8,
+    "dayIndex": 7,
     "timestamp": "6/7/2026 0:00:40",
     "employee": "Igor Marin",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -42414,10 +42215,10 @@ const REAL_FIRESIDE_RECORDS = [
   {
     "shop": "Fireside",
     "shift": "Close",
-    "dayIndex": 13,
+    "dayIndex": 12,
     "timestamp": "6/12/2026 0:04:55",
     "employee": "Igor Marin",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -45365,10 +45166,10 @@ const REAL_FIRESIDE_RECORDS = [
   {
     "shop": "Fireside",
     "shift": "Close",
-    "dayIndex": 33,
+    "dayIndex": 32,
     "timestamp": "7/2/2026 1:00:55",
     "employee": "Taylor Richardson",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -46264,10 +46065,10 @@ const REAL_FIRESIDE_RECORDS = [
   {
     "shop": "Fireside",
     "shift": "Close",
-    "dayIndex": 39,
+    "dayIndex": 38,
     "timestamp": "7/8/2026 0:04:23",
     "employee": "Madi Furton",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -46566,10 +46367,10 @@ const REAL_FIRESIDE_RECORDS = [
   {
     "shop": "Fireside",
     "shift": "Close",
-    "dayIndex": 41,
+    "dayIndex": 40,
     "timestamp": "7/10/2026 0:39:52",
     "employee": "Taylor Richardson",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -47004,10 +46805,10 @@ const REAL_FIRESIDE_RECORDS = [
   {
     "shop": "Fireside",
     "shift": "Close",
-    "dayIndex": 44,
+    "dayIndex": 43,
     "timestamp": "7/13/2026 0:26:25",
     "employee": "Taylor Richardson",
-    "isLate": false,
+    "isLate": true,
     "bestPlayer": null,
     "needsHats": null,
     "tardy": null,
@@ -50514,7 +50315,7 @@ const REAL_MANZ_RECORDS = [
   {
     "shop": "Manz",
     "shift": "Close",
-    "dayIndex": 7,
+    "dayIndex": 6,
     "timestamp": "6/6/2026 0:32:35",
     "employee": "Madison Weideman",
     "isLate": true,
@@ -57614,7 +57415,7 @@ const REAL_MANZ_RECORDS = [
   {
     "shop": "Manz",
     "shift": "Close",
-    "dayIndex": 48,
+    "dayIndex": 47,
     "timestamp": "7/17/2026 2:01:43",
     "employee": "Moriah Askari",
     "isLate": true,
@@ -60576,14 +60377,27 @@ function makeGoalSplit(fastBias){
 const HOURS = ['6a','7a','8a','9a','10a','11a','12p','1p','2p','3p','4p','5p','6p','7p','8p','9p','10p','11p'];
 const HOUR_WEIGHTS = [0.015,0.045,0.085,0.095,0.065,0.05,0.045,0.05,0.07,0.09,0.085,0.06,0.05,0.045,0.04,0.035,0.03,0.02];
 
-const dailyOps = {}; // dailyOps[shop][d] = {totalCars, laneTotalSec, laneTotal2Sec, goalLaneTotal, goalLaneTotal2, netSales, dph, hourly[], sched, actualHrs, otHrs, laborCost}
+// Real drive-thru timer data from HME (injected by refresh_dashboard.py from timer_history.json).
+// Shape: { "<Shop>": { "YYYY-MM-DD": {laneTotalSec, laneTotal2Sec, totalCars} } }. Empty until injected.
+const REAL_TIMER_DATA = {"Lichen": {"2026-07-27": {"laneTotalSec": 81, "laneTotal2Sec": null, "totalCars": 561}}, "Mad": {"2026-07-27": {"laneTotalSec": 124, "laneTotal2Sec": 126, "totalCars": 717}}, "Manz": {"2026-07-27": {"laneTotalSec": 72, "laneTotal2Sec": null, "totalCars": 514}}};
+function isoForIndex(i){ const dt=dateForIndex(i); return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0'); }
+
+const dailyOps = {}; // dailyOps[shop][d] = {totalCars, laneTotalSec, laneTotal2Sec, isRealTimer, goalLaneTotal, goalLaneTotal2, netSales, dph, hourly[], sched, actualHrs, otHrs, laborCost}
 SHOPS.forEach(shop=>{
   dailyOps[shop] = [];
   const ticketBias = 6.2 + rand()*1.6; // this shop's typical avg ticket
   for(let d=0; d<days; d++){
-    const totalCars = 560 + Math.floor(rand()*220);
-    const laneTotalSec = 62 + Math.floor(rand()*45);
-    const laneTotal2Sec = 16 + Math.floor(rand()*26);
+    let totalCars = 560 + Math.floor(rand()*220);
+    let laneTotalSec = 62 + Math.floor(rand()*45);
+    let laneTotal2Sec = 16 + Math.floor(rand()*26);
+    // overlay real HME timer data on days we have it (mock values computed above keep the
+    // RNG sequence identical, so days without HME data are unchanged)
+    const realT = REAL_TIMER_DATA[shop] && REAL_TIMER_DATA[shop][isoForIndex(d)];
+    if(realT){
+      totalCars = realT.totalCars;
+      laneTotalSec = realT.laneTotalSec;
+      laneTotal2Sec = (realT.laneTotal2Sec != null) ? realT.laneTotal2Sec : realT.laneTotalSec;
+    }
     const netSales = totalCars * (ticketBias + (rand()*1.2-0.6));
     const drinksTotal = totalCars * (1.05 + rand()*0.35);
     const dph = drinksTotal / 17; // 17 operating hours
@@ -60594,7 +60408,7 @@ SHOPS.forEach(shop=>{
     const wage = 17 + rand()*3;
     const laborCost = actualHours*wage + overtimeHours*wage*0.5;
     dailyOps[shop].push({
-      totalCars, laneTotalSec, laneTotal2Sec,
+      totalCars, laneTotalSec, laneTotal2Sec, isRealTimer: !!realT,
       goalLaneTotal: makeGoalSplit(0.35), goalLaneTotal2: makeGoalSplit(0.85),
       netSales, dph, hourly,
       scheduledHours, actualHours, overtimeHours, laborCost
@@ -61070,6 +60884,10 @@ function renderTimes(){
     <div class="stat-card"><div class="v mono">${secsToClock(laneTotal2Avg)}</div><div class="l">Lane Total 2 avg</div></div>
     <div class="stat-card"><div class="v mono">${totalCars.toLocaleString()}</div><div class="l">Total cars</div></div>
   `;
+  const realDays = indices.filter(i => dailyOps[activeShop][i].isRealTimer).length;
+  document.getElementById('times-source').innerHTML = realDays > 0
+    ? `⏱ ${realDays} of ${indices.length} day(s) from real HME timers · other days simulated`
+    : `⏱ Simulated — no HME timer data for this stand in this range yet`;
   const avgSplit = key => {
     const out = {};
     ['A','B','C','D','over'].forEach(b=>{ out[b] = Math.round(indices.reduce((s,i)=>s+dailyOps[activeShop][i][key][b],0)/indices.length); });
