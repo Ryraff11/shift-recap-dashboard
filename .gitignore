@@ -1,0 +1,9 @@
+# Raw CSV exports are regenerated on every pipeline run — never commit them
+pipeline/*_recap_raw.csv
+
+# Intermediate per-shop JSON built on every run — regenerated, not source
+pipeline/*_records_full_window.json
+
+# Python cache
+__pycache__/
+*.pyc
