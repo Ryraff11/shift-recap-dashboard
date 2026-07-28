@@ -115,7 +115,7 @@ FIELD_MAP = [
 ]
 
 TODAY = datetime.now(ZoneInfo('America/Los_Angeles'))
-DAYS = 30
+DAYS = 60
 TODAY_INDEX = DAYS - 1
 
 def day_index_for(dt):

@@ -131,3 +131,33 @@ if __name__ == '__main__':
             for short, cands in ambiguous.items():
                 print(f'  SKIPPED (ambiguous): {short!r} could be {cands} -- left separate')
         print()
+
+    # --- consolidate shift-lead (submitter) names across ALL shops, using the same resolver ---
+    # The per-shop pass above resolves people mentioned inside recaps; this pass resolves the
+    # SUBMITTER name (record['employee']) so "Sarah"/"Sar"/"Sarah J" tally as one lead.
+    shop_records = {}
+    all_employees = set()
+    for path in shops.values():
+        with open(path) as f:
+            recs = json.load(f)
+        shop_records[path] = recs
+        for r in recs:
+            if r.get('employee'):
+                all_employees.add(r['employee'])
+    emp_map, _ = resolve_nicknames(list(all_employees))
+    print('=== Shift-lead (submitter) consolidation ===')
+    if emp_map:
+        for path, recs in shop_records.items():
+            changed = False
+            for r in recs:
+                e = r.get('employee')
+                if e in emp_map:
+                    r['employee'] = emp_map[e]
+                    changed = True
+            if changed:
+                with open(path, 'w') as f:
+                    json.dump(recs, f, indent=2)
+        for short, full in emp_map.items():
+            print(f'  merged submitter: {short!r} -> {full!r}')
+    else:
+        print('  no merges')

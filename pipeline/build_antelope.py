@@ -95,7 +95,7 @@ def title_name(name):
     return ' '.join(out)
 
 TODAY = datetime.now(ZoneInfo('America/Los_Angeles'))
-DAYS = 30
+DAYS = 60
 TODAY_INDEX = DAYS - 1
 SHIFT_CUTOFF = {'Open': (11,15), 'Mid': (18,15), 'Close': (23,45)}
 

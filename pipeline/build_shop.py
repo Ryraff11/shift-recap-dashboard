@@ -85,7 +85,7 @@ def title_name(name):
         else: out.append(p[:1].upper() + p[1:].lower())
     return ' '.join(out)
 
-def build_shop(shop_name, csv_path, shift_cutoff, today, days=30):
+def build_shop(shop_name, csv_path, shift_cutoff, today, days=60):
     with open(csv_path, newline='', encoding='utf-8') as f:
         reader = csv.reader(f)
         rows = list(reader)
