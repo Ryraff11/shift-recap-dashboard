@@ -335,7 +335,6 @@
     <div style="display:flex; gap:8px;">
       <button class="ghost-btn" id="btn-compare">Compare →</button>
       <button class="ghost-btn" id="btn-leaderboard">Leaderboard →</button>
-      <button class="ghost-btn" id="btn-latesubs">Late Subs →</button>
     </div>
   </div>
   <p class="header-sub" id="header-sub">Tap a stand to dig into recaps, times, sales, and payroll — example data below.</p>
@@ -546,18 +545,6 @@
       </select>
     </div>
     <div id="leaderboard-list"></div>
-  </div>
-
-  <!-- ============ LATE SUBMISSIONS ============ -->
-  <div class="view" id="view-latesubs">
-    <button class="back-btn" id="btn-back-home-4">← Home</button>
-    <div class="section-title">Late Submissions · Shift Lead Tally</div>
-    <p class="header-sub" style="margin-top:-4px;">Recap paperwork submitted after each shift's grace-period cutoff · last 60 days · all active stands (incl. OV), Winding excluded.</p>
-    <div class="stat-row" id="latesubs-stats"></div>
-    <div class="section-sub">Leaderboard — most late first</div>
-    <div id="latesubs-leaderboard"></div>
-    <div class="section-sub" style="margin-top:18px;">Every late recap (most recent first)</div>
-    <div id="latesubs-detail"></div>
   </div>
 </main>
 
@@ -61149,8 +61136,6 @@ document.getElementById('btn-back-home').addEventListener('click', ()=>showView(
 document.getElementById('btn-back-home-2').addEventListener('click', ()=>showView('home'));
 document.getElementById('btn-back-home-3').addEventListener('click', ()=>showView('home'));
 document.getElementById('btn-leaderboard').addEventListener('click', ()=>{ showView('leaderboard'); renderLeaderboard(); });
-document.getElementById('btn-latesubs').addEventListener('click', ()=>{ showView('latesubs'); renderLateSubs(); });
-document.getElementById('btn-back-home-4').addEventListener('click', ()=>showView('home'));
 document.getElementById('btn-compare').addEventListener('click', ()=>{ showView('compare'); renderCompareChips(); renderCompareAll(); });
 
 document.querySelectorAll('#shop-subtabs .subtab').forEach(tab=>{
@@ -61806,87 +61791,6 @@ function renderLeaderboard(){
   }).join('');
 }
 document.getElementById('lb-rank-by').addEventListener('change', renderLeaderboard);
-
-// ================= LATE SUBMISSIONS (60-day accountability) =================
-function renderLateSubs(){
-  // Computed client-side from the real recap records. employee = the shift lead who submitted;
-  // names are already consolidated by the pipeline's nickname resolver. Window = full 60 days.
-  const inWindow = records.filter(r => !INACTIVE_SHOPS.has(r.shop) && r.employee);
-  const lateRecs = inWindow.filter(r => r.isLate);
-
-  // per-lead aggregation across shops + shifts
-  const leads = new Map();
-  inWindow.forEach(r => {
-    const name = r.employee || 'Unknown';
-    if(!leads.has(name)) leads.set(name, {name, total:0, late:0, shops:{}});
-    const e = leads.get(name);
-    e.total++;
-    if(r.isLate) e.late++;
-    e.shops[r.shop] = (e.shops[r.shop]||0) + 1;
-  });
-  const rows = [...leads.values()].map(e => {
-    const onTime = e.total - e.late;
-    const rate = e.total ? Math.round((onTime / e.total) * 100) : 0;
-    const shopsSorted = Object.entries(e.shops).sort((a,b)=>b[1]-a[1]);
-    return {...e, onTime, rate, primaryShop:shopsSorted[0][0], shopCount:shopsSorted.length};
-  });
-  // worst-first: most late, then lowest on-time rate, then most recaps
-  rows.sort((a,b)=> (b.late - a.late) || (a.rate - b.rate) || (b.total - a.total));
-
-  const totalLate = lateRecs.length;
-  const distinctLeads = leads.size;
-  const leadsWithLate = rows.filter(r=>r.late>0).length;
-  document.getElementById('latesubs-stats').innerHTML = `
-    <div class="stat-card bad"><div class="v mono">${totalLate}</div><div class="l">Late recaps · 60d</div></div>
-    <div class="stat-card"><div class="v mono">${distinctLeads}</div><div class="l">Shift leads</div></div>
-    <div class="stat-card"><div class="v mono">${leadsWithLate}</div><div class="l">Leads with a late</div></div>
-  `;
-
-  document.getElementById('latesubs-leaderboard').innerHTML = rows.length===0
-    ? `<div class="empty">No recaps in the last 60 days.</div>`
-    : rows.map((r,i)=>{
-        const rateColor = r.rate>=90 ? 'var(--good)' : (r.rate>=75 ? 'var(--amber)' : 'var(--bad)');
-        const shopLabel = r.shopCount>1 ? `${r.primaryShop} +${r.shopCount-1}` : r.primaryShop;
-        return `<div class="lb-row">
-          <div class="lb-rank">${i+1}</div>
-          <div class="lb-shop">
-            <div class="lb-shop-name">${escapeHtml(r.name)}</div>
-            <div class="lb-sub">${escapeHtml(shopLabel)} · ${r.total} recap${r.total!==1?'s':''} · <span style="color:${rateColor}">${r.rate}% on-time</span></div>
-          </div>
-          <div class="lb-metric">
-            <div class="v mono" style="color:${r.late>0?'var(--bad)':'var(--text)'}">${r.late}</div>
-            <div class="l">late</div>
-          </div>
-        </div>`;
-      }).join('');
-
-  // detail: every late recap, most recent first
-  const detail = [...lateRecs].sort((a,b)=> (b.dayIndex - a.dayIndex) || (a.timestamp < b.timestamp ? 1 : -1));
-  document.getElementById('latesubs-detail').innerHTML = detail.length===0
-    ? `<div class="empty">No late submissions in the last 60 days. 🎉</div>`
-    : detail.map(r=>{
-        const lateFlag = (r.flags||[]).find(f=>/submitted late/i.test(f.text));
-        let howLate = '';
-        if(lateFlag){
-          const m = lateFlag.text.match(/arrived ([^,]+), after the (\d{1,2}:\d{2})/i);
-          if(m) howLate = `arrived ${m[1].trim()} · cutoff ${m[2]}`;
-        }
-        const idx = records.indexOf(r);
-        return `<div class="franchise-shop-row" data-idx="${idx}" style="cursor:pointer;">
-          <div class="franchise-shop-top">
-            <div class="franchise-shop-name">${escapeHtml(r.employee||'Unknown')}</div>
-            <div class="franchise-shop-count">${escapeHtml(r.shop)} · ${fmtDate(dateForIndex(r.dayIndex))}</div>
-          </div>
-          <div class="franchise-shop-metrics">
-            <span class="bad-n">${r.shift} · late</span>
-            ${howLate?`<span class="compliance">${escapeHtml(howLate)}</span>`:''}
-          </div>
-        </div>`;
-      }).join('');
-  document.querySelectorAll('#latesubs-detail .franchise-shop-row').forEach(row=>{
-    row.addEventListener('click', ()=> openRecapModal(parseInt(row.dataset.idx)));
-  });
-}
 
 function renderFranchiseRecap(){
   const todayIdx = TODAY_INDEX;
