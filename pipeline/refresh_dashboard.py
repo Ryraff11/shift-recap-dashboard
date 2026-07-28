@@ -90,6 +90,35 @@ def main():
         print(result.stderr)
         sys.exit(1)
 
+    step('Attributing after-midnight Close recaps to the prior shift-day')
+    # A Close recap filed after midnight (00:00-05:00) belongs to the shift that ran the
+    # previous evening, not the new calendar day. Roll it back one dayIndex and keep it
+    # marked late, so it doesn't surface as a "late today" before today's windows open.
+    shop_json_files = [
+        'antelope_records_full_window.json', 'fairoaks_records_full_window.json',
+        'auburn_records_full_window.json', 'madhouse_records_full_window.json',
+        'lichen_records_full_window.json', 'fireside_records_full_window.json',
+        'manz_records_full_window.json', 'ov_records_full_window.json',
+    ]
+    rolled = 0
+    for jf in shop_json_files:
+        with open(jf) as f:
+            recs = json.load(f)
+        for r in recs:
+            if r.get('shift') == 'Close' and r.get('timestamp'):
+                try:
+                    ts = datetime.strptime(r['timestamp'], '%m/%d/%Y %H:%M:%S')
+                except ValueError:
+                    continue
+                if ts.hour < 5:
+                    r['dayIndex'] = r.get('dayIndex', 0) - 1
+                    r['isLate'] = True
+                    rolled += 1
+        recs = [r for r in recs if r.get('dayIndex', 0) >= 0]
+        with open(jf, 'w') as f:
+            json.dump(recs, f, indent=2)
+    print(f'  rolled {rolled} after-midnight Close recap(s) back to the prior shift-day')
+
     step('Injecting fresh data into dashboard HTML')
     with open(DASHBOARD_FILE) as f:
         html = f.read()
