@@ -376,6 +376,9 @@
       <div class="alert-banner-stack" id="shop-missing-banner"></div>
       <div class="day-strip" id="day-strip"></div>
 
+      <div class="section-sub">Late submissions · last 60 days</div>
+      <div id="shop-latesubs"></div>
+
       <div class="section-sub">Standouts</div>
       <div class="standout-scroll" id="standout-good-grid"></div>
 
@@ -61371,6 +61374,39 @@ function flagCategory(text){
 let lastGoodFlagItems = [];
 let lastBadFlagItems = [];
 
+// per-shop late-submission tally (60-day window), shown inside each shop's recaps tab
+function renderShopLateSubs(shop){
+  const recs = records.filter(r=>r.shop===shop && r.employee);
+  const lateRecs = recs.filter(r=>r.isLate);
+  if(recs.length===0) return `<div class="empty">No recap data for this stand.</div>`;
+  const rate = Math.round(((recs.length - lateRecs.length)/recs.length)*100);
+  const leads = new Map();
+  recs.forEach(r=>{
+    if(!leads.has(r.employee)) leads.set(r.employee, {name:r.employee, total:0, late:0});
+    const e = leads.get(r.employee); e.total++; if(r.isLate) e.late++;
+  });
+  const offenders = [...leads.values()].filter(e=>e.late>0)
+    .sort((a,b)=> (b.late-a.late) || (((a.total-a.late)/a.total) - ((b.total-b.late)/b.total)));
+  let html = `<div class="alert-banner ${lateRecs.length?'warn':'ok'}">
+      <div class="title">${lateRecs.length} of ${recs.length} recap${recs.length!==1?'s':''} late · ${rate}% on-time</div>
+    </div>`;
+  html += offenders.length
+    ? offenders.map((e,i)=>{
+        const r = Math.round(((e.total-e.late)/e.total)*100);
+        const rc = r>=90?'var(--good)':(r>=75?'var(--amber)':'var(--bad)');
+        return `<div class="lb-row">
+          <div class="lb-rank">${i+1}</div>
+          <div class="lb-shop">
+            <div class="lb-shop-name">${escapeHtml(e.name)}</div>
+            <div class="lb-sub">${e.total} recap${e.total!==1?'s':''} · <span style="color:${rc}">${r}% on-time</span></div>
+          </div>
+          <div class="lb-metric"><div class="v mono" style="color:var(--bad)">${e.late}</div><div class="l">late</div></div>
+        </div>`;
+      }).join('')
+    : `<div class="empty">No late submissions at this stand in the last 60 days. 🎉</div>`;
+  return html;
+}
+
 function renderRecaps(){
   const indices = indicesForRange(rangeState.recaps);
   const idxSet = new Set(indices);
@@ -61406,7 +61442,10 @@ function renderRecaps(){
     SHIFTS.forEach(shift=>{
       const st = submissionStatus[`${d}|${activeShop}|${shift}`];
       if(st==='missing') missing.push({d, shift});
-      if(st==='late') late.push({d, shift});
+      if(st==='late'){
+        const lateRec = records.find(r=>r.shop===activeShop && r.dayIndex===d && r.shift===shift && r.isLate);
+        late.push({d, shift, who: lateRec ? lateRec.employee : null});
+      }
     });
   }
   const bannerStack = document.getElementById('shop-missing-banner');
@@ -61423,7 +61462,7 @@ function renderRecaps(){
     if(late.length>0){
       html += `<div class="alert-banner warn">
         <div class="title">${late.length} recap${late.length>1?'s':''} submitted late</div>
-        <div style="font-size:13px;color:var(--text-dim);margin-top:4px;">${late.map(m=>`${m.shift} · ${m.d===TODAY_INDEX?'Today':fmtDate(dateForIndex(m.d))}`).join(', ')}</div>
+        <div style="font-size:13px;color:var(--text-dim);margin-top:4px;">${late.map(m=>`${m.shift} · ${m.d===TODAY_INDEX?'Today':fmtDate(dateForIndex(m.d))}${m.who?` · <span style="color:var(--text);font-weight:600;">${escapeHtml(m.who)}</span>`:''}`).join(', ')}</div>
       </div>`;
     }
     bannerStack.innerHTML = html;
@@ -61440,6 +61479,8 @@ function renderRecaps(){
     stripHtml += '</div></div>';
   }
   document.getElementById('day-strip').innerHTML = stripHtml;
+
+  document.getElementById('shop-latesubs').innerHTML = renderShopLateSubs(activeShop);
 
   // standouts + needs-a-look, built from named mentions within the selected range
   const mentions = getMentionsInRange(activeShop, indices);
