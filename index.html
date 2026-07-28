@@ -60927,10 +60927,10 @@ function renderRecaps(){
     <div class="stat-card bad" style="cursor:pointer;" onclick="openFlagBreakdown('bad')"><div class="v">${badItems.length}</div><div class="l">Bad flags</div></div>
   `;
 
-  // submission compliance always reflects the trailing 7 days, independent of the range picker above
+  // submission compliance (missing/late) honors the recaps range picker (Today / 7d / 30d / MTD)
   const missing = [];
   const late = [];
-  for(let d=recapDayStart; d<=TODAY_INDEX; d++){
+  indices.forEach(d=>{
     SHIFTS.forEach(shift=>{
       const st = submissionStatus[`${d}|${activeShop}|${shift}`];
       if(st==='missing') missing.push({d, shift});
@@ -60939,7 +60939,7 @@ function renderRecaps(){
         late.push({d, shift, who: lateRec ? lateRec.employee : null});
       }
     });
-  }
+  });
   const bannerStack = document.getElementById('shop-missing-banner');
   if(missing.length===0 && late.length===0){
     bannerStack.innerHTML = `<div class="alert-banner ok"><div class="title">All caught up</div></div>`;
@@ -60962,14 +60962,14 @@ function renderRecaps(){
 
   const iconFor = {submitted:'✓', late:'~', missing:'!', pending:'·'};
   let stripHtml = '';
-  for(let d=recapDayStart; d<=TODAY_INDEX; d++){
+  indices.forEach(d=>{
     stripHtml += `<div class="day-cell"><div class="day-lbl">${d===TODAY_INDEX?'Today':fmtDate(dateForIndex(d))}</div><div class="dot-row">`;
     SHIFTS.forEach(shift=>{
       const status = submissionStatus[`${d}|${activeShop}|${shift}`];
       stripHtml += `<span class="dot ${status}" title="${shift}: ${status}">${shift[0]}<br>${iconFor[status]}</span>`;
     });
     stripHtml += '</div></div>';
-  }
+  });
   document.getElementById('day-strip').innerHTML = stripHtml;
 
   document.getElementById('shop-latesubs').innerHTML = renderShopLateSubs(activeShop);
