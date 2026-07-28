@@ -218,10 +218,12 @@
   .franchise-hazard:hover{background:var(--surface-raised);}
   .franchise-hazard-meta{font-size:11px; color:var(--amber); font-family:'JetBrains Mono'; font-weight:700; text-transform:uppercase; letter-spacing:0.03em; margin-bottom:4px;}
   .franchise-hazard-text{font-size:13.5px; line-height:1.4;}
-  .franchise-shop-row{display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--hairline); border-radius:10px; padding:12px 15px; margin-bottom:7px; cursor:pointer; transition:border-color .15s ease;}
+  .franchise-shop-row{background:var(--surface); border:1px solid var(--hairline); border-radius:10px; padding:12px 15px; margin-bottom:7px; cursor:pointer; transition:border-color .15s ease;}
   .franchise-shop-row:hover{border-color:var(--amber);}
-  .franchise-shop-name{font-family:'Anton',sans-serif; font-size:15px; text-transform:uppercase; flex:1;}
-  .franchise-shop-metrics{display:flex; gap:14px; align-items:center; font-family:'JetBrains Mono'; font-size:12.5px;}
+  .franchise-shop-top{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:6px;}
+  .franchise-shop-name{font-family:'Anton',sans-serif; font-size:15px; text-transform:uppercase;}
+  .franchise-shop-count{font-family:'JetBrains Mono'; font-size:12px; color:var(--text-dim); flex-shrink:0;}
+  .franchise-shop-metrics{display:flex; flex-wrap:wrap; gap:6px 12px; align-items:center; font-family:'JetBrains Mono'; font-size:12px;}
   .franchise-shop-metrics .good-n{color:var(--good); font-weight:700;}
   .franchise-shop-metrics .bad-n{color:var(--bad); font-weight:700;}
   .franchise-shop-metrics .compliance{color:var(--text-dim);}
@@ -555,7 +557,7 @@ const SHOPS = ["Mad","Fair Oaks","Auburn","Manz","Lichen","Antelope","Fireside",
 const SHIFTS = ["Open","Mid","Close"];
 const days = 30;
 const TODAY_INDEX = days - 1;
-const TODAY_DATE = new Date(2026, 6, 27); // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
+const TODAY_DATE = new Date(2026, 6, 27); // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
 
 function dateForIndex(i){
   const dt = new Date(TODAY_DATE);
@@ -7022,6 +7024,56 @@ const REAL_FAIROAKS_RECORDS = [
       "Closing checklist": ""
     },
     "namedMentions": []
+  },
+  {
+    "shop": "Fair Oaks",
+    "shift": "Mid",
+    "dayIndex": 29,
+    "timestamp": "7/27/2026 17:59:16",
+    "employee": "Becca",
+    "isLate": true,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "Sent Jill and fadia home early",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Maxwell did great on bar today! He has gotten super quick making drinks"
+      },
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Sent Jill and fadia home early"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Recap submitted late \u2014 arrived 5:59 PM, after the 17:45 grace-period cutoff for Mid."
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "Overstaffed (trying to find things to do, sent people home)",
+      "Line times / leaderboard": "Good. Towards the top most of the time!",
+      "Team player / needed to step up": "Maxwell did great on bar today! He has gotten super quick making drinks ",
+      "Tardy / early out": "",
+      "Food inventory sheet": "No / In progress",
+      "Safety hazards": "No",
+      "Xbro / non-negotiables": "Good today! ",
+      "Additional comments": "Sent Jill and fadia home early ",
+      "Closing: Verifone WiFi": "Not the night SL",
+      "Closing checklist": ""
+    },
+    "namedMentions": [
+      {
+        "name": "Maxwell",
+        "kind": "good",
+        "source": "Maxwell did great on bar today! He has gotten super quick making drinks"
+      }
+    ]
   }
 ]
 const REAL_AUBURN_RECORDS = [
@@ -21675,6 +21727,68 @@ const REAL_LICHEN_RECORDS = [
         "source": "Giannaaa, she was helpful from the minute she got there she was so helpful"
       }
     ]
+  },
+  {
+    "shop": "Lichen",
+    "shift": "Mid",
+    "dayIndex": 29,
+    "timestamp": "7/27/2026 18:48:56",
+    "employee": "Sidney Bird",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "N/aa",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Jayden did a good job on bar for a few hours and was going quickly despite having not a lot of experience on bar."
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Good, no one struggled"
+      },
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "N/aa"
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "Good staffing but rushes kept us on our toes!",
+      "Line times / leaderboard": "We were high on the leaderboard. Times were mostly around a minute average",
+      "Times throughout shift": "",
+      "Best team player / wear more hats": "Jayden did a good job on bar for a few hours and was going quickly despite having not a lot of experience on bar. ",
+      "Tardy / early out": "No",
+      "Coaching notes": "",
+      "What could have gone smoother": "",
+      "Safety hazards": "No",
+      "Additional comments": "N/aa",
+      "Fridge seals cleaned": "",
+      "New staffing/XBRO: went well / challenging": "",
+      "XBRO effectiveness": "",
+      "Bought into new system": "",
+      "Struggled with new staffing/XBRO": "",
+      "Clamps": "",
+      "Closing checklist": "not the night lead",
+      "Quarterly contest tallies": "",
+      "Xbro non-negotiables struggle": "Good, no one struggled ",
+      "Chef position feedback": "Good, nothing was hindering the flow, we didn\u2019t have a ton of food orders ",
+      "Closing: Verifone WiFi": "N/A // Not on the night shift",
+      "Aug contest: OA runner": "",
+      "Aug contest: why": ""
+    },
+    "namedMentions": [
+      {
+        "name": "Jayden",
+        "kind": "good",
+        "source": "Jayden did a good job on bar for a few hours and was going quickly despite having not a lot of experience on bar."
+      }
+    ]
   }
 ]
 const REAL_FIRESIDE_RECORDS = [
@@ -31319,6 +31433,73 @@ const REAL_MANZ_RECORDS = [
         "source": "noo! i sent cam home pretty early tho we were DESD"
       }
     ]
+  },
+  {
+    "shop": "Manz",
+    "shift": "Mid",
+    "dayIndex": 29,
+    "timestamp": "7/27/2026 18:04:33",
+    "employee": "Madison Weideman",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "none! it was a really great day!",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "edwin reeeeally killed it running today. he was RAKIN in the tips for us"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "it was great! i didn\u2019t have any issues with anyone (we have literally the best people ever)"
+      },
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "none! it was a really great day!"
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+      "Line times / leaderboard": "1",
+      "Best percentage / leaderboard hour": "",
+      "What could have gone smoother": "",
+      "Best team player / wear more hats": "edwin reeeeally killed it running today. he was RAKIN in the tips for us ",
+      "Tardy / early out": "nope! ",
+      "Tips split confirmed": "",
+      "Safety hazards": "nope! ",
+      "Fridge gaskets wiped": "",
+      "Xbro / non-negotiables": "it was great! i didn\u2019t have any issues with anyone (we have literally the best people ever) ",
+      "Additional comments": "none! it was a really great day! ",
+      "Bought into new system": "",
+      "Struggled with new staffing": "",
+      "Biggest clamp": "",
+      "XBRO feedback": "",
+      "Forgot single-drink-claim comp": "",
+      "Perfect pour comp": "",
+      "Remake comp": "",
+      "Caught fraud apps / bday drinks w/o ID": "",
+      "Got shift change": "",
+      "Best hourly window average": "",
+      "Cleanest person on shift": "",
+      "Window contest winner": "",
+      "Window contest: why": "",
+      "Cleanliness contest winner": "",
+      "Cleanliness contest: why": "",
+      "Closing: Verifone WiFi": "N/A // Not on the night shift"
+    },
+    "namedMentions": [
+      {
+        "name": "Edwin Reeeeally",
+        "kind": "good",
+        "source": "edwin reeeeally killed it running today. he was RAKIN in the tips for us"
+      }
+    ]
   }
 ]
 const records = [];
@@ -32142,9 +32323,11 @@ function renderFranchiseRecap(){
     const complianceClass = s.missing>0 ? 'bad' : (s.late>0 ? 'warn' : '');
     const complianceText = `${s.submitted}/${SHIFTS.length} on time` + (s.late>0?`, ${s.late} late`:'') + (s.missing>0?`, ${s.missing} missing`:'');
     return `<div class="franchise-shop-row" data-shop="${escapeHtml(s.shop)}">
-      <div class="franchise-shop-name">${escapeHtml(s.shop)}</div>
+      <div class="franchise-shop-top">
+        <div class="franchise-shop-name">${escapeHtml(s.shop)}</div>
+        <div class="franchise-shop-count">${s.recaps} recap${s.recaps!==1?'s':''}</div>
+      </div>
       <div class="franchise-shop-metrics">
-        <span>${s.recaps} recap${s.recaps!==1?'s':''}</span>
         <span class="good-n">+${s.good}</span>
         <span class="bad-n">−${s.bad}</span>
         <span class="compliance ${complianceClass}">${complianceText}</span>
