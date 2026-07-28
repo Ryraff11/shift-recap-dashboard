@@ -41,11 +41,11 @@ interim one, it spawns a **fresh session each run** and is independent of any ch
 ### Task prompt to paste into the Routine
 
 ```
-Automated refresh + publish of the Shift Recap Dashboard for the Ryraff11/shift-recap-dashboard repo. This is a fresh unattended session — run the whole task end to end, then stop. The pipeline scripts are ALREADY committed in the repo's pipeline/ folder — do NOT re-download them from Google Drive. Only the 7 Google Sheets change between runs.
+Automated refresh + publish of the Shift Recap Dashboard for the Ryraff11/shift-recap-dashboard repo. This is a fresh unattended session — run the whole task end to end, then stop. The pipeline scripts are ALREADY committed in the repo's pipeline/ folder — do NOT re-download them from Google Drive. Only the 8 Google Sheets change between runs.
 
 STEP 1 — Repo on main, up to date. Locate the shift-recap-dashboard git repo in this session's workspace and cd into it. Run: git checkout main && git pull origin main. GitHub Pages serves main/root. The pipeline lives in pipeline/.
 
-STEP 2 — Export the 7 Google Sheets to CSV into pipeline/, writing straight to disk. Do NOT load the full 1-1.6 MB exports into your context. Use the Google Drive tool mcp__Google_Drive__download_file_content with exportMimeType="text/csv". It returns JSON {content, id, mimeType, title} where content is base64; large results are auto-saved by the harness to a file path instead of inline — in EITHER case, decode the base64 to the target file with python3 (json.load the JSON, base64.b64decode the content field, write the bytes). Use these EXACT fileId -> filename mappings:
+STEP 2 — Export the 8 Google Sheets to CSV into pipeline/, writing straight to disk. Do NOT load the full 1-1.6 MB exports into your context. Use the Google Drive tool mcp__Google_Drive__download_file_content with exportMimeType="text/csv". It returns JSON {content, id, mimeType, title} where content is base64; large results are auto-saved by the harness to a file path instead of inline — in EITHER case, decode the base64 to the target file with python3 (json.load the JSON, base64.b64decode the content field, write the bytes). Use these EXACT fileId -> filename mappings:
   1alTCXd3nBJe7GhhqBG2Uc5bhoRE7MfjWT5fkdbHZ9D0 -> pipeline/antelope_recap_raw.csv
   1DgYsLXsy0ClizmPON-H3wkrXkvS8Yoma0j85WfWMdkM -> pipeline/fairoaks_recap_raw.csv
   17SExtyyoc_a04-q9DAMvdmFLkMsnmBuy6f0jupW7ybo -> pipeline/auburn_recap_raw.csv
@@ -53,9 +53,10 @@ STEP 2 — Export the 7 Google Sheets to CSV into pipeline/, writing straight to
   1r_lNJ89WAN82ilqD6IXd3iv4JvPIiOaJIquBcEJ5kMs -> pipeline/lichen_recap_raw.csv
   17cNKLcoUb8m00jsy53hJK9IKZQ8qSvq8onuBRNHG2rg -> pipeline/fireside_recap_raw.csv
   1KimjOrEDPa_eBawE-4ngZALlwIxdvVAtJubelCSNkhw -> pipeline/manz_recap_raw.csv
+  1baOxs9v8nQg8GKXYFOUqGTmD0Z_ViRToaTBqYbkFTXs -> pipeline/ov_recap_raw.csv
 After each, verify the CSV is non-empty and its first line is a Timestamp header row. If any export fails or a file is empty, STOP and report (see STEP 6).
 
-STEP 3 — Build. From the pipeline/ folder run: python3 refresh_dashboard.py. Confirm the output ends with "=== Done ===" and that all 7 shops built: Antelope, Fair Oaks, Auburn, Madhouse, Lichen, Fireside, Manz. Capture each shop's "<N> <Shop> records built" count. If the run does not end with "=== Done ===" or any shop is missing/errors, STOP and report (see STEP 6).
+STEP 3 — Build. From the pipeline/ folder run: python3 refresh_dashboard.py. Confirm the output ends with "=== Done ===" and that all 8 shops built: Antelope, Fair Oaks, Auburn, Madhouse, Lichen, Fireside, Manz, OV. Capture each shop's "<N> <Shop> records built" count. If the run does not end with "=== Done ===" or any shop is missing/errors, STOP and report (see STEP 6).
 
 STEP 4 — Publish to Pages. The build overwrote pipeline/shift-recap-dashboard.html with fresh data. Copy it to index.html at the repo root: cp pipeline/shift-recap-dashboard.html index.html. Then restore the committed template so only index.html changes in the diff: git checkout -- pipeline/shift-recap-dashboard.html. The *_recap_raw.csv and *_records_full_window.json files are gitignored — do NOT commit them; stage ONLY index.html. Set identity if unset: git config user.email noreply@anthropic.com && git config user.name Claude. Then: git add index.html && git commit -m "Automated dashboard refresh" && git push origin main (retry a failed push up to 4x with 2/4/8/16s backoff on NETWORK errors only). Confirm the push succeeded and note the commit SHA. If the push fails for a non-network reason (e.g. 403 permission), STOP and report (see STEP 6).
 

@@ -28,12 +28,13 @@ BUILD_SCRIPTS = [
     'build_lichen.py',
     'build_fireside.py',
     'build_manz.py',
+    'build_ov.py',
 ]
 
 REQUIRED_CSVS = [
     'antelope_recap_raw.csv', 'fairoaks_recap_raw.csv', 'auburn_recap_raw.csv',
     'madhouse_recap_raw.csv', 'lichen_recap_raw.csv', 'fireside_recap_raw.csv',
-    'manz_recap_raw.csv',
+    'manz_recap_raw.csv', 'ov_recap_raw.csv',
 ]
 
 DASHBOARD_FILE = 'shift-recap-dashboard.html'
@@ -101,6 +102,7 @@ def main():
         'REAL_LICHEN_RECORDS': 'lichen_records_full_window.json',
         'REAL_FIRESIDE_RECORDS': 'fireside_records_full_window.json',
         'REAL_MANZ_RECORDS': 'manz_records_full_window.json',
+        'REAL_OV_RECORDS': 'ov_records_full_window.json',
     }
     var_names = list(shop_files.keys())
     for i, var_name in enumerate(var_names):

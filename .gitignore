@@ -4,6 +4,9 @@ pipeline/*_recap_raw.csv
 # Intermediate per-shop JSON built on every run — regenerated, not source
 pipeline/*_records_full_window.json
 
+# Intermediate prepped CSV (e.g. OV shift-inference), regenerated each run
+pipeline/*_recap_prepped.csv
+
 # Python cache
 __pycache__/
 *.pyc

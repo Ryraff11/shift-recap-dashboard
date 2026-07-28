@@ -117,6 +117,7 @@ if __name__ == '__main__':
         'Lichen': 'lichen_records_full_window.json',
         'Fireside': 'fireside_records_full_window.json',
         'Manz': 'manz_records_full_window.json',
+        'OV': 'ov_records_full_window.json',
     }
     for shop, path in shops.items():
         mapping, ambiguous = apply_to_shop(path)
