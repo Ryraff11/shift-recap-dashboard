@@ -376,9 +376,6 @@
       <div class="alert-banner-stack" id="shop-missing-banner"></div>
       <div class="day-strip" id="day-strip"></div>
 
-      <div class="section-sub">Late submissions · last 60 days</div>
-      <div id="shop-latesubs"></div>
-
       <div class="section-sub">Standouts</div>
       <div class="standout-scroll" id="standout-good-grid"></div>
 
@@ -391,6 +388,9 @@
 
       <div class="section-sub">Flagged feedback</div>
       <div id="feed-list"></div>
+
+      <div class="section-sub">Late Submission Tally · last 60 days</div>
+      <div id="shop-latesubs"></div>
     </div>
 
     <!-- TIMES -->
@@ -61382,8 +61382,8 @@ function renderShopLateSubs(shop){
   const rate = Math.round(((recs.length - lateRecs.length)/recs.length)*100);
   const leads = new Map();
   recs.forEach(r=>{
-    if(!leads.has(r.employee)) leads.set(r.employee, {name:r.employee, total:0, late:0});
-    const e = leads.get(r.employee); e.total++; if(r.isLate) e.late++;
+    if(!leads.has(r.employee)) leads.set(r.employee, {name:r.employee, total:0, late:0, lateItems:[]});
+    const e = leads.get(r.employee); e.total++; if(r.isLate){ e.late++; e.lateItems.push(r); }
   });
   const offenders = [...leads.values()].filter(e=>e.late>0)
     .sort((a,b)=> (b.late-a.late) || (((a.total-a.late)/a.total) - ((b.total-b.late)/b.total)));
@@ -61399,6 +61399,7 @@ function renderShopLateSubs(shop){
           <div class="lb-shop">
             <div class="lb-shop-name">${escapeHtml(e.name)}</div>
             <div class="lb-sub">${e.total} recap${e.total!==1?'s':''} · <span style="color:${rc}">${r}% on-time</span></div>
+            <div class="lb-sub" style="color:var(--text-faint);margin-top:3px;">Late: ${e.lateItems.slice().sort((a,b)=>b.dayIndex-a.dayIndex).map(x=>`${x.shift} ${fmtDate(dateForIndex(x.dayIndex))}`).join(' · ')}</div>
           </div>
           <div class="lb-metric"><div class="v mono" style="color:var(--bad)">${e.late}</div><div class="l">late</div></div>
         </div>`;
