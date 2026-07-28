@@ -402,13 +402,7 @@
       </div>
       <div class="stat-row" id="times-stats"></div>
       <div id="times-source" style="font-size:12px;color:var(--text-dim);margin:-2px 0 10px;"></div>
-      <div class="section-sub">Cars hitting goal · Lane Total</div>
-      <div class="goal-bar" id="goal-bar-lanetotal"></div>
-      <div class="goal-legend" id="goal-legend-lanetotal"></div>
-      <div class="section-sub">Cars hitting goal · Lane Total 2</div>
-      <div class="goal-bar" id="goal-bar-lanetotal2"></div>
-      <div class="goal-legend" id="goal-legend-lanetotal2"></div>
-      <div class="section-sub">Lane Total by day</div>
+      <div class="section-sub">Window time by day · real HME data only</div>
       <div class="bar-scroll" id="times-bars"></div>
     </div>
 
@@ -565,9 +559,14 @@ const SHOPS = ["Mad","Fair Oaks","Auburn","Manz","Lichen","Antelope","Fireside",
 const INACTIVE_SHOPS = new Set(["Winding"]);
 const ACTIVE_SHOPS = SHOPS.filter(s=>!INACTIVE_SHOPS.has(s));
 const SHIFTS = ["Open","Mid","Close"];
+// Shops with two drive-thru windows (they report a 2nd-window time); everyone else is single-window.
+const TWO_WINDOW_SHOPS = new Set(["Mad","Fair Oaks"]);
+// Approx submission-window cutoffs (hour of day), used only to mark TODAY's not-yet-due shifts
+// as 'pending' instead of missing/late.
+const SHIFT_CUTOFF_HOUR = {Open: 12.25, Mid: 18.25, Close: 23.5};
 const days = 60; // 60-day data window powers the Late Submissions tally; the recaps day-strip below stays a fixed trailing 7 days so the grid is unchanged
 const TODAY_INDEX = days - 1;
-const TODAY_DATE = new Date(2026, 6, 28); // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
+const TODAY_DATE = new Date(2026, 6, 28); // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
 
 function dateForIndex(i){
   const dt = new Date(TODAY_DATE);
@@ -11954,61 +11953,6 @@ const REAL_FAIROAKS_RECORDS = [
         "name": "Maxwell",
         "kind": "good",
         "source": "Maxwell did great on bar today! He has gotten super quick making drinks"
-      }
-    ]
-  },
-  {
-    "shop": "Fair Oaks",
-    "shift": "Open",
-    "dayIndex": 59,
-    "timestamp": "7/28/2026 12:15:37",
-    "employee": "Laci",
-    "isLate": false,
-    "bestPlayer": null,
-    "needsHats": null,
-    "tardy": null,
-    "hazard": null,
-    "xbroStruggle": null,
-    "comment": "None \ud83e\udd17\ud83e\udd17",
-    "flags": [
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "Denrio was amazing in shift! Always brings all the energy and helps gsd during his down time"
-      },
-      {
-        "kind": "bad",
-        "employee": null,
-        "text": "Tardy/early-out note: I sent diogo home 30 min early"
-      },
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "None \ud83e\udd17\ud83e\udd17"
-      }
-    ],
-    "fullRecap": {
-      "Staffing": "\u200b\u200bPerfect (sometimes struggling, sometimes ahead - evened out)",
-      "Line times / leaderboard": "We were fast and high on the leaderboard the whole shift ",
-      "Team player / needed to step up": "Denrio was amazing in shift! Always brings all the energy and helps gsd during his down time ",
-      "Tardy / early out": "I sent diogo home 30 min early ",
-      "Food inventory sheet": "No / In progress",
-      "Safety hazards": "None ",
-      "Xbro / non-negotiables": "It was staffed nicely for me to be able\nTo step away to stock the fridge ",
-      "Additional comments": "None \ud83e\udd17\ud83e\udd17",
-      "Closing: Verifone WiFi": "Not the night SL",
-      "Closing checklist": ""
-    },
-    "namedMentions": [
-      {
-        "name": "Denrio",
-        "kind": "good",
-        "source": "Denrio was amazing in shift! Always brings all the energy and helps gsd during his down time"
-      },
-      {
-        "name": "Diogo",
-        "kind": "bad",
-        "source": "I sent diogo home 30 min early"
       }
     ]
   }
@@ -30966,47 +30910,6 @@ const REAL_MADHOUSE_RECORDS = [
         "source": "Edgar did amazing amazing amazing again today!"
       }
     ]
-  },
-  {
-    "shop": "Mad",
-    "shift": "Open",
-    "dayIndex": 59,
-    "timestamp": "7/28/2026 12:02:53",
-    "employee": "Diego Angelinaopen",
-    "isLate": false,
-    "bestPlayer": null,
-    "needsHats": null,
-    "tardy": null,
-    "hazard": null,
-    "xbroStruggle": null,
-    "comment": "No comments, standard shift.",
-    "flags": [
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "Gavin really hustled this morning"
-      }
-    ],
-    "fullRecap": {
-      "Staffing": "\u200b\u200bPerfect (sometimes struggling, sometimes ahead - evened out)",
-      "Line times / leaderboard": "Slightly below when working with one bar ",
-      "Best team player / wear more hats": "Gavin really hustled this morning ",
-      "Tardy / early out": "No ",
-      "Morning SL: gravers feedback": "",
-      "Safety hazards": "No ",
-      "Additional comments": "",
-      "Xbro non-negotiables struggle": "No ",
-      "Shift chore completed": "Yes ",
-      "Closing: Verifone WiFi": "N/A // Not on the night shift",
-      "Closing: bakery item inventory": ""
-    },
-    "namedMentions": [
-      {
-        "name": "Gavin",
-        "kind": "good",
-        "source": "Gavin really hustled this morning"
-      }
-    ]
   }
 ]
 const REAL_LICHEN_RECORDS = [
@@ -40694,57 +40597,6 @@ const REAL_LICHEN_RECORDS = [
         "source": "gabe and kristina were so helpful today on shift and locked in to help us get through pre-close"
       }
     ]
-  },
-  {
-    "shop": "Lichen",
-    "shift": "Open",
-    "dayIndex": 59,
-    "timestamp": "7/28/2026 12:08:50",
-    "employee": "Leshon",
-    "isLate": false,
-    "bestPlayer": null,
-    "needsHats": null,
-    "tardy": null,
-    "hazard": null,
-    "xbroStruggle": null,
-    "comment": "We had a couple expired food items to toss. But besides that it was great!",
-    "flags": [
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "Ben and Nico!"
-      },
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "We had a couple expired food items to toss. But besides that it was great!"
-      }
-    ],
-    "fullRecap": {
-      "Staffing": "Well staffed! It was PERFECT!",
-      "Line times / leaderboard": ":56",
-      "Times throughout shift": "",
-      "Best team player / wear more hats": "Ben and Nico!",
-      "Tardy / early out": "No",
-      "Coaching notes": "",
-      "What could have gone smoother": "",
-      "Safety hazards": "No",
-      "Additional comments": "We had a couple expired food items to toss. But besides that it was great! ",
-      "Fridge seals cleaned": "",
-      "New staffing/XBRO: went well / challenging": "",
-      "XBRO effectiveness": "",
-      "Bought into new system": "",
-      "Struggled with new staffing/XBRO": "",
-      "Clamps": "",
-      "Closing checklist": "not the night lead",
-      "Quarterly contest tallies": "",
-      "Xbro non-negotiables struggle": "No issue! ",
-      "Chef position feedback": "Great! No issues ",
-      "Closing: Verifone WiFi": "N/A // Not on the night shift",
-      "Aug contest: OA runner": "",
-      "Aug contest: why": ""
-    },
-    "namedMentions": []
   }
 ]
 const REAL_FIRESIDE_RECORDS = [
@@ -49359,51 +49211,6 @@ const REAL_FIRESIDE_RECORDS = [
         "source": "Destiny is so great, she has amazing culture and so proactive getting stuff done around the shop. Jacob Danner was also great he tried to stay on shift after he"
       }
     ]
-  },
-  {
-    "shop": "Fireside",
-    "shift": "Open",
-    "dayIndex": 59,
-    "timestamp": "7/28/2026 12:35:03",
-    "employee": "Carsen Tyra",
-    "isLate": true,
-    "bestPlayer": null,
-    "needsHats": null,
-    "tardy": null,
-    "hazard": null,
-    "xbroStruggle": null,
-    "comment": "probably should have sent someone home early, but was anticipating a morning rush. also i led erica astray by letting her start inventory today and then realizing it wasn\u2019t the last day of the month LOL but we didn\u2019t get far \ud83d\ude02 transitioned to all our other EOM stuff and knocked em out quick",
-    "flags": [
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "Kaylee !! my chef extraordinaire. Danner was also so awesome today !!"
-      },
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "probably should have sent someone home early, but was anticipating a morning rush. also i led erica astray by letting her start inventory today and then realizing it wasn\u2019t the last day of the month LOL but we didn\u2019t get far \ud83d\ude02 transitioned to all our other EOM stuff and knocked em out quick"
-      },
-      {
-        "kind": "bad",
-        "employee": null,
-        "text": "Recap submitted late \u2014 arrived 12:35 PM, after the 11:15 grace-period cutoff for Open."
-      }
-    ],
-    "fullRecap": {
-      "Staffing": "Overstaffed (trying to find things to do, sent people home)",
-      "Line times / leaderboard": "1:05-1:10, sometimes in the middle but mostly chilling in the bottom half",
-      "Best team player / wear more hats": "Kaylee !! my chef extraordinaire. Danner was also so awesome today !! ",
-      "Tardy / early out": "no one was tardy, didn\u2019t send anything home early because i was leaning into having a full chef staffed ",
-      "Xbro / non-negotiables": "no everyone was awesome, Kaylee is a great communicator w xbro",
-      "Safety hazards": "n/a ",
-      "Additional comments": "probably should have sent someone home early, but was anticipating a morning rush. also i led erica astray by letting her start inventory today and then realizing it wasn\u2019t the last day of the month LOL but we didn\u2019t get far \ud83d\ude02 transitioned to all our other EOM stuff and knocked em out quick ",
-      "Fridge seals cleaned": "Done!",
-      "Closing: Verifone WiFi": "Not the night SL",
-      "Closing: food inventory texted to managers": "",
-      "Closing: safe/tills/iPads/doors checklist": "not the night SL"
-    },
-    "namedMentions": []
   }
 ]
 const REAL_MANZ_RECORDS = [
@@ -59561,72 +59368,6 @@ const REAL_MANZ_RECORDS = [
         "source": "Kaylee was the team player!"
       }
     ]
-  },
-  {
-    "shop": "Manz",
-    "shift": "Open",
-    "dayIndex": 59,
-    "timestamp": "7/28/2026 11:59:39",
-    "employee": "Emily Yearwood",
-    "isLate": false,
-    "bestPlayer": null,
-    "needsHats": null,
-    "tardy": null,
-    "hazard": null,
-    "xbroStruggle": null,
-    "comment": "No",
-    "flags": [
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "Lily!"
-      },
-      {
-        "kind": "bad",
-        "employee": null,
-        "text": "Tardy/early-out note: Ju and pauly were able to go a bit early!"
-      },
-      {
-        "kind": "bad",
-        "employee": null,
-        "text": "Hazard reported: Everything was good! There was some homeless people digging through our trash dumpsters but i asked them to leave and they were nice about it"
-      },
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "No"
-      }
-    ],
-    "fullRecap": {
-      "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
-      "Line times / leaderboard": "Line times were great! Stayed at the top of near it all morning ",
-      "Best percentage / leaderboard hour": "",
-      "What could have gone smoother": "",
-      "Best team player / wear more hats": "Lily! ",
-      "Tardy / early out": "Ju and pauly were able to go a bit early! ",
-      "Tips split confirmed": "",
-      "Safety hazards": "Everything was good! There was some homeless people digging through our trash dumpsters but i asked them to leave and they were nice about it ",
-      "Fridge gaskets wiped": "",
-      "Xbro / non-negotiables": "Xbro was great",
-      "Additional comments": "No",
-      "Bought into new system": "",
-      "Struggled with new staffing": "",
-      "Biggest clamp": "",
-      "XBRO feedback": "",
-      "Forgot single-drink-claim comp": "",
-      "Perfect pour comp": "",
-      "Remake comp": "",
-      "Caught fraud apps / bday drinks w/o ID": "",
-      "Got shift change": "",
-      "Best hourly window average": "",
-      "Cleanest person on shift": "",
-      "Window contest winner": "",
-      "Window contest: why": "",
-      "Cleanliness contest winner": "",
-      "Cleanliness contest: why": "",
-      "Closing: Verifone WiFi": "N/A // Not on the night shift"
-    },
-    "namedMentions": []
   }
 ]
 const REAL_OV_RECORDS = [
@@ -59642,7 +59383,7 @@ const REAL_OV_RECORDS = [
     "tardy": null,
     "hazard": null,
     "xbroStruggle": null,
-    "comment": "I feel so welcome here! You guys are the best! \ud83e\udde5",
+    "comment": "I feel so welcome here! You guys are the best! \ud83e\udde1",
     "flags": [
       {
         "kind": "good",
@@ -59657,7 +59398,7 @@ const REAL_OV_RECORDS = [
       {
         "kind": "good",
         "employee": null,
-        "text": "I feel so welcome here! You guys are the best! \ud83e\udde5"
+        "text": "I feel so welcome here! You guys are the best! \ud83e\udde1"
       }
     ],
     "fullRecap": {
@@ -59668,7 +59409,7 @@ const REAL_OV_RECORDS = [
       "foodInventory": "No / In progress",
       "safety": "No",
       "xbro": "Well! Boy oh boy have I experienced a new version of XBRO! It was okay. I was very overwhelmed but I made it! I am catching on and I know it will continue to get better! ",
-      "comments": "I feel so welcome here! You guys are the best! \ud83e\udde5",
+      "comments": "I feel so welcome here! You guys are the best! \ud83e\udde1",
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": ""
     },
@@ -60548,55 +60289,6 @@ const REAL_OV_RECORDS = [
       "closingChecklist": ""
     },
     "namedMentions": []
-  },
-  {
-    "shop": "OV",
-    "shift": "Open",
-    "dayIndex": 59,
-    "timestamp": "7/28/2026 12:25:51",
-    "employee": "Alexis",
-    "isLate": true,
-    "bestPlayer": null,
-    "needsHats": null,
-    "tardy": null,
-    "hazard": null,
-    "xbroStruggle": null,
-    "comment": "called the pest people because the ants are getting out of control. all over the ipads in the locker, all by the drive window and on the bars \ud83e\udd2e",
-    "flags": [
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "Isa! she is so great all the time! I had to remind sydney to try to stay busy"
-      },
-      {
-        "kind": "bad",
-        "employee": null,
-        "text": "Hazard reported: homeless people stealing our locks"
-      },
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "called the pest people because the ants are getting out of control. all over the ipads in the locker, all by the drive window and on the bars \ud83e\udd2e"
-      },
-      {
-        "kind": "bad",
-        "employee": null,
-        "text": "Recap submitted late \u2014 arrived 12:25 PM, after the 12:15 grace-period cutoff for Open."
-      }
-    ],
-    "fullRecap": {
-      "staffing": "Overstaffed (trying to find things to do, sent bodies home)",
-      "lineTimes": "times were around 1 minute, can\u2019t see leaderboard",
-      "teamPlayer": "Isa! she is so great all the time! I had to remind sydney to try to stay busy ",
-      "tardy": "no",
-      "foodInventory": "No / In progress",
-      "safety": "homeless people stealing our locks ",
-      "xbro": "great! I had to remind sydney G to call out when the drink is done so I could retrieve it for her. once I told her that she did do great!",
-      "comments": "called the pest people because the ants are getting out of control. all over the ipads in the locker, all by the drive window and on the bars \ud83e\udd2e",
-      "closingVerifone": "N/A ; Not closing shift lead",
-      "closingChecklist": ""
-    },
-    "namedMentions": []
   }
 ]
 const records = [];
@@ -60656,6 +60348,23 @@ Object.entries(REAL_SHOP_DATA).forEach(([shopName, realRecords]) => {
   }
   records.push(...realRecords);
 });
+
+// TODAY's shifts whose submission window hasn't closed yet (per the viewer's real clock)
+// are 'pending', not missing/late. Only applies when the dashboard's "today" is the actual date.
+(function(){
+  const now = new Date();
+  const isToday = now.getFullYear()===TODAY_DATE.getFullYear() && now.getMonth()===TODAY_DATE.getMonth() && now.getDate()===TODAY_DATE.getDate();
+  if(!isToday) return;
+  const nowHour = now.getHours() + now.getMinutes()/60;
+  SHOPS.forEach(shop=>{
+    SHIFTS.forEach(shift=>{
+      const key = `${TODAY_INDEX}|${shop}|${shift}`;
+      if(nowHour < SHIFT_CUTOFF_HOUR[shift] && submissionStatus[key] !== 'submitted' && submissionStatus[key] !== 'late'){
+        submissionStatus[key] = 'pending';
+      }
+    });
+  });
+})();
 
 const shopAgg = {};
 SHOPS.forEach(s=>shopAgg[s]={recaps:0, good:0, bad:0});
@@ -61183,26 +60892,26 @@ function renderBarScroll(containerId, indices, key, formatFn, maxOverride){
 
 function renderTimes(){
   const indices = indicesForRange(rangeState.times);
-  const laneTotalAvg = average(activeShop, indices, 'laneTotalSec');
-  const laneTotal2Avg = average(activeShop, indices, 'laneTotal2Sec');
-  const totalCars = aggregate(activeShop, indices, 'totalCars');
-  document.getElementById('times-stats').innerHTML = `
-    <div class="stat-card"><div class="v mono">${secsToClock(laneTotalAvg)}</div><div class="l">Lane Total avg</div></div>
-    <div class="stat-card"><div class="v mono">${secsToClock(laneTotal2Avg)}</div><div class="l">Lane Total 2 avg</div></div>
-    <div class="stat-card"><div class="v mono">${totalCars.toLocaleString()}</div><div class="l">Total cars</div></div>
-  `;
-  const realDays = indices.filter(i => dailyOps[activeShop][i].isRealTimer).length;
-  document.getElementById('times-source').innerHTML = realDays > 0
-    ? `⏱ ${realDays} of ${indices.length} day(s) from real HME timers · other days simulated`
-    : `⏱ Simulated — no HME timer data for this stand in this range yet`;
-  const avgSplit = key => {
-    const out = {};
-    ['A','B','C','D','over'].forEach(b=>{ out[b] = Math.round(indices.reduce((s,i)=>s+dailyOps[activeShop][i][key][b],0)/indices.length); });
-    return out;
-  };
-  renderGoalBar('goal-bar-lanetotal','goal-legend-lanetotal', avgSplit('goalLaneTotal'));
-  renderGoalBar('goal-bar-lanetotal2','goal-legend-lanetotal2', avgSplit('goalLaneTotal2'));
-  renderBarScroll('times-bars', indices, 'laneTotalSec');
+  const real = indices.filter(i => dailyOps[activeShop][i].isRealTimer);
+  const statsEl = document.getElementById('times-stats');
+  const srcEl = document.getElementById('times-source');
+  if(real.length === 0){
+    statsEl.innerHTML = `<div class="stat-card" style="flex:1 1 100%;"><div class="v mono">—</div><div class="l">No HME timer data</div></div>`;
+    srcEl.innerHTML = `⏱ No real drive-thru timer data for this stand in this range yet (HME reports fill in daily).`;
+    document.getElementById('times-bars').innerHTML = `<div class="empty">No HME timer days in this range.</div>`;
+    return;
+  }
+  const avgWindow = real.reduce((s,i)=>s+dailyOps[activeShop][i].laneTotalSec,0)/real.length;
+  const totalCars = real.reduce((s,i)=>s+dailyOps[activeShop][i].totalCars,0);
+  let cards = `<div class="stat-card"><div class="v mono">${secsToClock(avgWindow)}</div><div class="l">Avg window time</div></div>
+    <div class="stat-card"><div class="v mono">${totalCars.toLocaleString()}</div><div class="l">Total cars</div></div>`;
+  if(TWO_WINDOW_SHOPS.has(activeShop)){
+    const avg2 = real.reduce((s,i)=>s+dailyOps[activeShop][i].laneTotal2Sec,0)/real.length;
+    cards += `<div class="stat-card"><div class="v mono">${secsToClock(avg2)}</div><div class="l">2nd window time</div></div>`;
+  }
+  statsEl.innerHTML = cards;
+  srcEl.innerHTML = `⏱ ${real.length} day(s) of real HME timer data in this range`;
+  renderBarScroll('times-bars', real, 'laneTotalSec');
 }
 
 // ================= NET SALES =================
@@ -61452,6 +61161,7 @@ function renderFranchiseRecap(){
       const status = submissionStatus[`${todayIdx}|${shop}|${shift}`];
       if(status==='submitted') submitted++;
       else if(status==='late') late++;
+      else if(status==='pending') { /* window not closed yet — not counted as missing */ }
       else missing++;
     });
 

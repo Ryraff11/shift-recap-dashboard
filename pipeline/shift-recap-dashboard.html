@@ -402,13 +402,7 @@
       </div>
       <div class="stat-row" id="times-stats"></div>
       <div id="times-source" style="font-size:12px;color:var(--text-dim);margin:-2px 0 10px;"></div>
-      <div class="section-sub">Cars hitting goal · Lane Total</div>
-      <div class="goal-bar" id="goal-bar-lanetotal"></div>
-      <div class="goal-legend" id="goal-legend-lanetotal"></div>
-      <div class="section-sub">Cars hitting goal · Lane Total 2</div>
-      <div class="goal-bar" id="goal-bar-lanetotal2"></div>
-      <div class="goal-legend" id="goal-legend-lanetotal2"></div>
-      <div class="section-sub">Lane Total by day</div>
+      <div class="section-sub">Window time by day · real HME data only</div>
       <div class="bar-scroll" id="times-bars"></div>
     </div>
 
@@ -565,6 +559,11 @@ const SHOPS = ["Mad","Fair Oaks","Auburn","Manz","Lichen","Antelope","Fireside",
 const INACTIVE_SHOPS = new Set(["Winding"]);
 const ACTIVE_SHOPS = SHOPS.filter(s=>!INACTIVE_SHOPS.has(s));
 const SHIFTS = ["Open","Mid","Close"];
+// Shops with two drive-thru windows (they report a 2nd-window time); everyone else is single-window.
+const TWO_WINDOW_SHOPS = new Set(["Mad","Fair Oaks"]);
+// Approx submission-window cutoffs (hour of day), used only to mark TODAY's not-yet-due shifts
+// as 'pending' instead of missing/late.
+const SHIFT_CUTOFF_HOUR = {Open: 12.25, Mid: 18.25, Close: 23.5};
 const days = 60; // 60-day data window powers the Late Submissions tally; the recaps day-strip below stays a fixed trailing 7 days so the grid is unchanged
 const TODAY_INDEX = days - 1;
 const TODAY_DATE = new Date(2026, 6, 28); // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
@@ -60350,6 +60349,23 @@ Object.entries(REAL_SHOP_DATA).forEach(([shopName, realRecords]) => {
   records.push(...realRecords);
 });
 
+// TODAY's shifts whose submission window hasn't closed yet (per the viewer's real clock)
+// are 'pending', not missing/late. Only applies when the dashboard's "today" is the actual date.
+(function(){
+  const now = new Date();
+  const isToday = now.getFullYear()===TODAY_DATE.getFullYear() && now.getMonth()===TODAY_DATE.getMonth() && now.getDate()===TODAY_DATE.getDate();
+  if(!isToday) return;
+  const nowHour = now.getHours() + now.getMinutes()/60;
+  SHOPS.forEach(shop=>{
+    SHIFTS.forEach(shift=>{
+      const key = `${TODAY_INDEX}|${shop}|${shift}`;
+      if(nowHour < SHIFT_CUTOFF_HOUR[shift] && submissionStatus[key] !== 'submitted' && submissionStatus[key] !== 'late'){
+        submissionStatus[key] = 'pending';
+      }
+    });
+  });
+})();
+
 const shopAgg = {};
 SHOPS.forEach(s=>shopAgg[s]={recaps:0, good:0, bad:0});
 records.forEach(r=>{
@@ -60876,26 +60892,26 @@ function renderBarScroll(containerId, indices, key, formatFn, maxOverride){
 
 function renderTimes(){
   const indices = indicesForRange(rangeState.times);
-  const laneTotalAvg = average(activeShop, indices, 'laneTotalSec');
-  const laneTotal2Avg = average(activeShop, indices, 'laneTotal2Sec');
-  const totalCars = aggregate(activeShop, indices, 'totalCars');
-  document.getElementById('times-stats').innerHTML = `
-    <div class="stat-card"><div class="v mono">${secsToClock(laneTotalAvg)}</div><div class="l">Lane Total avg</div></div>
-    <div class="stat-card"><div class="v mono">${secsToClock(laneTotal2Avg)}</div><div class="l">Lane Total 2 avg</div></div>
-    <div class="stat-card"><div class="v mono">${totalCars.toLocaleString()}</div><div class="l">Total cars</div></div>
-  `;
-  const realDays = indices.filter(i => dailyOps[activeShop][i].isRealTimer).length;
-  document.getElementById('times-source').innerHTML = realDays > 0
-    ? `⏱ ${realDays} of ${indices.length} day(s) from real HME timers · other days simulated`
-    : `⏱ Simulated — no HME timer data for this stand in this range yet`;
-  const avgSplit = key => {
-    const out = {};
-    ['A','B','C','D','over'].forEach(b=>{ out[b] = Math.round(indices.reduce((s,i)=>s+dailyOps[activeShop][i][key][b],0)/indices.length); });
-    return out;
-  };
-  renderGoalBar('goal-bar-lanetotal','goal-legend-lanetotal', avgSplit('goalLaneTotal'));
-  renderGoalBar('goal-bar-lanetotal2','goal-legend-lanetotal2', avgSplit('goalLaneTotal2'));
-  renderBarScroll('times-bars', indices, 'laneTotalSec');
+  const real = indices.filter(i => dailyOps[activeShop][i].isRealTimer);
+  const statsEl = document.getElementById('times-stats');
+  const srcEl = document.getElementById('times-source');
+  if(real.length === 0){
+    statsEl.innerHTML = `<div class="stat-card" style="flex:1 1 100%;"><div class="v mono">—</div><div class="l">No HME timer data</div></div>`;
+    srcEl.innerHTML = `⏱ No real drive-thru timer data for this stand in this range yet (HME reports fill in daily).`;
+    document.getElementById('times-bars').innerHTML = `<div class="empty">No HME timer days in this range.</div>`;
+    return;
+  }
+  const avgWindow = real.reduce((s,i)=>s+dailyOps[activeShop][i].laneTotalSec,0)/real.length;
+  const totalCars = real.reduce((s,i)=>s+dailyOps[activeShop][i].totalCars,0);
+  let cards = `<div class="stat-card"><div class="v mono">${secsToClock(avgWindow)}</div><div class="l">Avg window time</div></div>
+    <div class="stat-card"><div class="v mono">${totalCars.toLocaleString()}</div><div class="l">Total cars</div></div>`;
+  if(TWO_WINDOW_SHOPS.has(activeShop)){
+    const avg2 = real.reduce((s,i)=>s+dailyOps[activeShop][i].laneTotal2Sec,0)/real.length;
+    cards += `<div class="stat-card"><div class="v mono">${secsToClock(avg2)}</div><div class="l">2nd window time</div></div>`;
+  }
+  statsEl.innerHTML = cards;
+  srcEl.innerHTML = `⏱ ${real.length} day(s) of real HME timer data in this range`;
+  renderBarScroll('times-bars', real, 'laneTotalSec');
 }
 
 // ================= NET SALES =================
@@ -61145,6 +61161,7 @@ function renderFranchiseRecap(){
       const status = submissionStatus[`${todayIdx}|${shop}|${shift}`];
       if(status==='submitted') submitted++;
       else if(status==='late') late++;
+      else if(status==='pending') { /* window not closed yet — not counted as missing */ }
       else missing++;
     });
 
