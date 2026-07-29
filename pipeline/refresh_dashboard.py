@@ -147,10 +147,12 @@ def main():
         html = html[:start_idx] + f"{start_marker}{payload}" + html[end_idx:]
         print(f'  injected {var_name} ({len(payload)} chars)')
 
-    # inject real HME drive-thru timer history (empty {} if timer_history.json isn't present yet)
+    # inject real HME drive-thru timer history (empty {} if hme_timer_history.json isn't present yet).
+    # update_timer_history.py owns this file and re-injects fresher data after the recap build;
+    # reading it here keeps the build self-consistent even if the HME step is skipped this run.
     timer = {}
-    if os.path.exists('timer_history.json'):
-        with open('timer_history.json') as f:
+    if os.path.exists('hme_timer_history.json'):
+        with open('hme_timer_history.json') as f:
             timer = json.load(f)
     t_start = html.index("const REAL_TIMER_DATA = ")
     t_end = html.index(";", t_start)
