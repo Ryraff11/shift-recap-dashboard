@@ -561,9 +561,59 @@ const ACTIVE_SHOPS = SHOPS.filter(s=>!INACTIVE_SHOPS.has(s));
 const SHIFTS = ["Open","Mid","Close"];
 // Shops with two drive-thru windows (they report a 2nd-window time); everyone else is single-window.
 const TWO_WINDOW_SHOPS = new Set(["Mad","Fair Oaks"]);
-// Approx submission-window cutoffs (hour of day), used only to mark TODAY's not-yet-due shifts
-// as 'pending' instead of missing/late.
-const SHIFT_CUTOFF_HOUR = {Open: 12.25, Mid: 18.25, Close: 23.5};
+// Per-shop submission-window cutoffs [hour, minute] in store-local (Pacific) time, used only to
+// mark TODAY's not-yet-due shifts as 'pending' instead of missing/late. Open varies by weekday;
+// Mid/Close are fixed per shop (except Manz's Mid, which varies by weekday). Close times of
+// [0,mm] are after midnight (the next calendar morning).
+const SHIFT_CUTOFFS = {
+  'Antelope':  {
+    Open: { Mon:[12,15], Tue:[11,30], Wed:[12,15], Thu:[11,30], Fri:[11,30], Sat:[12,15], Sun:[11,30] },
+    Mid:[18,15], Close:[23,45]
+  },
+  'Fair Oaks': {
+    Open: { Mon:[13,0], Tue:[12,30], Wed:[12,30], Thu:[13,0], Fri:[12,30], Sat:[13,0], Sun:[12,30] },
+    Mid:[17,45], Close:[23,35]
+  },
+  'Auburn':    {
+    Open: { Mon:[12,15], Tue:[12,30], Wed:[12,15], Thu:[12,30], Fri:[12,30], Sat:[12,15], Sun:[12,30] },
+    Mid:[18,15], Close:[0,20]
+  },
+  'Mad':       { Open:[12,15], Mid:[17,15], Close:[0,15] },
+  'Lichen':    {
+    Open: { Mon:[12,15], Tue:[12,30], Wed:[12,15], Thu:[12,30], Fri:[12,15], Sat:[12,30], Sun:[12,30] },
+    Mid:[19,15], Close:[0,15]
+  },
+  'Fireside':  {
+    Open: { Mon:[12,15], Tue:[11,30], Wed:[12,15], Thu:[11,30], Fri:[11,30], Sat:[12,15], Sun:[12,20] },
+    Mid:[18,15], Close:[23,15]
+  },
+  'OV':        {
+    Open: { Mon:[12,0], Tue:[12,30], Wed:[12,0], Thu:[12,30], Fri:[12,30], Sat:[12,0], Sun:[12,30] },
+    Mid:[18,15], Close:[23,30]
+  },
+  'Manz':      {
+    Open: { Mon:[10,45], Tue:[12,30], Wed:[10,45], Thu:[12,30], Fri:[12,30], Sat:[10,45], Sun:[12,30] },
+    Mid:  { Mon:[18,15], Tue:[19,15], Wed:[18,15], Thu:[19,15], Fri:[19,15], Sat:[18,15], Sun:[19,15] },
+    Close:[23,20]
+  },
+};
+function shiftCutoffFor(shop, shift){
+  const conf = SHIFT_CUTOFFS[shop];
+  if(!conf) return null;
+  const c = conf[shift];
+  if(!c) return null;
+  if(Array.isArray(c)) return c;
+  const wd = getPacificNow().weekday;
+  return c[wd] || null;
+}
+// Current time in store-local (America/Los_Angeles) terms: weekday picks the right Open cutoff,
+// hour/minute decide whether a shift's submission window has closed.
+function getPacificNow(){
+  const parts = new Intl.DateTimeFormat('en-US', {timeZone:'America/Los_Angeles', weekday:'short', hour:'2-digit', minute:'2-digit', hour12:false}).formatToParts(new Date());
+  const get = t => (parts.find(p=>p.type===t)||{}).value;
+  let hour = parseInt(get('hour'),10); if(hour===24) hour=0; // some engines emit '24' for midnight
+  return { weekday:get('weekday'), hour, minute:parseInt(get('minute'),10) };
+}
 const days = 60; // 60-day data window powers the Late Submissions tally; the recaps day-strip below stays a fixed trailing 7 days so the grid is unchanged
 const TODAY_INDEX = days - 1;
 const TODAY_DATE = new Date(2026, 6, 28); // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
@@ -60355,11 +60405,16 @@ Object.entries(REAL_SHOP_DATA).forEach(([shopName, realRecords]) => {
   const now = new Date();
   const isToday = now.getFullYear()===TODAY_DATE.getFullYear() && now.getMonth()===TODAY_DATE.getMonth() && now.getDate()===TODAY_DATE.getDate();
   if(!isToday) return;
-  const nowHour = now.getHours() + now.getMinutes()/60;
+  const pac = getPacificNow();
+  const nowHour = pac.hour + pac.minute/60; // store-local (Pacific) decimal hour
   SHOPS.forEach(shop=>{
     SHIFTS.forEach(shift=>{
       const key = `${TODAY_INDEX}|${shop}|${shift}`;
-      if(nowHour < SHIFT_CUTOFF_HOUR[shift] && submissionStatus[key] !== 'submitted' && submissionStatus[key] !== 'late'){
+      const cut = shiftCutoffFor(shop, shift);
+      if(!cut) return;
+      let cutHour = cut[0] + cut[1]/60;
+      if(cutHour < 6) cutHour += 24; // after-midnight cutoff (e.g. Close [0,20]) still belongs to this shift-day
+      if(nowHour < cutHour && submissionStatus[key] !== 'submitted' && submissionStatus[key] !== 'late'){
         submissionStatus[key] = 'pending';
       }
     });
