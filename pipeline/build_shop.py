@@ -2,6 +2,7 @@
 import csv, json, re, sys
 from datetime import datetime
 from zoneinfo import ZoneInfo
+from shift_cutoffs import cutoff_for
 from collections import Counter
 
 exec(open('extract_names.py').read().split("results = []")[0])  # reuse name-extraction functions/constants
@@ -114,7 +115,7 @@ def build_shop(shop_name, csv_path, shift_cutoff, today, days=60):
         safety_status, safety_detail = norm_safety(safety_raw)
         food_inventory = norm_food(food_inv_raw)
 
-        cutoff_h, cutoff_m = shift_cutoff[shift]
+        cutoff_h, cutoff_m = cutoff_for(shop_name, shift, dt)
         is_late = (dt.hour, dt.minute) > (cutoff_h, cutoff_m)
 
         flags = []

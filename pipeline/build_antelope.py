@@ -1,6 +1,7 @@
 import csv, json, re
 from datetime import datetime
 from zoneinfo import ZoneInfo
+from shift_cutoffs import cutoff_for
 exec(open('extract_names.py').read().split("results = []")[0])
 
 def levenshtein(a, b):
@@ -141,7 +142,7 @@ def build_antelope(csv_path):
         safety_status, safety_detail = norm_safety(safety_raw)
         food_inventory = norm_food(food_inv_raw)
 
-        cutoff_h, cutoff_m = SHIFT_CUTOFF[shift]
+        cutoff_h, cutoff_m = cutoff_for('Antelope', shift, dt)
         is_late = (dt.hour, dt.minute) > (cutoff_h, cutoff_m)
 
         flags = []

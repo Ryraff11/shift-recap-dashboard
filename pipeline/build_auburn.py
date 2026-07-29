@@ -1,6 +1,7 @@
 import csv, json, re
 from datetime import datetime
 from zoneinfo import ZoneInfo
+from shift_cutoffs import cutoff_for
 exec(open('extract_names.py').read().split("results = []")[0])  # reuse name-extraction functions
 exec(open('auburn_shift_parse_test.py').read().split("if __name__")[0])  # reuse parse_shift
 
@@ -147,7 +148,7 @@ def build_auburn(csv_path, shift_cutoff):
         staffing = norm_staffing(staffing_raw)
         safety_status, safety_detail = norm_safety(safety_raw)
 
-        cutoff_h, cutoff_m = shift_cutoff[shift]
+        cutoff_h, cutoff_m = cutoff_for('Auburn', shift, dt)
         is_late = (dt.hour, dt.minute) > (cutoff_h, cutoff_m)
 
         flags = []

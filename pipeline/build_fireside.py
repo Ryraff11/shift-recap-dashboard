@@ -1,6 +1,7 @@
 import csv, json, re
 from datetime import datetime
 from zoneinfo import ZoneInfo
+from shift_cutoffs import cutoff_for
 exec(open('extract_names.py').read().split("results = []")[0])
 exec(open('fireside_shift_parse_test.py').read().split("if __name__")[0])
 
@@ -130,7 +131,7 @@ def build_fireside(csv_path, shift_cutoff):
         staffing = norm_staffing(staffing_raw)
         safety_status, safety_detail = norm_safety(safety_raw)
 
-        cutoff_h, cutoff_m = shift_cutoff[shift]
+        cutoff_h, cutoff_m = cutoff_for('Fireside', shift, dt)
         if shift == 'Close':
             if dt.hour == cutoff_h: is_late = dt.minute > cutoff_m
             elif dt.hour > cutoff_h and dt.hour < 24: is_late = True
