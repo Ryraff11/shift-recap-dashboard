@@ -1,6 +1,7 @@
 import csv, json, re
 from datetime import datetime
 from zoneinfo import ZoneInfo
+from shift_cutoffs import cutoff_for
 exec(open('extract_names.py').read().split("results = []")[0])  # reuse name-extraction functions
 
 def levenshtein(a, b):
@@ -155,7 +156,7 @@ def build_madhouse(csv_path, shift_cutoff):
         staffing = norm_staffing(staffing_raw)
         safety_status, safety_detail = norm_safety(safety_raw)
 
-        cutoff_h, cutoff_m = shift_cutoff[shift]
+        cutoff_h, cutoff_m = cutoff_for('Mad', shift, dt)
         is_late = (dt.hour, dt.minute) > (cutoff_h, cutoff_m) if shift != 'Close' else \
                   not (dt.hour < cutoff_h or (dt.hour == cutoff_h and dt.minute <= cutoff_m)) and dt.hour >= 4
         # Close cutoff crosses midnight (12:15am) -- treat hours 4-23 as "still same day, before midnight" (always late-eligible check only applies post-midnight window)

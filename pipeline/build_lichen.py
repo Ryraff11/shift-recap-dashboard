@@ -1,6 +1,7 @@
 import csv, json, re
 from datetime import datetime
 from zoneinfo import ZoneInfo
+from shift_cutoffs import cutoff_for
 exec(open('extract_names.py').read().split("results = []")[0])
 exec(open('lichen_shift_parse_test.py').read().split("if __name__")[0])
 
@@ -151,7 +152,7 @@ def build_lichen(csv_path, shift_cutoff):
         staffing = norm_staffing(staffing_raw)
         safety_status, safety_detail = norm_safety(safety_raw)
 
-        cutoff_h, cutoff_m = shift_cutoff[shift]
+        cutoff_h, cutoff_m = cutoff_for('Lichen', shift, dt)
         if shift == 'Close':
             if dt.hour == 0: is_late = dt.minute > cutoff_m
             elif 1 <= dt.hour <= 3: is_late = True

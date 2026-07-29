@@ -1,6 +1,7 @@
 import csv, json, re
 from datetime import datetime
 from zoneinfo import ZoneInfo
+from shift_cutoffs import cutoff_for
 exec(open('extract_names.py').read().split("results = []")[0])
 exec(open('manz_shift_parse_test.py').read().split("if __name__")[0])
 
@@ -142,7 +143,7 @@ def build_manz(csv_path):
         shift, method = parse_shift(namefield, dt)
         name = parse_name_manz(namefield)
         grp = day_group(dt.weekday())
-        cutoff_h, cutoff_m = SHIFT_CUTOFFS_BY_GROUP[grp][shift]
+        cutoff_h, cutoff_m = cutoff_for('Manz', shift, dt)
 
         staffing_raw = safe_get(r, 2)
         team_player = safe_get(r, 6)
