@@ -394,7 +394,7 @@
       <button class="ghost-btn" id="btn-leaderboard">Leaderboard →</button>
     </div>
   </div>
-  <p class="header-sub" id="header-sub">Tap a stand to dig into recaps, times, sales, and payroll — example data below.</p>
+  <p class="header-sub" id="header-sub">Tap a stand to dig into recaps and drive-thru times — net sales coming soon.</p>
 </header>
 
 <main>
@@ -412,9 +412,6 @@
       <button class="subtab active" data-cat="recaps">Recaps</button>
       <button class="subtab" data-cat="times">Times</button>
       <button class="subtab" data-cat="netsales">Net Sales</button>
-      <button class="subtab" data-cat="dph">Drinks/Hr</button>
-      <button class="subtab" data-cat="peak">Peak Hours</button>
-      <button class="subtab" data-cat="payroll">Payroll</button>
     </div>
 
     <!-- RECAPS -->
@@ -461,54 +458,12 @@
 
     <!-- NET SALES -->
     <div class="category" id="cat-netsales">
-      <div class="range-picker" data-range-group="netsales">
-        <button class="range-btn" data-range="today">Today</button>
-        <button class="range-btn active" data-range="7d">7 Days</button>
-        <button class="range-btn" data-range="30d">30 Days</button>
-        <button class="range-btn" data-range="mtd">Month to Date</button>
+      <div style="text-align:center; padding:48px 20px;">
+        <div class="section-sub" style="margin:0 0 10px;">Net Sales</div>
+        <div style="color:var(--text-dim); font-size:13px;">Not linked yet — coming once Xenial is connected.</div>
       </div>
-      <div class="stat-row" id="netsales-stats"></div>
-      <div class="section-sub">Net sales by day</div>
-      <div class="bar-scroll" id="netsales-bars"></div>
     </div>
 
-    <!-- DRINKS PER HOUR -->
-    <div class="category" id="cat-dph">
-      <div class="range-picker" data-range-group="dph">
-        <button class="range-btn" data-range="today">Today</button>
-        <button class="range-btn active" data-range="7d">7 Days</button>
-        <button class="range-btn" data-range="30d">30 Days</button>
-        <button class="range-btn" data-range="mtd">Month to Date</button>
-      </div>
-      <div class="stat-row" id="dph-stats"></div>
-      <div class="section-sub">Drinks per hour by day</div>
-      <div class="bar-scroll" id="dph-bars"></div>
-    </div>
-
-    <!-- PEAK HOURS -->
-    <div class="category" id="cat-peak">
-      <div class="range-picker" data-range-group="peak">
-        <button class="range-btn" data-range="today">Today</button>
-        <button class="range-btn active" data-range="7d">7 Days</button>
-        <button class="range-btn" data-range="30d">30 Days</button>
-        <button class="range-btn" data-range="mtd">Month to Date</button>
-      </div>
-      <div class="peak-badge" id="peak-badge"></div>
-      <div class="peak-scroll" id="peak-bars"></div>
-    </div>
-
-    <!-- PAYROLL -->
-    <div class="category" id="cat-payroll">
-      <div class="range-picker" data-range-group="payroll">
-        <button class="range-btn" data-range="today">Today</button>
-        <button class="range-btn active" data-range="7d">7 Days</button>
-        <button class="range-btn" data-range="30d">30 Days</button>
-        <button class="range-btn" data-range="mtd">Month to Date</button>
-      </div>
-      <div class="stat-row" id="payroll-stats"></div>
-      <div class="section-sub">Labor hours by day</div>
-      <div class="bar-scroll" id="payroll-bars"></div>
-    </div>
   </div>
 
   <!-- ============ COMPARE ============ -->
@@ -521,9 +476,6 @@
       <button class="subtab active" data-cat="recaps">Recaps</button>
       <button class="subtab" data-cat="times">Times</button>
       <button class="subtab" data-cat="netsales">Net Sales</button>
-      <button class="subtab" data-cat="dph">Drinks/Hr</button>
-      <button class="subtab" data-cat="peak">Peak Hours</button>
-      <button class="subtab" data-cat="payroll">Payroll</button>
     </div>
 
     <div class="category active" id="cmp-cat-recaps">
@@ -541,44 +493,12 @@
     </div>
 
     <div class="category" id="cmp-cat-netsales">
-      <div class="range-picker" data-range-group="cmp">
-        <button class="range-btn" data-range="today">Today</button>
-        <button class="range-btn active" data-range="7d">7 Days</button>
-        <button class="range-btn" data-range="30d">30 Days</button>
-        <button class="range-btn" data-range="mtd">Month to Date</button>
+      <div style="text-align:center; padding:48px 20px;">
+        <div class="section-sub" style="margin:0 0 10px;">Net Sales</div>
+        <div style="color:var(--text-dim); font-size:13px;">Not linked yet — coming once Xenial is connected.</div>
       </div>
-      <div id="cmp-netsales-list"></div>
     </div>
 
-    <div class="category" id="cmp-cat-dph">
-      <div class="range-picker" data-range-group="cmp">
-        <button class="range-btn" data-range="today">Today</button>
-        <button class="range-btn active" data-range="7d">7 Days</button>
-        <button class="range-btn" data-range="30d">30 Days</button>
-        <button class="range-btn" data-range="mtd">Month to Date</button>
-      </div>
-      <div id="cmp-dph-list"></div>
-    </div>
-
-    <div class="category" id="cmp-cat-peak">
-      <div class="range-picker" data-range-group="cmp">
-        <button class="range-btn" data-range="today">Today</button>
-        <button class="range-btn active" data-range="7d">7 Days</button>
-        <button class="range-btn" data-range="30d">30 Days</button>
-        <button class="range-btn" data-range="mtd">Month to Date</button>
-      </div>
-      <div id="cmp-peak-list"></div>
-    </div>
-
-    <div class="category" id="cmp-cat-payroll">
-      <div class="range-picker" data-range-group="cmp">
-        <button class="range-btn" data-range="today">Today</button>
-        <button class="range-btn active" data-range="7d">7 Days</button>
-        <button class="range-btn" data-range="30d">30 Days</button>
-        <button class="range-btn" data-range="mtd">Month to Date</button>
-      </div>
-      <div id="cmp-payroll-list"></div>
-    </div>
   </div>
 
   <!-- ============ LEADERBOARD ============ -->
@@ -588,8 +508,6 @@
       <div class="section-title">Leaderboard · last 7 days</div>
       <select id="lb-rank-by">
         <option value="laneTotal">Rank by: Lane Total (speed)</option>
-        <option value="netSales">Rank by: Net Sales</option>
-        <option value="dph">Rank by: Drinks Per Hour</option>
       </select>
     </div>
     <div id="leaderboard-list"></div>
@@ -60909,9 +60827,6 @@ function openShop(shop){
   renderRecaps();
   renderTimes();
   renderNetSales();
-  renderDPH();
-  renderPeak();
-  renderPayroll();
 }
 
 // ================= VIEW SWITCHING =================
@@ -60957,9 +60872,6 @@ document.querySelectorAll('.range-picker').forEach(group=>{
       if(key==='recaps') renderRecaps();
       if(key==='times') renderTimes();
       if(key==='netsales') renderNetSales();
-      if(key==='dph') renderDPH();
-      if(key==='peak') renderPeak();
-      if(key==='payroll') renderPayroll();
       if(key==='cmp') renderCompareAll();
     });
   });
@@ -61382,6 +61294,7 @@ function renderTimes(){
 
 // ================= NET SALES =================
 function renderNetSales(){
+  return; // Net sales not linked yet — panel shows a placeholder
   const indices = indicesForRange(rangeState.netsales);
   const prev = prevIndicesFor(indices);
   const total = aggregate(activeShop, indices, 'netSales');
@@ -61562,35 +61475,25 @@ function renderComparePayroll(){
 function renderCompareAll(){
   renderCompareRecaps();
   renderCompareTimes();
-  renderCompareNetSales();
-  renderCompareDPH();
-  renderComparePeak();
-  renderComparePayroll();
 }
 
 // ================= LEADERBOARD =================
 function renderLeaderboard(){
-  const rankBy = document.getElementById('lb-rank-by').value;
   const last7 = indicesForRange('7d');
   const rows = ACTIVE_SHOPS.map(shop=>{
     const laneTotal = average(shop, last7, 'laneTotalSec');
-    const netSales = aggregate(shop, last7, 'netSales');
-    const dph = average(shop, last7, 'dph');
-    return {shop, laneTotal, netSales, dph};
+    return {shop, laneTotal};
   });
-  let sorted;
-  if(rankBy==='laneTotal') sorted = [...rows].sort((a,b)=>a.laneTotal-b.laneTotal);
-  else if(rankBy==='netSales') sorted = [...rows].sort((a,b)=>b.netSales-a.netSales);
-  else sorted = [...rows].sort((a,b)=>b.dph-a.dph);
+  const sorted = [...rows].sort((a,b)=>a.laneTotal-b.laneTotal);
 
-  const metricLabel = rankBy==='laneTotal' ? 'Lane Total avg' : rankBy==='netSales' ? 'Net sales (7d)' : 'Avg drinks/hr';
+  const metricLabel = 'Lane Total avg';
   document.getElementById('leaderboard-list').innerHTML = sorted.map((r,i)=>{
-    const metricVal = rankBy==='laneTotal' ? secsToClock(r.laneTotal) : rankBy==='netSales' ? fmtMoney(r.netSales) : r.dph.toFixed(1);
+    const metricVal = secsToClock(r.laneTotal);
     return `<div class="lb-row">
       <div class="lb-rank">${i+1}</div>
       <div class="lb-shop">
         <div class="lb-shop-name">${r.shop}</div>
-        <div class="lb-sub">Lane Total ${secsToClock(r.laneTotal)} · Net sales ${fmtMoney(r.netSales)} · ${r.dph.toFixed(1)} drinks/hr</div>
+        <div class="lb-sub">Lane Total ${secsToClock(r.laneTotal)}</div>
       </div>
       <div class="lb-metric"><div class="v mono">${metricVal}</div><div class="l">${metricLabel}</div></div>
     </div>`;
