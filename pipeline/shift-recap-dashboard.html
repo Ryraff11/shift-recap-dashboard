@@ -280,6 +280,15 @@
   .oh-row-name{font-family:'Anton',sans-serif; font-size:19px; text-transform:uppercase;}
   .oh-row-right{display:flex; align-items:center; gap:10px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-faint);}
   .oh-caret{color:var(--text-faint); font-size:16px;}
+  /* Per-day window-times table */
+  .times-table{width:100%; border-collapse:collapse; font-family:'JetBrains Mono',monospace; margin-top:2px;}
+  .times-table th{font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-faint); text-align:right; padding:7px 10px 8px; border-bottom:1px solid var(--hairline); font-weight:600;}
+  .times-table th:first-child{text-align:left;}
+  .times-table td{padding:12px 10px; border-bottom:1px solid var(--hairline); text-align:right;}
+  .times-table tr:last-child td{border-bottom:none;}
+  .times-day{text-align:left; font-family:'Anton',sans-serif; font-size:17px; letter-spacing:.02em; color:var(--text-dim);}
+  .times-val{font-size:15px; color:var(--text); font-weight:500;}
+  .times-cars{color:var(--text-dim);}
   .lb-rank{font-family:'Anton',sans-serif; font-size:26px; color:var(--amber); width:34px; text-align:center; flex:0 0 auto;}
   .lb-shop{flex:1; min-width:0;}
   .lb-shop-name{font-family:'Anton',sans-serif; font-size:18px;}
@@ -440,15 +449,14 @@
     <!-- TIMES -->
     <div class="category" id="cat-times">
       <div class="range-picker" data-range-group="times">
-        <button class="range-btn" data-range="today">Today</button>
         <button class="range-btn active" data-range="7d">7 Days</button>
         <button class="range-btn" data-range="30d">30 Days</button>
         <button class="range-btn" data-range="mtd">Month to Date</button>
       </div>
       <div class="stat-row" id="times-stats"></div>
       <div id="times-source" style="font-size:12px;color:var(--text-dim);margin:-2px 0 10px;"></div>
-      <div class="section-sub">Window time by day · real HME data only</div>
-      <div class="bar-scroll" id="times-bars"></div>
+      <div class="section-sub">Window time by day · newest first · real HME data only</div>
+      <div id="times-bars"></div>
     </div>
 
     <!-- NET SALES -->
@@ -61001,17 +61009,32 @@ function renderTimes(){
     document.getElementById('times-bars').innerHTML = `<div class="empty">No HME timer days in this range.</div>`;
     return;
   }
+  const twoWin = TWO_WINDOW_SHOPS.has(activeShop);
   const avgWindow = real.reduce((s,i)=>s+dailyOps[activeShop][i].laneTotalSec,0)/real.length;
   const totalCars = real.reduce((s,i)=>s+dailyOps[activeShop][i].totalCars,0);
   let cards = `<div class="stat-card"><div class="v mono">${secsToClock(avgWindow)}</div><div class="l">Avg window time</div></div>
     <div class="stat-card"><div class="v mono">${totalCars.toLocaleString()}</div><div class="l">Total cars</div></div>`;
-  if(TWO_WINDOW_SHOPS.has(activeShop)){
+  if(twoWin){
     const avg2 = real.reduce((s,i)=>s+dailyOps[activeShop][i].laneTotal2Sec,0)/real.length;
-    cards += `<div class="stat-card"><div class="v mono">${secsToClock(avg2)}</div><div class="l">2nd window time</div></div>`;
+    cards += `<div class="stat-card"><div class="v mono">${secsToClock(avg2)}</div><div class="l">Avg 2nd window</div></div>`;
   }
   statsEl.innerHTML = cards;
-  srcEl.innerHTML = `⏱ ${real.length} day(s) of real HME timer data in this range`;
-  renderBarScroll('times-bars', real, 'laneTotalSec');
+  srcEl.innerHTML = `⏱ ${real.length} day${real.length>1?'s':''} of real HME timer data · newest first`;
+
+  // Per-day breakdown: the actual lane average + car count for each day, newest first,
+  // so days are directly comparable instead of just a shape on a chart.
+  const rows = real.slice().sort((a,b)=>b-a).map(i=>{
+    const d = dailyOps[activeShop][i];
+    return `<tr>
+      <td class="times-day">${fmtDate(dateForIndex(i))}</td>
+      <td class="times-val">${secsToClock(d.laneTotalSec)}</td>
+      ${twoWin?`<td class="times-val">${secsToClock(d.laneTotal2Sec)}</td>`:''}
+      <td class="times-val times-cars">${d.totalCars.toLocaleString()}</td>
+    </tr>`;
+  }).join('');
+  document.getElementById('times-bars').innerHTML = `<table class="times-table">
+    <thead><tr><th>Day</th><th>Lane avg</th>${twoWin?'<th>2nd</th>':''}<th>Cars</th></tr></thead>
+    <tbody>${rows}</tbody></table>`;
 }
 
 // ================= NET SALES =================
