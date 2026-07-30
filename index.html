@@ -280,6 +280,15 @@
   .oh-row-name{font-family:'Anton',sans-serif; font-size:19px; text-transform:uppercase;}
   .oh-row-right{display:flex; align-items:center; gap:10px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-faint);}
   .oh-caret{color:var(--text-faint); font-size:16px;}
+  /* Per-day window-times table */
+  .times-table{width:100%; border-collapse:collapse; font-family:'JetBrains Mono',monospace; margin-top:2px;}
+  .times-table th{font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-faint); text-align:right; padding:7px 10px 8px; border-bottom:1px solid var(--hairline); font-weight:600;}
+  .times-table th:first-child{text-align:left;}
+  .times-table td{padding:12px 10px; border-bottom:1px solid var(--hairline); text-align:right;}
+  .times-table tr:last-child td{border-bottom:none;}
+  .times-day{text-align:left; font-family:'Anton',sans-serif; font-size:17px; letter-spacing:.02em; color:var(--text-dim);}
+  .times-val{font-size:15px; color:var(--text); font-weight:500;}
+  .times-cars{color:var(--text-dim);}
   .lb-rank{font-family:'Anton',sans-serif; font-size:26px; color:var(--amber); width:34px; text-align:center; flex:0 0 auto;}
   .lb-shop{flex:1; min-width:0;}
   .lb-shop-name{font-family:'Anton',sans-serif; font-size:18px;}
@@ -440,15 +449,14 @@
     <!-- TIMES -->
     <div class="category" id="cat-times">
       <div class="range-picker" data-range-group="times">
-        <button class="range-btn" data-range="today">Today</button>
         <button class="range-btn active" data-range="7d">7 Days</button>
         <button class="range-btn" data-range="30d">30 Days</button>
         <button class="range-btn" data-range="mtd">Month to Date</button>
       </div>
       <div class="stat-row" id="times-stats"></div>
       <div id="times-source" style="font-size:12px;color:var(--text-dim);margin:-2px 0 10px;"></div>
-      <div class="section-sub">Window time by day · real HME data only</div>
-      <div class="bar-scroll" id="times-bars"></div>
+      <div class="section-sub">Window time by day · newest first · real HME data only</div>
+      <div id="times-bars"></div>
     </div>
 
     <!-- NET SALES -->
@@ -5785,149 +5793,6 @@ const REAL_ANTELOPE_RECORDS = [
         "source": "Audrey was great and killed it all noght long"
       }
     ]
-  },
-  {
-    "shop": "Antelope",
-    "shift": "Mid",
-    "dayIndex": 58,
-    "timestamp": "7/29/2026 18:29:14",
-    "employee": "Darius.",
-    "isLate": true,
-    "bestPlayer": null,
-    "needsHats": null,
-    "tardy": null,
-    "hazard": null,
-    "xbroStruggle": null,
-    "comment": "Great mid shift! Awesome to see Naum and LV",
-    "flags": [
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "The best was def Lily, just came in with a great attitude and was helpful everywhere"
-      },
-      {
-        "kind": "bad",
-        "employee": null,
-        "text": "Tardy/early-out note: Anya I believe took longer breaks then clocked in - lots of times where she would go to the bathroom before a 10 then clock into it or when she went on her 30 she took a hot minute clocking into it - I sent LV and Bri home early"
-      },
-      {
-        "kind": "bad",
-        "employee": null,
-        "text": "Hazard reported: Not sure when but it looks like someone ran over the bushes in the front, they\u2019re all bent over"
-      },
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "Great mid shift! Awesome to see Naum and LV"
-      },
-      {
-        "kind": "bad",
-        "employee": null,
-        "text": "Recap submitted late \u2014 arrived 6:29 PM, after the 18:15 grace-period cutoff for Mid."
-      }
-    ],
-    "fullRecap": {
-      "Staffing": "Overstaffed (trying to find things to do, sent people home)",
-      "Line times / leaderboard": "1st place when the crew was moving!! ",
-      "Team player / needed to step up": "The best was def Lily, just came in with a great attitude and was helpful everywhere ",
-      "Tardy / early out": "Anya I believe took longer breaks then clocked in - lots of times where she would go to the bathroom before a 10 then clock into it or when she went on her 30 she took a hot minute clocking into it - I sent LV and Bri home early ",
-      "Food inventory sheet": "Blank",
-      "Safety hazards": "Not sure when but it looks like someone ran over the bushes in the front, they\u2019re all bent over ",
-      "Xbro / non-negotiables": "No one ",
-      "Additional comments": "Great mid shift! Awesome to see Naum and LV ",
-      "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
-      "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?"
-    },
-    "namedMentions": [
-      {
-        "name": "Then",
-        "kind": "bad",
-        "source": "Anya I believe took longer breaks then clocked in - lots of times where she would go to the bathroom before a 10 then clock into it or when she went on her 30 s"
-      }
-    ]
-  },
-  {
-    "shop": "Antelope",
-    "shift": "Mid",
-    "dayIndex": 58,
-    "timestamp": "7/29/2026 19:54:08",
-    "employee": "Katelyn Leake",
-    "isLate": true,
-    "bestPlayer": null,
-    "needsHats": null,
-    "tardy": null,
-    "hazard": null,
-    "xbroStruggle": null,
-    "comment": "No comments, standard shift.",
-    "flags": [
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "Everyone was super helpful the entire shift but sienna really did go above and beyond with Mai g sure the stand looks beautiful"
-      },
-      {
-        "kind": "bad",
-        "employee": null,
-        "text": "Recap submitted late \u2014 arrived 7:54 PM, after the 18:15 grace-period cutoff for Mid."
-      }
-    ],
-    "fullRecap": {
-      "Staffing": "Overstaffed (trying to find things to do, sent people home)",
-      "Line times / leaderboard": "Our line times were great!! We stayed at the top of the leaderboard most of the day ",
-      "Team player / needed to step up": "Everyone was super helpful the entire shift but sienna really did go above and beyond with Mai g sure the stand looks beautiful ",
-      "Tardy / early out": "No tardies but I did send naum, LV, and Matai home early ",
-      "Food inventory sheet": "Blank",
-      "Safety hazards": "No hazards ",
-      "Xbro / non-negotiables": "Xbro went great!! ",
-      "Additional comments": "",
-      "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
-      "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?"
-    },
-    "namedMentions": []
-  },
-  {
-    "shop": "Antelope",
-    "shift": "Close",
-    "dayIndex": 58,
-    "timestamp": "7/30/2026 0:42:05",
-    "employee": "Katelyn Leake",
-    "isLate": true,
-    "bestPlayer": null,
-    "needsHats": null,
-    "tardy": null,
-    "hazard": null,
-    "xbroStruggle": null,
-    "comment": "\ud83e\uded8",
-    "flags": [
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "Everyone was wearing all the hats! Zach and Kyla were extremely helpful tn"
-      },
-      {
-        "kind": "bad",
-        "employee": null,
-        "text": "Hazard reported: The sink in the bathroom will continually run if the push top isn\u2019t pulled up dunno why that is"
-      },
-      {
-        "kind": "good",
-        "employee": null,
-        "text": "\ud83e\uded8"
-      }
-    ],
-    "fullRecap": {
-      "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
-      "Line times / leaderboard": "We were at 48 seconds and top of the board then fell to lower on the board and 1:08 later in the night ",
-      "Team player / needed to step up": "Everyone was wearing all the hats! Zach and Kyla were extremely helpful tn ",
-      "Tardy / early out": "No tardies",
-      "Food inventory sheet": "Yes",
-      "Safety hazards": "The sink in the bathroom will continually run if the push top isn\u2019t pulled up dunno why that is ",
-      "Xbro / non-negotiables": "It went great no one had any issues ",
-      "Additional comments": "\ud83e\uded8",
-      "Closing: Verifone WiFi": "Yes",
-      "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?"
-    },
-    "namedMentions": []
   }
 ]
 const REAL_FAIROAKS_RECORDS = [
@@ -60781,6 +60646,95 @@ const REAL_OV_RECORDS = [
         "source": "Sydney was super helpful today! An awesome team player. She was helping out so much. Audrey could definitely wear more hats. I notice a lot of people have a har"
       }
     ]
+  },
+  {
+    "shop": "OV",
+    "shift": "Close",
+    "dayIndex": 58,
+    "timestamp": "7/29/2026 22:42:36",
+    "employee": "Aria",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "No comments, standard shift.",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Isa did great tonight but no complaints all the girlies were so good!"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Hazard reported: One homeless man walked around the stand but eventually went in his way thank goodness. I let managers know"
+      }
+    ],
+    "fullRecap": {
+      "staffing": "Perfect (sometimes struggling, sometimes ahead- evened out",
+      "lineTimes": "Times were great we had a 50 sec average most of the night and first on the leaderboard ",
+      "teamPlayer": "Isa did great tonight but no complaints all the girlies were so good! ",
+      "tardy": "No ",
+      "foodInventory": "No / In progress",
+      "safety": "One homeless man walked around the stand but eventually went in his way thank goodness. I let managers know ",
+      "xbro": "No ",
+      "comments": "",
+      "closingVerifone": "Yes",
+      "closingChecklist": ""
+    },
+    "namedMentions": [
+      {
+        "name": "Isa",
+        "kind": "good",
+        "source": "Isa did great tonight but no complaints all the girlies were so good!"
+      }
+    ]
+  },
+  {
+    "shop": "OV",
+    "shift": "Open",
+    "dayIndex": 59,
+    "timestamp": "7/30/2026 12:05:37",
+    "employee": "Mel July",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "i think it\u2019d be helpful to do a different time for the mid breaker shift. a lot of baristas feel a little frustrated their break is so soon into their shift rather than working at least 3 or 4 hours first then taking their 30",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "everyone was super awesome zeya is so sweet and on top of her stuff! she\u2019s very flexible with everything asked of her"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "xbro worked smoothly no one struggled."
+      },
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "i think it\u2019d be helpful to do a different time for the mid breaker shift. a lot of baristas feel a little frustrated their break is so soon into their shift rather than working at least 3 or 4 hours first then taking their 30"
+      }
+    ],
+    "fullRecap": {
+      "staffing": "Perfect (sometimes struggling, sometimes ahead- evened out",
+      "lineTimes": "times stayed in the red in the morning but then moved into the green. we sat in the top of leaderboard ",
+      "teamPlayer": "everyone was super awesome zeya is so sweet and on top of her stuff! she\u2019s very flexible with everything asked of her  ",
+      "tardy": "no",
+      "foodInventory": "No / In progress",
+      "safety": "no",
+      "xbro": "xbro worked smoothly no one struggled. ",
+      "comments": "i think it\u2019d be helpful to do a different time for the mid breaker shift. a lot of baristas feel a little frustrated their break is so soon into their shift rather than working at least 3 or 4 hours first then taking their 30 ",
+      "closingVerifone": "N/A ; Not closing shift lead",
+      "closingChecklist": ""
+    },
+    "namedMentions": []
   }
 ]
 const records = [];
@@ -61398,17 +61352,32 @@ function renderTimes(){
     document.getElementById('times-bars').innerHTML = `<div class="empty">No HME timer days in this range.</div>`;
     return;
   }
+  const twoWin = TWO_WINDOW_SHOPS.has(activeShop);
   const avgWindow = real.reduce((s,i)=>s+dailyOps[activeShop][i].laneTotalSec,0)/real.length;
   const totalCars = real.reduce((s,i)=>s+dailyOps[activeShop][i].totalCars,0);
   let cards = `<div class="stat-card"><div class="v mono">${secsToClock(avgWindow)}</div><div class="l">Avg window time</div></div>
     <div class="stat-card"><div class="v mono">${totalCars.toLocaleString()}</div><div class="l">Total cars</div></div>`;
-  if(TWO_WINDOW_SHOPS.has(activeShop)){
+  if(twoWin){
     const avg2 = real.reduce((s,i)=>s+dailyOps[activeShop][i].laneTotal2Sec,0)/real.length;
-    cards += `<div class="stat-card"><div class="v mono">${secsToClock(avg2)}</div><div class="l">2nd window time</div></div>`;
+    cards += `<div class="stat-card"><div class="v mono">${secsToClock(avg2)}</div><div class="l">Avg 2nd window</div></div>`;
   }
   statsEl.innerHTML = cards;
-  srcEl.innerHTML = `⏱ ${real.length} day(s) of real HME timer data in this range`;
-  renderBarScroll('times-bars', real, 'laneTotalSec');
+  srcEl.innerHTML = `⏱ ${real.length} day${real.length>1?'s':''} of real HME timer data · newest first`;
+
+  // Per-day breakdown: the actual lane average + car count for each day, newest first,
+  // so days are directly comparable instead of just a shape on a chart.
+  const rows = real.slice().sort((a,b)=>b-a).map(i=>{
+    const d = dailyOps[activeShop][i];
+    return `<tr>
+      <td class="times-day">${fmtDate(dateForIndex(i))}</td>
+      <td class="times-val">${secsToClock(d.laneTotalSec)}</td>
+      ${twoWin?`<td class="times-val">${secsToClock(d.laneTotal2Sec)}</td>`:''}
+      <td class="times-val times-cars">${d.totalCars.toLocaleString()}</td>
+    </tr>`;
+  }).join('');
+  document.getElementById('times-bars').innerHTML = `<table class="times-table">
+    <thead><tr><th>Day</th><th>Lane avg</th>${twoWin?'<th>2nd</th>':''}<th>Cars</th></tr></thead>
+    <tbody>${rows}</tbody></table>`;
 }
 
 // ================= NET SALES =================
