@@ -60447,9 +60447,9 @@ Object.entries(REAL_SHOP_DATA).forEach(([shopName, realRecords]) => {
 // TODAY's shifts whose submission window hasn't closed yet (per the viewer's real clock)
 // are 'pending', not missing/late. Only applies when the dashboard's "today" is the actual date.
 (function(){
-  const now = new Date();
-  const isToday = now.getFullYear()===TODAY_DATE.getFullYear() && now.getMonth()===TODAY_DATE.getMonth() && now.getDate()===TODAY_DATE.getDate();
-  if(!isToday) return;
+  // Always evaluate TODAY's shifts against the real store-local (Pacific) clock so a
+  // not-yet-due shift reads 'pending', never 'missing'/'late', until its window actually
+  // closes — even if TODAY_DATE and the viewer's calendar date don't line up exactly.
   const pac = getPacificNow();
   const nowHour = pac.hour + pac.minute/60; // store-local (Pacific) decimal hour
   SHOPS.forEach(shop=>{
@@ -60495,7 +60495,7 @@ const HOUR_WEIGHTS = [0.015,0.045,0.085,0.095,0.065,0.05,0.045,0.05,0.07,0.09,0.
 
 // Real drive-thru timer data from HME (injected by refresh_dashboard.py from timer_history.json).
 // Shape: { "<Shop>": { "YYYY-MM-DD": {laneTotalSec, laneTotal2Sec, totalCars} } }. Empty until injected.
-const REAL_TIMER_DATA = {"Lichen": {"2026-07-27": {"laneTotalSec": 81, "laneTotal2Sec": null, "totalCars": 561}}, "Mad": {"2026-07-27": {"laneTotalSec": 124, "laneTotal2Sec": 126, "totalCars": 717}}, "Manz": {"2026-07-27": {"laneTotalSec": 72, "laneTotal2Sec": null, "totalCars": 514}}};
+const REAL_TIMER_DATA = {"Lichen": {"2026-07-27": {"laneTotalSec": 81, "laneTotal2Sec": null, "totalCars": 561}, "2026-07-28": {"laneTotalSec": 77, "laneTotal2Sec": null, "totalCars": 605}, "2026-07-29": {"laneTotalSec": 87, "laneTotal2Sec": null, "totalCars": 576}}, "Mad": {"2026-07-27": {"laneTotalSec": 124, "laneTotal2Sec": 126, "totalCars": 717}, "2026-07-28": {"laneTotalSec": 151, "laneTotal2Sec": 123, "totalCars": 710}, "2026-07-29": {"laneTotalSec": 138, "laneTotal2Sec": 133, "totalCars": 600}}, "Manz": {"2026-07-27": {"laneTotalSec": 72, "laneTotal2Sec": null, "totalCars": 514}, "2026-07-28": {"laneTotalSec": 74, "laneTotal2Sec": null, "totalCars": 540}, "2026-07-29": {"laneTotalSec": 71, "laneTotal2Sec": null, "totalCars": 555}}, "Antelope": {"2026-07-28": {"laneTotalSec": 62, "laneTotal2Sec": null, "totalCars": 821}, "2026-07-29": {"laneTotalSec": 68, "laneTotal2Sec": null, "totalCars": 803}}, "OV": {"2026-07-28": {"laneTotalSec": 73, "laneTotal2Sec": null, "totalCars": 348}, "2026-07-29": {"laneTotalSec": 70, "laneTotal2Sec": null, "totalCars": 387}}, "Fireside": {"2026-07-28": {"laneTotalSec": 88, "laneTotal2Sec": null, "totalCars": 358}, "2026-07-29": {"laneTotalSec": 92, "laneTotal2Sec": null, "totalCars": 350}}, "Auburn": {"2026-07-28": {"laneTotalSec": 80, "laneTotal2Sec": null, "totalCars": 642}, "2026-07-29": {"laneTotalSec": 73, "laneTotal2Sec": null, "totalCars": 690}}, "Fair Oaks": {"2026-07-27": {"laneTotalSec": 151, "laneTotal2Sec": 122, "totalCars": 458}, "2026-07-28": {"laneTotalSec": 134, "laneTotal2Sec": 110, "totalCars": 487}, "2026-07-29": {"laneTotalSec": 121, "laneTotal2Sec": 98, "totalCars": 480}}};
 function isoForIndex(i){ const dt=dateForIndex(i); return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0'); }
 
 const dailyOps = {}; // dailyOps[shop][d] = {totalCars, laneTotalSec, laneTotal2Sec, isRealTimer, goalLaneTotal, goalLaneTotal2, netSales, dph, hourly[], sched, actualHrs, otHrs, laborCost}
