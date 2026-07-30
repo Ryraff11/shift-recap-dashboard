@@ -60447,9 +60447,9 @@ Object.entries(REAL_SHOP_DATA).forEach(([shopName, realRecords]) => {
 // TODAY's shifts whose submission window hasn't closed yet (per the viewer's real clock)
 // are 'pending', not missing/late. Only applies when the dashboard's "today" is the actual date.
 (function(){
-  const now = new Date();
-  const isToday = now.getFullYear()===TODAY_DATE.getFullYear() && now.getMonth()===TODAY_DATE.getMonth() && now.getDate()===TODAY_DATE.getDate();
-  if(!isToday) return;
+  // Always evaluate TODAY's shifts against the real store-local (Pacific) clock so a
+  // not-yet-due shift reads 'pending', never 'missing'/'late', until its window actually
+  // closes — even if TODAY_DATE and the viewer's calendar date don't line up exactly.
   const pac = getPacificNow();
   const nowHour = pac.hour + pac.minute/60; // store-local (Pacific) decimal hour
   SHOPS.forEach(shop=>{
