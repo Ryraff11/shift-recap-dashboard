@@ -23,6 +23,7 @@
     --text:#FFFFFF;
     --text-dim:#AFC7DE;
     --text-faint:#6E8AA8;
+    --watch:#F0A32B;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',sans-serif; -webkit-font-smoothing:antialiased;}
@@ -233,6 +234,52 @@
   .franchise-shop-row.inactive{opacity:0.6; cursor:default; border-style:dashed;}
   .franchise-shop-row.inactive:hover{border-color:var(--hairline);}
   .franchise-shop-count.muted, .franchise-shop-metrics .untracked-note{color:var(--text-faint); font-style:italic;}
+  /* ===== Ops Hub home (2a triage feed) ===== */
+  .oh-home{padding:20px; max-width:560px; margin:0 auto;}
+  .oh-head{display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:16px;}
+  .oh-eyebrow{color:var(--amber); font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; margin-bottom:4px;}
+  .oh-title{font-family:'Anton',sans-serif; font-size:30px; line-height:1; text-transform:uppercase;}
+  .oh-head-actions{display:flex; gap:8px; flex-wrap:wrap;}
+  .oh-ghost{background:none; border:1px solid var(--hairline); color:var(--amber); font-weight:700; font-size:12px; padding:8px 13px; border-radius:20px; cursor:pointer; white-space:nowrap; min-height:36px; font-family:'JetBrains Mono',monospace;}
+  .oh-ghost:hover{border-color:var(--amber);}
+  .oh-ranges{display:flex; gap:6px; padding:4px; background:var(--surface); border:1px solid var(--hairline); border-radius:22px; margin-bottom:14px;}
+  .oh-range{flex:1; font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; color:var(--text-dim); background:none; border:none; border-radius:18px; padding:10px 4px; cursor:pointer; min-height:38px;}
+  .oh-range[aria-pressed="true"]{background:var(--amber); color:var(--bg);}
+  .oh-kpis{display:flex; gap:10px; margin-bottom:10px;}
+  .oh-kpi{flex:1; background:var(--surface); border:1px solid var(--hairline); border-radius:12px; padding:13px 14px;}
+  .oh-kpi-n{font-family:'Anton',sans-serif; font-size:26px; line-height:1;}
+  .oh-kpi-l{font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.12em; color:var(--text-dim); text-transform:uppercase; margin-top:4px;}
+  .oh-kpi-n.good{color:var(--good);} .oh-kpi-n.bad{color:var(--bad);}
+  .oh-subline{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-dim); margin-bottom:20px;}
+  .oh-section{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.18em; text-transform:uppercase; margin:0 0 10px;}
+  .oh-section.act{color:#FF8B96;}
+  .oh-section.clean{color:var(--good);}
+  .oh-empty{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-faint); padding:2px 2px 20px;}
+  .oh-cards{display:flex; flex-direction:column; gap:10px; margin-bottom:24px;}
+  .oh-card{width:100%; text-align:left; border:1px solid transparent; border-radius:16px; padding:15px 16px; cursor:pointer; display:flex; flex-direction:column; gap:9px; color:var(--text); font:inherit;}
+  .oh-card.bad{background:rgba(218,38,46,.10); border-color:rgba(218,38,46,.38);}
+  .oh-card.bad:hover{background:rgba(218,38,46,.17);}
+  .oh-card.watch{background:rgba(240,163,43,.08); border-color:rgba(240,163,43,.3);}
+  .oh-card.watch:hover{background:rgba(240,163,43,.15);}
+  .oh-card-top{display:flex; align-items:center; justify-content:space-between; gap:10px;}
+  .oh-card-name{font-family:'Anton',sans-serif; font-size:23px; line-height:1; text-transform:uppercase;}
+  .oh-card-recaps{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-dim);}
+  .oh-metrics{display:flex; align-items:center; gap:10px; font-family:'JetBrains Mono',monospace; font-size:12px;}
+  .oh-metrics .g{color:var(--good);} .oh-metrics .b{color:var(--bad);}
+  .oh-card.bad .oh-metrics .t{color:#FF8B96;}
+  .oh-card.watch .oh-metrics .t{color:var(--watch);}
+  .oh-chips{display:flex; flex-wrap:wrap; gap:8px; font-family:'JetBrains Mono',monospace; font-size:11px;}
+  .oh-chip{background:rgba(255,255,255,.07); border-radius:6px; padding:5px 8px; color:#DBE5F1;}
+  .oh-chip.haz{background:rgba(218,38,46,.18); color:#FFB3BB;}
+  .oh-card.watch .oh-chip.haz{background:rgba(240,163,43,.18); color:#FFD68F;}
+  .oh-rows{display:flex; flex-direction:column;}
+  .oh-row{width:100%; display:flex; align-items:center; justify-content:space-between; gap:10px; background:none; border:none; border-top:1px solid var(--hairline); padding:15px 4px; cursor:pointer; min-height:54px; color:var(--text); font:inherit;}
+  .oh-row:hover{background:rgba(255,255,255,.04);}
+  .oh-row-left{display:flex; align-items:center; gap:10px;}
+  .oh-dot{width:7px; height:7px; border-radius:50%; background:var(--good); flex:0 0 auto;}
+  .oh-row-name{font-family:'Anton',sans-serif; font-size:19px; text-transform:uppercase;}
+  .oh-row-right{display:flex; align-items:center; gap:10px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-faint);}
+  .oh-caret{color:var(--text-faint); font-size:16px;}
   .lb-rank{font-family:'Anton',sans-serif; font-size:26px; color:var(--amber); width:34px; text-align:center; flex:0 0 auto;}
   .lb-shop{flex:1; min-width:0;}
   .lb-shop-name{font-family:'Anton',sans-serif; font-size:18px;}
@@ -344,10 +391,7 @@
 <main>
   <!-- ============ HOME ============ -->
   <div class="view active" id="view-home">
-    <div class="section-title">Today's Franchise Recap</div>
-    <div class="stat-row" id="franchise-stats"></div>
-    <div id="franchise-shop-list"></div>
-    <div id="franchise-hazards"></div>
+    <section class="oh-home" id="oh-home"></section>
   </div>
 
   <!-- ============ SHOP DETAIL ============ -->
@@ -61290,7 +61334,143 @@ function renderFranchiseRecap(){
 }
 
 renderHome();
-renderFranchiseRecap();
+
+/* ===== OPS HUB HOME — 2a triage feed, wired to real records ===== */
+(function(){
+  const OH_RANGES = [
+    { key:'today', label:'Today' },
+    { key:'7d',    label:'7 Days' },
+    { key:'30d',   label:'30 Days' },
+    { key:'mtd',   label:'MTD' }
+  ];
+  let ohRange = 'today';
+  const ohEsc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  function ohShort(full){
+    if(!full) return '';
+    const p = String(full).trim().split(/\s+/);
+    return p.length===1 ? p[0] : p[0][0] + '. ' + p.slice(1).join(' ');
+  }
+  // Real open hazards: "Hazard reported" safety answers in the last 5 days per shop,
+  // excluding one-word negatives ("no"/"none"/"n/a"…) so the chip actually means something.
+  const OH_NEG = new Set(['no','none','na','nope','nothing','allgood','allclear','fine','good','ok','okay','nohazards','nohazard','nonetoday','noneseen','nonenoted','nonefound','nothingtoreport','nothingunsafe','notreally','allgoodhere','noissues','noconcerns','nothingofnote']);
+  function ohIsHazard(txt){
+    const body = String(txt||'').replace(/^Hazard reported:\s*/i,'').trim();
+    if(!body) return false;
+    return !OH_NEG.has(body.toLowerCase().replace(/[^a-z]/g,''));
+  }
+  function ohHazards(shop){
+    const from = TODAY_INDEX - 4;
+    let n = 0;
+    records.forEach(r=>{
+      if(r.shop!==shop || r.dayIndex < from || r.dayIndex > TODAY_INDEX) return;
+      r.flags.forEach(f=>{ if(f.text && f.text.startsWith('Hazard reported') && ohIsHazard(f.text)) n++; });
+    });
+    return n;
+  }
+  function ohStands(rangeKey){
+    const idxSet = new Set(indicesForRange(rangeKey));
+    const isToday = rangeKey==='today';
+    // A shift counts as "expected today" only once at least one stand has filed it,
+    // so stands aren't flagged for shifts whose window hasn't closed yet (no start-of-day false alarms).
+    const expectedToday = new Set();
+    if(isToday){ records.forEach(r=>{ if(r.dayIndex===TODAY_INDEX && ACTIVE_SHOPS.includes(r.shop)) expectedToday.add(r.shift); }); }
+    return ACTIVE_SHOPS.map(shop=>{
+      const recs = records.filter(r=> r.shop===shop && idxSet.has(r.dayIndex));
+      let good=0, bad=0;
+      recs.forEach(r=> r.flags.forEach(f=>{
+        if(flagCategory(f.text)==='Late submission') return;
+        if(f.kind==='good') good++; else bad++;
+      }));
+      const lateRecs = recs.filter(r=> r.isLate);
+      const late = lateRecs.length;
+      const byWho = {};
+      lateRecs.forEach(r=>{ const nm = ohShort(r.employee) || 'Unknown'; byWho[nm] = (byWho[nm]||0)+1; });
+      let lateWho = Object.keys(byWho).map(nm=> byWho[nm]>1 ? nm+' ×'+byWho[nm]+' late' : nm+' late').slice(0,3).join(' · ');
+      const filedShifts = new Set(recs.map(r=>r.shift));
+      let missing = 0;
+      if(isToday){
+        missing = [...expectedToday].filter(sh=> !filedShifts.has(sh)).length;
+        if(missing>0){
+          const missTxt = missing+' shift'+(missing>1?'s':'')+' overdue';
+          lateWho = lateWho ? lateWho+' · '+missTxt : missTxt;
+        }
+      }
+      let timeDetail;
+      if(isToday){
+        timeDetail = filedShifts.size+'/'+SHIFTS.length+' filed'
+          + (missing? ', '+missing+' overdue':'')
+          + (late? ', '+late+' late':'');
+      } else {
+        timeDetail = late? late+' late' : 'on track';
+      }
+      return { shop, code: shop.toUpperCase(), recaps: recs.length, good, bad, late, missing, lateWho, hazards: ohHazards(shop), timeDetail };
+    });
+  }
+  function ohKpis(rangeKey){
+    const s = ohStands(rangeKey);
+    const sum = k => s.reduce((n,x)=>n+x[k],0);
+    return {
+      recaps: sum('recaps'), good: sum('good'), bad: sum('bad'),
+      detail: s.length+' stands · '+sum('late')+' late' + (rangeKey==='today' && sum('missing')>0 ? ' · '+sum('missing')+' overdue' : '')
+    };
+  }
+  function ohClass(s){
+    if(s.missing>0) return 'bad';
+    if(s.late>0 || s.bad>0) return 'watch';
+    return 'ok';
+  }
+  const ohHazLabel = n => n===0?'':(n===1?'1 hazard':n+' hazards');
+  const ohRecapLabel = n => n===1?'1 recap':n+' recaps';
+  function ohCard(s){
+    const tone = ohClass(s);
+    const chips = [
+      s.lateWho ? '<span class="oh-chip">'+ohEsc(s.lateWho)+'</span>' : '',
+      s.hazards ? '<span class="oh-chip haz">'+ohEsc(ohHazLabel(s.hazards))+'</span>' : ''
+    ].join('');
+    return '<button class="oh-card '+tone+'" data-shop="'+ohEsc(s.shop)+'">'
+      + '<span class="oh-card-top"><span class="oh-card-name">'+ohEsc(s.code)+'</span>'
+      + '<span class="oh-card-recaps">'+ohEsc(ohRecapLabel(s.recaps))+'</span></span>'
+      + '<span class="oh-metrics"><span class="g">+'+s.good+'</span><span class="b">−'+s.bad+'</span>'
+      + '<span class="t">'+ohEsc(s.timeDetail)+'</span></span>'
+      + (chips ? '<span class="oh-chips">'+chips+'</span>' : '')
+      + '</button>';
+  }
+  function ohRow(s){
+    return '<button class="oh-row" data-shop="'+ohEsc(s.shop)+'">'
+      + '<span class="oh-row-left"><span class="oh-dot"></span><span class="oh-row-name">'+ohEsc(s.code)+'</span></span>'
+      + '<span class="oh-row-right"><span style="color:var(--good)">+'+s.good+'</span>'
+      + '<span style="color:var(--bad)">−'+s.bad+'</span><span>'+ohEsc(s.timeDetail)+'</span>'
+      + '<span class="oh-caret">›</span></span></button>';
+  }
+  function renderOpsHome(){
+    const host = document.getElementById('oh-home');
+    if(!host) return;
+    const stands = ohStands(ohRange);
+    const kpi = ohKpis(ohRange);
+    const act = stands.filter(s=> ohClass(s)!=='ok')
+      .sort((a,b)=> ((ohClass(a)==='bad'?0:1)-(ohClass(b)==='bad'?0:1)) || (b.bad-a.bad) || (b.late-a.late));
+    const clean = stands.filter(s=> ohClass(s)==='ok').sort((a,b)=> a.code.localeCompare(b.code));
+    host.innerHTML =
+      '<div class="oh-ranges">'
+      + OH_RANGES.map(r=>'<button class="oh-range" data-range="'+r.key+'" aria-pressed="'+(r.key===ohRange)+'">'+ohEsc(r.label)+'</button>').join('')
+      + '</div>'
+      + '<div class="oh-kpis">'
+      + '<div class="oh-kpi"><div class="oh-kpi-n">'+kpi.recaps+'</div><div class="oh-kpi-l">Recaps</div></div>'
+      + '<div class="oh-kpi"><div class="oh-kpi-n good">'+kpi.good+'</div><div class="oh-kpi-l">Good flags</div></div>'
+      + '<div class="oh-kpi"><div class="oh-kpi-n bad">'+kpi.bad+'</div><div class="oh-kpi-l">Bad flags</div></div></div>'
+      + '<div class="oh-subline">'+ohEsc(kpi.detail)+'</div>'
+      + ((ohRange==='today' && stands.every(s=>s.recaps===0))
+          ? '<div class="oh-empty">No recaps filed yet today — the latest recaps are from earlier. Tap <b>7 Days</b> above for the recent picture.</div>'
+          : '<div class="oh-section act">Act now · '+act.length+'</div>'
+            + '<div class="oh-cards">'+ (act.length? act.map(ohCard).join('') : '<div class="oh-empty">Nothing needs attention in this range.</div>') +'</div>'
+            + '<div class="oh-section clean">Clean · '+clean.length+'</div>'
+            + '<div class="oh-rows">'+ (clean.length? clean.map(ohRow).join('') : '<div class="oh-empty">No stands in this group.</div>') +'</div>');
+    host.querySelectorAll('[data-range]').forEach(b=> b.addEventListener('click', ()=>{ ohRange=b.dataset.range; renderOpsHome(); }));
+    host.querySelectorAll('[data-shop]').forEach(b=> b.addEventListener('click', ()=> openShop(b.dataset.shop)));
+  }
+  window.renderOpsHome = renderOpsHome;
+})();
+renderOpsHome();
 </script>
 </body>
 </html>
