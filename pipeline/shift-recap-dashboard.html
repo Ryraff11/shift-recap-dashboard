@@ -218,6 +218,7 @@
   .franchise-hazard:hover{background:var(--surface-raised);}
   .franchise-hazard-meta{font-size:11px; color:var(--amber); font-family:'JetBrains Mono'; font-weight:700; text-transform:uppercase; letter-spacing:0.03em; margin-bottom:4px;}
   .franchise-hazard-text{font-size:13.5px; line-height:1.4;}
+  .franchise-hazard-empty{font-size:12.5px; color:var(--text-faint); padding:2px 2px 8px; font-style:italic;}
   .franchise-shop-row{background:var(--surface); border:1px solid var(--hairline); border-radius:10px; padding:12px 15px; margin-bottom:7px; cursor:pointer; transition:border-color .15s ease;}
   .franchise-shop-row:hover{border-color:var(--amber);}
   .franchise-shop-top{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:6px;}
@@ -61190,7 +61191,6 @@ document.getElementById('lb-rank-by').addEventListener('change', renderLeaderboa
 function renderFranchiseRecap(){
   const todayIdx = TODAY_INDEX;
   let totalRecaps = 0, totalGood = 0, totalBad = 0;
-  const hazards = [];
   const shopSummaries = [];
 
   SHOPS.forEach(shop=>{
@@ -61202,9 +61202,6 @@ function renderFranchiseRecap(){
         const cat = flagCategory(f.text);
         if(cat==='Late submission') return; // paperwork timeliness tracked separately, not counted as performance
         if(f.kind==='good') good++; else bad++;
-        if(f.text.startsWith('Hazard reported')){
-          hazards.push({shop, shift:r.shift, text:f.text, recordIndex: records.indexOf(r)});
-        }
       });
     });
     totalRecaps += todayRecs.length;
@@ -61229,14 +61226,34 @@ function renderFranchiseRecap(){
     <div class="stat-card bad"><div class="v">${totalBad}</div><div class="l">Bad flags</div></div>
   `;
 
+  // Rolling 5-day hazards breakdown: Today through 4 days ago, most recent first.
+  // Each day's section always renders (even with zero hazards) so the rolling
+  // window reads as a reliable daily record, not as "no data available yet".
+  const HAZARD_DAY_LABELS = ["Today's Hazards", "Yesterday's Hazards", "2 Days Ago", "3 Days Ago", "4 Days Ago"];
   const hazardsEl = document.getElementById('franchise-hazards');
-  hazardsEl.innerHTML = hazards.length===0 ? '' :
-    `<div class="section-sub" style="margin-top:0;">Today's Hazards (${hazards.length})</div>` +
-    hazards.map(h=>`
-      <div class="franchise-hazard" onclick="openRecapModal(${h.recordIndex})">
-        <div class="franchise-hazard-meta">${escapeHtml(h.shop)} · ${h.shift}</div>
-        <div class="franchise-hazard-text">${escapeHtml(h.text.replace('Hazard reported: ',''))}</div>
-      </div>`).join('');
+  let hazardsHtml = '';
+  for(let daysAgo=0; daysAgo<=4; daysAgo++){
+    const dayIdx = todayIdx - daysAgo;
+    const dayHazards = [];
+    ACTIVE_SHOPS.forEach(shop=>{
+      records.filter(r=>r.shop===shop && r.dayIndex===dayIdx).forEach(r=>{
+        r.flags.forEach(f=>{
+          if(f.text.startsWith('Hazard reported')){
+            dayHazards.push({shop, shift:r.shift, text:f.text, recordIndex: records.indexOf(r)});
+          }
+        });
+      });
+    });
+    hazardsHtml += `<div class="section-sub" style="margin-top:${daysAgo===0 ? '0' : '18px'};">${HAZARD_DAY_LABELS[daysAgo]} (${dayHazards.length})</div>`;
+    hazardsHtml += dayHazards.length===0
+      ? `<div class="franchise-hazard-empty">No hazards reported</div>`
+      : dayHazards.map(h=>`
+        <div class="franchise-hazard" onclick="openRecapModal(${h.recordIndex})">
+          <div class="franchise-hazard-meta">${escapeHtml(h.shop)} · ${h.shift}</div>
+          <div class="franchise-hazard-text">${escapeHtml(h.text.replace('Hazard reported: ',''))}</div>
+        </div>`).join('');
+  }
+  hazardsEl.innerHTML = hazardsHtml;
 
   // worst-first: most bad flags, then most missing/late, surfaces problem shops immediately
   shopSummaries.sort((a,b)=> ((a.inactive?1:0) - (b.inactive?1:0)) || (b.bad - a.bad) || ((b.missing+b.late) - (a.missing+a.late)));
