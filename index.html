@@ -214,26 +214,6 @@
   /* leaderboard */
   .lb-row{display:flex; align-items:center; gap:14px; background:var(--surface); border:1px solid var(--hairline); border-radius:10px; padding:14px 16px; margin-bottom:8px;}
 
-  /* franchise daily recap */
-  .franchise-hazard{background:var(--surface); border-left:3px solid var(--bad); border-radius:8px; padding:11px 14px; margin-bottom:8px; cursor:pointer; transition:background .1s ease;}
-  .franchise-hazard:hover{background:var(--surface-raised);}
-  .franchise-hazard-meta{font-size:11px; color:var(--amber); font-family:'JetBrains Mono'; font-weight:700; text-transform:uppercase; letter-spacing:0.03em; margin-bottom:4px;}
-  .franchise-hazard-text{font-size:13.5px; line-height:1.4;}
-  .franchise-hazard-empty{font-size:12.5px; color:var(--text-faint); padding:2px 2px 8px; font-style:italic;}
-  .franchise-shop-row{background:var(--surface); border:1px solid var(--hairline); border-radius:10px; padding:12px 15px; margin-bottom:7px; cursor:pointer; transition:border-color .15s ease;}
-  .franchise-shop-row:hover{border-color:var(--amber);}
-  .franchise-shop-top{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:6px;}
-  .franchise-shop-name{font-family:'Anton',sans-serif; font-size:15px; text-transform:uppercase;}
-  .franchise-shop-count{font-family:'JetBrains Mono'; font-size:12px; color:var(--text-dim); flex-shrink:0;}
-  .franchise-shop-metrics{display:flex; flex-wrap:wrap; gap:6px 12px; align-items:center; font-family:'JetBrains Mono'; font-size:12px;}
-  .franchise-shop-metrics .good-n{color:var(--good); font-weight:700;}
-  .franchise-shop-metrics .bad-n{color:var(--bad); font-weight:700;}
-  .franchise-shop-metrics .compliance{color:var(--text-dim);}
-  .franchise-shop-metrics .compliance.warn{color:var(--amber);}
-  .franchise-shop-metrics .compliance.bad{color:var(--bad);}
-  .franchise-shop-row.inactive{opacity:0.6; cursor:default; border-style:dashed;}
-  .franchise-shop-row.inactive:hover{border-color:var(--hairline);}
-  .franchise-shop-count.muted, .franchise-shop-metrics .untracked-note{color:var(--text-faint); font-style:italic;}
   /* ===== Ops Hub home (2a triage feed) ===== */
   .oh-home{padding:20px; max-width:560px; margin:0 auto;}
   .oh-head{display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:16px;}
@@ -386,7 +366,7 @@
 <header>
   <div class="row-between">
     <div>
-      <div class="eyebrow">DB Sac</div>
+      <div class="eyebrow">Dutch Bros · DB Sac</div>
       <h1 class="anton">Ops Hub</h1>
     </div>
     <div style="display:flex; gap:8px;">
@@ -394,7 +374,7 @@
       <button class="ghost-btn" id="btn-leaderboard">Leaderboard →</button>
     </div>
   </div>
-  <p class="header-sub" id="header-sub">Tap a stand to dig into recaps and drive-thru times — net sales coming soon.</p>
+  <p class="header-sub" id="header-sub">Tap a stand to dig into recaps, times, sales, and payroll — example data below.</p>
 </header>
 
 <main>
@@ -412,6 +392,9 @@
       <button class="subtab active" data-cat="recaps">Recaps</button>
       <button class="subtab" data-cat="times">Times</button>
       <button class="subtab" data-cat="netsales">Net Sales</button>
+      <button class="subtab" data-cat="dph">Drinks/Hr</button>
+      <button class="subtab" data-cat="peak">Peak Hours</button>
+      <button class="subtab" data-cat="payroll">Payroll</button>
     </div>
 
     <!-- RECAPS -->
@@ -458,12 +441,54 @@
 
     <!-- NET SALES -->
     <div class="category" id="cat-netsales">
-      <div style="text-align:center; padding:48px 20px;">
-        <div class="section-sub" style="margin:0 0 10px;">Net Sales</div>
-        <div style="color:var(--text-dim); font-size:13px;">Not linked yet — coming once Xenial is connected.</div>
+      <div class="range-picker" data-range-group="netsales">
+        <button class="range-btn" data-range="today">Today</button>
+        <button class="range-btn active" data-range="7d">7 Days</button>
+        <button class="range-btn" data-range="30d">30 Days</button>
+        <button class="range-btn" data-range="mtd">Month to Date</button>
       </div>
+      <div class="stat-row" id="netsales-stats"></div>
+      <div class="section-sub">Net sales by day</div>
+      <div class="bar-scroll" id="netsales-bars"></div>
     </div>
 
+    <!-- DRINKS PER HOUR -->
+    <div class="category" id="cat-dph">
+      <div class="range-picker" data-range-group="dph">
+        <button class="range-btn" data-range="today">Today</button>
+        <button class="range-btn active" data-range="7d">7 Days</button>
+        <button class="range-btn" data-range="30d">30 Days</button>
+        <button class="range-btn" data-range="mtd">Month to Date</button>
+      </div>
+      <div class="stat-row" id="dph-stats"></div>
+      <div class="section-sub">Drinks per hour by day</div>
+      <div class="bar-scroll" id="dph-bars"></div>
+    </div>
+
+    <!-- PEAK HOURS -->
+    <div class="category" id="cat-peak">
+      <div class="range-picker" data-range-group="peak">
+        <button class="range-btn" data-range="today">Today</button>
+        <button class="range-btn active" data-range="7d">7 Days</button>
+        <button class="range-btn" data-range="30d">30 Days</button>
+        <button class="range-btn" data-range="mtd">Month to Date</button>
+      </div>
+      <div class="peak-badge" id="peak-badge"></div>
+      <div class="peak-scroll" id="peak-bars"></div>
+    </div>
+
+    <!-- PAYROLL -->
+    <div class="category" id="cat-payroll">
+      <div class="range-picker" data-range-group="payroll">
+        <button class="range-btn" data-range="today">Today</button>
+        <button class="range-btn active" data-range="7d">7 Days</button>
+        <button class="range-btn" data-range="30d">30 Days</button>
+        <button class="range-btn" data-range="mtd">Month to Date</button>
+      </div>
+      <div class="stat-row" id="payroll-stats"></div>
+      <div class="section-sub">Labor hours by day</div>
+      <div class="bar-scroll" id="payroll-bars"></div>
+    </div>
   </div>
 
   <!-- ============ COMPARE ============ -->
@@ -476,6 +501,9 @@
       <button class="subtab active" data-cat="recaps">Recaps</button>
       <button class="subtab" data-cat="times">Times</button>
       <button class="subtab" data-cat="netsales">Net Sales</button>
+      <button class="subtab" data-cat="dph">Drinks/Hr</button>
+      <button class="subtab" data-cat="peak">Peak Hours</button>
+      <button class="subtab" data-cat="payroll">Payroll</button>
     </div>
 
     <div class="category active" id="cmp-cat-recaps">
@@ -493,12 +521,44 @@
     </div>
 
     <div class="category" id="cmp-cat-netsales">
-      <div style="text-align:center; padding:48px 20px;">
-        <div class="section-sub" style="margin:0 0 10px;">Net Sales</div>
-        <div style="color:var(--text-dim); font-size:13px;">Not linked yet — coming once Xenial is connected.</div>
+      <div class="range-picker" data-range-group="cmp">
+        <button class="range-btn" data-range="today">Today</button>
+        <button class="range-btn active" data-range="7d">7 Days</button>
+        <button class="range-btn" data-range="30d">30 Days</button>
+        <button class="range-btn" data-range="mtd">Month to Date</button>
       </div>
+      <div id="cmp-netsales-list"></div>
     </div>
 
+    <div class="category" id="cmp-cat-dph">
+      <div class="range-picker" data-range-group="cmp">
+        <button class="range-btn" data-range="today">Today</button>
+        <button class="range-btn active" data-range="7d">7 Days</button>
+        <button class="range-btn" data-range="30d">30 Days</button>
+        <button class="range-btn" data-range="mtd">Month to Date</button>
+      </div>
+      <div id="cmp-dph-list"></div>
+    </div>
+
+    <div class="category" id="cmp-cat-peak">
+      <div class="range-picker" data-range-group="cmp">
+        <button class="range-btn" data-range="today">Today</button>
+        <button class="range-btn active" data-range="7d">7 Days</button>
+        <button class="range-btn" data-range="30d">30 Days</button>
+        <button class="range-btn" data-range="mtd">Month to Date</button>
+      </div>
+      <div id="cmp-peak-list"></div>
+    </div>
+
+    <div class="category" id="cmp-cat-payroll">
+      <div class="range-picker" data-range-group="cmp">
+        <button class="range-btn" data-range="today">Today</button>
+        <button class="range-btn active" data-range="7d">7 Days</button>
+        <button class="range-btn" data-range="30d">30 Days</button>
+        <button class="range-btn" data-range="mtd">Month to Date</button>
+      </div>
+      <div id="cmp-payroll-list"></div>
+    </div>
   </div>
 
   <!-- ============ LEADERBOARD ============ -->
@@ -508,6 +568,8 @@
       <div class="section-title">Leaderboard · last 7 days</div>
       <select id="lb-rank-by">
         <option value="laneTotal">Rank by: Lane Total (speed)</option>
+        <option value="netSales">Rank by: Net Sales</option>
+        <option value="dph">Rank by: Drinks Per Hour</option>
       </select>
     </div>
     <div id="leaderboard-list"></div>
@@ -12090,6 +12152,51 @@ const REAL_FAIROAKS_RECORDS = [
         "name": "Beni",
         "kind": "good",
         "source": "Beni did great! He did so many closing tasks without having to be asked to do anything."
+      }
+    ]
+  },
+  {
+    "shop": "Fair Oaks",
+    "shift": "Mid",
+    "dayIndex": 59,
+    "timestamp": "7/30/2026 17:34:10",
+    "employee": "Laci",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "None",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Gal did amazing on shift! Always so fast and gsf a lot when needed"
+      },
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "None"
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "\u200b\u200bPerfect (sometimes struggling, sometimes ahead - evened out)",
+      "Line times / leaderboard": "We were mid on the board during the shift ",
+      "Team player / needed to step up": "Gal did amazing on shift! Always so fast and gsf a lot when needed ",
+      "Tardy / early out": "None ",
+      "Food inventory sheet": "No / In progress",
+      "Safety hazards": "None ",
+      "Xbro / non-negotiables": "Was staffed well enough for people to cover me when I needed to gsd",
+      "Additional comments": "None",
+      "Closing: Verifone WiFi": "Not the night SL",
+      "Closing checklist": ""
+    },
+    "namedMentions": [
+      {
+        "name": "Galaxy",
+        "kind": "good",
+        "source": "Gal did amazing on shift! Always so fast and gsf a lot when needed"
       }
     ]
   }
@@ -31013,6 +31120,52 @@ const REAL_MADHOUSE_RECORDS = [
         "source": "gavin & alex were amazing. so was chase. honestly everyone was good. those 3 are always awesome though. chase did really good on pit as well. i would put kale a"
       }
     ]
+  },
+  {
+    "shop": "Mad",
+    "shift": "Mid",
+    "dayIndex": 59,
+    "timestamp": "7/30/2026 17:02:14",
+    "employee": "Sophia Drumright",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "No comments, standard shift.",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "devon did amazing!"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Hazard reported: the line time monitor was blank"
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "\u200b\u200bPerfect (sometimes struggling, sometimes ahead - evened out)",
+      "Line times / leaderboard": "the line time monitor was still broken but in my opinion they were really good!",
+      "Best team player / wear more hats": "devon did amazing!",
+      "Tardy / early out": "no",
+      "Morning SL: gravers feedback": "",
+      "Safety hazards": "the line time monitor was blank",
+      "Additional comments": "",
+      "Xbro non-negotiables struggle": "no everyone did good ",
+      "Shift chore completed": "yes!",
+      "Closing: Verifone WiFi": "N/A // Not on the night shift",
+      "Closing: bakery item inventory": ""
+    },
+    "namedMentions": [
+      {
+        "name": "Devon",
+        "kind": "good",
+        "source": "devon did amazing!"
+      }
+    ]
   }
 ]
 const REAL_LICHEN_RECORDS = [
@@ -49355,6 +49508,67 @@ const REAL_FIRESIDE_RECORDS = [
         "source": "Maddy Mcgough is an incredible Team Player!!! She truly contributed so much tonight and made the close feel so easy!!! She shut down the bar beautifully and rea"
       }
     ]
+  },
+  {
+    "shop": "Fireside",
+    "shift": "Mid",
+    "dayIndex": 59,
+    "timestamp": "7/30/2026 18:10:38",
+    "employee": "Igor Marin",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "Nothing additional",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Sasha and Destiny were the biggest team players and Bri often needed direction in order for her to do anything"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Hazard reported: This has already been mentioned to management but people keep pouring drinks in the hand washing sink and we had an ant invasion today"
+      },
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Nothing additional"
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "Overstaffed (trying to find things to do, sent people home)",
+      "Line times / leaderboard": "Times were changing given who was on bar and since it was 100 degrees we had 30 min rotations",
+      "Best team player / wear more hats": "Sasha and Destiny were the biggest team players and Bri often needed direction in order for her to do anything ",
+      "Tardy / early out": "No tardies however I sent Erica home an hour early and likely could\u2019ve sent someone else home too",
+      "Xbro / non-negotiables": "Nothing to note here ",
+      "Safety hazards": "This has already been mentioned to management but people keep pouring drinks in the hand washing sink and we had an ant invasion today ",
+      "Additional comments": "Nothing additional",
+      "Fridge seals cleaned": "Done!",
+      "Closing: Verifone WiFi": "Not the night SL",
+      "Closing: food inventory texted to managers": "",
+      "Closing: safe/tills/iPads/doors checklist": "not the night SL"
+    },
+    "namedMentions": [
+      {
+        "name": "Sasha",
+        "kind": "good",
+        "source": "Sasha and Destiny were the biggest team players and Bri often needed direction in order for her to do anything"
+      },
+      {
+        "name": "Destiny",
+        "kind": "good",
+        "source": "Sasha and Destiny were the biggest team players and Bri often needed direction in order for her to do anything"
+      },
+      {
+        "name": "Erica",
+        "kind": "bad",
+        "source": "No tardies however I sent Erica home an hour early and likely could\u2019ve sent someone else home too"
+      }
+    ]
   }
 ]
 const REAL_MANZ_RECORDS = [
@@ -60796,6 +61010,61 @@ const REAL_OV_RECORDS = [
       "closingChecklist": ""
     },
     "namedMentions": []
+  },
+  {
+    "shop": "OV",
+    "shift": "Mid",
+    "dayIndex": 59,
+    "timestamp": "7/30/2026 17:45:57",
+    "employee": "Myah",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "No comments, standard shift.",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "The best team player was definitely katie! She came into her shift at 12 with a great attitude and ready to work. When I asked her to help run/ moving positions she responded with a smile on her face, she also was speedy on bar today knocking the drinks out quick! We had enough staff today where everyone helped everywhere and had no problem doing so."
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Hazard reported: nope nope"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Xbro was really good. Just had to communicate a little more about starting the drinks on tap because there was a couple drinks made twice! No struggles today everyone killed it!"
+      }
+    ],
+    "fullRecap": {
+      "staffing": "Overstaffed (trying to find things to do, sent bodies home)",
+      "lineTimes": "1:01 YESSSSSS WOOO my crew killed it today we were #1 a couple times!! we averaged between 1-3rd place, right now at 5:45pm we are in 2nd place YESSS!!",
+      "teamPlayer": "The best team player was definitely katie! She came into her shift at 12 with a great attitude and ready to work. When I asked her to help run/ moving positions she responded with a smile on her face, she also was speedy on bar today knocking the drinks out quick! We had enough staff today where everyone helped everywhere and had no problem doing so. ",
+      "tardy": "no tardies today! I sent Sydney home around 12:15, Lex at 1:30ish, and zane around 4:30! ",
+      "foodInventory": "No / In progress",
+      "safety": "nope nope",
+      "xbro": "Xbro was really good. Just had to communicate a little more about starting the drinks on tap because there was a couple drinks made twice! No struggles today everyone killed it! ",
+      "comments": "",
+      "closingVerifone": "N/A ; Not closing shift lead",
+      "closingChecklist": ""
+    },
+    "namedMentions": [
+      {
+        "name": "Definitely Katie",
+        "kind": "good",
+        "source": "The best team player was definitely katie! She came into her shift at 12 with a great attitude and ready to work. When I asked her to help run/ moving positions"
+      },
+      {
+        "name": "Sydney",
+        "kind": "bad",
+        "source": "no tardies today! I sent Sydney home around 12:15, Lex at 1:30ish, and zane around 4:30!"
+      }
+    ]
   }
 ]
 const records = [];
@@ -60967,9 +61236,15 @@ function openShop(shop){
   activeShop = shop;
   document.getElementById('shop-detail-title').textContent = shop;
   showView('shop-detail');
+  const _hr = window.ohHomeRange || 'today';
+  rangeState.recaps = _hr;
+  document.querySelectorAll('.range-picker[data-range-group="recaps"] .range-btn').forEach(b=>b.classList.toggle('active', b.dataset.range===_hr));
   renderRecaps();
   renderTimes();
   renderNetSales();
+  renderDPH();
+  renderPeak();
+  renderPayroll();
 }
 
 // ================= VIEW SWITCHING =================
@@ -61015,6 +61290,9 @@ document.querySelectorAll('.range-picker').forEach(group=>{
       if(key==='recaps') renderRecaps();
       if(key==='times') renderTimes();
       if(key==='netsales') renderNetSales();
+      if(key==='dph') renderDPH();
+      if(key==='peak') renderPeak();
+      if(key==='payroll') renderPayroll();
       if(key==='cmp') renderCompareAll();
     });
   });
@@ -61437,7 +61715,6 @@ function renderTimes(){
 
 // ================= NET SALES =================
 function renderNetSales(){
-  return; // Net sales not linked yet — panel shows a placeholder
   const indices = indicesForRange(rangeState.netsales);
   const prev = prevIndicesFor(indices);
   const total = aggregate(activeShop, indices, 'netSales');
@@ -61618,25 +61895,35 @@ function renderComparePayroll(){
 function renderCompareAll(){
   renderCompareRecaps();
   renderCompareTimes();
+  renderCompareNetSales();
+  renderCompareDPH();
+  renderComparePeak();
+  renderComparePayroll();
 }
 
 // ================= LEADERBOARD =================
 function renderLeaderboard(){
+  const rankBy = document.getElementById('lb-rank-by').value;
   const last7 = indicesForRange('7d');
   const rows = ACTIVE_SHOPS.map(shop=>{
     const laneTotal = average(shop, last7, 'laneTotalSec');
-    return {shop, laneTotal};
+    const netSales = aggregate(shop, last7, 'netSales');
+    const dph = average(shop, last7, 'dph');
+    return {shop, laneTotal, netSales, dph};
   });
-  const sorted = [...rows].sort((a,b)=>a.laneTotal-b.laneTotal);
+  let sorted;
+  if(rankBy==='laneTotal') sorted = [...rows].sort((a,b)=>a.laneTotal-b.laneTotal);
+  else if(rankBy==='netSales') sorted = [...rows].sort((a,b)=>b.netSales-a.netSales);
+  else sorted = [...rows].sort((a,b)=>b.dph-a.dph);
 
-  const metricLabel = 'Lane Total avg';
+  const metricLabel = rankBy==='laneTotal' ? 'Lane Total avg' : rankBy==='netSales' ? 'Net sales (7d)' : 'Avg drinks/hr';
   document.getElementById('leaderboard-list').innerHTML = sorted.map((r,i)=>{
-    const metricVal = secsToClock(r.laneTotal);
+    const metricVal = rankBy==='laneTotal' ? secsToClock(r.laneTotal) : rankBy==='netSales' ? fmtMoney(r.netSales) : r.dph.toFixed(1);
     return `<div class="lb-row">
       <div class="lb-rank">${i+1}</div>
       <div class="lb-shop">
         <div class="lb-shop-name">${r.shop}</div>
-        <div class="lb-sub">Lane Total ${secsToClock(r.laneTotal)}</div>
+        <div class="lb-sub">Lane Total ${secsToClock(r.laneTotal)} · Net sales ${fmtMoney(r.netSales)} · ${r.dph.toFixed(1)} drinks/hr</div>
       </div>
       <div class="lb-metric"><div class="v mono">${metricVal}</div><div class="l">${metricLabel}</div></div>
     </div>`;
@@ -61644,106 +61931,7 @@ function renderLeaderboard(){
 }
 document.getElementById('lb-rank-by').addEventListener('change', renderLeaderboard);
 
-function renderFranchiseRecap(){
-  const todayIdx = TODAY_INDEX;
-  let totalRecaps = 0, totalGood = 0, totalBad = 0;
-  const shopSummaries = [];
 
-  SHOPS.forEach(shop=>{
-    if(INACTIVE_SHOPS.has(shop)){ shopSummaries.push({shop, inactive:true}); return; }
-    const todayRecs = records.filter(r=>r.shop===shop && r.dayIndex===todayIdx);
-    let good=0, bad=0;
-    todayRecs.forEach(r=>{
-      r.flags.forEach(f=>{
-        const cat = flagCategory(f.text);
-        if(cat==='Late submission') return; // paperwork timeliness tracked separately, not counted as performance
-        if(f.kind==='good') good++; else bad++;
-      });
-    });
-    totalRecaps += todayRecs.length;
-    totalGood += good;
-    totalBad += bad;
-
-    let submitted=0, late=0, missing=0;
-    SHIFTS.forEach(shift=>{
-      const status = submissionStatus[`${todayIdx}|${shop}|${shift}`];
-      if(status==='submitted') submitted++;
-      else if(status==='late') late++;
-      else if(status==='pending') { /* window not closed yet — not counted as missing */ }
-      else missing++;
-    });
-
-    shopSummaries.push({shop, recaps:todayRecs.length, good, bad, submitted, late, missing});
-  });
-
-  document.getElementById('franchise-stats').innerHTML = `
-    <div class="stat-card"><div class="v mono">${totalRecaps}</div><div class="l">Recaps today</div></div>
-    <div class="stat-card good"><div class="v">${totalGood}</div><div class="l">Good flags</div></div>
-    <div class="stat-card bad"><div class="v">${totalBad}</div><div class="l">Bad flags</div></div>
-  `;
-
-  // Rolling 5-day hazards breakdown: Today through 4 days ago, most recent first.
-  // Each day's section always renders (even with zero hazards) so the rolling
-  // window reads as a reliable daily record, not as "no data available yet".
-  const HAZARD_DAY_LABELS = ["Today's Hazards", "Yesterday's Hazards", "2 Days Ago", "3 Days Ago", "4 Days Ago"];
-  const hazardsEl = document.getElementById('franchise-hazards');
-  let hazardsHtml = '';
-  for(let daysAgo=0; daysAgo<=4; daysAgo++){
-    const dayIdx = todayIdx - daysAgo;
-    const dayHazards = [];
-    ACTIVE_SHOPS.forEach(shop=>{
-      records.filter(r=>r.shop===shop && r.dayIndex===dayIdx).forEach(r=>{
-        r.flags.forEach(f=>{
-          if(f.text.startsWith('Hazard reported')){
-            dayHazards.push({shop, shift:r.shift, text:f.text, recordIndex: records.indexOf(r)});
-          }
-        });
-      });
-    });
-    hazardsHtml += `<div class="section-sub" style="margin-top:${daysAgo===0 ? '0' : '18px'};">${HAZARD_DAY_LABELS[daysAgo]} (${dayHazards.length})</div>`;
-    hazardsHtml += dayHazards.length===0
-      ? `<div class="franchise-hazard-empty">No hazards reported</div>`
-      : dayHazards.map(h=>`
-        <div class="franchise-hazard" onclick="openRecapModal(${h.recordIndex})">
-          <div class="franchise-hazard-meta">${escapeHtml(h.shop)} · ${h.shift}</div>
-          <div class="franchise-hazard-text">${escapeHtml(h.text.replace('Hazard reported: ',''))}</div>
-        </div>`).join('');
-  }
-  hazardsEl.innerHTML = hazardsHtml;
-
-  // worst-first: most bad flags, then most missing/late, surfaces problem shops immediately
-  shopSummaries.sort((a,b)=> ((a.inactive?1:0) - (b.inactive?1:0)) || (b.bad - a.bad) || ((b.missing+b.late) - (a.missing+a.late)));
-  document.getElementById('franchise-shop-list').innerHTML = shopSummaries.map(s=>{
-    if(s.inactive){
-      return `<div class="franchise-shop-row inactive">
-        <div class="franchise-shop-top">
-          <div class="franchise-shop-name">${escapeHtml(s.shop)}</div>
-          <div class="franchise-shop-count muted">not tracked</div>
-        </div>
-        <div class="franchise-shop-metrics">
-          <span class="untracked-note">Not actively tracking yet — no data</span>
-        </div>
-      </div>`;
-    }
-    const complianceClass = s.missing>0 ? 'bad' : (s.late>0 ? 'warn' : '');
-    const complianceText = `${s.submitted}/${SHIFTS.length} on time` + (s.late>0?`, ${s.late} late`:'') + (s.missing>0?`, ${s.missing} missing`:'');
-    return `<div class="franchise-shop-row" data-shop="${escapeHtml(s.shop)}">
-      <div class="franchise-shop-top">
-        <div class="franchise-shop-name">${escapeHtml(s.shop)}</div>
-        <div class="franchise-shop-count">${s.recaps} recap${s.recaps!==1?'s':''}</div>
-      </div>
-      <div class="franchise-shop-metrics">
-        <span class="good-n">+${s.good}</span>
-        <span class="bad-n">−${s.bad}</span>
-        <span class="compliance ${complianceClass}">${complianceText}</span>
-      </div>
-    </div>`;
-  }).join('');
-  document.querySelectorAll('.franchise-shop-row').forEach(row=>{
-    if(row.classList.contains('inactive')) return; // inactive shops aren't clickable
-    row.addEventListener('click', ()=> openShop(row.dataset.shop));
-  });
-}
 
 renderHome();
 
@@ -61755,26 +61943,43 @@ renderHome();
     { key:'30d',   label:'30 Days' },
     { key:'mtd',   label:'MTD' }
   ];
-  let ohRange = 'today';
+  let ohRange = 'today'; window.ohHomeRange = ohRange;
   const ohEsc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   function ohShort(full){
     if(!full) return '';
     const p = String(full).trim().split(/\s+/);
     return p.length===1 ? p[0] : p[0][0] + '. ' + p.slice(1).join(' ');
   }
-  // Real open hazards: "Hazard reported" safety answers in the last 5 days per shop,
+  // Open hazards: "Hazard reported" safety answers within the SELECTED range per shop,
   // excluding one-word negatives ("no"/"none"/"n/a"…) so the chip actually means something.
-  const OH_NEG = new Set(['no','none','na','nope','nothing','allgood','allclear','fine','good','ok','okay','nohazards','nohazard','nonetoday','noneseen','nonenoted','nonefound','nothingtoreport','nothingunsafe','notreally','allgoodhere','noissues','noconcerns','nothingofnote']);
+  const OH_NEG = new Set(['no','none','na','nope','nah','naur','nada','nadda','nan','non','bo','x','nothing','allgood','allclear','fine','good','ok','okay','negative','nul','null','nohazards','nohazard','nonetoday','noneseen','nonenoted','nonefound','nothingtoreport','nothingunsafe','notreally','allgoodhere','noissues','noconcerns','nothingofnote']);
+  // Negation-aware: a benign sentence answer ('I didn't notice any safety hazards') is NOT a hazard,
+  // but a real issue tucked after a contrast ('no hazards BUT the right rebel isn't blinking') still counts.
+  const OH_NEG_LEAD = /^\s*(no\b|none\b|nope\b|nah\b|naur\b|nada\b|n\/?a\b|not\b|nothing\b|there (was|were|are|is) (no|not)\b|i (did ?n.?t|do ?n.?t|have ?n.?t|did not|do not)\s+(notice|see|have|find|think)\b|no (safety|additional|new|other|major|real)\b)/i;
+  const OH_ADVERS = /\b(but|however|though|although|except|besides|aside from|other than|otherwise)\b/i;
+  const OH_ISSUE = /\b(broke|broken|break|leak|clog|crack|slip|fell|fall|hurt|injur|shak|shook|freez|frozen|froze|not work|doesn.?t work|isn.?t work|sketch|mold|rat|roach|passed out|missing|damag|stuck|jam|overflow|spill|fight|cop|drunk|exposed|falling|last leg|sticky|weird|dropped|hit by|charger|cord|machine|drain|seal|wheel|tap|mop|rinser|toilet|sink|ice bin|ice pit|grinder|blender|arrest|homeless|accident|smok|fire|light|not blink|screws)/i;
   function ohIsHazard(txt){
     const body = String(txt||'').replace(/^Hazard reported:\s*/i,'').trim();
     if(!body) return false;
-    return !OH_NEG.has(body.toLowerCase().replace(/[^a-z]/g,''));
+    const letters = body.toLowerCase().replace(/[^a-z]/g,'');
+    if(OH_NEG.has(letters)) return false;
+    if(letters.length <= 2) return false;            // 'x', 'bo', one-char filler
+    const low = body.toLowerCase();
+    if(OH_NEG_LEAD.test(low)){
+      let tail='', kind=null;
+      const am = low.match(OH_ADVERS);
+      if(am){ tail = low.slice(am.index + am[0].length); kind='adv'; }
+      else { const sm = low.match(/[.!?;]\s+\S/); if(sm){ tail = low.slice(sm.index); kind='sent'; } }
+      if(kind==='adv' && (OH_ISSUE.test(tail) || tail.replace(/[^a-z ]/g,'').split(/\s+/).filter(Boolean).length >= 4)) return true;
+      if(kind==='sent' && OH_ISSUE.test(tail)) return true;
+      return false;
+    }
+    return true;
   }
-  function ohHazards(shop){
-    const from = TODAY_INDEX - 4;
+  function ohHazards(shop, idxSet){
     let n = 0;
     records.forEach(r=>{
-      if(r.shop!==shop || r.dayIndex < from || r.dayIndex > TODAY_INDEX) return;
+      if(r.shop!==shop || !idxSet.has(r.dayIndex)) return;
       r.flags.forEach(f=>{ if(f.text && f.text.startsWith('Hazard reported') && ohIsHazard(f.text)) n++; });
     });
     return n;
@@ -61815,7 +62020,7 @@ renderHome();
       } else {
         timeDetail = late? late+' late' : 'on track';
       }
-      return { shop, code: shop.toUpperCase(), recaps: recs.length, good, bad, late, missing, lateWho, hazards: ohHazards(shop), timeDetail };
+      return { shop, code: shop.toUpperCase(), recaps: recs.length, good, bad, late, missing, lateWho, hazards: ohHazards(shop, idxSet), timeDetail };
     });
   }
   function ohKpis(rangeKey){
@@ -61852,6 +62057,7 @@ renderHome();
       + '<span class="oh-row-left"><span class="oh-dot"></span><span class="oh-row-name">'+ohEsc(s.code)+'</span></span>'
       + '<span class="oh-row-right"><span style="color:var(--good)">+'+s.good+'</span>'
       + '<span style="color:var(--bad)">−'+s.bad+'</span><span>'+ohEsc(s.timeDetail)+'</span>'
+      + (s.hazards ? '<span class="oh-chip haz">'+ohEsc(ohHazLabel(s.hazards))+'</span>' : '')
       + '<span class="oh-caret">›</span></span></button>';
   }
   function renderOpsHome(){
@@ -61877,7 +62083,7 @@ renderHome();
             + '<div class="oh-cards">'+ (act.length? act.map(ohCard).join('') : '<div class="oh-empty">Nothing needs attention in this range.</div>') +'</div>'
             + '<div class="oh-section clean">Clean · '+clean.length+'</div>'
             + '<div class="oh-rows">'+ (clean.length? clean.map(ohRow).join('') : '<div class="oh-empty">No stands in this group.</div>') +'</div>');
-    host.querySelectorAll('[data-range]').forEach(b=> b.addEventListener('click', ()=>{ ohRange=b.dataset.range; renderOpsHome(); }));
+    host.querySelectorAll('[data-range]').forEach(b=> b.addEventListener('click', ()=>{ ohRange=b.dataset.range; window.ohHomeRange=ohRange; renderOpsHome(); }));
     host.querySelectorAll('[data-shop]').forEach(b=> b.addEventListener('click', ()=> openShop(b.dataset.shop)));
   }
   window.renderOpsHome = renderOpsHome;
