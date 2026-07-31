@@ -6,6 +6,114 @@
 <title>Dutch Bros Ops Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Nunito+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style id="oh-mobile-css">
+*{box-sizing:border-box; margin:0; padding:0;}
+html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',sans-serif; -webkit-font-smoothing:antialiased;}
+
+/* All rules prefixed .oh- so nothing collides with the existing stylesheet. */
+.oh{padding:20px; max-width:560px; margin:0 auto; padding-bottom:70px;}
+.oh-eyebrow{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--text-faint);}
+.oh-eyebrow.brand{color:var(--amber);}
+.oh-h1{font-family:'Anton',sans-serif; font-size:40px; line-height:.95; text-transform:uppercase; padding-top:4px;}
+.oh-h2{font-family:'Anton',sans-serif; font-size:34px; line-height:1; text-transform:uppercase; padding-top:4px;}
+.oh-context{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-dim); padding-top:9px;}
+.oh-foot{padding-top:22px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-faint); text-wrap:pretty;}
+.oh-back{display:inline-flex; align-items:center; min-height:44px; background:none; border:none; padding:0;
+  font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--amber); cursor:pointer;}
+
+.oh-ranges{display:flex; gap:5px; padding:4px; background:var(--surface); border-radius:24px; margin-top:18px;}
+.oh-range{flex:1; font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-dim);
+  background:none; border:none; border-radius:20px; padding:11px 4px; cursor:pointer; min-height:40px;}
+.oh-range[aria-pressed="true"]{background:var(--amber); color:#04121F;}
+
+.oh-kpis{display:flex; gap:10px; margin-top:16px;}
+.oh-kpi{flex:1; padding:14px; border-radius:12px; background:var(--surface); display:flex; flex-direction:column; gap:5px;}
+.oh-kpi-n{font-family:'Anton',sans-serif; font-size:24px; line-height:1;}
+.oh-kpi-l{font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.12em; color:var(--text-dim);}
+.oh-sub{padding-top:14px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-dim);}
+
+.oh-jump{display:flex; gap:10px; margin-top:18px;}
+.oh-jump button{flex:1; display:flex; align-items:center; justify-content:space-between; gap:8px;
+  padding:14px 15px; border-radius:14px; border:1px solid var(--hairline); background:none; cursor:pointer; min-height:52px;}
+.oh-jump button:hover{background:var(--surface);}
+.oh-jump b{font-family:'Anton',sans-serif; font-size:16px; font-weight:400; text-transform:uppercase; color:var(--amber);}
+.oh-jump span{font-size:15px; color:var(--text-faint);}
+
+.oh-section{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.18em; text-transform:uppercase; margin:26px 0 10px;}
+.oh-section.act{color:#FF8B96;} .oh-section.clean{color:var(--good); margin-bottom:4px;}
+
+.oh-cards{display:flex; flex-direction:column; gap:10px;}
+.oh-card{width:100%; text-align:left; font:inherit; color:var(--text); padding:15px 16px; border-radius:16px;
+  background:rgba(255,255,255,.04); border:1px solid transparent; cursor:pointer; display:flex; flex-direction:column; gap:9px;}
+.oh-card.bad{background:rgba(218,38,46,.10); border-color:rgba(218,38,46,.38);}
+.oh-card.bad:hover{background:rgba(218,38,46,.17);}
+.oh-card.watch{background:rgba(240,163,43,.08); border-color:rgba(240,163,43,.30);}
+.oh-card.watch:hover{background:rgba(240,163,43,.15);}
+.oh-card.good{background:rgba(31,163,126,.08); border-color:rgba(31,163,126,.28);}
+.oh-card-top{display:flex; align-items:center; justify-content:space-between; gap:10px;}
+.oh-name{font-family:'Anton',sans-serif; font-size:23px; line-height:1; text-transform:uppercase;}
+.oh-meta{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-dim);}
+.oh-metrics{display:flex; align-items:center; gap:10px; font-family:'JetBrains Mono',monospace; font-size:12px;}
+.oh-metrics .g{color:var(--good);} .oh-metrics .b{color:var(--bad);} .oh-metrics .m{color:var(--text-faint);}
+.oh-chips{display:flex; flex-wrap:wrap; gap:8px; font-family:'JetBrains Mono',monospace; font-size:11px;}
+.oh-chip{padding:5px 8px; border-radius:6px; background:rgba(255,255,255,.07); color:#DBE5F1;}
+.oh-chip.bad{background:rgba(218,38,46,.20); color:#FFB3BB;}
+.oh-chip.watch{background:rgba(240,163,43,.18); color:#FFD68F;}
+
+.oh-row{width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:15px 2px; border:none; border-top:1px solid var(--hairline); background:none; cursor:pointer;
+  min-height:54px; color:var(--text); font:inherit; text-align:left;}
+.oh-row:hover{background:rgba(255,255,255,.04);}
+.oh-dot{width:7px; height:7px; border-radius:50%; flex:none;}
+.oh-rowname{font-family:'Anton',sans-serif; font-size:19px; text-transform:uppercase;}
+.oh-caret{color:var(--text-faint); font-size:16px;}
+
+.oh-nav{margin-top:20px; display:flex; flex-direction:column; gap:10px;}
+.oh-navcard{width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:16px 18px; border-radius:16px; background:var(--surface); border:none; cursor:pointer;
+  min-height:66px; color:var(--text); font:inherit; text-align:left;}
+.oh-navcard:hover{background:var(--surface-raised);}
+.oh-navcard b{font-family:'Anton',sans-serif; font-size:21px; font-weight:400; text-transform:uppercase; display:block;}
+.oh-navcard i{font-family:'JetBrains Mono',monospace; font-size:11px; font-style:normal; color:var(--text-dim); display:block; padding-top:5px;}
+.oh-navcard i.warn{color:var(--watch);}
+
+.oh-thead{display:flex; padding:0 2px 10px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em; color:var(--text-faint);}
+.oh-trow{display:flex; flex-direction:column; gap:8px; padding:15px 2px; border-top:1px solid var(--hairline);}
+.oh-trow-main{display:flex; align-items:center; font-family:'JetBrains Mono',monospace; font-size:13px;}
+.oh-day{flex:1; font-family:'Anton',sans-serif; font-size:20px; letter-spacing:.03em;}
+.oh-lane{width:80px; font-size:16px;}
+.oh-cars{width:70px; text-align:right; color:#DBE5F1;}
+.oh-tsub{display:flex; flex-wrap:wrap; gap:14px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-faint);}
+
+.oh-search{display:flex; align-items:center; gap:10px; padding:0 14px; margin-top:18px;
+  border-radius:12px; background:var(--surface); border:1px solid var(--hairline); min-height:48px;}
+.oh-search input{flex:1; min-width:0; background:none; border:none; outline:none; color:var(--text);
+  font-family:'JetBrains Mono',monospace; font-size:13px; padding:13px 0;}
+.oh-search button{background:none; border:none; color:var(--amber); cursor:pointer; padding:6px;
+  font-family:'JetBrains Mono',monospace; font-size:12px;}
+
+.oh-pill{display:inline-flex; align-items:center; gap:7px; padding:8px 12px; border-radius:999px;
+  background:var(--surface); border:1px solid var(--hairline); cursor:pointer; min-height:36px;
+  font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--amber);}
+.oh-pill:hover{background:var(--surface-raised);}
+.oh-pill i{font-style:normal; font-size:9px;}
+.oh-pillrow{display:flex; align-items:center; flex-wrap:wrap; gap:9px; padding-top:11px;}
+.oh-standranges{margin-top:14px;}
+.oh-quote{font-size:15px; line-height:1.45; text-wrap:pretty;}
+.oh-empty{padding:26px 16px; border-radius:16px; background:rgba(255,255,255,.04);
+  font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-dim); text-align:center;}
+.oh-allclear{margin-top:26px; padding:22px 18px; border-radius:16px; background:rgba(31,163,126,.08);
+  border:1px solid rgba(31,163,126,.28); font-family:'JetBrains Mono',monospace; font-size:12px;
+  color:#7FE0C2; text-align:center;}
+.oh-custom{margin-top:20px; padding:20px 18px; border:1px dashed rgba(248,227,22,.35); border-radius:18px;
+  display:flex; flex-direction:column; gap:14px;}
+.oh-custom h3{font-family:'Anton',sans-serif; font-size:20px; font-weight:400; text-transform:uppercase;}
+.oh-dates{display:flex; gap:10px;}
+.oh-date{flex:1; padding:13px; border-radius:10px; background:var(--surface); border:1px solid var(--hairline);
+  font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-dim); min-height:46px;}
+.oh-run{padding:13px; border-radius:10px; background:var(--amber); color:#04121F; border:none;
+  font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; cursor:pointer; min-height:46px;}
+</style>
 <style>
   :root{
     /* Dutch Bros official brand colors: Lapis Lazuli #156299, White, Vivid Yellow #F8E316, Amaranth Red #DA262E */
@@ -380,7 +488,7 @@
 <main>
   <!-- ============ HOME ============ -->
   <div class="view active" id="view-home">
-    <section class="oh-home" id="oh-home"></section>
+    <section class="oh" id="oh-app"></section>
   </div>
 
   <!-- ============ SHOP DETAIL ============ -->
@@ -62089,6 +62197,492 @@ renderHome();
   window.renderOpsHome = renderOpsHome;
 })();
 renderOpsHome();
+
+/* ═══ OPS HUB MOBILE — home + shop pages (wired to real data) ═══ */
+(function(){
+/* ── CONFIG ── */
+const RANGES = [
+  { key:'today',  label:'Today',   word:'today',                shifts:3  },
+  { key:'week',   label:'7 days',  word:'the last 7 days',      shifts:21 },
+  { key:'month',  label:'30 days', word:'the last 30 days',     shifts:90 },
+  { key:'custom', label:'Range',   word:'the chosen range',     shifts:0  }
+];
+
+// Point the two outbound jumps at the dashboard's existing views.
+function goCompare(){ showView('compare'); if(typeof renderCompareChips==='function') renderCompareChips(); if(typeof renderCompareAll==='function') renderCompareAll(); }
+function goLeaderboard(){ showView('leaderboard'); if(typeof renderLeaderboard==='function') renderLeaderboard(); }
+
+/* ── CLASSIFICATION ─────────────────────────────────────────────────────────
+   Rates, NOT raw totals. Over 90 shifts almost nothing is ever zero, so
+   absolute counts would drop every stand into ACT NOW on the longer ranges.
+   Tune these three numbers if the split feels wrong in production.
+──────────────────────────────────────────────────────────────────────────── */
+const MISS_BAD = 0.10, MISS_WATCH = 0.05, LATE_WATCH = 0.05, BADFLAG_WATCH = 0.15;
+
+function classify(s, shifts){
+  const missRate = s.missing / shifts;
+  const lateRate = s.late / shifts;
+  const badRate  = s.recaps ? s.badN / s.recaps : 1;
+  if (missRate > MISS_BAD) return 'bad';
+  if (missRate > MISS_WATCH || lateRate > LATE_WATCH || badRate > BADFLAG_WATCH) return 'watch';
+  return 'ok';
+}
+
+/* ── ADAPTERS — WIRED TO REAL DATA (records / dailyOps / submissionStatus) ──
+   Every count is scoped to `range` via indicesForRange(), so denominators from
+   RANGES[].shifts (3 / 21 / 90) always hold. Hazards are safety flags on recaps
+   inside the window — they age out with the recap, never "close". ── */
+const RANGE_PRESET = { today:'today', week:'7d', month:'30d', custom:'30d' };
+const CODES = ACTIVE_SHOPS.map(s => s.toUpperCase());
+const CODE_TO_SHOP = {}; ACTIVE_SHOPS.forEach(s => { CODE_TO_SHOP[s.toUpperCase()] = s; });
+function ohShortName(full){
+  if(!full) return '';
+  const p = String(full).trim().split(/\s+/);
+  return p.length===1 ? p[0] : p[0][0] + '. ' + p.slice(1).join(' ');
+}
+function idxListFor(range){ return indicesForRange(RANGE_PRESET[range] || '30d'); }
+function idxSetFor(range){ return new Set(idxListFor(range)); }
+
+// negation-aware hazard test — identical logic to the franchise home chip
+const OH_NEG = new Set(['no','none','na','nope','nah','naur','nada','nadda','nan','non','bo','x','nothing','allgood','allclear','fine','good','ok','okay','negative','nul','null','nohazards','nohazard','nonetoday','noneseen','nonenoted','nonefound','nothingtoreport','nothingunsafe','notreally','allgoodhere','noissues','noconcerns','nothingofnote']);
+const OH_NEG_LEAD = /^\s*(no\b|none\b|nope\b|nah\b|naur\b|nada\b|n\/?a\b|not\b|nothing\b|there (was|were|are|is) (no|not)\b|i (did ?n.?t|do ?n.?t|have ?n.?t|did not|do not)\s+(notice|see|have|find|think)\b|no (safety|additional|new|other|major|real)\b)/i;
+const OH_ADVERS = /\b(but|however|though|although|except|besides|aside from|other than|otherwise)\b/i;
+const OH_ISSUE = /\b(broke|broken|break|leak|clog|crack|slip|fell|fall|hurt|injur|shak|shook|freez|frozen|froze|not work|doesn.?t work|isn.?t work|sketch|mold|rat|roach|passed out|missing|damag|stuck|jam|overflow|spill|fight|cop|drunk|exposed|falling|last leg|sticky|weird|dropped|hit by|charger|cord|machine|drain|seal|wheel|tap|mop|rinser|toilet|sink|ice bin|ice pit|grinder|blender|arrest|homeless|accident|smok|fire|light|not blink|screws)/i;
+function ohIsHazard(txt){
+  const body = String(txt||'').replace(/^Hazard reported:\s*/i,'').trim();
+  if(!body) return false;
+  const letters = body.toLowerCase().replace(/[^a-z]/g,'');
+  if(OH_NEG.has(letters)) return false;
+  if(letters.length <= 2) return false;
+  const low = body.toLowerCase();
+  if(OH_NEG_LEAD.test(low)){
+    let tail='', kind=null;
+    const am = low.match(OH_ADVERS);
+    if(am){ tail = low.slice(am.index + am[0].length); kind='adv'; }
+    else { const sm = low.match(/[.!?;]\s+\S/); if(sm){ tail = low.slice(sm.index); kind='sent'; } }
+    if(kind==='adv' && (OH_ISSUE.test(tail) || tail.replace(/[^a-z ]/g,'').split(/\s+/).filter(Boolean).length >= 4)) return true;
+    if(kind==='sent' && OH_ISSUE.test(tail)) return true;
+    return false;
+  }
+  return true;
+}
+function isHazardFlag(f){ return !!(f && f.text && f.text.indexOf('Hazard reported')===0 && ohIsHazard(f.text)); }
+function isRealFlag(f){ return !!(f && f.text && f.text!=='None' && flagCategory(f.text)!=='Late submission'); }
+
+function lateMinutes(rec){
+  const f = (rec.flags||[]).find(x=> x.text && x.text.indexOf('Recap submitted late')===0);
+  if(!f) return null;
+  const am = /arrived\s+(\d{1,2}):(\d{2})\s*(AM|PM)/i.exec(f.text);
+  const cc = /after the\s+(\d{1,2}):(\d{2})\s+grace/i.exec(f.text);
+  if(!am || !cc) return null;
+  let ah = (+am[1])%12; if(/PM/i.test(am[3])) ah += 12;
+  const diff = (ah*60 + (+am[2])) - ((+cc[1])*60 + (+cc[2]));
+  return diff>0 ? diff : null;
+}
+function clockOf(ts){
+  const m = /(\d{1,2}):(\d{2}):\d{2}/.exec(ts||'');
+  if(!m) return '';
+  let h=+m[1]; const ap = h>=12?'p':'a'; let hh=h%12; if(hh===0) hh=12;
+  return hh+':'+m[2]+ap;
+}
+function filedText(rec){
+  const t = clockOf(rec.timestamp);
+  if(rec.isLate){ const mn = lateMinutes(rec); return t + (mn!=null ? ' · '+mn+'m late' : ' · late'); }
+  return t;
+}
+function recapNote(rec){
+  const fr = rec.fullRecap || {};
+  const cand = [fr['Additional comments'], fr['Line times / leaderboard'], fr['Team player / needed to step up'], rec.comment];
+  for(const c of cand){ const v=(c||'').toString().trim(); const lv=v.toLowerCase(); if(v && lv!=='none' && lv!=='blank' && lv!=='n/a' && v.length>8) return v; }
+  const fl = (rec.flags||[]).map(f=>f.text).find(t=> t && t!=='None' && t.indexOf('Recap submitted late')!==0 && t.indexOf('Tardy/early-out')!==0 && t.length>8);
+  return fl || '';
+}
+
+function getStands(range){
+  const S = idxSetFor(range), idxs = idxListFor(range);
+  return CODES.map(code => {
+    const shop = CODE_TO_SHOP[code];
+    const recs = records.filter(r => r.shop===shop && S.has(r.dayIndex) && r.employee);
+    let goodN=0, badN=0;
+    recs.forEach(r => (r.flags||[]).forEach(f=>{ if(!isRealFlag(f)) return; if(f.kind==='good') goodN++; else badN++; }));
+    const lateRecs = recs.filter(r => r.isLate);
+    const late = lateRecs.length;
+    let missing = 0;
+    idxs.forEach(d => SHIFTS.forEach(sh => { if(submissionStatus[d+'|'+shop+'|'+sh]==='missing') missing++; }));
+    const recaps = recs.length, onTime = Math.max(0, recaps - late);
+    const byWho = {};
+    lateRecs.forEach(r => { const nm = ohShortName(r.employee)||'Unknown'; byWho[nm]=(byWho[nm]||0)+1; });
+    let lateWho = Object.keys(byWho).map(nm => byWho[nm]>1 ? nm+' ×'+byWho[nm]+' late' : nm+' late').slice(0,3).join(' · ');
+    if(missing>0){ const mt = missing+' not filed'; lateWho = lateWho ? lateWho+' · '+mt : mt; }
+    let hazards = 0;
+    records.forEach(r=>{ if(r.shop!==shop || !S.has(r.dayIndex)) return; (r.flags||[]).forEach(f=>{ if(isHazardFlag(f)) hazards++; }); });
+    return { code, recaps, goodN, badN, onTime, late, missing, lateWho, hazards };
+  });
+}
+function getStand(code, range){
+  return getStands(range).find(x => x.code === code)
+    || { code, recaps:0, goodN:0, badN:0, onTime:0, late:0, missing:0, lateWho:'', hazards:0 };
+}
+function getRecaps(code, range){
+  const shop = CODE_TO_SHOP[code], order = { Close:0, Mid:1, Open:2 };
+  const idxs = idxListFor(range).slice().sort((a,b)=> b-a);
+  const byRecency = SHIFTS.slice().sort((a,b)=> order[a]-order[b]);
+  const out = [];
+  idxs.forEach(d => byRecency.forEach(sh => {
+    const rec = records.find(r => r.shop===shop && r.dayIndex===d && r.shift===sh && r.employee);
+    if(rec){
+      let g=0, b=0;
+      (rec.flags||[]).forEach(f=>{ if(!isRealFlag(f)) return; if(f.kind==='good') g++; else b++; });
+      out.push({ shift: sh, filed: filedText(rec), late: !!rec.isLate, good:'+'+g, bad:'-'+b, by: ohShortName(rec.employee), note: recapNote(rec) });
+    } else if(submissionStatus[d+'|'+shop+'|'+sh]==='missing'){
+      out.push({ shift: sh, filed:'not filed', missing:true });
+    }
+  }));
+  return out;
+}
+function getTimes(code, range){
+  const shop = CODE_TO_SHOP[code], two = TWO_WINDOW_SHOPS.has(shop);
+  const idxs = idxListFor(range).filter(i => dailyOps[shop] && dailyOps[shop][i] && dailyOps[shop][i].isRealTimer).sort((a,b)=> b-a);
+  const rows = idxs.map(i => {
+    const d = dailyOps[shop][i];
+    return { day: fmtDate(dateForIndex(i)), sec: Math.round(d.laneTotalSec), sec2: (two && d.laneTotal2Sec>0) ? Math.round(d.laneTotal2Sec) : null, cars: d.totalCars };
+  });
+  return range==='today' ? rows.slice(0,1) : rows;
+}
+function getHazards(code, range){
+  const shop = CODE_TO_SHOP[code], S = idxSetFor(range), out = [];
+  records.forEach(r => {
+    if(r.shop!==shop || !S.has(r.dayIndex)) return;
+    (r.flags||[]).forEach(f => {
+      if(!isHazardFlag(f)) return;
+      out.push({ item: f.text.replace(/^Hazard reported:\s*/i,'').trim(),
+        meta: r.shift + ' · ' + fmtDate(dateForIndex(r.dayIndex)) + ' · ' + (ohShortName(r.employee)||'—'),
+        days: TODAY_INDEX - r.dayIndex, _d: r.dayIndex });
+    });
+  });
+  out.sort((a,b)=> b._d - a._d);
+  return out;
+}
+function getPeople(code, range){
+  const shop = CODE_TO_SHOP[code], S = idxSetFor(range), map = new Map();
+  records.forEach(r => {
+    if(r.shop!==shop || !S.has(r.dayIndex)) return;
+    const mentions = (r.namedMentions && r.namedMentions.length) ? r.namedMentions
+      : (r.flags||[]).filter(f=>f.employee).map(f=>({ name:f.employee, kind:f.kind, source:f.text }));
+    mentions.forEach(m => {
+      const nm = (m.name||'').trim();
+      if(!nm || nm.toLowerCase()==='none' || /^option\s*\d+$/i.test(nm)) return;
+      const key = nm.toLowerCase();
+      if(!map.has(key)) map.set(key, { name:nm, good:0, bad:0, excerpts:[] });
+      const e = map.get(key);
+      if(m.kind==='good') e.good++; else e.bad++;
+      const src = (m.source||'').toString().trim();
+      if(src && src.toLowerCase()!=='none') e.excerpts.push({ kind:m.kind, when: r.shift+' · '+fmtDate(dateForIndex(r.dayIndex)), text: src, _d:r.dayIndex });
+    });
+  });
+  const arr = [...map.values()];
+  arr.forEach(p => p.excerpts.sort((a,b)=> b._d - a._d));
+  return arr.filter(p => p.excerpts.length);
+}
+
+/* ── RENDER (no edits needed) ─────────────────────────────────────────────── */
+
+let ohScreen = 'home', ohRange = 'month', ohCode = null, ohPerson = null, ohRan = false, ohQ = '', ohRangeOpen = false;
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const mmss = s => Math.floor(s/60) + ':' + String(s%60).padStart(2,'0');
+const rangeMeta = () => RANGES.find(r => r.key === ohRange) || RANGES[2];
+const shiftsInRange = () => rangeMeta().shifts || RANGES[2].shifts;
+
+function onTimeText(s){
+  return s.onTime + '/' + shiftsInRange() + ' on time'
+    + (s.late ? ', ' + s.late + ' late' : '')
+    + (s.missing ? ', ' + s.missing + ' missing' : '');
+}
+function hazText(n){ return n === 0 ? 'none reported in range' : n === 1 ? '1 reported' : n + ' reported'; }
+function matches(p, q){
+  const t = q.trim().toLowerCase();
+  if (!t) return true;
+  return p.name.toLowerCase().includes(t) || p.excerpts.some(e => e.text.toLowerCase().includes(t));
+}
+// The range label IS the control inside a stand: tap it and the picker drops in
+// place, so no screen below home carries a permanent control band.
+function rangePill(){
+  return '<button class="oh-pill" id="oh-rangepill">' + esc(rangeMeta().word)
+    + '<i>' + (ohRangeOpen ? '\u25B4' : '\u25BE') + '</i></button>';
+}
+function rangeDrawer(scopeWord){
+  if (!ohRangeOpen) return '';
+  return '<div class="oh-standranges"><div class="oh-ranges" style="margin-top:0">'
+    + RANGES.filter(r => r.key !== 'custom').map(r =>
+        '<button class="oh-range" data-standrange="' + r.key + '" aria-pressed="'
+        + (r.key === ohRange) + '">' + esc(r.label) + '</button>').join('')
+    + '</div><div class="oh-foot" style="padding-top:9px">Changes every number on this '
+    + scopeWord + ' and follows you back to home. Custom dates are set on home.</div></div>';
+}
+
+function head(title, context, eyebrow, brand){
+  return (eyebrow ? '<div class="oh-eyebrow' + (brand ? ' brand' : '') + '">' + esc(eyebrow) + '</div>' : '')
+    + '<h1 class="' + (brand || !eyebrow ? 'oh-h1' : 'oh-h2') + '">' + esc(title) + '</h1>'
+    + (context ? '<div class="oh-context">' + esc(context) + '</div>' : '');
+}
+
+// sub-screen header: stand code, tappable range pill, then title + context
+function subHead(title, context){
+  return '<div style="display:flex;align-items:center;flex-wrap:wrap;gap:9px">'
+      + '<span class="oh-eyebrow">' + esc(ohCode) + '</span>' + rangePill() + '</div>'
+    + '<h2 class="oh-h2" style="padding-top:8px">' + esc(title) + '</h2>'
+    + (context ? '<div class="oh-context">' + esc(context) + '</div>' : '')
+    + rangeDrawer('screen');
+}
+
+/* ---- home ---- */
+function homeView(){
+  const meta = rangeMeta();
+  const custom = ohRange === 'custom' && !ohRan;
+  let html = head('Ops Hub', '', 'Dutch Bros · DB Sac', true)
+    + '<div class="oh-ranges">' + RANGES.map(r =>
+        '<button class="oh-range" data-range="' + r.key + '" aria-pressed="' + (r.key === ohRange) + '">'
+        + esc(r.label) + '</button>').join('') + '</div>';
+
+  if (custom){
+    return html + '<div class="oh-custom"><h3>Pick a date range</h3>'
+      + '<div class="oh-dates"><div class="oh-date">Start</div><div class="oh-date">End</div></div>'
+      + '<button class="oh-run" id="oh-run">Run range</button>'
+      + '<div class="oh-foot" style="padding-top:0">The stand list stays hidden until the range runs, so you never read stale numbers under a new date.</div></div>';
+  }
+
+  const stands = getStands(ohRange).map(s => Object.assign({}, s, { tone: classify(s, shiftsInRange()) }));
+  const act = stands.filter(s => s.tone !== 'ok').sort((a,b) => (a.tone === 'bad' ? 0 : 1) - (b.tone === 'bad' ? 0 : 1));
+  const clean = stands.filter(s => s.tone === 'ok');
+  const sum = k => stands.reduce((n,s) => n + s[k], 0);
+
+  html += '<div class="oh-kpis">'
+    + '<div class="oh-kpi"><div class="oh-kpi-n">' + sum('recaps') + '</div><div class="oh-kpi-l">RECAPS</div></div>'
+    + '<div class="oh-kpi"><div class="oh-kpi-n" style="color:var(--good)">+' + sum('goodN') + '</div><div class="oh-kpi-l">GOOD FLAGS</div></div>'
+    + '<div class="oh-kpi"><div class="oh-kpi-n" style="color:var(--bad)">-' + sum('badN') + '</div><div class="oh-kpi-l">BAD FLAGS</div></div>'
+    + '</div>'
+    + '<div class="oh-sub">' + stands.length + ' stands · ' + sum('late') + ' late · ' + sum('missing') + ' missing · ' + esc(meta.word) + '</div>'
+    + '<div class="oh-jump"><button id="oh-compare"><b>Compare</b><span>&rsaquo;</span></button>'
+    + '<button id="oh-board"><b>Leaderboard</b><span>&rsaquo;</span></button></div>';
+
+  if (!act.length) html += '<div class="oh-allclear">Nothing needs you — every stand is clean for ' + esc(meta.word) + '</div>';
+
+  if (act.length){
+    html += '<div class="oh-section act">Act now &middot; ' + act.length + '</div><div class="oh-cards">'
+      + act.map(s => '<button class="oh-card ' + s.tone + '" data-code="' + esc(s.code) + '">'
+        + '<span class="oh-card-top"><span class="oh-name">' + esc(s.code) + '</span>'
+        + '<span class="oh-meta">' + (s.recaps === 1 ? '1 recap' : s.recaps + ' recaps') + '</span></span>'
+        + '<span class="oh-metrics"><span class="g">+' + s.goodN + '</span><span class="b">-' + s.badN + '</span>'
+        + '<span style="color:' + (s.tone === 'bad' ? '#FF8B96' : 'var(--watch)') + '">' + esc(onTimeText(s)) + '</span></span>'
+        + (s.lateWho || s.hazards
+            ? '<span class="oh-chips">'
+              + (s.lateWho ? '<span class="oh-chip">' + esc(s.lateWho) + '</span>' : '')
+              + (s.hazards ? '<span class="oh-chip ' + (s.tone === 'bad' ? 'bad' : 'watch') + '">' + (s.hazards === 1 ? '1 hazard' : s.hazards + ' hazards') + '</span>' : '')
+              + '</span>'
+            : '')
+        + '</button>').join('') + '</div>';
+  }
+  if (clean.length){
+    html += '<div class="oh-section clean">Clean &middot; ' + clean.length + '</div><div>'
+      + clean.map(s => '<button class="oh-row" data-code="' + esc(s.code) + '">'
+        + '<span style="display:flex;align-items:center;gap:11px">'
+        + '<span class="oh-dot" style="background:var(--good)"></span>'
+        + '<span class="oh-rowname">' + esc(s.code) + '</span></span>'
+        + '<span style="display:flex;align-items:center;gap:11px" class="oh-meta">'
+        + '<span style="color:var(--good)">+' + s.goodN + '</span>'
+        + '<span>' + esc(onTimeText(s)) + '</span><span class="oh-caret">&rsaquo;</span></span>'
+        + '</button>').join('') + '</div>';
+  }
+  return html + '<div class="oh-foot">Stands are ranked by whether they need you, not alphabetically. Everything running clean collapses to one line each.</div>';
+}
+
+/* ---- stand overview ---- */
+function standView(){
+  const s = getStand(ohCode, ohRange);
+  const t = getTimes(ohCode, ohRange)[0];
+  const hz = getHazards(ohCode, ohRange).length;
+  const ppl = getPeople(ohCode, ohRange);
+  const flagged = ppl.filter(p => p.bad > 0).length;
+  const nav = [
+    ['recaps','Recaps', s.recaps + ' filed in range', false],
+    ['times','Window times', t ? 'lane total ' + mmss(t.sec) + ' · ' + t.cars + ' cars · ' + t.day : 'No HME upload yet', false],
+    ['haz','Hazards', hazText(hz) + (hz ? ' · latest ' + getHazards(ohCode, ohRange)[0].meta.split(' · ')[1] : ''), hz > 0],
+    ['people','People', ppl.length + ' mentioned by name' + (flagged ? ' · ' + flagged + ' flagged' : ''), flagged > 0]
+  ];
+  return '<h1 class="oh-h1">' + esc(s.code) + '</h1>'
+    + '<div class="oh-pillrow">' + rangePill()
+      + '<span class="oh-meta">' + esc(onTimeText(s)) + '</span></div>'
+    + rangeDrawer('stand')
+    + '<div class="oh-kpis">'
+      + '<div class="oh-kpi"><div class="oh-kpi-n">' + s.recaps + '/' + shiftsInRange() + '</div><div class="oh-kpi-l">RECAPS</div></div>'
+      + '<div class="oh-kpi"><div class="oh-kpi-n" style="color:var(--good)">+' + s.goodN + '</div><div class="oh-kpi-l">GOOD FLAGS</div></div>'
+      + '<div class="oh-kpi"><div class="oh-kpi-n" style="color:var(--bad)">-' + s.badN + '</div><div class="oh-kpi-l">BAD FLAGS</div></div>'
+    + '</div>'
+    + '<div class="oh-sub" style="color:#DBE5F1">late filing: ' + esc(s.lateWho || 'All filed on time') + '</div>'
+    + '<div class="oh-nav">' + nav.map(n =>
+        '<button class="oh-navcard" data-go="' + n[0] + '"><span><b>' + esc(n[1]) + '</b>'
+        + '<i class="' + (n[3] ? 'warn' : '') + '">' + esc(n[2]) + '</i></span>'
+        + '<span class="oh-caret" style="font-size:18px">&rsaquo;</span></button>').join('') + '</div>'
+    + '<div class="oh-foot">Every number on this stand covers ' + esc(rangeMeta().word)
+      + '. Tap the range pill up top to change it without leaving the stand.</div>';
+}
+
+/* ---- sub-screens ---- */
+function recapsView(){
+  const rows = getRecaps(ohCode, ohRange);
+  return subHead('Recaps', shiftsInRange() + ' shifts in range · most recent first')
+    + '<div class="oh-cards" style="margin-top:20px">' + rows.map(r => {
+      const tone = r.missing ? 'bad' : r.late ? 'watch' : '';
+      return '<div class="oh-card ' + tone + '" style="cursor:default">'
+        + '<span class="oh-card-top"><span class="oh-name" style="font-size:20px">' + esc(r.shift) + '</span>'
+        + '<span class="oh-meta">' + esc(r.filed) + '</span></span>'
+        + (r.missing ? '' : '<span class="oh-metrics"><span class="g">' + esc(r.good) + '</span>'
+            + '<span class="b">' + esc(r.bad) + '</span><span class="m">' + esc(r.by) + '</span></span>')
+        + (r.note ? '<span class="oh-meta" style="color:#DBE5F1;line-height:1.5">' + esc(r.note) + '</span>' : '')
+        + (r.missing || r.late ? '<span class="oh-chips"><span class="oh-chip ' + (r.missing ? 'bad' : 'watch') + '">'
+            + (r.missing ? 'no recap on file' : 'filed late') + '</span></span>' : '')
+        + '</div>';
+    }).join('') + '</div>'
+    + '<div class="oh-foot">Newest first. Shifts with no recap stay in the list as red cards so a gap is never invisible.</div>';
+}
+
+function timesView(){
+  const rows = getTimes(ohCode, ohRange), lead = rows[0];
+  return subHead('Window times', lead ? 'HME uploads · latest ' + mmss(lead.sec) + ' lane total' : 'No HME uploads in range')
+    + '<div style="margin-top:20px">'
+    + (rows.length
+      ? '<div class="oh-thead"><div style="flex:1">DAY</div><div style="width:80px">LANE TOTAL</div><div style="width:70px;text-align:right">CARS</div></div>'
+        + rows.map((d,i) => {
+          const prev = rows[i+1], diff = prev ? d.sec - prev.sec : null;
+          const tone = d.sec <= 90 ? 'var(--good)' : d.sec <= 120 ? 'var(--watch)' : 'var(--bad)';
+          return '<div class="oh-trow"><div class="oh-trow-main">'
+            + '<div class="oh-day">' + esc(d.day) + '</div>'
+            + '<div class="oh-lane" style="color:' + tone + '">' + mmss(d.sec) + '</div>'
+            + '<div class="oh-cars">' + d.cars + '</div></div>'
+            + '<div class="oh-tsub"><span>'
+            + (diff === null ? 'first upload' : diff === 0 ? 'flat vs prior day'
+                : (diff > 0 ? '+' : '\u2212') + Math.abs(diff) + 's vs prior day') + '</span>'
+            + (d.sec2 ? '<span>lane 2 ' + mmss(d.sec2) + '</span>' : '') + '</div></div>';
+        }).join('')
+      : '<div class="oh-empty">No HME upload for this stand yet</div>')
+    + '</div>'
+    + '<div class="oh-foot">Lane total is the HME average for the whole business day — under 1:30 green, over 2:00 red. Uploaded days only.</div>';
+}
+
+function hazView(){
+  const rows = getHazards(ohCode, ohRange);
+  return subHead('Hazards', (rows.length === 0 ? 'None reported in ' : hazText(rows.length) + ' in ') + rangeMeta().word)
+    + '<div class="oh-cards" style="margin-top:20px">'
+    + (rows.length ? rows.map(h => '<div class="oh-card ' + (h.days <= 2 ? 'bad' : 'watch') + '" style="cursor:default">'
+        + '<span class="oh-quote">' + esc(h.item) + '</span>'
+        + '<span class="oh-meta">' + esc(h.meta) + '</span></div>').join('')
+      : '<div class="oh-empty">No hazards reported in this range</div>') + '</div>'
+    + '<div class="oh-foot">Safety answers from the recaps themselves — red for the last 48 hours, amber for older. Nothing to clear: a hazard drops off once its recap falls outside the range.</div>';
+}
+
+function peopleView(){
+  const all = getPeople(ohCode, ohRange);
+  const shown = all.filter(p => matches(p, ohQ)).sort((a,b) => b.bad - a.bad || b.good - a.good);
+  const flagged = all.filter(p => p.bad > 0).length;
+  const ctx = ohQ.trim() ? shown.length + ' of ' + all.length + ' match “' + ohQ.trim() + '”'
+                         : all.length + ' mentioned by name · ' + flagged + ' flagged';
+  return subHead('People', ctx)
+    + '<div class="oh-search"><span style="color:var(--text-faint)">&#8981;</span>'
+      + '<input id="oh-q" type="search" placeholder="Search a name or a recap line" value="' + esc(ohQ) + '">'
+      + (ohQ ? '<button id="oh-clear">clear</button>' : '') + '</div>'
+    + '<div style="margin-top:12px">' + shown.map(p =>
+        '<button class="oh-row" data-person="' + esc(p.name) + '">'
+        + '<span style="display:flex;align-items:center;gap:11px;min-width:0">'
+        + '<span class="oh-dot" style="background:' + (p.bad > 1 ? 'var(--bad)' : p.bad === 1 ? 'var(--watch)' : 'var(--good)') + '"></span>'
+        + '<span><span class="oh-rowname">' + esc(p.name) + '</span>'
+        + '<span class="oh-meta" style="display:block;padding-top:4px">'
+        + (p.excerpts.length === 1 ? '1 excerpt' : p.excerpts.length + ' excerpts') + '</span></span></span>'
+        + '<span style="display:flex;align-items:center;gap:11px" class="oh-meta">'
+        + '<span style="color:#DBE5F1">+' + p.good + '  \u2212' + p.bad + '</span>'
+        + '<span class="oh-caret">&rsaquo;</span></span></button>').join('')
+    + (shown.length ? '' : '<div class="oh-empty" style="margin-top:8px">Nobody at this stand matches that</div>')
+    + '</div>'
+    + '<div class="oh-foot">Search covers names and the recap text itself, so “drain cover” finds the person who reported it. Ranked by who is being flagged, not alphabetically.</div>';
+}
+
+function personView(){
+  const p = getPeople(ohCode, ohRange).find(x => x.name === ohPerson);
+  if (!p) return '';
+  return subHead(p.name, p.good + ' good · ' + p.bad + ' bad')
+    + '<div class="oh-cards" style="margin-top:20px">' + p.excerpts.map(e =>
+        '<div class="oh-card ' + (e.kind === 'bad' ? 'bad' : 'good') + '" style="cursor:default">'
+        + '<span class="oh-quote">' + esc(e.text) + '</span>'
+        + '<span class="oh-metrics"><span style="color:' + (e.kind === 'bad' ? '#FFB3BB' : '#7FE0C2') + '">'
+        + (e.kind === 'bad' ? 'flagged' : 'called out') + '</span>'
+        + '<span class="m">' + esc(e.when) + '</span></span></div>').join('') + '</div>'
+    + '<div class="oh-foot">Excerpts are shown as written — the sentence is the evidence, so it is never rewritten into a count.</div>';
+}
+
+/* ---- shell ---- */
+function render(){
+  const host = document.getElementById('oh-app');
+  const body = ohScreen === 'home' ? homeView()
+    : ohScreen === 'stand' ? standView()
+    : ohScreen === 'recaps' ? recapsView()
+    : ohScreen === 'times' ? timesView()
+    : ohScreen === 'haz' ? hazView()
+    : ohScreen === 'people' ? peopleView()
+    : personView();
+
+  const backLabel = ohScreen === 'stand' ? 'All stands' : ohScreen === 'person' ? 'People' : ohCode;
+  host.innerHTML = (ohScreen === 'home' ? '' : '<button class="oh-back" id="oh-back">&larr; ' + esc(backLabel) + '</button>') + body;
+
+  const on = (sel, fn) => { const el = host.querySelector(sel); if (el) el.addEventListener('click', fn); };
+  on('#oh-back', () => {
+    ohScreen = ohScreen === 'stand' ? 'home' : ohScreen === 'person' ? 'people' : 'stand';
+    ohRangeOpen = false;
+    render();
+  });
+  on('#oh-rangepill', () => { ohRangeOpen = !ohRangeOpen; render(); });
+  host.querySelectorAll('[data-standrange]').forEach(b => b.addEventListener('click', () => {
+    ohRange = b.dataset.standrange; ohRangeOpen = false; render();
+  }));
+  on('#oh-compare', goCompare);
+  on('#oh-board', goLeaderboard);
+  on('#oh-run', () => { ohRan = true; render(); });
+  on('#oh-clear', () => { ohQ = ''; render(); });
+  host.querySelectorAll('[data-range]').forEach(b => b.addEventListener('click', () => {
+    ohRange = b.dataset.range; ohRan = false; ohRangeOpen = false; render();
+  }));
+  host.querySelectorAll('[data-code]').forEach(b => b.addEventListener('click', () => {
+    ohCode = b.dataset.code; ohScreen = 'stand'; ohPerson = null; ohQ = ''; ohRangeOpen = false; render();
+  }));
+  host.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => {
+    ohScreen = b.dataset.go; if (ohScreen === 'people') ohQ = ''; render();
+  }));
+  host.querySelectorAll('[data-person]').forEach(b => b.addEventListener('click', () => {
+    ohPerson = b.dataset.person; ohScreen = 'person'; render();
+  }));
+  const q = host.querySelector('#oh-q');
+  if (q){
+    q.addEventListener('input', e => {
+      ohQ = e.target.value;
+      const start = e.target.selectionStart;
+      render();
+      const next = document.querySelector('#oh-q');
+      if (next){ next.focus(); next.setSelectionRange(start, start); }
+    });
+  }
+}
+
+render();
+
+// keep the global <header> for compare/leaderboard, hide it while the app owns home
+function ohSyncHeader(){
+  const hdr = document.querySelector('header'), vh = document.getElementById('view-home');
+  if(hdr && vh) hdr.style.display = vh.classList.contains('active') ? 'none' : '';
+}
+(function(){ const vh = document.getElementById('view-home');
+  if(vh && window.MutationObserver){ new MutationObserver(ohSyncHeader).observe(vh, {attributes:true, attributeFilter:['class']}); }
+  ohSyncHeader();
+})();
+})();
 </script>
 </body>
 </html>
