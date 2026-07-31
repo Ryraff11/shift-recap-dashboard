@@ -99,6 +99,21 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
 .oh-pill i{font-style:normal; font-size:9px;}
 .oh-pillrow{display:flex; align-items:center; flex-wrap:wrap; gap:9px; padding-top:11px;}
 .oh-standranges{margin-top:14px;}
+.oh-chiprow{display:flex; flex-wrap:wrap; gap:6px;}
+.oh-pick{font-family:'JetBrains Mono',monospace; font-size:11px; padding:8px 11px; border-radius:999px;
+  border:none; cursor:pointer; min-height:34px; background:rgba(255,255,255,.06); color:var(--text-dim);}
+.oh-pick[aria-pressed="true"]{background:var(--amber); color:#04121F;}
+.oh-cmphead{display:flex; align-items:flex-end; gap:12px; padding-bottom:12px; border-bottom:1px solid var(--hairline);}
+.oh-cmprow{display:flex; align-items:center; gap:12px; padding:14px 0; border-bottom:1px solid rgba(44,93,133,.5);}
+.oh-cmpcol{width:82px; font-family:'JetBrains Mono',monospace; font-size:14px;}
+.oh-bar{height:4px; border-radius:2px; background:rgba(255,255,255,.05); overflow:hidden;}
+.oh-bar span{display:block; height:4px; border-radius:2px;}
+.oh-tabs{display:flex; gap:20px; border-bottom:1px solid var(--hairline);}
+.oh-tab{background:none; border:none; border-bottom:2px solid transparent; padding:0 0 11px; cursor:pointer;
+  white-space:nowrap; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--text-dim);}
+.oh-tab[aria-pressed="true"]{color:var(--amber); border-bottom-color:var(--amber);}
+.oh-rank{font-family:'Anton',sans-serif; font-size:20px; width:20px;}
 .oh-quote{font-size:15px; line-height:1.45; text-wrap:pretty;}
 .oh-empty{padding:26px 16px; border-radius:16px; background:rgba(255,255,255,.04);
   font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-dim); text-align:center;}
@@ -62265,9 +62280,9 @@ renderHome();
 })();
 renderOpsHome();
 
-/* ═══ OPS HUB MOBILE — home + shop pages (wired to real data) ═══ */
+/* ═══ OPS HUB MOBILE v3 — home + shop + compare + leaderboard (wired) ═══ */
 (function(){
-/* ── CONFIG ── */
+/* CONFIG */
 const RANGES = [
   { key:'today',  label:'Today',   word:'today',                shifts:3  },
   { key:'week',   label:'7 days',  word:'the last 7 days',      shifts:21 },
@@ -62275,9 +62290,24 @@ const RANGES = [
   { key:'custom', label:'Range',   word:'the chosen range',     shifts:0  }
 ];
 
-// Point the two outbound jumps at the dashboard's existing views.
-function goCompare(){ showView('compare'); if(typeof renderCompareChips==='function') renderCompareChips(); if(typeof renderCompareAll==='function') renderCompareAll(); }
-function goLeaderboard(){ showView('leaderboard'); if(typeof renderLeaderboard==='function') renderLeaderboard(); }
+// Compare and Leaderboard are now built into this file (see compareView /
+// boardView below) and read the same adapters as every other screen. If you
+// prefer to keep the dashboard's OLD compare/leaderboard views, delete those
+// two functions and point these at the existing router calls instead.
+// Leaderboard shows only these three; Compare keeps the full set.
+const BOARD_METRICS = ['recaps','times','sales'];
+// Net sales is not wired yet — shown as a pending state until the Xenial upload
+// lands. Replace this string with your exact wording.
+const SALES_PENDING = 'Net sales come from the Xenial daily upload — not connected yet.';
+
+const METRICS = [
+  { key:'recaps',  label:'Recaps' },
+  { key:'times',   label:'Times' },
+  { key:'sales',   label:'Net sales' },
+  { key:'dph',     label:'Drinks/hr' },
+  { key:'peak',    label:'Peak hours' },
+  { key:'payroll', label:'Payroll' }
+];
 
 /* ── CLASSIFICATION ─────────────────────────────────────────────────────────
    Rates, NOT raw totals. Over 90 shifts almost nothing is ever zero, so
@@ -62296,9 +62326,9 @@ function classify(s, shifts){
 }
 
 /* ── ADAPTERS — WIRED TO REAL DATA (records / dailyOps / submissionStatus) ──
-   Every count is scoped to `range` via indicesForRange(), so denominators from
-   RANGES[].shifts (3 / 21 / 90) always hold. Hazards are safety flags on recaps
-   inside the window — they age out with the recap, never "close". ── */
+   Every count scoped to `range` via indicesForRange(); PERF is a live getter so
+   Compare/Leaderboard figures track the selected range too. Net sales stays
+   behind SALES_PENDING on the board (Xenial not connected). ── */
 const RANGE_PRESET = { today:'today', week:'7d', month:'30d', custom:'30d' };
 const CODES = ACTIVE_SHOPS.map(s => s.toUpperCase());
 const CODE_TO_SHOP = {}; ACTIVE_SHOPS.forEach(s => { CODE_TO_SHOP[s.toUpperCase()] = s; });
@@ -62310,7 +62340,6 @@ function ohShortName(full){
 function idxListFor(range){ return indicesForRange(RANGE_PRESET[range] || '30d'); }
 function idxSetFor(range){ return new Set(idxListFor(range)); }
 
-// negation-aware hazard test — identical logic to the franchise home chip
 const OH_NEG = new Set(['no','none','na','nope','nah','naur','nada','nadda','nan','non','bo','x','nothing','allgood','allclear','fine','good','ok','okay','negative','nul','null','nohazards','nohazard','nonetoday','noneseen','nonenoted','nonefound','nothingtoreport','nothingunsafe','notreally','allgoodhere','noissues','noconcerns','nothingofnote']);
 const OH_NEG_LEAD = /^\s*(no\b|none\b|nope\b|nah\b|naur\b|nada\b|n\/?a\b|not\b|nothing\b|there (was|were|are|is) (no|not)\b|i (did ?n.?t|do ?n.?t|have ?n.?t|did not|do not)\s+(notice|see|have|find|think)\b|no (safety|additional|new|other|major|real)\b)/i;
 const OH_ADVERS = /\b(but|however|though|although|except|besides|aside from|other than|otherwise)\b/i;
@@ -62452,9 +62481,41 @@ function getPeople(code, range){
   return arr.filter(p => p.excerpts.length);
 }
 
+// PERF feeds Compare + Leaderboard. Live getter keyed by code so figures follow
+// the selected range. recaps/goodN + lane come from real data; sales/dph/peak/
+// payroll from the dashboard's own dailyOps fields (net sales still synthetic —
+// the board keeps it behind SALES_PENDING until Xenial lands).
+function perfFor(code, range){
+  const shop = CODE_TO_SHOP[code];
+  if(!shop) return null;
+  const idxs = idxListFor(range), S = new Set(idxs);
+  const recs = records.filter(r => r.shop===shop && S.has(r.dayIndex) && r.employee);
+  let goodN=0; recs.forEach(r => (r.flags||[]).forEach(f=>{ if(isRealFlag(f) && f.kind==='good') goodN++; }));
+  const recapsN = recs.length;
+  const oi = idxs.filter(i => dailyOps[shop] && dailyOps[shop][i]);
+  const realDays = oi.filter(i => dailyOps[shop][i].isRealTimer);
+  const lane = realDays.length ? Math.round(realDays.reduce((s,i)=>s+dailyOps[shop][i].laneTotalSec,0)/realDays.length) : 999;
+  const carsTotal = realDays.reduce((s,i)=>s+(dailyOps[shop][i].totalCars||0),0);
+  const carsPerDay = realDays.length ? Math.round(carsTotal/realDays.length) : 0;
+  const sales = oi.reduce((s,i)=> s + (dailyOps[shop][i].netSales||0), 0);
+  const dph = oi.length ? +(oi.reduce((s,i)=>s+(dailyOps[shop][i].dph||0),0)/oi.length).toFixed(1) : 0;
+  const laborCost = oi.reduce((s,i)=> s + (dailyOps[shop][i].laborCost||0), 0);
+  const payroll = sales ? +((laborCost/sales)*100).toFixed(1) : 0;
+  let peak = '—';
+  if(oi.length && typeof HOURS !== 'undefined'){
+    const byHour = HOURS.map((_,h)=> oi.reduce((s,i)=> s + (((dailyOps[shop][i].hourly)||[])[h]||0), 0));
+    let pk=0; for(let h=1;h<byHour.length;h++){ if(byHour[h]>byHour[pk]) pk=h; }
+    peak = HOURS[pk] + '–' + (HOURS[pk+2] || HOURS[HOURS.length-1]);
+  }
+  return { lane, sales, dph, peak, payroll, recapsN, goodN, carsTotal, carsPerDay, hasTimer: realDays.length > 0 };
+}
+const PERF = {};
+CODES.forEach(code => Object.defineProperty(PERF, code, { get(){ return perfFor(code, ohRange); }, enumerable:true, configurable:true }));
+
 /* ── RENDER (no edits needed) ─────────────────────────────────────────────── */
 
 let ohScreen = 'home', ohRange = 'month', ohCode = null, ohPerson = null, ohRan = false, ohQ = '', ohRangeOpen = false;
+let ohCmpPicked = ['MAD','FAIR OAKS','AUBURN'], ohCmpMetric = 'recaps', ohMetric = 'times';
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const mmss = s => Math.floor(s/60) + ':' + String(s%60).padStart(2,'0');
@@ -62501,6 +62562,57 @@ function subHead(title, context){
     + '<h2 class="oh-h2" style="padding-top:8px">' + esc(title) + '</h2>'
     + (context ? '<div class="oh-context">' + esc(context) + '</div>' : '')
     + rangeDrawer('screen');
+}
+
+// One scoring rule per metric, shared by Compare and Leaderboard so a stand can
+// never rank differently in the two places. v = sort key (higher wins; negate
+// for lower-is-better metrics), txt = headline, sub = supporting line.
+function score(code, metric){
+  const p = PERF[code];
+  if (!p) return { v:0, better:'high', txt:'—', unit:'', sub:'no data' };
+  if (metric === 'recaps')  return { v:p.goodN, better:'high', txt:String(p.goodN), unit:'good flags',
+    sub:p.recapsN + ' recaps · ' + p.goodN + ' good flags' };
+  if (metric === 'times')   return p.hasTimer
+    ? { v:-p.lane, better:'low', txt:mmss(p.lane), unit:'lane total avg',
+        sub:'Lane total ' + mmss(p.lane) + (p.carsPerDay ? ' · ' + p.carsPerDay.toLocaleString() + ' cars/day' : '') }
+    : { v:-1e9, better:'low', txt:'—', unit:'lane total avg', sub:'No HME uploads in range' };
+  if (metric === 'sales')   return { v:p.sales, better:'high', txt:money(p.sales), unit:'net sales',
+    sub:money(p.sales) + ' · ' + p.dph + ' drinks/hr' };
+  if (metric === 'dph')     return { v:p.dph, better:'high', txt:p.dph.toFixed(1), unit:'drinks / hour',
+    sub:p.dph + ' drinks/hr · lane total ' + mmss(p.lane) };
+  if (metric === 'peak')    return { v:p.dph, better:'high', txt:p.peak, unit:'busiest block',
+    sub:'Peak ' + p.peak + ' · ' + p.dph + ' drinks/hr' };
+  return { v:-p.payroll, better:'low', txt:p.payroll.toFixed(1) + '%', unit:'payroll of sales',
+    sub:p.payroll + '% of sales · ' + money(p.sales) + ' net' };
+}
+const money = n => '$' + n.toLocaleString('en-US');
+
+// shared ranked row — compare and leaderboard render identically
+function rankRows(codes, metric){
+  const rows = codes.map(c => Object.assign({ code:c }, score(c, metric))).sort((a,b) => b.v - a.v);
+  // rows[0] is the leader; bars are drawn relative to it, and for lower-is-better
+  // metrics the ratio inverts so a worse value still draws a SHORTER bar
+  const top = rows.length ? Math.abs(rows[0].v) || 1 : 1;
+  const width = r => {
+    const m = Math.abs(r.v) || 1;
+    const pct = r.better === 'low' ? top / m * 100 : m / top * 100;
+    return Math.max(4, Math.min(100, Math.round(pct)));
+  };
+  return rows.map((r,i) => '<button class="oh-row" style="flex-direction:column;align-items:stretch;gap:10px" data-code="' + esc(r.code) + '">'
+    + '<span style="display:flex;align-items:center;gap:13px">'
+    + '<span class="oh-rank" style="color:' + (i === 0 ? 'var(--amber)' : 'var(--text-faint)') + '">' + (i+1) + '</span>'
+    + '<span style="flex:1;min-width:0"><span class="oh-rowname" style="font-size:20px">' + esc(r.code) + '</span>'
+    + '<span class="oh-meta" style="display:block;padding-top:5px">' + esc(r.sub) + '</span></span>'
+    + '<span class="oh-meta" style="font-size:15px;color:var(--text)">' + esc(r.txt) + '</span></span>'
+    + '<span class="oh-bar"><span style="width:' + width(r) + '%;background:'
+      + (i === 0 ? 'var(--amber)' : i < 3 ? 'var(--good)' : 'var(--hairline)') + '"></span></span></button>').join('');
+}
+function metricTabs(active, attr, only){
+  const list = only ? METRICS.filter(m => only.indexOf(m.key) !== -1) : METRICS;
+  return '<div style="margin-top:18px;overflow-x:auto"><div class="oh-tabs">'
+    + list.map(m => '<button class="oh-tab" ' + attr + '="' + m.key + '" aria-pressed="'
+        + (m.key === active) + '">' + esc(m.label) + '</button>').join('')
+    + '</div></div>';
 }
 
 /* ---- home ---- */
@@ -62686,6 +62798,46 @@ function personView(){
     + '<div class="oh-foot">Excerpts are shown as written — the sentence is the evidence, so it is never rewritten into a count.</div>';
 }
 
+/* ---- compare ---- */
+function compareView(){
+  const all = getStands(ohRange).map(s => s.code);
+  const label = (METRICS.find(m => m.key === ohCmpMetric) || METRICS[0]).label.toLowerCase();
+  return '<div style="display:flex;align-items:center;flex-wrap:wrap;gap:9px">' + rangePill() + '</div>'
+    + '<h2 class="oh-h2" style="padding-top:8px">Compare</h2>'
+    + '<div class="oh-context">' + ohCmpPicked.length + ' of ' + all.length + ' stands · ranked by ' + label + '</div>'
+    + rangeDrawer('comparison')
+    + '<div style="margin-top:18px;display:flex;flex-direction:column;gap:9px">'
+      + '<div class="oh-eyebrow">Pick stands</div><div class="oh-chiprow">'
+      + all.map(c => { const on = ohCmpPicked.indexOf(c) !== -1;
+          return '<button class="oh-pick" data-cmpcode="' + esc(c) + '" aria-pressed="' + on + '">'
+            + esc(c) + '</button>'; }).join('')
+      + '</div></div>'
+    + metricTabs(ohCmpMetric, 'data-cmpmetric')
+    + '<div style="margin-top:18px">'
+      + (ohCmpPicked.length ? rankRows(ohCmpPicked, ohCmpMetric)
+         : '<div class="oh-empty">Pick at least one stand above</div>')
+    + '</div>'
+    + '<div class="oh-foot">Same picks and metrics as before — the bar makes the gap between stands readable without comparing digits, and any row opens that stand.</div>';
+}
+
+/* ---- leaderboard ---- */
+function boardView(){
+  const all = getStands(ohRange).map(s => s.code);
+  const note = ohMetric === 'times' ? 'Lane total average across the range — lower is better, so the fastest stand leads.'
+    : ohMetric === 'sales' ? 'Ranks by net sales once the Xenial upload is connected.'
+    : 'Higher is better. Tap any row to open that stand.';
+  return '<div style="display:flex;align-items:center;flex-wrap:wrap;gap:9px">' + rangePill() + '</div>'
+    + '<h2 class="oh-h2" style="padding-top:8px">Leaderboard</h2>'
+    + '<div class="oh-context">' + (ohMetric === 'sales' ? 'Net sales · pending'
+        : 'All ' + all.length + ' stands by ' + esc(score(all[0], ohMetric).unit) + ' · tap any row to open it') + '</div>'
+    + rangeDrawer('leaderboard')
+    + metricTabs(ohMetric, 'data-metric', BOARD_METRICS)
+    + '<div style="margin-top:18px">'
+      + (ohMetric === 'sales' ? '<div class="oh-empty">' + SALES_PENDING + '</div>' : rankRows(all, ohMetric))
+    + '</div>'
+    + '<div class="oh-foot">' + note + '</div>';
+}
+
 /* ---- shell ---- */
 function render(){
   const host = document.getElementById('oh-app');
@@ -62695,14 +62847,18 @@ function render(){
     : ohScreen === 'times' ? timesView()
     : ohScreen === 'haz' ? hazView()
     : ohScreen === 'people' ? peopleView()
+    : ohScreen === 'compare' ? compareView()
+    : ohScreen === 'board' ? boardView()
     : personView();
 
-  const backLabel = ohScreen === 'stand' ? 'All stands' : ohScreen === 'person' ? 'People' : ohCode;
+  const backLabel = (ohScreen === 'stand' || ohScreen === 'compare' || ohScreen === 'board') ? 'All stands'
+    : ohScreen === 'person' ? 'People' : ohCode;
   host.innerHTML = (ohScreen === 'home' ? '' : '<button class="oh-back" id="oh-back">&larr; ' + esc(backLabel) + '</button>') + body;
 
   const on = (sel, fn) => { const el = host.querySelector(sel); if (el) el.addEventListener('click', fn); };
   on('#oh-back', () => {
-    ohScreen = ohScreen === 'stand' ? 'home' : ohScreen === 'person' ? 'people' : 'stand';
+    ohScreen = (ohScreen === 'stand' || ohScreen === 'compare' || ohScreen === 'board') ? 'home'
+      : ohScreen === 'person' ? 'people' : 'stand';
     ohRangeOpen = false;
     render();
   });
@@ -62710,8 +62866,19 @@ function render(){
   host.querySelectorAll('[data-standrange]').forEach(b => b.addEventListener('click', () => {
     ohRange = b.dataset.standrange; ohRangeOpen = false; render();
   }));
-  on('#oh-compare', goCompare);
-  on('#oh-board', goLeaderboard);
+  on('#oh-compare', () => { ohScreen = 'compare'; ohRangeOpen = false; render(); });
+  on('#oh-board', () => { ohScreen = 'board'; ohRangeOpen = false; render(); });
+  host.querySelectorAll('[data-cmpcode]').forEach(b => b.addEventListener('click', () => {
+    const c = b.dataset.cmpcode, i = ohCmpPicked.indexOf(c);
+    if (i === -1) ohCmpPicked = ohCmpPicked.concat([c]); else ohCmpPicked = ohCmpPicked.filter(x => x !== c);
+    render();
+  }));
+  host.querySelectorAll('[data-cmpmetric]').forEach(b => b.addEventListener('click', () => {
+    ohCmpMetric = b.dataset.cmpmetric; render();
+  }));
+  host.querySelectorAll('[data-metric]').forEach(b => b.addEventListener('click', () => {
+    ohMetric = b.dataset.metric; render();
+  }));
   on('#oh-run', () => { ohRan = true; render(); });
   on('#oh-clear', () => { ohQ = ''; render(); });
   host.querySelectorAll('[data-range]').forEach(b => b.addEventListener('click', () => {
@@ -62740,15 +62907,8 @@ function render(){
 
 render();
 
-// keep the global <header> for compare/leaderboard, hide it while the app owns home
-function ohSyncHeader(){
-  const hdr = document.querySelector('header'), vh = document.getElementById('view-home');
-  if(hdr && vh) hdr.style.display = vh.classList.contains('active') ? 'none' : '';
-}
-(function(){ const vh = document.getElementById('view-home');
-  if(vh && window.MutationObserver){ new MutationObserver(ohSyncHeader).observe(vh, {attributes:true, attributeFilter:['class']}); }
-  ohSyncHeader();
-})();
+// the new app owns the whole screen; retire the old global header + views
+(function(){ const h=document.querySelector('header'); if(h) h.style.display='none'; })();
 })();
 </script>
 </body>
