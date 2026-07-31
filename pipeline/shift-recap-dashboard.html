@@ -62044,7 +62044,7 @@ function compareView(){
   const label = (METRICS.find(m => m.key === ohCmpMetric) || METRICS[0]).label.toLowerCase();
   return '<div style="display:flex;align-items:center;flex-wrap:wrap;gap:9px">' + rangePill() + '</div>'
     + '<h2 class="oh-h2" style="padding-top:8px">Compare</h2>'
-    + '<div class="oh-context">' + ohCmpPicked.length + ' of ' + all.length + ' stands · ranked by ' + label + '</div>'
+    + '<div class="oh-context">' + (ohCmpMetric === 'sales' ? 'Net sales · pending' : ohCmpPicked.length + ' of ' + all.length + ' stands · ranked by ' + label) + '</div>'
     + rangeDrawer('comparison')
     + '<div style="margin-top:18px;display:flex;flex-direction:column;gap:9px">'
       + '<div class="oh-eyebrow">Pick stands</div><div class="oh-chiprow">'
@@ -62052,9 +62052,10 @@ function compareView(){
           return '<button class="oh-pick" data-cmpcode="' + esc(c) + '" aria-pressed="' + on + '">'
             + esc(c) + '</button>'; }).join('')
       + '</div></div>'
-    + metricTabs(ohCmpMetric, 'data-cmpmetric')
+    + metricTabs(ohCmpMetric, 'data-cmpmetric', BOARD_METRICS)
     + '<div style="margin-top:18px">'
-      + (ohCmpPicked.length ? rankRows(ohCmpPicked, ohCmpMetric)
+      + (ohCmpMetric === 'sales' ? '<div class="oh-empty">' + SALES_PENDING + '</div>'
+         : ohCmpPicked.length ? rankRows(ohCmpPicked, ohCmpMetric)
          : '<div class="oh-empty">Pick at least one stand above</div>')
     + '</div>'
     + '<div class="oh-foot">Same picks and metrics as before — the bar makes the gap between stands readable without comparing digits, and any row opens that stand.</div>';
