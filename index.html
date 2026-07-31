@@ -22865,6 +22865,64 @@ const REAL_AUBURN_RECORDS = [
       "Culture competition": ""
     },
     "namedMentions": []
+  },
+  {
+    "shop": "Auburn",
+    "shift": "Mid",
+    "dayIndex": 59,
+    "timestamp": "7/30/2026 19:33:34",
+    "employee": "Ashlee Standridge",
+    "isLate": true,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "No comments, standard shift.",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "There were a few super stars today!! I have sully, Sofia A & michi!! Everyone did amazing today but these 3 were on top of it today with speed service and quality! (A+ fr)"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Recap submitted late \u2014 arrived 7:33 PM, after the 18:15 grace-period cutoff for Mid."
+      }
+    ],
+    "fullRecap": {
+      "Shift time": "",
+      "Staffing": "Well staffed! It was PERFECT!",
+      "Rush timing": "",
+      "Cleanest on bar": "",
+      "Line times / leaderboard": "The line times were pretty good today with an average of about 1:00 and under the whole shift which was a big slay! We were down to 4th at one point which was crazy cause our times were still really good but then we moved up to 2nd place!!",
+      "Safety hazards": "None today! Shop is looking great! ",
+      "Xbro / non-negotiables": "It went really well today! My first mid shift and it was full of great people! I would say Chris and kaelei did need to be a bit more aware of shop needs such as like when it came to us having no cars there was a lot of standing around and wasn\u2019t enough Stocking or just getting the shop back together when it needed most!",
+      "Coaching notes": "",
+      "Xbro effectiveness (1-5)": "",
+      "Team player (system buy-in)": "",
+      "Needs replacing / broken": "",
+      "Quarterly comp tallies (OAs not ready)": "",
+      "Closing: Verifone WiFi": "",
+      "Tardy / early-out": "No one was tardy, except for me and Sofia A came back from our 30\u2019s a bit late but we were both on time and Sophia Dunlap said she will fix it!",
+      "Fridge seals check": "",
+      "XBRO staffing struggles": "",
+      "Clamps": "",
+      "Closing: positionless helper": "",
+      "Closing: efficiency reflection": "",
+      "Expired milk check": "DONE! It all looked good!",
+      "Additional comments": "",
+      "Best team player / wear more hats": "There were a few super stars today!! I have sully, Sofia A & michi!! Everyone did amazing today but these 3 were on top of it today with speed service and quality! (A+ fr) ",
+      "Culture competition": ""
+    },
+    "namedMentions": [
+      {
+        "name": "There",
+        "kind": "good",
+        "source": "There were a few super stars today!! I have sully, Sofia A & michi!! Everyone did amazing today but these 3 were on top of it today with speed service and quali"
+      }
+    ]
   }
 ]
 const REAL_MADHOUSE_RECORDS = [
@@ -62804,7 +62862,7 @@ function compareView(){
   const label = (METRICS.find(m => m.key === ohCmpMetric) || METRICS[0]).label.toLowerCase();
   return '<div style="display:flex;align-items:center;flex-wrap:wrap;gap:9px">' + rangePill() + '</div>'
     + '<h2 class="oh-h2" style="padding-top:8px">Compare</h2>'
-    + '<div class="oh-context">' + ohCmpPicked.length + ' of ' + all.length + ' stands · ranked by ' + label + '</div>'
+    + '<div class="oh-context">' + (ohCmpMetric === 'sales' ? 'Net sales · pending' : ohCmpPicked.length + ' of ' + all.length + ' stands · ranked by ' + label) + '</div>'
     + rangeDrawer('comparison')
     + '<div style="margin-top:18px;display:flex;flex-direction:column;gap:9px">'
       + '<div class="oh-eyebrow">Pick stands</div><div class="oh-chiprow">'
@@ -62812,9 +62870,10 @@ function compareView(){
           return '<button class="oh-pick" data-cmpcode="' + esc(c) + '" aria-pressed="' + on + '">'
             + esc(c) + '</button>'; }).join('')
       + '</div></div>'
-    + metricTabs(ohCmpMetric, 'data-cmpmetric')
+    + metricTabs(ohCmpMetric, 'data-cmpmetric', BOARD_METRICS)
     + '<div style="margin-top:18px">'
-      + (ohCmpPicked.length ? rankRows(ohCmpPicked, ohCmpMetric)
+      + (ohCmpMetric === 'sales' ? '<div class="oh-empty">' + SALES_PENDING + '</div>'
+         : ohCmpPicked.length ? rankRows(ohCmpPicked, ohCmpMetric)
          : '<div class="oh-empty">Pick at least one stand above</div>')
     + '</div>'
     + '<div class="oh-foot">Same picks and metrics as before — the bar makes the gap between stands readable without comparing digits, and any row opens that stand.</div>';
