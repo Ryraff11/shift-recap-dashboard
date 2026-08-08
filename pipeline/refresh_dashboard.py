@@ -13,10 +13,13 @@ USAGE:
     fireside_recap_raw.csv
     manz_recap_raw.csv
   Also place shift-recap-dashboard.html (the current dashboard file) in this folder.
+  Optionally place deputy_schedule_raw.csv (exported from the Deputy shift-lead sheet)
+  to refresh the scheduled-lead names shown on missing/late recaps; if it's absent the
+  existing schedule already baked into the dashboard is left untouched.
   Then run:  python3 refresh_dashboard.py
   It overwrites shift-recap-dashboard.html with fresh data for all 7 shops.
 """
-import json, subprocess, sys
+import csv, json, subprocess, sys
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
@@ -158,6 +161,33 @@ def main():
     t_end = html.index(";", t_start)
     html = html[:t_start] + f"const REAL_TIMER_DATA = {json.dumps(timer)}" + html[t_end:]
     print(f'  injected REAL_TIMER_DATA ({len(timer)} shop(s), {sum(len(v) for v in timer.values())} shop-day(s))')
+
+    # inject Deputy shift-lead schedule. Exported from the Deputy sheet as
+    # deputy_schedule_raw.csv (columns: Date, Shop, ShiftLabel, EmployeeName, EmployeeId,
+    # IsEmptySlot, ScheduledStart, ScheduledEnd), one row per shop/shift/day. Read-only
+    # input, same as the HME timer data. Keyed "YYYY-MM-DD|Shop|ShiftLabel" -> {lead, empty};
+    # empty=true (IsEmptySlot) means nobody was scheduled, which the client treats as N/A.
+    # If the CSV isn't present this run, the existing REAL_DEPUTY_SCHEDULE block is left
+    # untouched so a partial refresh never wipes a good schedule.
+    if os.path.exists('deputy_schedule_raw.csv'):
+        deputy = {}
+        with open('deputy_schedule_raw.csv', newline='', encoding='utf-8-sig') as f:
+            for row in csv.DictReader(f):
+                date = (row.get('Date') or '').strip()
+                shop = (row.get('Shop') or '').strip()
+                shift = (row.get('ShiftLabel') or '').strip()
+                if not (date and shop and shift):
+                    continue
+                empty = (row.get('IsEmptySlot') or '').strip().upper() == 'TRUE'
+                name = (row.get('EmployeeName') or '').strip()
+                deputy[f'{date}|{shop}|{shift}'] = {'lead': (None if empty or not name else name), 'empty': empty}
+        d_start = html.index("const REAL_DEPUTY_SCHEDULE = ")
+        d_end = html.index(";", d_start)
+        html = html[:d_start] + f"const REAL_DEPUTY_SCHEDULE = {json.dumps(deputy)}" + html[d_end:]
+        empties = sum(1 for v in deputy.values() if v['empty'])
+        print(f'  injected REAL_DEPUTY_SCHEDULE ({len(deputy)} slot(s), {empties} empty)')
+    else:
+        print('  deputy_schedule_raw.csv not present — leaving existing REAL_DEPUTY_SCHEDULE block as-is')
 
     # keep the dashboard's internal "today" in sync with the actual current date
     today = datetime.now(ZoneInfo('America/Los_Angeles'))
