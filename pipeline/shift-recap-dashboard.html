@@ -497,6 +497,7 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
 .ov-item-shop{ font-family:'Anton',sans-serif; font-size:16px; text-transform:uppercase; color:var(--text); }
 .ov-item-meta{ font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-faint); white-space:nowrap; }
 .ov-item-text{ display:block; font-size:13px; line-height:1.5; color:var(--text-dim); }
+.clamp3{ display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
 
 .ov-pattern{ background:var(--surface-raised); border:1px solid var(--hairline); border-left:3px solid var(--amber); border-radius:12px; padding:13px 14px; margin-bottom:9px; }
 .ov-pattern-label{ font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:.08em; margin-bottom:5px; }
@@ -61775,7 +61776,7 @@ function getHazards(code, range){
 }
 function getPeople(code, range){
   const shop = CODE_TO_SHOP[code], S = idxSetFor(range), map = new Map();
-  records.forEach(r => {
+  records.forEach((r, ri) => {
     if(r.shop!==shop || !S.has(r.dayIndex)) return;
     const mentions = (r.namedMentions && r.namedMentions.length) ? r.namedMentions
       : (r.flags||[]).filter(f=>f.employee).map(f=>({ name:f.employee, kind:f.kind, source:f.text }));
@@ -61787,7 +61788,7 @@ function getPeople(code, range){
       const e = map.get(key);
       if(m.kind==='good') e.good++; else e.bad++;
       const src = (m.source||'').toString().trim();
-      if(src && src.toLowerCase()!=='none') e.excerpts.push({ kind:m.kind, when: r.shift+' · '+fmtDate(dateForIndex(r.dayIndex)), text: src, _d:r.dayIndex });
+      if(src && src.toLowerCase()!=='none') e.excerpts.push({ kind:m.kind, when: r.shift+' · '+fmtDate(dateForIndex(r.dayIndex)), text: src, _d:r.dayIndex, ri:ri });
     });
   });
   const arr = [...map.values()];
@@ -62086,24 +62087,29 @@ function peopleView(){
   const all = getPeople(ohCode, ohRange);
   const shown = all.filter(p => matches(p, ohQ)).sort((a,b) => b.bad - a.bad || b.good - a.good);
   const flagged = all.filter(p => p.bad > 0).length;
+  const row = p =>
+    '<button class="oh-row" data-person="' + esc(p.name) + '">'
+    + '<span style="display:flex;align-items:center;gap:11px;min-width:0">'
+    + '<span class="oh-dot" style="background:' + (p.bad > 1 ? 'var(--bad)' : p.bad === 1 ? 'var(--watch)' : 'var(--good)') + '"></span>'
+    + '<span><span class="oh-rowname">' + esc(p.name) + '</span>'
+    + '<span class="oh-meta" style="display:block;padding-top:4px">'
+    + (p.excerpts.length === 1 ? '1 excerpt' : p.excerpts.length + ' excerpts') + '</span></span></span>'
+    + '<span style="display:flex;align-items:center;gap:11px" class="oh-meta">'
+    + '<span style="color:#DBE5F1">+' + p.good + '  −' + p.bad + '</span>'
+    + '<span class="oh-caret">&rsaquo;</span></span></button>';
+  const needsLook = shown.filter(p => p.bad > 0);
+  const standouts = shown.filter(p => p.bad === 0);
+  let list = '';
+  if(needsLook.length) list += '<div class="oh-section act">Needs a look &middot; ' + needsLook.length + '</div>' + needsLook.map(row).join('');
+  if(standouts.length) list += '<div class="oh-section clean">Standouts &middot; ' + standouts.length + '</div>' + standouts.map(row).join('');
+  if(!shown.length) list = '<div class="oh-empty" style="margin-top:8px">Nobody at this stand matches that</div>';
   const ctx = ohQ.trim() ? shown.length + ' of ' + all.length + ' match “' + ohQ.trim() + '”'
                          : all.length + ' mentioned by name · ' + flagged + ' flagged';
   return subHead('People', ctx)
     + '<div class="oh-search"><span style="color:var(--text-faint)">&#8981;</span>'
       + '<input id="oh-q" type="search" placeholder="Search a name or a recap line" value="' + esc(ohQ) + '">'
       + (ohQ ? '<button id="oh-clear">clear</button>' : '') + '</div>'
-    + '<div style="margin-top:12px">' + shown.map(p =>
-        '<button class="oh-row" data-person="' + esc(p.name) + '">'
-        + '<span style="display:flex;align-items:center;gap:11px;min-width:0">'
-        + '<span class="oh-dot" style="background:' + (p.bad > 1 ? 'var(--bad)' : p.bad === 1 ? 'var(--watch)' : 'var(--good)') + '"></span>'
-        + '<span><span class="oh-rowname">' + esc(p.name) + '</span>'
-        + '<span class="oh-meta" style="display:block;padding-top:4px">'
-        + (p.excerpts.length === 1 ? '1 excerpt' : p.excerpts.length + ' excerpts') + '</span></span></span>'
-        + '<span style="display:flex;align-items:center;gap:11px" class="oh-meta">'
-        + '<span style="color:#DBE5F1">+' + p.good + '  \u2212' + p.bad + '</span>'
-        + '<span class="oh-caret">&rsaquo;</span></span></button>').join('')
-    + (shown.length ? '' : '<div class="oh-empty" style="margin-top:8px">Nobody at this stand matches that</div>')
-    + '</div>'
+    + '<div style="margin-top:12px">' + list + '</div>'
     + '<div class="oh-foot">Search covers names and the recap text itself, so “drain cover” finds the person who reported it. Ranked by who is being flagged, not alphabetically.</div>';
 }
 
@@ -62112,11 +62118,11 @@ function personView(){
   if (!p) return '';
   return subHead(p.name, p.good + ' good · ' + p.bad + ' bad')
     + '<div class="oh-cards" style="margin-top:20px">' + p.excerpts.map(e =>
-        '<div class="oh-card ' + (e.kind === 'bad' ? 'bad' : 'good') + '" style="cursor:default">'
-        + '<span class="oh-quote">' + esc(e.text) + '</span>'
+        '<button class="oh-card ' + (e.kind === 'bad' ? 'bad' : 'good') + '" onclick="openRecapModal(' + e.ri + ')">'
+        + '<span class="oh-quote clamp3">' + esc(e.text) + '</span>'
         + '<span class="oh-metrics"><span style="color:' + (e.kind === 'bad' ? '#FFB3BB' : '#7FE0C2') + '">'
         + (e.kind === 'bad' ? 'flagged' : 'called out') + '</span>'
-        + '<span class="m">' + esc(e.when) + '</span></span></div>').join('') + '</div>'
+        + '<span class="m">' + esc(e.when) + '</span></span></button>').join('') + '</div>'
     + '<div class="oh-foot">Excerpts are shown as written — the sentence is the evidence, so it is never rewritten into a count.</div>';
 }
 
@@ -62171,12 +62177,12 @@ function ovItems(range){
   const S = idxSetFor(range), needs = [], worth = [];
   CODES.forEach(code => {
     const shop = CODE_TO_SHOP[code];
-    records.forEach(r => {
+    records.forEach((r, ri) => {
       if (r.shop !== shop || !S.has(r.dayIndex) || !r.employee) return;
       (r.flags || []).forEach(f => {
         const bad = f.kind === 'bad';
         if (bad ? !isSubstantiveFlag(f) : !isRealFlag(f)) return;
-        const item = { code, shift: r.shift, dayIndex: r.dayIndex, text: f.text, hazard: isHazardFlag(f) };
+        const item = { code, shift: r.shift, dayIndex: r.dayIndex, text: f.text, hazard: isHazardFlag(f), recordIndex: ri };
         (bad ? needs : worth).push(item);
       });
     });
@@ -62206,10 +62212,10 @@ function ovPatterns(needs){
 }
 
 function ovItemHtml(i, cls){
-  return '<button class="ov-item ' + cls + '" data-code="' + esc(i.code) + '">'
+  return '<button class="ov-item ' + cls + '" onclick="openRecapModal(' + i.recordIndex + ')">'
     + '<span class="ov-item-top"><span class="ov-item-shop">' + esc(i.code) + '</span>'
     + '<span class="ov-item-meta">' + esc(fmtDate(dateForIndex(i.dayIndex))) + ' &middot; ' + esc(i.shift) + '</span></span>'
-    + '<span class="ov-item-text">' + esc(i.text) + '</span></button>';
+    + '<span class="ov-item-text clamp3">' + esc(i.text) + '</span></button>';
 }
 
 function overviewView(){
@@ -62234,10 +62240,31 @@ function overviewView(){
     + '</div>';
 
   html += '<div class="oh-section act">Needs attention &middot; ' + needs.length + '</div>';
-  html += needs.length
-    ? needs.slice(0, CAP).map(i => ovItemHtml(i, 'urgent')).join('')
-      + (needs.length > CAP ? '<div class="oh-foot">+' + (needs.length - CAP) + ' more — narrow the range to see them all</div>' : '')
-    : '<div class="oh-allclear">Nothing flagged across the franchise for ' + esc(meta.word) + '</div>';
+  if(needs.length){
+    // Cluster under category headers in a fixed order; needs is already sorted
+    // (hazards first, then newest), so items stay ordered within each group.
+    const NEED_CATS = [
+      { cat:'Safety hazard',     icon:'🛑' },
+      { cat:'Understaffed',      icon:'📉' },
+      { cat:'Crew feedback',     icon:'👥' },
+      { cat:'Tardy / early-out', icon:'🕐' }
+    ];
+    const grouped = {};
+    needs.forEach(i => { const c = flagCategory(i.text); (grouped[c] = grouped[c] || []).push(i); });
+    const ordered = NEED_CATS.concat(Object.keys(grouped)
+      .filter(c => !NEED_CATS.some(x => x.cat === c))
+      .map(c => ({ cat:c, icon:'•' })));
+    let rendered = 0;
+    ordered.forEach(g => {
+      const items = grouped[g.cat];
+      if(!items || !items.length) return;
+      html += '<div class="oh-section">' + g.icon + ' ' + esc(g.cat) + ' &middot; ' + items.length + '</div>';
+      items.forEach(i => { if(rendered < CAP){ html += ovItemHtml(i, 'urgent'); rendered++; } });
+    });
+    if(needs.length > CAP) html += '<div class="oh-foot">+' + (needs.length - CAP) + ' more — narrow the range to see them all</div>';
+  } else {
+    html += '<div class="oh-allclear">Nothing flagged across the franchise for ' + esc(meta.word) + '</div>';
+  }
 
   html += '<div class="oh-section">Cross-shop patterns</div>';
   html += patterns.length
