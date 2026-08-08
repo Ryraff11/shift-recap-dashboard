@@ -1,6 +1,9 @@
 # Raw CSV exports are regenerated on every pipeline run — never commit them
 pipeline/*_recap_raw.csv
 
+# Deputy shift-lead schedule export, regenerated each run (read-only input)
+pipeline/deputy_schedule_raw.csv
+
 # Intermediate per-shop JSON built on every run — regenerated, not source
 pipeline/*_records_full_window.json
 
