@@ -64731,6 +64731,23 @@ function ohIsHazard(txt){
 function isHazardFlag(f){ return !!(f && f.text && f.text.indexOf('Hazard reported')===0 && ohIsHazard(f.text)); }
 function isRealFlag(f){ return !!(f && f.text && f.text!=='None' && flagCategory(f.text)!=='Late submission'); }
 
+// A kind:'bad' flag counts as a real finding only if it carries actual content.
+// Extends the ohIsHazard negation idea to every bad flag, category-aware. Good-flag
+// counting stays on isRealFlag (a positive note is a legitimate good flag).
+const OH_POSITIVE   = /\b(killed it|crushed it|nailed it|went (great|well|smoothly?)|all good|great (shift|day|morning|night)|good (shift|day|morning|night)|awesome|amazing|perfect|on point|very vocal|no notes|no complaints|everyone (was|did) (great|good|amazing|awesome|vocal))\b/i;
+const OH_NEG_ISSUE  = /\b(no|not|nothing|none|zero)\b[\s\w]{0,20}?\b(struggl\w*|issues?|problems?|hazards?|concerns?|incidents?|complaints?|drama)\b/i;
+const OH_REAL_ISSUE = /\b(coaching|remind\w*|not completed|didn'?t|couldn'?t|wasn'?t|late|early|understaff\w*|tardy|wrong|forgot|miss(ed|ing|\b)|broke\w*|leak\w*|slow|behind|short.?staff\w*|need(s|ed)? to|should('?ve| have)|had to|out of|ran out|repair|complaint|rude|angry|slur|struggl\w*)\b/i;
+function isSubstantiveFlag(f){
+  if (!isRealFlag(f)) return false;
+  const cat = flagCategory(f.text);
+  if (cat === 'Safety hazard') return isHazardFlag(f);
+  if (cat === 'Tardy / early-out' || cat === 'Understaffed') return true;
+  const t = String(f.text), stripped = t.replace(OH_NEG_ISSUE, ' ');
+  if (OH_REAL_ISSUE.test(stripped)) return true;
+  if (OH_POSITIVE.test(t) || OH_NEG_ISSUE.test(t)) return false;
+  return true;
+}
+
 function lateMinutes(rec){
   const f = (rec.flags||[]).find(x=> x.text && x.text.indexOf('Recap submitted late')===0);
   if(!f) return null;
@@ -64766,7 +64783,7 @@ function getStands(range){
     const shop = CODE_TO_SHOP[code];
     const recs = records.filter(r => r.shop===shop && S.has(r.dayIndex) && r.employee);
     let goodN=0, badN=0;
-    recs.forEach(r => (r.flags||[]).forEach(f=>{ if(!isRealFlag(f)) return; if(f.kind==='good') goodN++; else badN++; }));
+    recs.forEach(r => (r.flags||[]).forEach(f=>{ if(f.kind==='good'){ if(isRealFlag(f)) goodN++; } else if(isSubstantiveFlag(f)) badN++; }));
     const lateRecs = recs.filter(r => r.isLate);
     const late = lateRecs.length;
     let missing = 0;
@@ -64794,7 +64811,7 @@ function getRecaps(code, range){
     const rec = records.find(r => r.shop===shop && r.dayIndex===d && r.shift===sh && r.employee);
     if(rec){
       let g=0, b=0;
-      (rec.flags||[]).forEach(f=>{ if(!isRealFlag(f)) return; if(f.kind==='good') g++; else b++; });
+      (rec.flags||[]).forEach(f=>{ if(f.kind==='good'){ if(isRealFlag(f)) g++; } else if(isSubstantiveFlag(f)) b++; });
       out.push({ shift: sh, filed: filedText(rec), late: !!rec.isLate, good:'+'+g, bad:'-'+b, by: ohShortName(rec.employee), note: recapNote(rec) });
     } else if(submissionStatus[d+'|'+shop+'|'+sh]==='missing'){
       out.push({ shift: sh, filed:'not filed', missing:true });
@@ -65219,9 +65236,10 @@ function ovItems(range){
     records.forEach(r => {
       if (r.shop !== shop || !S.has(r.dayIndex) || !r.employee) return;
       (r.flags || []).forEach(f => {
-        if (!isRealFlag(f)) return;
+        const bad = f.kind === 'bad';
+        if (bad ? !isSubstantiveFlag(f) : !isRealFlag(f)) return;
         const item = { code, shift: r.shift, dayIndex: r.dayIndex, text: f.text, hazard: isHazardFlag(f) };
-        (f.kind === 'bad' ? needs : worth).push(item);
+        (bad ? needs : worth).push(item);
       });
     });
   });
