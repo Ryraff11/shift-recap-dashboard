@@ -60637,6 +60637,27 @@ const HOUR_WEIGHTS = [0.015,0.045,0.085,0.095,0.065,0.05,0.045,0.05,0.07,0.09,0.
 const REAL_TIMER_DATA = {"Lichen": {"2026-07-27": {"laneTotalSec": 81, "laneTotal2Sec": null, "totalCars": 561}}, "Mad": {"2026-07-27": {"laneTotalSec": 124, "laneTotal2Sec": 126, "totalCars": 717}}, "Manz": {"2026-07-27": {"laneTotalSec": 72, "laneTotal2Sec": null, "totalCars": 514}}};
 function isoForIndex(i){ const dt=dateForIndex(i); return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0'); }
 
+// Deputy shift-lead schedule (injected by refresh_dashboard.py from the Deputy export
+// sheet). Shape: { "YYYY-MM-DD|Shop|ShiftLabel": {lead, empty} }, one entry per shop/
+// shift/day. empty=true means nobody was scheduled (call-out, no coverage). Read-only.
+const REAL_DEPUTY_SCHEDULE = {"2026-08-07|OV|Open":{"lead":"Myah Newton","empty":false},"2026-08-07|OV|Mid":{"lead":"Matthew Warner","empty":false},"2026-08-07|OV|Close":{"lead":"Heidi Johnson","empty":false},"2026-08-07|Lichen|Open":{"lead":"Patricia Gilbert","empty":false},"2026-08-07|Lichen|Mid":{"lead":"Kaylee Richardson","empty":false},"2026-08-07|Lichen|Close":{"lead":"Tajae Hudson","empty":false},"2026-08-07|Auburn|Open":{"lead":"Haleigh Singleton","empty":false},"2026-08-07|Auburn|Mid":{"lead":"Grace Holmes","empty":false},"2026-08-07|Auburn|Close":{"lead":"Sully Colgrove","empty":false},"2026-08-07|Fair Oaks|Open":{"lead":"Amari McGee","empty":false},"2026-08-07|Fair Oaks|Mid":{"lead":"Aryana Agheli","empty":false},"2026-08-07|Fair Oaks|Close":{"lead":"Graci Hoop","empty":false},"2026-08-07|Manz|Open":{"lead":"Emily Yearwood","empty":false},"2026-08-07|Manz|Mid":{"lead":"Palina Dallakyan","empty":false},"2026-08-07|Manz|Close":{"lead":"Desi Synhorst","empty":false},"2026-08-07|Mad|Open":{"lead":"Diego Angelina","empty":false},"2026-08-07|Mad|Mid":{"lead":"Lillie Miranda","empty":false},"2026-08-07|Mad|Close":{"lead":"Kylie Hollenbeck","empty":false},"2026-08-07|Fireside|Open":{"lead":"Maddie Orgen","empty":false},"2026-08-07|Fireside|Mid":{"lead":"Erica Hanson","empty":false},"2026-08-07|Fireside|Close":{"lead":"Taylor Richardson","empty":false},"2026-08-07|Antelope|Open":{"lead":"Igor Marin","empty":false},"2026-08-07|Antelope|Mid":{"lead":"Darius Wilson","empty":false},"2026-08-07|Antelope|Close":{"lead":null,"empty":true}};
+function deputyFor(dayIndex, shop, shift){ return REAL_DEPUTY_SCHEDULE[isoForIndex(dayIndex)+'|'+shop+'|'+shift] || null; }
+function scheduledLead(dayIndex, shop, shift){ const e = deputyFor(dayIndex, shop, shift); return (e && !e.empty && e.lead) ? e.lead : null; }
+// Empty-slot exception: nobody scheduled → nothing to submit, so it can't be missing or
+// late. Mark those slots 'untracked' so they read N/A everywhere (like an inactive shop).
+// Runs after the final submissionStatus write above.
+(function(){
+  const isoIdx = {};
+  for(let d=0; d<=TODAY_INDEX; d++){ isoIdx[isoForIndex(d)] = d; }
+  Object.keys(REAL_DEPUTY_SCHEDULE).forEach(key=>{
+    const e = REAL_DEPUTY_SCHEDULE[key];
+    if(!e || !e.empty) return;
+    const p = key.split('|'), d = isoIdx[p[0]];
+    if(d===undefined) return;
+    submissionStatus[`${d}|${p[1]}|${p[2]}`] = 'untracked';
+  });
+})();
+
 const dailyOps = {}; // dailyOps[shop][d] = {totalCars, laneTotalSec, laneTotal2Sec, isRealTimer, goalLaneTotal, goalLaneTotal2, netSales, dph, hourly[], sched, actualHrs, otHrs, laborCost}
 SHOPS.forEach(shop=>{
   dailyOps[shop] = [];
@@ -61687,13 +61708,22 @@ function getStands(range){
     recs.forEach(r => (r.flags||[]).forEach(f=>{ if(f.kind==='good'){ if(isRealFlag(f)) goodN++; } else if(isSubstantiveFlag(f)) badN++; }));
     const lateRecs = recs.filter(r => r.isLate);
     const late = lateRecs.length;
-    let missing = 0;
-    idxs.forEach(d => SHIFTS.forEach(sh => { if(submissionStatus[d+'|'+shop+'|'+sh]==='missing') missing++; }));
+    let missing = 0; const missingLeads = [];
+    idxs.forEach(d => SHIFTS.forEach(sh => {
+      if(submissionStatus[d+'|'+shop+'|'+sh]==='missing'){ missing++; const nm = scheduledLead(d, shop, sh); if(nm) missingLeads.push(ohShortName(nm)); }
+    }));
     const recaps = recs.length, onTime = Math.max(0, recaps - late);
     const byWho = {};
     lateRecs.forEach(r => { const nm = ohShortName(r.employee)||'Unknown'; byWho[nm]=(byWho[nm]||0)+1; });
     let lateWho = Object.keys(byWho).map(nm => byWho[nm]>1 ? nm+' ×'+byWho[nm]+' late' : nm+' late').slice(0,3).join(' · ');
-    if(missing>0){ const mt = missing+' not filed'; lateWho = lateWho ? lateWho+' · '+mt : mt; }
+    if(missing>0){
+      // list the scheduled leads for the not-filed shifts (capped at 3); fall back to a count when unknown
+      const named = missingLeads.slice(0,3).map(n => n+' not filed');
+      let mt;
+      if(named.length){ mt = named.join(' · '); const rest = missing - Math.min(missingLeads.length,3); if(rest>0) mt += ' · +'+rest+' not filed'; }
+      else { mt = missing+' not filed'; }
+      lateWho = lateWho ? lateWho+' · '+mt : mt;
+    }
     let hazards = 0;
     records.forEach(r=>{ if(r.shop!==shop || !S.has(r.dayIndex)) return; (r.flags||[]).forEach(f=>{ if(isHazardFlag(f)) hazards++; }); });
     return { code, recaps, goodN, badN, onTime, late, missing, lateWho, hazards };
@@ -61713,9 +61743,9 @@ function getRecaps(code, range){
     if(rec){
       let g=0, b=0;
       (rec.flags||[]).forEach(f=>{ if(f.kind==='good'){ if(isRealFlag(f)) g++; } else if(isSubstantiveFlag(f)) b++; });
-      out.push({ shift: sh, filed: filedText(rec), late: !!rec.isLate, good:'+'+g, bad:'-'+b, by: ohShortName(rec.employee), note: recapNote(rec) });
+      out.push({ shift: sh, filed: filedText(rec), late: !!rec.isLate, good:'+'+g, bad:'-'+b, by: ohShortName(rec.employee), note: recapNote(rec), scheduled: rec.isLate ? scheduledLead(d, shop, sh) : null });
     } else if(submissionStatus[d+'|'+shop+'|'+sh]==='missing'){
-      out.push({ shift: sh, filed:'not filed', missing:true });
+      out.push({ shift: sh, filed:'not filed', missing:true, scheduled: scheduledLead(d, shop, sh) });
     }
   }));
   return out;
@@ -62005,7 +62035,9 @@ function recapsView(){
             + '<span class="b">' + esc(r.bad) + '</span><span class="m">' + esc(r.by) + '</span></span>')
         + (r.note ? '<span class="oh-meta" style="color:#DBE5F1;line-height:1.5">' + esc(r.note) + '</span>' : '')
         + (r.missing || r.late ? '<span class="oh-chips"><span class="oh-chip ' + (r.missing ? 'bad' : 'watch') + '">'
-            + (r.missing ? 'no recap on file' : 'filed late') + '</span></span>' : '')
+            + (r.missing ? 'no recap on file' : 'filed late') + '</span>'
+            + (r.scheduled ? '<span class="oh-chip">scheduled: ' + esc(r.scheduled) + '</span>' : '')
+            + '</span>' : '')
         + '</div>';
     }).join('') + '</div>'
     + '<div class="oh-foot">Newest first. Shifts with no recap stay in the list as red cards so a gap is never invisible.</div>';
