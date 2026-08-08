@@ -482,6 +482,50 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
 
     .bar-scroll, .peak-scroll{min-height:100px;}
   }
+
+/* ===== OVERVIEW ===== */
+.overview-wrap{ max-width:560px; margin:0 auto; padding:0 20px; }
+.overview-bar{
+  background:linear-gradient(135deg, #156299, #0e4a75);
+  border-radius:10px; padding:15px 16px; margin-bottom:20px;
+  display:flex; justify-content:space-between; align-items:center;
+  border:1px solid #2578ad; cursor:pointer;
+}
+.overview-left{ display:flex; flex-direction:column; gap:2px; }
+.overview-title{ font-family:'Anton',sans-serif; font-weight:400; font-size:16px; text-transform:uppercase; letter-spacing:.02em; color:#fff; }
+.overview-sub{ font-size:10.5px; color:#cfe3f0; }
+.overview-right{ display:flex; align-items:center; }
+.overview-badge{ background:#DA262E; color:#fff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:10px; margin-right:8px; }
+.overview-arrow{ color:#fff; font-size:15px; }
+
+:root{
+  --ov-bad:#DA262E; --ov-amber:#F8E316; --ov-good:#3ecf8e; --ov-faint:#65788c;
+  --ov-surface:#132741; --ov-surface-raised:#1a3252; --ov-line:#22395c;
+}
+.ov-stat-card{ flex:1; background:var(--ov-surface); border-radius:8px; padding:12px 8px; text-align:center; }
+.ov-stat-card .v{ font-size:20px; font-weight:700; }
+.ov-stat-card .v.bad{ color:var(--ov-bad); } .ov-stat-card .v.amber{ color:var(--ov-amber); } .ov-stat-card .v.ok{ color:var(--ov-good); }
+.ov-stat-card .l{ font-size:8.5px; color:var(--ov-faint); text-transform:uppercase; letter-spacing:.03em; margin-top:3px; }
+
+.ov-item{ background:var(--ov-surface); border-radius:8px; padding:12px 14px; margin-bottom:9px; border-left:3px solid transparent; cursor:pointer; }
+.ov-item.urgent{ border-left-color:var(--ov-bad); }
+.ov-item.good{ border-left-color:var(--ov-good); }
+.ov-item-top{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px; }
+.ov-item-shop{ font-family:'Anton',sans-serif; font-weight:400; font-size:14px; }
+.ov-item-meta{ font-size:10px; color:var(--ov-faint); }
+.ov-item-text{ font-size:12px; line-height:1.5; color:#cbd6e0; }
+
+.ov-pattern-box{ background:var(--ov-surface-raised); border-radius:8px; padding:13px 14px; border-left:3px solid var(--ov-amber); margin-bottom:9px; }
+.ov-pattern-label{ font-size:10px; font-weight:700; color:var(--ov-amber); text-transform:uppercase; letter-spacing:.06em; margin-bottom:5px; }
+.ov-pattern-text{ font-size:12.5px; line-height:1.5; color:#eef2f6; }
+.ov-pattern-text b{ color:#fff; }
+
+.ov-roundup{ background:var(--ov-surface); border-radius:8px; }
+.ov-roundup-row{ display:flex; justify-content:space-between; padding:10px 14px; border-bottom:1px solid var(--ov-line); font-size:11.5px; }
+.ov-roundup-row:last-child{ border-bottom:none; }
+.ov-roundup-row .name{ font-weight:700; }
+.ov-roundup-row .nums{ color:var(--ov-good); }
+.ov-empty{ text-align:center; color:var(--ov-faint); padding:24px 14px; font-size:12.5px; }
 </style>
 </head>
 <body>
@@ -503,6 +547,18 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
 <main>
   <!-- ============ HOME ============ -->
   <div class="view active" id="view-home">
+    <div class="overview-wrap">
+      <div class="overview-bar" id="btn-overview">
+        <div class="overview-left">
+          <div class="overview-title">Overview</div>
+          <div class="overview-sub" id="overview-bar-sub">Loading…</div>
+        </div>
+        <div class="overview-right">
+          <span class="overview-badge" id="overview-badge-count" style="display:none;">● 0</span>
+          <span class="overview-arrow">→</span>
+        </div>
+      </div>
+    </div>
     <section class="oh" id="oh-app"></section>
   </div>
 
@@ -696,6 +752,37 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
       </select>
     </div>
     <div id="leaderboard-list"></div>
+  </div>
+
+  <!-- ============ OVERVIEW ============ -->
+  <div class="view" id="view-overview">
+    <button class="ghost-btn" id="btn-back-home-ov">← Home</button>
+    <h2 class="anton" style="margin:14px 0 4px;">Overview</h2>
+
+    <div class="range-picker" data-range-group="overview">
+      <button class="range-btn active" data-range="today">Today</button>
+      <button class="range-btn" data-range="7d">7 Days</button>
+      <button class="range-btn" data-range="30d">30 Days</button>
+      <button class="range-btn" data-range="mtd">Month to Date</button>
+    </div>
+
+    <div class="stat-row" style="display:flex; gap:8px; padding:16px 20px 4px;">
+      <div class="ov-stat-card"><div class="v bad" id="ov-stat-hazards">–</div><div class="l">Hazards</div></div>
+      <div class="ov-stat-card"><div class="v amber" id="ov-stat-flagged">–</div><div class="l">Flagged</div></div>
+      <div class="ov-stat-card"><div class="v ok" id="ov-stat-filed">–</div><div class="l">Recaps filed</div></div>
+    </div>
+
+    <div class="section-sub">Needs attention</div>
+    <div id="ov-needs-attention"></div>
+
+    <div class="section-sub">Cross-shop patterns</div>
+    <div id="ov-patterns"></div>
+
+    <div class="section-sub">Worth knowing</div>
+    <div id="ov-worth-knowing"></div>
+
+    <div class="section-sub">All routine</div>
+    <div class="ov-roundup" id="ov-routine"></div>
   </div>
 </main>
 
@@ -61362,6 +61449,120 @@ function renderLeaderboard(){
 document.getElementById('lb-rank-by').addEventListener('change', renderLeaderboard);
 
 
+
+/* ===== OVERVIEW ===== */
+const OV_STOPWORDS = new Set(['this','that','with','have','were','they','today','shift','about','there','their','would','could','should','which','while','still','also','some','just','been','being','when','then','than','from','into','over','under','again','doing','does','didn','wasn','aren','isn','the','and','for','are','was','but','not','you','all','can','had','has','out','get','got']);
+
+function detectCrossShopPatterns(indices){
+  const idxSet = new Set(indices);
+  const wordShops = {}, wordSamples = {};
+  const trackedShops = ACTIVE_SHOPS;
+  records.forEach(r=>{
+    if(!trackedShops.includes(r.shop) || !idxSet.has(r.dayIndex)) return;
+    r.flags.forEach(f=>{
+      if(f.kind!=='bad') return;
+      const seen = new Set();
+      f.text.toLowerCase().replace(/[^a-z\s]/g,' ').split(/\s+/)
+        .filter(w=>w.length>=4 && !OV_STOPWORDS.has(w))
+        .forEach(w=>{
+          if(seen.has(w)) return; seen.add(w);
+          if(!wordShops[w]){ wordShops[w]=new Set(); wordSamples[w]=[]; }
+          wordShops[w].add(r.shop);
+          wordSamples[w].push({shop:r.shop, text:f.text});
+        });
+    });
+  });
+  return Object.keys(wordShops)
+    .filter(w=>wordShops[w].size>=2)
+    .map(w=>({word:w, shops:[...wordShops[w]], samples:wordSamples[w].slice(0,3)}))
+    .sort((a,b)=>b.shops.length - a.shops.length)
+    .slice(0,5);
+}
+
+function renderOverview(rangeKey){
+  const indices = indicesForRange(rangeKey);
+  const idxSet = new Set(indices);
+  const trackedShops = ACTIVE_SHOPS;
+  const needsAttention = [], worthKnowing = [], routineShops = [];
+
+  trackedShops.forEach(shop=>{
+    const recs = records.filter(r=>r.shop===shop && idxSet.has(r.dayIndex));
+    let hasFlag = false;
+    recs.forEach(r=>{
+      r.flags.forEach(f=>{
+        if(flagCategory(f.text)==='Late submission') return;
+        const item = {shop, shift:r.shift, dayIndex:r.dayIndex, text:f.text, recordIndex:records.indexOf(r)};
+        if(f.kind==='bad'){ needsAttention.push(item); hasFlag = true; }
+        else worthKnowing.push(item);
+      });
+    });
+    if(!hasFlag) routineShops.push(shop);
+  });
+  needsAttention.sort((a,b)=>b.dayIndex-a.dayIndex);
+  worthKnowing.sort((a,b)=>b.dayIndex-a.dayIndex);
+
+  document.getElementById('ov-stat-hazards').textContent = needsAttention.filter(i=>i.text.startsWith('Hazard reported')).length;
+  document.getElementById('ov-stat-flagged').textContent = needsAttention.length;
+  document.getElementById('ov-stat-filed').textContent = records.filter(r=>trackedShops.includes(r.shop) && idxSet.has(r.dayIndex)).length;
+
+  const CAP = 25;
+  document.getElementById('ov-needs-attention').innerHTML = needsAttention.length===0
+    ? `<div class="ov-empty">Nothing flagged in this range.</div>`
+    : needsAttention.slice(0,CAP).map(i=>`<div class="ov-item urgent" onclick="openRecapModal(${i.recordIndex})">
+        <div class="ov-item-top"><span class="ov-item-shop">${escapeHtml(i.shop)}</span><span class="ov-item-meta">${fmtDate(dateForIndex(i.dayIndex))} · ${i.shift}</span></div>
+        <div class="ov-item-text">${escapeHtml(i.text)}</div></div>`).join('')
+      + (needsAttention.length>CAP ? `<div class="ov-empty">+${needsAttention.length-CAP} more — narrow the range to see all</div>` : '');
+
+  const patterns = detectCrossShopPatterns(indices);
+  document.getElementById('ov-patterns').innerHTML = patterns.length===0
+    ? `<div class="ov-empty">No repeated issues across shops in this range.</div>`
+    : patterns.map(p=>`<div class="ov-pattern-box">
+        <div class="ov-pattern-label">⚡ "${escapeHtml(p.word)}" mentioned by ${p.shops.length} shops</div>
+        <div class="ov-pattern-text"><b>${p.shops.map(escapeHtml).join(', ')}</b> — ${escapeHtml(p.samples[0].text)}</div></div>`).join('');
+
+  document.getElementById('ov-worth-knowing').innerHTML = worthKnowing.length===0
+    ? `<div class="ov-empty">Nothing notable in this range.</div>`
+    : worthKnowing.slice(0,10).map(i=>`<div class="ov-item good" onclick="openRecapModal(${i.recordIndex})">
+        <div class="ov-item-top"><span class="ov-item-shop">${escapeHtml(i.shop)}</span><span class="ov-item-meta">${fmtDate(dateForIndex(i.dayIndex))} · ${i.shift}</span></div>
+        <div class="ov-item-text">${escapeHtml(i.text)}</div></div>`).join('');
+
+  document.getElementById('ov-routine').innerHTML =
+    routineShops.map(shop=>`<div class="ov-roundup-row"><span class="name">${escapeHtml(shop)}</span><span class="nums">clean</span></div>`).join('') +
+    [...INACTIVE_SHOPS].map(shop=>`<div class="ov-roundup-row"><span class="name">${escapeHtml(shop)}</span><span class="nums" style="color:var(--ov-faint);">not connected</span></div>`).join('');
+}
+
+function updateOverviewBadge(){
+  const idxSet = new Set(indicesForRange('today'));
+  const trackedShops = ACTIVE_SHOPS;
+  let count = 0;
+  records.forEach(r=>{
+    if(!trackedShops.includes(r.shop) || !idxSet.has(r.dayIndex)) return;
+    r.flags.forEach(f=>{ if(f.kind==='bad' && flagCategory(f.text)!=='Late submission') count++; });
+  });
+  const patterns = detectCrossShopPatterns(indicesForRange('today'));
+  const badgeEl = document.getElementById('overview-badge-count');
+  const subEl = document.getElementById('overview-bar-sub');
+  if(count===0 && patterns.length===0){
+    badgeEl.style.display = 'none';
+    subEl.textContent = 'All caught up';
+  } else {
+    badgeEl.style.display = '';
+    badgeEl.textContent = `● ${count}`;
+    subEl.textContent = `${count} need${count===1?'s':''} attention${patterns.length ? ' · ' + patterns.length + ' pattern' + (patterns.length===1?'':'s') + ' flagged' : ''}`;
+  }
+}
+
+let ovRangeState = 'today';
+document.getElementById('btn-overview').addEventListener('click', ()=>{ showView('overview'); renderOverview(ovRangeState); });
+document.getElementById('btn-back-home-ov').addEventListener('click', ()=>showView('home'));
+document.querySelectorAll('.range-picker[data-range-group="overview"] .range-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    ovRangeState = btn.dataset.range;
+    document.querySelectorAll('.range-picker[data-range-group="overview"] .range-btn').forEach(b=>b.classList.toggle('active', b.dataset.range===ovRangeState));
+    renderOverview(ovRangeState);
+  });
+});
+updateOverviewBadge();
 
 renderHome();
 
