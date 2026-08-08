@@ -162,32 +162,80 @@ def main():
     html = html[:t_start] + f"const REAL_TIMER_DATA = {json.dumps(timer)}" + html[t_end:]
     print(f'  injected REAL_TIMER_DATA ({len(timer)} shop(s), {sum(len(v) for v in timer.values())} shop-day(s))')
 
-    # inject Deputy shift-lead schedule. Exported from the Deputy sheet as
-    # deputy_schedule_raw.csv (columns: Date, Shop, ShiftLabel, EmployeeName, EmployeeId,
-    # IsEmptySlot, ScheduledStart, ScheduledEnd), one row per shop/shift/day. Read-only
-    # input, same as the HME timer data. Keyed "YYYY-MM-DD|Shop|ShiftLabel" -> {lead, empty};
-    # empty=true (IsEmptySlot) means nobody was scheduled, which the client treats as N/A.
-    # If the CSV isn't present this run, the existing REAL_DEPUTY_SCHEDULE block is left
-    # untouched so a partial refresh never wipes a good schedule.
+    # Deputy shift-lead schedule. Exported from the Deputy sheet as deputy_schedule_raw.csv
+    # (Date, Shop, ShiftLabel, EmployeeName, EmployeeId, IsEmptySlot, ScheduledStart, ScheduledEnd).
+    # Accumulated the same way as the HME timer data: each run MERGES the export into the
+    # persistent deputy_schedule_history.json and NEVER shrinks it, so the schedule survives
+    # even though the sheet itself only keeps a couple of recent days. A trailing window of
+    # that history is then injected as REAL_DEPUTY_SCHEDULE for the client to read.
+    #
+    # Keys: a row with a real Open/Mid/Close ShiftLabel uses "YYYY-MM-DD|Shop|ShiftLabel" —
+    # the exact key the client looks up. A row with a BLANK ShiftLabel (Deputy's safety
+    # behavior when a shop's leads don't map cleanly onto 3 dayparts, e.g. 4 overlapping
+    # leads) is NOT a daypart, so it gets a collision-proof key "YYYY-MM-DD|Shop|#<EmployeeId>"
+    # instead of silently overwriting sibling rows. Those are preserved in history for the
+    # record but are NOT injected — they have no Open/Mid/Close slot to display.
+    DEPUTY_HISTORY_FILE = 'deputy_schedule_history.json'
+    DEPUTY_WINDOW_DAYS = 45
+    deputy_hist = {}
+    if os.path.exists(DEPUTY_HISTORY_FILE):
+        with open(DEPUTY_HISTORY_FILE) as f:
+            deputy_hist = json.load(f)
     if os.path.exists('deputy_schedule_raw.csv'):
-        deputy = {}
+        merged, unlabeled = 0, 0
         with open('deputy_schedule_raw.csv', newline='', encoding='utf-8-sig') as f:
-            for row in csv.DictReader(f):
+            for i, row in enumerate(csv.DictReader(f)):
                 date = (row.get('Date') or '').strip()
                 shop = (row.get('Shop') or '').strip()
                 shift = (row.get('ShiftLabel') or '').strip()
-                if not (date and shop and shift):
+                if not (date and shop):
                     continue
                 empty = (row.get('IsEmptySlot') or '').strip().upper() == 'TRUE'
                 name = (row.get('EmployeeName') or '').strip()
-                deputy[f'{date}|{shop}|{shift}'] = {'lead': (None if empty or not name else name), 'empty': empty}
-        d_start = html.index("const REAL_DEPUTY_SCHEDULE = ")
-        d_end = html.index(";", d_start)
-        html = html[:d_start] + f"const REAL_DEPUTY_SCHEDULE = {json.dumps(deputy)}" + html[d_end:]
-        empties = sum(1 for v in deputy.values() if v['empty'])
-        print(f'  injected REAL_DEPUTY_SCHEDULE ({len(deputy)} slot(s), {empties} empty)')
+                emp_id = (row.get('EmployeeId') or '').strip()
+                if shift in ('Open', 'Mid', 'Close'):
+                    key = f'{date}|{shop}|{shift}'
+                else:
+                    unlabeled += 1
+                    # collision-proof: unlabeled/overlapping leads keyed by roster id so they
+                    # never overwrite each other (they simply won't render as a daypart).
+                    key = f'{date}|{shop}|#{emp_id or name or i}'
+                deputy_hist[key] = {
+                    'lead': (None if empty or not name else name),
+                    'empty': empty,
+                    'shift': shift,
+                    'id': emp_id,
+                }
+                merged += 1
+        with open(DEPUTY_HISTORY_FILE, 'w') as f:
+            json.dump(deputy_hist, f, indent=2, sort_keys=True)
+        print(f'  merged deputy schedule: {merged} row(s) this run ({unlabeled} unlabeled), '
+              f'{len(deputy_hist)} total in history')
     else:
-        print('  deputy_schedule_raw.csv not present — leaving existing REAL_DEPUTY_SCHEDULE block as-is')
+        print('  deputy_schedule_raw.csv not present — using existing deputy_schedule_history.json as-is')
+
+    # Inject a trailing window of RESOLVED (Open/Mid/Close) slots as REAL_DEPUTY_SCHEDULE,
+    # keyed exactly as the client reads it. Unlabeled (#id) keys stay in history but out of
+    # the injected payload since they have no daypart to render.
+    _dep_today = datetime.now(ZoneInfo('America/Los_Angeles')).date()
+    def _dep_in_window(ds):
+        try:
+            delta = (_dep_today - datetime.strptime(ds, '%Y-%m-%d').date()).days
+        except ValueError:
+            return False
+        return 0 <= delta <= DEPUTY_WINDOW_DAYS - 1
+    deputy_inject = {}
+    for key, v in deputy_hist.items():
+        parts = key.split('|')
+        if len(parts) != 3 or parts[2].startswith('#'):
+            continue
+        if _dep_in_window(parts[0]):
+            deputy_inject[key] = {'lead': v.get('lead'), 'empty': bool(v.get('empty'))}
+    d_start = html.index("const REAL_DEPUTY_SCHEDULE = ")
+    d_end = html.index(";", d_start)
+    html = html[:d_start] + f"const REAL_DEPUTY_SCHEDULE = {json.dumps(deputy_inject)}" + html[d_end:]
+    empties = sum(1 for x in deputy_inject.values() if x['empty'])
+    print(f'  injected REAL_DEPUTY_SCHEDULE ({len(deputy_inject)} slot(s) in last {DEPUTY_WINDOW_DAYS}d, {empties} empty)')
 
     # keep the dashboard's internal "today" in sync with the actual current date
     today = datetime.now(ZoneInfo('America/Los_Angeles'))
