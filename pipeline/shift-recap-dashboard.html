@@ -62192,23 +62192,46 @@ function ovItems(range){
   return { needs, worth };
 }
 
+// Structural / boilerplate terms that appear on recaps by design, not by coincidence —
+// fixed question prompts, flag prefixes, tardy-note language, generic filler, and pronouns.
+// Any phrase containing one is skipped, so cross-shop patterns reflect real shared wording
+// (e.g. "tap machine", "rapid rinser") rather than the form's own boilerplate.
+const OV_BOILER = new Set([
+  'hazard','reported','xbro','tardy','understaffed','coaching','chore','completed','submitted','recap','negotiables','nonnegotiables','wear','hats','struggled','note','shift','staffed',
+  'sent','send','sending','home','went','leave','left','early','late','goes','go',
+  'really','well','make','makes','making','sure','pretty','good','great','nice','going','doing','thing','things','stuff','lot','bit','definitely','actually','everyone','everybody','nobody','today','tonight','morning','night','felt','little','few','times','time','only','struggle','struggles','struggling','everything','done','easiest','able','though','around','broken','equipment',
+  'her','his','him','she','our','its','your','they','them','told','because','did','does','had','has','been','were','was'
+]);
+
+// Cross-shop patterns: 2-3 word phrases (n-grams) shared across >=2 shops. Phrase matching
+// (not single words) avoids boilerplate collisions ("hazard"/"reported"/"xbro") and
+// coincidental common-word collisions ("came"/"very"); a shared adjacent phrase with 2+
+// content words is genuinely unlikely to co-occur by chance.
 function ovPatterns(needs){
-  const codes = {}, sample = {};
+  const pc = {}, ps = {};
   needs.forEach(it => {
+    const toks = String(it.text).toLowerCase().replace(/[^a-z\s]/g,' ').split(/\s+/).filter(Boolean);
     const seen = new Set();
-    String(it.text).toLowerCase().replace(/[^a-z\s]/g,' ').split(/\s+/)
-      .filter(w => w.length >= 4 && !OV_STOP.has(w))
-      .forEach(w => {
-        if (seen.has(w)) return; seen.add(w);
-        if (!codes[w]) { codes[w] = new Set(); sample[w] = it.text; }
-        codes[w].add(it.code);
-      });
+    for (let n = 2; n <= 3; n++)
+      for (let i = 0; i + n <= toks.length; i++){
+        const gram = toks.slice(i, i + n);
+        if (gram.some(w => OV_BOILER.has(w))) continue;
+        if (gram.filter(w => !OV_STOP.has(w) && w.length >= 3).length < 2) continue;
+        const key = gram.join(' ');
+        if (seen.has(key)) continue; seen.add(key);
+        (pc[key] = pc[key] || new Set()).add(it.code);
+        if (!ps[key]) ps[key] = it.text;
+      }
   });
-  return Object.keys(codes)
-    .filter(w => codes[w].size >= 2)
-    .map(w => ({ word: w, codes: [...codes[w]], sample: sample[w] }))
-    .sort((a,b) => b.codes.length - a.codes.length)
-    .slice(0,5);
+  const ranked = Object.keys(pc).filter(k => pc[k].size >= 2)
+    .map(k => ({ word: k, codes: [...pc[k]], sample: ps[k] }))
+    .sort((a,b) => b.codes.length - a.codes.length || b.word.length - a.word.length);
+  const out = [];
+  for (const p of ranked){
+    if (out.some(q => q.word.includes(p.word) || p.word.includes(q.word))) continue;
+    out.push(p); if (out.length >= 5) break;
+  }
+  return out;
 }
 
 function ovItemHtml(i, cls){
