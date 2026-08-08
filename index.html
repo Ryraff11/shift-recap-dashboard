@@ -63708,7 +63708,7 @@ function isoForIndex(i){ const dt=dateForIndex(i); return dt.getFullYear()+'-'+S
 // Deputy shift-lead schedule (injected by refresh_dashboard.py from the Deputy export
 // sheet). Shape: { "YYYY-MM-DD|Shop|ShiftLabel": {lead, empty} }, one entry per shop/
 // shift/day. empty=true means nobody was scheduled (call-out, no coverage). Read-only.
-const REAL_DEPUTY_SCHEDULE = {"2026-08-07|OV|Open": {"lead": "Myah Newton", "empty": false}, "2026-08-07|OV|Mid": {"lead": "Matthew Warner", "empty": false}, "2026-08-07|OV|Close": {"lead": "Heidi Johnson", "empty": false}, "2026-08-07|Lichen|Open": {"lead": "Patricia Gilbert", "empty": false}, "2026-08-07|Lichen|Mid": {"lead": "Kaylee Richardson", "empty": false}, "2026-08-07|Lichen|Close": {"lead": "Tajae Hudson", "empty": false}, "2026-08-07|Auburn|Open": {"lead": "Haleigh Singleton", "empty": false}, "2026-08-07|Auburn|Mid": {"lead": "Grace Holmes", "empty": false}, "2026-08-07|Auburn|Close": {"lead": "Sully Colgrove", "empty": false}, "2026-08-07|Fair Oaks|Open": {"lead": "Amari McGee", "empty": false}, "2026-08-07|Fair Oaks|Mid": {"lead": "Aryana Agheli", "empty": false}, "2026-08-07|Fair Oaks|Close": {"lead": "Graci Hoop", "empty": false}, "2026-08-07|Manz|Open": {"lead": "Emily Yearwood", "empty": false}, "2026-08-07|Manz|Mid": {"lead": "Palina Dallakyan", "empty": false}, "2026-08-07|Manz|Close": {"lead": "Desi Synhorst", "empty": false}, "2026-08-07|Mad|Open": {"lead": "Diego Angelina", "empty": false}, "2026-08-07|Mad|Mid": {"lead": "Lillie Miranda", "empty": false}, "2026-08-07|Mad|Close": {"lead": "Kylie Hollenbeck", "empty": false}, "2026-08-07|Fireside|Open": {"lead": "Maddie Orgen", "empty": false}, "2026-08-07|Fireside|Mid": {"lead": "Erica Hanson", "empty": false}, "2026-08-07|Fireside|Close": {"lead": "Taylor Richardson", "empty": false}, "2026-08-07|Antelope|Open": {"lead": "Igor Marin", "empty": false}, "2026-08-07|Antelope|Mid": {"lead": "Darius Wilson", "empty": false}, "2026-08-07|Antelope|Close": {"lead": null, "empty": true}, "2026-08-08|OV|Open": {"lead": "Sophia Warr", "empty": false}, "2026-08-08|OV|Mid": {"lead": "Melanie Bellina", "empty": false}, "2026-08-08|OV|Close": {"lead": "Isa Valencia", "empty": false}, "2026-08-08|Lichen|Open": {"lead": "Kaylee Richardson", "empty": false}, "2026-08-08|Lichen|Mid": {"lead": "Patricia Gilbert", "empty": false}, "2026-08-08|Lichen|Close": {"lead": "Gabriel Zimmer", "empty": false}, "2026-08-08|Fair Oaks|Open": {"lead": "Laci Davies", "empty": false}, "2026-08-08|Fair Oaks|Mid": {"lead": "Julia Mann", "empty": false}, "2026-08-08|Fair Oaks|Close": {"lead": "Aryana Agheli", "empty": false}, "2026-08-08|Manz|Open": {"lead": "Madison Weideman", "empty": false}, "2026-08-08|Manz|Mid": {"lead": "Desi Synhorst", "empty": false}, "2026-08-08|Manz|Close": {"lead": "Moriah Askari", "empty": false}, "2026-08-08|Mad|Open": {"lead": "Katelan B'Williams", "empty": false}, "2026-08-08|Mad|Mid": {"lead": "Taylor Mason", "empty": false}, "2026-08-08|Mad|Close": {"lead": "Lillie Miranda", "empty": false}, "2026-08-08|Fireside|Open": {"lead": "Maddie Orgen", "empty": false}, "2026-08-08|Fireside|Mid": {"lead": "Igor Marin", "empty": false}, "2026-08-08|Fireside|Close": {"lead": "Madison Furton", "empty": false}, "2026-08-08|Antelope|Open": {"lead": "Nico Smith", "empty": false}, "2026-08-08|Antelope|Mid": {"lead": "Ariana Valencia", "empty": false}, "2026-08-08|Antelope|Close": {"lead": "Cory Brigmon", "empty": false}};
+const REAL_DEPUTY_SCHEDULE = {"2026-08-07|Antelope|Close": {"lead": null, "empty": true}, "2026-08-07|Antelope|Mid": {"lead": "Darius Wilson", "empty": false}, "2026-08-07|Antelope|Open": {"lead": "Igor Marin", "empty": false}, "2026-08-07|Auburn|Close": {"lead": "Sully Colgrove", "empty": false}, "2026-08-07|Auburn|Mid": {"lead": "Grace Holmes", "empty": false}, "2026-08-07|Auburn|Open": {"lead": "Haleigh Singleton", "empty": false}, "2026-08-07|Fair Oaks|Close": {"lead": "Graci Hoop", "empty": false}, "2026-08-07|Fair Oaks|Mid": {"lead": "Aryana Agheli", "empty": false}, "2026-08-07|Fair Oaks|Open": {"lead": "Amari McGee", "empty": false}, "2026-08-07|Fireside|Close": {"lead": "Taylor Richardson", "empty": false}, "2026-08-07|Fireside|Mid": {"lead": "Erica Hanson", "empty": false}, "2026-08-07|Fireside|Open": {"lead": "Maddie Orgen", "empty": false}, "2026-08-07|Lichen|Close": {"lead": "Tajae Hudson", "empty": false}, "2026-08-07|Lichen|Mid": {"lead": "Kaylee Richardson", "empty": false}, "2026-08-07|Lichen|Open": {"lead": "Patricia Gilbert", "empty": false}, "2026-08-07|Mad|Close": {"lead": "Kylie Hollenbeck", "empty": false}, "2026-08-07|Mad|Mid": {"lead": "Lillie Miranda", "empty": false}, "2026-08-07|Mad|Open": {"lead": "Diego Angelina", "empty": false}, "2026-08-07|Manz|Close": {"lead": "Desi Synhorst", "empty": false}, "2026-08-07|Manz|Mid": {"lead": "Palina Dallakyan", "empty": false}, "2026-08-07|Manz|Open": {"lead": "Emily Yearwood", "empty": false}, "2026-08-07|OV|Close": {"lead": "Heidi Johnson", "empty": false}, "2026-08-07|OV|Mid": {"lead": "Matthew Warner", "empty": false}, "2026-08-07|OV|Open": {"lead": "Myah Newton", "empty": false}, "2026-08-08|Antelope|Close": {"lead": "Cory Brigmon", "empty": false}, "2026-08-08|Antelope|Mid": {"lead": "Ariana Valencia", "empty": false}, "2026-08-08|Antelope|Open": {"lead": "Nico Smith", "empty": false}, "2026-08-08|Fair Oaks|Close": {"lead": "Aryana Agheli", "empty": false}, "2026-08-08|Fair Oaks|Mid": {"lead": "Julia Mann", "empty": false}, "2026-08-08|Fair Oaks|Open": {"lead": "Laci Davies", "empty": false}, "2026-08-08|Fireside|Close": {"lead": "Madison Furton", "empty": false}, "2026-08-08|Fireside|Mid": {"lead": "Igor Marin", "empty": false}, "2026-08-08|Fireside|Open": {"lead": "Maddie Orgen", "empty": false}, "2026-08-08|Lichen|Close": {"lead": "Gabriel Zimmer", "empty": false}, "2026-08-08|Lichen|Mid": {"lead": "Patricia Gilbert", "empty": false}, "2026-08-08|Lichen|Open": {"lead": "Kaylee Richardson", "empty": false}, "2026-08-08|Mad|Close": {"lead": "Lillie Miranda", "empty": false}, "2026-08-08|Mad|Mid": {"lead": "Taylor Mason", "empty": false}, "2026-08-08|Mad|Open": {"lead": "Katelan B'Williams", "empty": false}, "2026-08-08|Manz|Close": {"lead": "Moriah Askari", "empty": false}, "2026-08-08|Manz|Mid": {"lead": "Desi Synhorst", "empty": false}, "2026-08-08|Manz|Open": {"lead": "Madison Weideman", "empty": false}, "2026-08-08|OV|Close": {"lead": "Isa Valencia", "empty": false}, "2026-08-08|OV|Mid": {"lead": "Melanie Bellina", "empty": false}, "2026-08-08|OV|Open": {"lead": "Sophia Warr", "empty": false}};
 function deputyFor(dayIndex, shop, shift){ return REAL_DEPUTY_SCHEDULE[isoForIndex(dayIndex)+'|'+shop+'|'+shift] || null; }
 function scheduledLead(dayIndex, shop, shift){ const e = deputyFor(dayIndex, shop, shift); return (e && !e.empty && e.lead) ? e.lead : null; }
 // Empty-slot exception: nobody scheduled → nothing to submit, so it can't be missing or
@@ -65017,6 +65017,8 @@ function homeView(){
   const act = stands.filter(s => s.tone !== 'ok').sort((a,b) => (a.tone === 'bad' ? 0 : 1) - (b.tone === 'bad' ? 0 : 1));
   const clean = stands.filter(s => s.tone === 'ok');
   const sum = k => stands.reduce((n,s) => n + s[k], 0);
+  let weekMissing = 0;
+  indicesForRange('7d').forEach(d => ACTIVE_SHOPS.forEach(shop => SHIFTS.forEach(sh => { if(submissionStatus[d+'|'+shop+'|'+sh]==='missing') weekMissing++; })));
 
   html += '<div class="oh-kpis">'
     + '<div class="oh-kpi"><div class="oh-kpi-n">' + sum('recaps') + '</div><div class="oh-kpi-l">RECAPS</div></div>'
@@ -65026,7 +65028,10 @@ function homeView(){
     + '<div class="oh-sub">' + stands.length + ' stands · ' + sum('late') + ' late · ' + sum('missing') + ' missing · ' + esc(meta.word) + '</div>'
     + '<div class="oh-jump"><button data-go="overview"><b>Overview</b><span>&rsaquo;</span></button>'
     + '<button id="oh-compare"><b>Compare</b><span>&rsaquo;</span></button>'
-    + '<button id="oh-board"><b>Leaderboard</b><span>&rsaquo;</span></button></div>';
+    + '<button id="oh-board"><b>Leaderboard</b><span>&rsaquo;</span></button></div>'
+    + '<button class="oh-navcard" data-go="missing" style="width:100%;margin-top:11px;"><span><b>Missing this week</b>'
+    + '<i class="' + (weekMissing ? 'warn' : '') + '">' + weekMissing + ' not filed &middot; last 7 days</i></span>'
+    + '<span class="oh-caret" style="font-size:18px">&rsaquo;</span></button>';
 
   if (!act.length) html += '<div class="oh-allclear">Nothing needs you — every stand is clean for ' + esc(meta.word) + '</div>';
 
@@ -65322,10 +65327,51 @@ function overviewView(){
   return html + '<div class="oh-foot">Every stand across the franchise in one range. Tap any stand to open its detail.</div>';
 }
 
+/* ---- missing this week: cross-shop recaps not filed over the last 7 days ----
+   Pure read of submissionStatus (empty-slot shifts are already marked 'untracked',
+   so they never show here) + the Deputy scheduledLead for who was responsible. */
+function missingThisWeek(){
+  const days = [];
+  indicesForRange('7d').slice().sort((a,b)=> b-a).forEach(d=>{
+    const rows = [];
+    ACTIVE_SHOPS.forEach(shop => SHIFTS.forEach(shift => {
+      if(submissionStatus[d+'|'+shop+'|'+shift] === 'missing'){
+        rows.push({ code: shop.toUpperCase(), shift, lead: scheduledLead(d, shop, shift) });
+      }
+    }));
+    days.push({ dayIndex: d, date: dateForIndex(d), rows });
+  });
+  return days;
+}
+function missingView(){
+  const days = missingThisWeek();
+  const total = days.reduce((n,x)=> n + x.rows.length, 0);
+  let html = head('Missing this week', '', 'DB Sac', true)
+    + '<div class="oh-sub" style="margin:6px 0 16px;">' + total + ' recap' + (total===1?'':'s') + ' not filed &middot; last 7 days &middot; newest first</div>';
+  if(total === 0){
+    return html + '<div class="oh-allclear">Every scheduled recap is in for the last 7 days.</div>'
+      + '<div class="oh-foot">Empty-slot shifts (nobody scheduled) are treated as N/A, never counted as missing.</div>';
+  }
+  days.forEach(day=>{
+    if(!day.rows.length) return;
+    html += '<div class="oh-section act">' + esc(fmtDate(day.date)) + (day.dayIndex===TODAY_INDEX ? ' &middot; Today' : '') + ' &middot; ' + day.rows.length + '</div>'
+      + day.rows.map(r =>
+          '<button class="ov-item urgent" data-code="' + esc(r.code) + '">'
+          + '<span class="ov-item-top"><span class="ov-item-shop">' + esc(r.code) + '</span>'
+          + '<span class="ov-item-meta">' + esc(r.shift) + '</span></span>'
+          + (r.lead
+              ? '<span class="ov-item-text">scheduled: ' + esc(r.lead) + '</span>'
+              : '<span class="ov-item-text" style="color:var(--text-faint)">no schedule data for this day</span>')
+          + '</button>').join('');
+  });
+  return html + '<div class="oh-foot">Tap a shift to open the stand. Empty-slot shifts (nobody scheduled) are treated as N/A, never counted as missing.</div>';
+}
+
 function render(){
   const host = document.getElementById('oh-app');
   const body = ohScreen === 'home' ? homeView()
     : ohScreen === 'overview' ? overviewView()
+    : ohScreen === 'missing' ? missingView()
     : ohScreen === 'stand' ? standView()
     : ohScreen === 'recaps' ? recapsView()
     : ohScreen === 'times' ? timesView()
@@ -65335,13 +65381,13 @@ function render(){
     : ohScreen === 'board' ? boardView()
     : personView();
 
-  const backLabel = (ohScreen === 'stand' || ohScreen === 'compare' || ohScreen === 'board' || ohScreen === 'overview') ? 'All stands'
+  const backLabel = (ohScreen === 'stand' || ohScreen === 'compare' || ohScreen === 'board' || ohScreen === 'overview' || ohScreen === 'missing') ? 'All stands'
     : ohScreen === 'person' ? 'People' : ohCode;
   host.innerHTML = (ohScreen === 'home' ? '' : '<button class="oh-back" id="oh-back">&larr; ' + esc(backLabel) + '</button>') + body;
 
   const on = (sel, fn) => { const el = host.querySelector(sel); if (el) el.addEventListener('click', fn); };
   on('#oh-back', () => {
-    ohScreen = (ohScreen === 'stand' || ohScreen === 'compare' || ohScreen === 'board' || ohScreen === 'overview') ? 'home'
+    ohScreen = (ohScreen === 'stand' || ohScreen === 'compare' || ohScreen === 'board' || ohScreen === 'overview' || ohScreen === 'missing') ? 'home'
       : ohScreen === 'person' ? 'people' : 'stand';
     ohRangeOpen = false;
     render();
