@@ -1,6 +1,6 @@
 """
 Accumulates HME timer data into a persistent history file (hme_timer_history.json),
-then injects the current 30-day window's worth of it into the dashboard HTML.
+then injects the current 60-day window's worth of it into the dashboard HTML.
 
 Unlike the recap pipeline, this does NOT regenerate from scratch each run --
 each HME email is the only record of that day that will ever exist, so today's
@@ -18,7 +18,7 @@ from parse_hme_email import parse_hme_report
 
 HISTORY_FILE = 'hme_timer_history.json'
 DASHBOARD_FILE = 'shift-recap-dashboard.html'
-DAYS = 30
+DAYS = 60  # matches the dashboard's 60-day data window (days=60 in the template)
 
 def load_history():
     if os.path.exists(HISTORY_FILE):
@@ -112,7 +112,7 @@ def main():
 
     real_timer_js = build_real_timer_js(history)
     inject_into_dashboard(real_timer_js)
-    print('Dashboard updated with current 30-day timer window.')
+    print(f'Dashboard updated with current {DAYS}-day timer window.')
 
     for shop, by_idx in real_timer_js.items():
         print(f'  {shop}: {len(by_idx)} real day(s) in current window')
