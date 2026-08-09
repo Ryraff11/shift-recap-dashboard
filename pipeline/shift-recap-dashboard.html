@@ -60686,6 +60686,7 @@ SHOPS.forEach(shop=>{
     const laborCost = actualHours*wage + overtimeHours*wage*0.5;
     dailyOps[shop].push({
       totalCars, laneTotalSec, laneTotal2Sec, isRealTimer: !!realT,
+      timerWindow: (realT && realT.window) || null, // report coverage span, e.g. '5:00a–11:00p'
       goalLaneTotal: makeGoalSplit(0.35), goalLaneTotal2: makeGoalSplit(0.85),
       netSales, dph, hourly,
       scheduledHours, actualHours, overtimeHours, laborCost
@@ -61756,7 +61757,7 @@ function getTimes(code, range){
   const idxs = idxListFor(range).filter(i => dailyOps[shop] && dailyOps[shop][i] && dailyOps[shop][i].isRealTimer).sort((a,b)=> b-a);
   const rows = idxs.map(i => {
     const d = dailyOps[shop][i];
-    return { day: fmtDate(dateForIndex(i)), sec: Math.round(d.laneTotalSec), sec2: (two && d.laneTotal2Sec>0) ? Math.round(d.laneTotal2Sec) : null, cars: d.totalCars };
+    return { day: fmtDate(dateForIndex(i)), sec: Math.round(d.laneTotalSec), sec2: (two && d.laneTotal2Sec>0) ? Math.round(d.laneTotal2Sec) : null, cars: d.totalCars, window: d.timerWindow || null };
   });
   return range==='today' ? rows.slice(0,1) : rows;
 }
@@ -62051,7 +62052,7 @@ function recapsView(){
 
 function timesView(){
   const rows = getTimes(ohCode, ohRange), lead = rows[0];
-  return subHead('Window times', lead ? 'HME uploads · latest ' + mmss(lead.sec) + ' lane total' : 'No HME uploads in range')
+  return subHead('Window times', lead ? 'HME uploads · latest ' + mmss(lead.sec) + ' lane total' + (lead.window ? ' · ' + lead.window : '') : 'No HME uploads in range')
     + '<div style="margin-top:20px">'
     + (rows.length
       ? '<div class="oh-thead"><div style="flex:1">DAY</div><div style="width:80px">LANE TOTAL</div><div style="width:70px;text-align:right">CARS</div></div>'
@@ -62065,11 +62066,12 @@ function timesView(){
             + '<div class="oh-tsub"><span>'
             + (diff === null ? 'first upload' : diff === 0 ? 'flat vs prior day'
                 : (diff > 0 ? '+' : '\u2212') + Math.abs(diff) + 's vs prior day') + '</span>'
-            + (d.sec2 ? '<span>lane 2 ' + mmss(d.sec2) + '</span>' : '') + '</div></div>';
+            + (d.sec2 ? '<span>lane 2 ' + mmss(d.sec2) + '</span>' : '')
+            + (d.window ? '<span>' + esc(d.window) + '</span>' : '') + '</div></div>';
         }).join('')
       : '<div class="oh-empty">No HME upload for this stand yet</div>')
     + '</div>'
-    + '<div class="oh-foot">Lane total is the HME average for the whole business day — under 1:30 green, over 2:00 red. Uploaded days only.</div>';
+    + '<div class="oh-foot">Lane total is the HME average across the report window shown on each day — under 1:30 green, over 2:00 red. Uploaded days only.</div>';
 }
 
 function hazView(){
