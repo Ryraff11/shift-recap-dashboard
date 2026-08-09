@@ -32,6 +32,20 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
 .oh-kpi-l{font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.12em; color:var(--text-dim);}
 .oh-sub{padding-top:14px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-dim);}
 
+/* home masthead: full-bleed lapis band (negative margins escape .oh's 20px padding) */
+.oh-mast{margin:-20px -20px 0; padding:22px 20px 18px; background:#156299; border-bottom:3px solid #F8E316; text-align:center;}
+.oh-mast-eyebrow{font-size:10.5px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:#F8E316;}
+.oh-mast-title{font-family:'Anton',sans-serif; font-weight:400; font-size:26px; line-height:1.05; text-transform:uppercase; color:#fff; padding-top:3px;}
+
+/* home launcher: 2x2 equal-weight tiles */
+.oh-tiles{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:20px;}
+.oh-tile{aspect-ratio:1.25/1; display:flex; align-items:center; justify-content:center; gap:8px;
+  background:#132741; border:1px solid #22395c; border-radius:14px; cursor:pointer;
+  transition:transform .08s ease, background .08s ease;}
+.oh-tile b{font-family:'Anton',sans-serif; font-weight:400; font-size:15px; letter-spacing:.03em; text-transform:uppercase; color:#F8E316;}
+.oh-tile span{font-size:15px; color:#F8E316; opacity:.8;}
+.oh-tile:active{transform:scale(.96); background:#0d1b30;}
+
 .oh-jump{display:flex; gap:10px; margin-top:18px;}
 .oh-jump button{flex:1; display:flex; align-items:center; justify-content:space-between; gap:8px;
   padding:14px 15px; border-radius:14px; border:1px solid var(--hairline); background:none; cursor:pointer; min-height:52px;}
@@ -61933,9 +61947,20 @@ function metricTabs(active, attr, only){
 
 /* ---- home ---- */
 function homeView(){
+  // Pure launcher: masthead band + 2x2 tile grid. The stand list, stat row and
+  // range picker that used to live here moved to the Stands screen / Overview.
+  return '<div class="oh-mast"><div class="oh-mast-eyebrow">DB Sac</div>'
+    + '<div class="oh-mast-title">Ops Hub</div></div>'
+    + '<div class="oh-tiles">'
+    + [['overview','Overview'],['stands','Stands'],['compare','Compare'],['board','Leaderboard']]
+        .map(t => '<button class="oh-tile" data-go="' + t[0] + '"><b>' + t[1] + '</b><span>&rarr;</span></button>').join('')
+    + '</div>';
+}
+
+function standsView(){
   const meta = rangeMeta();
   const custom = ohRange === 'custom' && !ohRan;
-  let html = head('Ops Hub', '', 'DB Sac', true)
+  let html = head('Stands', '', 'DB Sac', true)
     + '<div class="oh-ranges">' + RANGES.map(r =>
         '<button class="oh-range" data-range="' + r.key + '" aria-pressed="' + (r.key === ohRange) + '">'
         + esc(r.label) + '</button>').join('') + '</div>';
@@ -61954,15 +61979,7 @@ function homeView(){
   let weekMissing = 0;
   indicesForRange('7d').forEach(d => ACTIVE_SHOPS.forEach(shop => SHIFTS.forEach(sh => { if(submissionStatus[d+'|'+shop+'|'+sh]==='missing') weekMissing++; })));
 
-  html += '<div class="oh-kpis">'
-    + '<div class="oh-kpi"><div class="oh-kpi-n">' + sum('recaps') + '</div><div class="oh-kpi-l">RECAPS</div></div>'
-    + '<div class="oh-kpi"><div class="oh-kpi-n" style="color:var(--good)">+' + sum('goodN') + '</div><div class="oh-kpi-l">GOOD FLAGS</div></div>'
-    + '<div class="oh-kpi"><div class="oh-kpi-n" style="color:var(--bad)">-' + sum('badN') + '</div><div class="oh-kpi-l">BAD FLAGS</div></div>'
-    + '</div>'
-    + '<div class="oh-sub">' + stands.length + ' stands · ' + sum('late') + ' late · ' + sum('missing') + ' missing · ' + esc(meta.word) + '</div>'
-    + '<div class="oh-jump"><button data-go="overview"><b>Overview</b><span>&rsaquo;</span></button>'
-    + '<button id="oh-compare"><b>Compare</b><span>&rsaquo;</span></button>'
-    + '<button id="oh-board"><b>Leaderboard</b><span>&rsaquo;</span></button></div>'
+  html += '<div class="oh-sub">' + stands.length + ' stands · ' + sum('late') + ' late · ' + sum('missing') + ' missing · ' + esc(meta.word) + '</div>'
     + '<button class="oh-navcard" data-go="missing" style="width:100%;margin-top:11px;"><span><b>Missing this week</b>'
     + '<i class="' + (weekMissing ? 'warn' : '') + '">' + weekMissing + ' not filed &middot; last 7 days</i></span>'
     + '<span class="oh-caret" style="font-size:18px">&rsaquo;</span></button>';
@@ -62354,6 +62371,7 @@ function missingView(){
 function render(){
   const host = document.getElementById('oh-app');
   const body = ohScreen === 'home' ? homeView()
+    : ohScreen === 'stands' ? standsView()
     : ohScreen === 'overview' ? overviewView()
     : ohScreen === 'missing' ? missingView()
     : ohScreen === 'stand' ? standView()
@@ -62365,13 +62383,15 @@ function render(){
     : ohScreen === 'board' ? boardView()
     : personView();
 
-  const backLabel = (ohScreen === 'stand' || ohScreen === 'compare' || ohScreen === 'board' || ohScreen === 'overview' || ohScreen === 'missing') ? 'All stands'
+  const backLabel = ohScreen === 'stand' ? 'All stands'
+    : (ohScreen === 'stands' || ohScreen === 'compare' || ohScreen === 'board' || ohScreen === 'overview' || ohScreen === 'missing') ? 'Home'
     : ohScreen === 'person' ? 'People' : ohCode;
   host.innerHTML = (ohScreen === 'home' ? '' : '<button class="oh-back" id="oh-back">&larr; ' + esc(backLabel) + '</button>') + body;
 
   const on = (sel, fn) => { const el = host.querySelector(sel); if (el) el.addEventListener('click', fn); };
   on('#oh-back', () => {
-    ohScreen = (ohScreen === 'stand' || ohScreen === 'compare' || ohScreen === 'board' || ohScreen === 'overview' || ohScreen === 'missing') ? 'home'
+    ohScreen = ohScreen === 'stand' ? 'stands'
+      : (ohScreen === 'stands' || ohScreen === 'compare' || ohScreen === 'board' || ohScreen === 'overview' || ohScreen === 'missing') ? 'home'
       : ohScreen === 'person' ? 'people' : 'stand';
     ohRangeOpen = false;
     render();
