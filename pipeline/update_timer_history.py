@@ -49,6 +49,7 @@ def ingest_new_emails(history):
             'laneTotalSec': result['lane1_avg_sec'],
             'laneTotal2Sec': result['lane2_avg_sec'],
             'totalCars': result['total_cars'],
+            'window': result.get('window'),
         }
         added.append(f'{shop} / {date}')
     return added

@@ -9,8 +9,10 @@ Two source formats are auto-detected:
     text via Drive's read_file_content and saves it as hme_pdf_<num>.txt.
 
 parse_hme_report(text) auto-detects the format and returns a dict:
-  {shop, store_num, date, lane1_avg_sec, lane1_cars, lane2_avg_sec, lane2_cars, total_cars}
-or {'error': ...} when the store/date/lane can't be read, or None if it isn't a report.
+  {shop, store_num, date, lane1_avg_sec, lane1_cars, lane2_avg_sec, lane2_cars, total_cars, window}
+where `window` is the report's coverage span (e.g. '5:00a-11:00p'), read from the From:/To:
+lines (plain-text) or the Range line (PDF), or None if the times can't be read.
+Returns {'error': ...} when the store/date/lane can't be read, or None if it isn't a report.
 """
 import re
 from datetime import datetime
@@ -33,6 +35,31 @@ def shop_for_store(store_num):
 def sec_from_mmss(mmss):
     m, s = mmss.split(':')
     return int(m) * 60 + int(s)
+
+def _fmt_clock(h24, mnt):
+    ap = 'a' if h24 < 12 else 'p'
+    hh = h24 % 12 or 12
+    return f'{hh}:{mnt:02d}{ap}'
+
+def _clock24(h12, mnt, ap):
+    h = int(h12) % 12
+    if ap.upper().startswith('P'):
+        h += 12
+    return (h, int(mnt))
+
+def _window_label(start, end):
+    """Human window string for the report's coverage, e.g. '5:00a-11:00p'. An end
+    minute of :59 is the report closing one minute shy of the hour, so it rounds up
+    for display (10:59p -> 11:00p) -- EXCEPT when rounding would land exactly on the
+    start time (the 24-hour overnight reports, From 5:00A to 4:59A next day), where
+    the literal 4:59a is kept so the overnight span stays visible instead of reading
+    '5:00a-5:00a'. Returns None only when a caller passes no times."""
+    eh, em = end
+    if em == 59:
+        reh, rem = (eh + 1) % 24, 0
+        if (reh, rem) != tuple(start):
+            eh, em = reh, rem
+    return f'{_fmt_clock(*start)}–{_fmt_clock(eh, em)}'
 
 def _looks_like_pdf(text):
     """The PDF ('Day Summary Report') format is headed by 'Restaurant #<num> <Name>';
@@ -67,6 +94,13 @@ def _parse_pdf_summary(text):
         return {'error': 'Could not find date range in PDF report'}
     report_date = datetime.strptime(dm.group(1), '%m/%d/%Y').date()
 
+    # coverage window from the Range line, e.g.
+    #   '7/27/2026 5:00:00 AM to 7/27/2026 11:00:00 PM'  ->  '5:00a-11:00p'
+    # (None if the range can't be read; the dashboard then falls back to the date alone.)
+    wm = re.search(r'\d{1,2}/\d{1,2}/\d{4}\s+(\d{1,2}):(\d{2}):\d{2}\s*([AP])M?\s+to\s+'
+                   r'\d{1,2}/\d{1,2}/\d{4}\s+(\d{1,2}):(\d{2}):\d{2}\s*([AP])M?', text)
+    window = _window_label(_clock24(*wm.groups()[:3]), _clock24(*wm.groups()[3:])) if wm else None
+
     lm = re.search(r'Lane Total\s+(\d+)\s+(\d{1,2}:\d{2})', text)
     if not lm:
         return {'error': 'Could not find Lane Total in PDF report'}
@@ -82,6 +116,7 @@ def _parse_pdf_summary(text):
         'lane2_avg_sec': None,
         'lane2_cars': None,
         'total_cars': cars,
+        'window': window,
     }
 
 def parse_hme_report(text):
@@ -102,6 +137,13 @@ def parse_hme_report(text):
     if not from_match:
         return {'error': 'Could not find From: date in report'}
     report_date = datetime.strptime(from_match.group(1), '%m/%d/%y').date()
+
+    # coverage window from the From:/To: lines, e.g.
+    #   'From:SAT 08/08/26 05:00A' / 'To :SAT 08/08/26 10:59P'  ->  '5:00a-11:00p'
+    # (None if either clock is missing; the dashboard then falls back to the date alone.)
+    wf = re.search(r'From:\s*\w+\s+\d{2}/\d{2}/\d{2}\s+(\d{1,2}):(\d{2})\s*([AP])', text)
+    wt = re.search(r'To\s*:\s*\w+\s+\d{2}/\d{2}/\d{2}\s+(\d{1,2}):(\d{2})\s*([AP])', text)
+    window = _window_label(_clock24(*wf.groups()), _clock24(*wt.groups())) if wf and wt else None
 
     def extract_section(label):
         m = re.search(rf'{re.escape(label)}\s*\n-+\nAverage Time = (\d+:\d+)\nTotal Cars = (\d+)', text)
@@ -125,6 +167,7 @@ def parse_hme_report(text):
         'lane2_avg_sec': lane2['avg_sec'] if is_double else None,
         'lane2_cars': lane2['cars'] if is_double else None,
         'total_cars': (lane1['cars'] if lane1 else 0) + (lane2['cars'] if is_double else 0),
+        'window': window,
     }
 
 if __name__ == '__main__':
