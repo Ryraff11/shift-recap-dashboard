@@ -128,6 +128,66 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
   font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-dim); min-height:46px;}
 .oh-run{padding:13px; border-radius:10px; background:var(--amber); color:#04121F; border:none;
   font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; cursor:pointer; min-height:46px;}
+
+/* ===== Overview bar (static sibling of #oh-app, inside #view-home) ===== */
+.overview-wrap{ max-width:560px; margin:0 auto; padding:0 20px; }
+.overview-bar{
+  background:linear-gradient(135deg, #156299, #0e4a75);
+  border-radius:10px; padding:15px 16px; margin-bottom:20px;
+  display:flex; justify-content:space-between; align-items:center;
+  border:1px solid #2578ad; cursor:pointer;
+}
+.overview-left{ display:flex; flex-direction:column; gap:2px; }
+.overview-title{ font-family:'Anton',sans-serif; font-weight:400; font-size:16px; text-transform:uppercase; letter-spacing:.02em; color:#fff; }
+.overview-sub{ font-size:10.5px; color:#cfe3f0; }
+.overview-right{ display:flex; align-items:center; }
+.overview-badge{ background:#DA262E; color:#fff; font-size:10px; font-weight:700; padding:3px 8px; border-radius:10px; margin-right:8px; }
+.overview-arrow{ color:#fff; font-size:15px; }
+
+/* ===== Overview screen (#view-overview) ===== */
+:root{
+  --ov-bad:#DA262E; --ov-amber:#F8E316; --ov-good:#3ecf8e; --ov-faint:#65788c;
+  --ov-surface:#132741; --ov-surface-raised:#1a3252; --ov-line:#22395c;
+}
+.ov-stat-card{ flex:1; background:var(--ov-surface); border-radius:8px; padding:12px 8px; text-align:center; }
+.ov-stat-card .v{ font-size:20px; font-weight:700; }
+.ov-stat-card .v.bad{ color:var(--ov-bad); } .ov-stat-card .v.amber{ color:var(--ov-amber); } .ov-stat-card .v.ok{ color:var(--ov-good); }
+.ov-stat-card .l{ font-size:8.5px; color:var(--ov-faint); text-transform:uppercase; letter-spacing:.03em; margin-top:3px; }
+
+.ov-item{ background:var(--ov-surface); border-radius:8px; padding:12px 14px; margin-bottom:9px; border-left:3px solid transparent; cursor:pointer; }
+.ov-item.urgent{ border-left-color:var(--ov-bad); }
+.ov-item.good{ border-left-color:var(--ov-good); }
+.ov-item-top{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px; }
+.ov-item-shop{ font-family:'Anton',sans-serif; font-weight:400; font-size:14px; }
+.ov-item-meta{ font-size:10px; color:var(--ov-faint); }
+.ov-item-text{ font-size:12px; line-height:1.5; color:#cbd6e0; }
+
+.ov-pattern-box{ background:var(--ov-surface-raised); border-radius:8px; padding:13px 14px; border-left:3px solid var(--ov-amber); margin-bottom:9px; }
+.ov-pattern-label{ font-size:10px; font-weight:700; color:var(--ov-amber); text-transform:uppercase; letter-spacing:.06em; margin-bottom:5px; }
+.ov-pattern-text{ font-size:12.5px; line-height:1.5; color:#eef2f6; }
+.ov-pattern-text b{ color:#fff; }
+
+.ov-roundup{ background:var(--ov-surface); border-radius:8px; }
+.ov-roundup-row{ display:flex; justify-content:space-between; padding:10px 14px; border-bottom:1px solid var(--ov-line); font-size:11.5px; }
+.ov-roundup-row:last-child{ border-bottom:none; }
+.ov-roundup-row .name{ font-weight:700; }
+.ov-roundup-row .nums{ color:var(--ov-good); }
+.ov-empty{ text-align:center; color:var(--ov-faint); padding:24px 14px; font-size:12.5px; }
+
+
+/* ===== Home masthead + tile grid ===== */
+.oh-masthead{ width:100vw; margin:-34px 0 20px calc(50% - 50vw); padding:18px 20px; background:#156299; border-bottom:3px solid #F8E316; text-align:center; }
+.oh-mh-eyebrow{ font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#F8E316; }
+.oh-mh-title{ font-family:'Anton',sans-serif; font-size:26px; text-transform:uppercase; color:#fff; line-height:1; padding-top:3px; }
+.oh-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.oh-tile{ aspect-ratio:1.25 / 1; display:flex; align-items:flex-end; padding:16px; border-radius:14px; background:#132741; border:1px solid #22395c; cursor:pointer; color:#fff; font:inherit; text-align:left; transition:transform .08s ease, background .12s ease; }
+.oh-tile:active{ transform:scale(.97); background:#0e1f36; }
+.oh-tile-label{ font-family:'Anton',sans-serif; font-size:15px; font-weight:400; text-transform:uppercase; letter-spacing:.02em; color:#F8E316; }
+.oh-tile-arrow{ color:#F8E316; }
+.oh-tile-wide{ aspect-ratio:auto; width:100%; margin-top:12px; flex-direction:row; align-items:center; justify-content:space-between; }
+.oh-tile-wide-left{ display:flex; flex-direction:column; gap:5px; }
+.oh-tile-preview{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-dim); }
+.oh-tile-arrow-r{ font-size:18px; }
 </style>
 <style>
   :root{
@@ -482,34 +542,6 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
 
     .bar-scroll, .peak-scroll{min-height:100px;}
   }
-
-/* ===== OVERVIEW (native v3 screen — reuses --surface/--hairline/--good/--bad/--amber/--watch tokens) ===== */
-.ov-stats{ display:flex; gap:10px; margin:6px 0 4px; }
-.ov-stat{ flex:1; background:var(--surface); border:1px solid var(--hairline); border-radius:12px; padding:13px 8px; text-align:center; }
-.ov-stat .v{ font-family:'Anton',sans-serif; font-size:26px; line-height:1; }
-.ov-stat .v.bad{ color:var(--bad); } .ov-stat .v.watch{ color:var(--watch); } .ov-stat .v.good{ color:var(--good); }
-.ov-stat .l{ font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--text-faint); margin-top:5px; }
-
-.ov-item{ display:block; width:100%; text-align:left; background:var(--surface); border:1px solid var(--hairline); border-left:3px solid transparent; border-radius:12px; padding:12px 14px; margin-bottom:9px; cursor:pointer; }
-.ov-item.urgent{ border-left-color:var(--bad); }
-.ov-item.good{ border-left-color:var(--good); }
-.ov-item-top{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:4px; }
-.ov-item-shop{ font-family:'Anton',sans-serif; font-size:16px; text-transform:uppercase; color:var(--text); }
-.ov-item-meta{ font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-faint); white-space:nowrap; }
-.ov-item-text{ display:block; font-size:13px; line-height:1.5; color:var(--text-dim); }
-.clamp3{ display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
-
-.ov-pattern{ background:var(--surface-raised); border:1px solid var(--hairline); border-left:3px solid var(--amber); border-radius:12px; padding:13px 14px; margin-bottom:9px; }
-.ov-pattern-label{ font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; color:var(--amber); text-transform:uppercase; letter-spacing:.08em; margin-bottom:5px; }
-.ov-pattern-text{ font-size:13px; line-height:1.5; color:var(--text); }
-.ov-pattern-text b{ color:#fff; }
-
-.ov-routine{ background:var(--surface); border:1px solid var(--hairline); border-radius:12px; overflow:hidden; }
-.ov-routine-row{ display:flex; justify-content:space-between; align-items:center; padding:11px 14px; border-bottom:1px solid var(--hairline); }
-.ov-routine-row:last-child{ border-bottom:none; }
-.ov-routine-row .name{ font-family:'Anton',sans-serif; font-size:15px; text-transform:uppercase; }
-.ov-routine-row .tag{ font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--good); }
-.ov-routine-row .tag.off{ color:var(--text-faint); }
 </style>
 </head>
 <body>
@@ -724,6 +756,36 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
       </select>
     </div>
     <div id="leaderboard-list"></div>
+  </div>
+  <!-- ============ OVERVIEW ============ -->
+  <div class="view" id="view-overview">
+    <button class="ghost-btn" id="btn-back-home-ov">← Home</button>
+    <h2 class="anton" style="margin:14px 0 4px;">Overview</h2>
+
+    <div class="range-picker" data-range-group="overview">
+      <button class="range-btn active" data-range="today">Today</button>
+      <button class="range-btn" data-range="7d">7 Days</button>
+      <button class="range-btn" data-range="30d">30 Days</button>
+      <button class="range-btn" data-range="mtd">Month to Date</button>
+    </div>
+
+    <div class="stat-row" style="display:flex; gap:8px; padding:16px 20px 4px;">
+      <div class="ov-stat-card"><div class="v bad" id="ov-stat-hazards">–</div><div class="l">Hazards</div></div>
+      <div class="ov-stat-card"><div class="v amber" id="ov-stat-flagged">–</div><div class="l">Flagged</div></div>
+      <div class="ov-stat-card"><div class="v ok" id="ov-stat-filed">–</div><div class="l">Recaps filed</div></div>
+    </div>
+
+    <div class="section-sub">Needs attention</div>
+    <div id="ov-needs-attention"></div>
+
+    <div class="section-sub">Cross-shop patterns</div>
+    <div id="ov-patterns"></div>
+
+    <div class="section-sub">Worth knowing</div>
+    <div id="ov-worth-knowing"></div>
+
+    <div class="section-sub">All routine</div>
+    <div class="ov-roundup" id="ov-routine"></div>
   </div>
 
 </main>
@@ -60638,27 +60700,6 @@ const HOUR_WEIGHTS = [0.015,0.045,0.085,0.095,0.065,0.05,0.045,0.05,0.07,0.09,0.
 const REAL_TIMER_DATA = {"Lichen": {"2026-07-27": {"laneTotalSec": 81, "laneTotal2Sec": null, "totalCars": 561}}, "Mad": {"2026-07-27": {"laneTotalSec": 124, "laneTotal2Sec": 126, "totalCars": 717}}, "Manz": {"2026-07-27": {"laneTotalSec": 72, "laneTotal2Sec": null, "totalCars": 514}}};
 function isoForIndex(i){ const dt=dateForIndex(i); return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0'); }
 
-// Deputy shift-lead schedule (injected by refresh_dashboard.py from the Deputy export
-// sheet). Shape: { "YYYY-MM-DD|Shop|ShiftLabel": {lead, empty} }, one entry per shop/
-// shift/day. empty=true means nobody was scheduled (call-out, no coverage). Read-only.
-const REAL_DEPUTY_SCHEDULE = {"2026-08-07|Antelope|Close": {"lead": null, "empty": true}, "2026-08-07|Antelope|Mid": {"lead": "Darius Wilson", "empty": false}, "2026-08-07|Antelope|Open": {"lead": "Igor Marin", "empty": false}, "2026-08-07|Auburn|Close": {"lead": "Sully Colgrove", "empty": false}, "2026-08-07|Auburn|Mid": {"lead": "Grace Holmes", "empty": false}, "2026-08-07|Auburn|Open": {"lead": "Haleigh Singleton", "empty": false}, "2026-08-07|Fair Oaks|Close": {"lead": "Graci Hoop", "empty": false}, "2026-08-07|Fair Oaks|Mid": {"lead": "Aryana Agheli", "empty": false}, "2026-08-07|Fair Oaks|Open": {"lead": "Amari McGee", "empty": false}, "2026-08-07|Fireside|Close": {"lead": "Taylor Richardson", "empty": false}, "2026-08-07|Fireside|Mid": {"lead": "Erica Hanson", "empty": false}, "2026-08-07|Fireside|Open": {"lead": "Maddie Orgen", "empty": false}, "2026-08-07|Lichen|Close": {"lead": "Tajae Hudson", "empty": false}, "2026-08-07|Lichen|Mid": {"lead": "Kaylee Richardson", "empty": false}, "2026-08-07|Lichen|Open": {"lead": "Patricia Gilbert", "empty": false}, "2026-08-07|Mad|Close": {"lead": "Kylie Hollenbeck", "empty": false}, "2026-08-07|Mad|Mid": {"lead": "Lillie Miranda", "empty": false}, "2026-08-07|Mad|Open": {"lead": "Diego Angelina", "empty": false}, "2026-08-07|Manz|Close": {"lead": "Desi Synhorst", "empty": false}, "2026-08-07|Manz|Mid": {"lead": "Palina Dallakyan", "empty": false}, "2026-08-07|Manz|Open": {"lead": "Emily Yearwood", "empty": false}, "2026-08-07|OV|Close": {"lead": "Heidi Johnson", "empty": false}, "2026-08-07|OV|Mid": {"lead": "Matthew Warner", "empty": false}, "2026-08-07|OV|Open": {"lead": "Myah Newton", "empty": false}, "2026-08-08|Antelope|Close": {"lead": "Cory Brigmon", "empty": false}, "2026-08-08|Antelope|Mid": {"lead": "Ariana Valencia", "empty": false}, "2026-08-08|Antelope|Open": {"lead": "Nico Smith", "empty": false}, "2026-08-08|Fair Oaks|Close": {"lead": "Aryana Agheli", "empty": false}, "2026-08-08|Fair Oaks|Mid": {"lead": "Julia Mann", "empty": false}, "2026-08-08|Fair Oaks|Open": {"lead": "Laci Davies", "empty": false}, "2026-08-08|Fireside|Close": {"lead": "Madison Furton", "empty": false}, "2026-08-08|Fireside|Mid": {"lead": "Igor Marin", "empty": false}, "2026-08-08|Fireside|Open": {"lead": "Maddie Orgen", "empty": false}, "2026-08-08|Lichen|Close": {"lead": "Gabriel Zimmer", "empty": false}, "2026-08-08|Lichen|Mid": {"lead": "Patricia Gilbert", "empty": false}, "2026-08-08|Lichen|Open": {"lead": "Kaylee Richardson", "empty": false}, "2026-08-08|Mad|Close": {"lead": "Lillie Miranda", "empty": false}, "2026-08-08|Mad|Mid": {"lead": "Taylor Mason", "empty": false}, "2026-08-08|Mad|Open": {"lead": "Katelan B'Williams", "empty": false}, "2026-08-08|Manz|Close": {"lead": "Moriah Askari", "empty": false}, "2026-08-08|Manz|Mid": {"lead": "Desi Synhorst", "empty": false}, "2026-08-08|Manz|Open": {"lead": "Madison Weideman", "empty": false}, "2026-08-08|OV|Close": {"lead": "Isa Valencia", "empty": false}, "2026-08-08|OV|Mid": {"lead": "Melanie Bellina", "empty": false}, "2026-08-08|OV|Open": {"lead": "Sophia Warr", "empty": false}};
-function deputyFor(dayIndex, shop, shift){ return REAL_DEPUTY_SCHEDULE[isoForIndex(dayIndex)+'|'+shop+'|'+shift] || null; }
-function scheduledLead(dayIndex, shop, shift){ const e = deputyFor(dayIndex, shop, shift); return (e && !e.empty && e.lead) ? e.lead : null; }
-// Empty-slot exception: nobody scheduled → nothing to submit, so it can't be missing or
-// late. Mark those slots 'untracked' so they read N/A everywhere (like an inactive shop).
-// Runs after the final submissionStatus write above.
-(function(){
-  const isoIdx = {};
-  for(let d=0; d<=TODAY_INDEX; d++){ isoIdx[isoForIndex(d)] = d; }
-  Object.keys(REAL_DEPUTY_SCHEDULE).forEach(key=>{
-    const e = REAL_DEPUTY_SCHEDULE[key];
-    if(!e || !e.empty) return;
-    const p = key.split('|'), d = isoIdx[p[0]];
-    if(d===undefined) return;
-    submissionStatus[`${d}|${p[1]}|${p[2]}`] = 'untracked';
-  });
-})();
-
 const dailyOps = {}; // dailyOps[shop][d] = {totalCars, laneTotalSec, laneTotal2Sec, isRealTimer, goalLaneTotal, goalLaneTotal2, netSales, dph, hourly[], sched, actualHrs, otHrs, laborCost}
 SHOPS.forEach(shop=>{
   dailyOps[shop] = [];
@@ -60686,7 +60727,6 @@ SHOPS.forEach(shop=>{
     const laborCost = actualHours*wage + overtimeHours*wage*0.5;
     dailyOps[shop].push({
       totalCars, laneTotalSec, laneTotal2Sec, isRealTimer: !!realT,
-      timerWindow: (realT && realT.window) || null, // report coverage span, e.g. '5:00a–11:00p'
       goalLaneTotal: makeGoalSplit(0.35), goalLaneTotal2: makeGoalSplit(0.85),
       netSales, dph, hourly,
       scheduledHours, actualHours, overtimeHours, laborCost
@@ -61655,23 +61695,6 @@ function ohIsHazard(txt){
 function isHazardFlag(f){ return !!(f && f.text && f.text.indexOf('Hazard reported')===0 && ohIsHazard(f.text)); }
 function isRealFlag(f){ return !!(f && f.text && f.text!=='None' && flagCategory(f.text)!=='Late submission'); }
 
-// A kind:'bad' flag counts as a real finding only if it carries actual content.
-// Extends the ohIsHazard negation idea to every bad flag, category-aware. Good-flag
-// counting stays on isRealFlag (a positive note is a legitimate good flag).
-const OH_POSITIVE   = /\b(killed it|crushed it|nailed it|went (great|well|smoothly?)|all good|great (shift|day|morning|night)|good (shift|day|morning|night)|awesome|amazing|perfect|on point|very vocal|no notes|no complaints|everyone (was|did) (great|good|amazing|awesome|vocal))\b/i;
-const OH_NEG_ISSUE  = /\b(no|not|nothing|none|zero)\b[\s\w]{0,20}?\b(struggl\w*|issues?|problems?|hazards?|concerns?|incidents?|complaints?|drama)\b/i;
-const OH_REAL_ISSUE = /\b(coaching|remind\w*|not completed|didn'?t|couldn'?t|wasn'?t|late|early|understaff\w*|tardy|wrong|forgot|miss(ed|ing|\b)|broke\w*|leak\w*|slow|behind|short.?staff\w*|need(s|ed)? to|should('?ve| have)|had to|out of|ran out|repair|complaint|rude|angry|slur|struggl\w*)\b/i;
-function isSubstantiveFlag(f){
-  if (!isRealFlag(f)) return false;
-  const cat = flagCategory(f.text);
-  if (cat === 'Safety hazard') return isHazardFlag(f);
-  if (cat === 'Tardy / early-out' || cat === 'Understaffed') return true;
-  const t = String(f.text), stripped = t.replace(OH_NEG_ISSUE, ' ');
-  if (OH_REAL_ISSUE.test(stripped)) return true;
-  if (OH_POSITIVE.test(t) || OH_NEG_ISSUE.test(t)) return false;
-  return true;
-}
-
 function lateMinutes(rec){
   const f = (rec.flags||[]).find(x=> x.text && x.text.indexOf('Recap submitted late')===0);
   if(!f) return null;
@@ -61707,25 +61730,16 @@ function getStands(range){
     const shop = CODE_TO_SHOP[code];
     const recs = records.filter(r => r.shop===shop && S.has(r.dayIndex) && r.employee);
     let goodN=0, badN=0;
-    recs.forEach(r => (r.flags||[]).forEach(f=>{ if(f.kind==='good'){ if(isRealFlag(f)) goodN++; } else if(isSubstantiveFlag(f)) badN++; }));
+    recs.forEach(r => (r.flags||[]).forEach(f=>{ if(!isRealFlag(f)) return; if(f.kind==='good') goodN++; else badN++; }));
     const lateRecs = recs.filter(r => r.isLate);
     const late = lateRecs.length;
-    let missing = 0; const missingLeads = [];
-    idxs.forEach(d => SHIFTS.forEach(sh => {
-      if(submissionStatus[d+'|'+shop+'|'+sh]==='missing'){ missing++; const nm = scheduledLead(d, shop, sh); if(nm) missingLeads.push(ohShortName(nm)); }
-    }));
+    let missing = 0;
+    idxs.forEach(d => SHIFTS.forEach(sh => { if(submissionStatus[d+'|'+shop+'|'+sh]==='missing') missing++; }));
     const recaps = recs.length, onTime = Math.max(0, recaps - late);
     const byWho = {};
     lateRecs.forEach(r => { const nm = ohShortName(r.employee)||'Unknown'; byWho[nm]=(byWho[nm]||0)+1; });
     let lateWho = Object.keys(byWho).map(nm => byWho[nm]>1 ? nm+' ×'+byWho[nm]+' late' : nm+' late').slice(0,3).join(' · ');
-    if(missing>0){
-      // list the scheduled leads for the not-filed shifts (capped at 3); fall back to a count when unknown
-      const named = missingLeads.slice(0,3).map(n => n+' not filed');
-      let mt;
-      if(named.length){ mt = named.join(' · '); const rest = missing - Math.min(missingLeads.length,3); if(rest>0) mt += ' · +'+rest+' not filed'; }
-      else { mt = missing+' not filed'; }
-      lateWho = lateWho ? lateWho+' · '+mt : mt;
-    }
+    if(missing>0){ const mt = missing+' not filed'; lateWho = lateWho ? lateWho+' · '+mt : mt; }
     let hazards = 0;
     records.forEach(r=>{ if(r.shop!==shop || !S.has(r.dayIndex)) return; (r.flags||[]).forEach(f=>{ if(isHazardFlag(f)) hazards++; }); });
     return { code, recaps, goodN, badN, onTime, late, missing, lateWho, hazards };
@@ -61744,10 +61758,10 @@ function getRecaps(code, range){
     const rec = records.find(r => r.shop===shop && r.dayIndex===d && r.shift===sh && r.employee);
     if(rec){
       let g=0, b=0;
-      (rec.flags||[]).forEach(f=>{ if(f.kind==='good'){ if(isRealFlag(f)) g++; } else if(isSubstantiveFlag(f)) b++; });
-      out.push({ shift: sh, filed: filedText(rec), late: !!rec.isLate, good:'+'+g, bad:'-'+b, by: ohShortName(rec.employee), note: recapNote(rec), scheduled: rec.isLate ? scheduledLead(d, shop, sh) : null });
+      (rec.flags||[]).forEach(f=>{ if(!isRealFlag(f)) return; if(f.kind==='good') g++; else b++; });
+      out.push({ shift: sh, filed: filedText(rec), late: !!rec.isLate, good:'+'+g, bad:'-'+b, by: ohShortName(rec.employee), note: recapNote(rec) });
     } else if(submissionStatus[d+'|'+shop+'|'+sh]==='missing'){
-      out.push({ shift: sh, filed:'not filed', missing:true, scheduled: scheduledLead(d, shop, sh) });
+      out.push({ shift: sh, filed:'not filed', missing:true });
     }
   }));
   return out;
@@ -61757,7 +61771,7 @@ function getTimes(code, range){
   const idxs = idxListFor(range).filter(i => dailyOps[shop] && dailyOps[shop][i] && dailyOps[shop][i].isRealTimer).sort((a,b)=> b-a);
   const rows = idxs.map(i => {
     const d = dailyOps[shop][i];
-    return { day: fmtDate(dateForIndex(i)), sec: Math.round(d.laneTotalSec), sec2: (two && d.laneTotal2Sec>0) ? Math.round(d.laneTotal2Sec) : null, cars: d.totalCars, window: d.timerWindow || null };
+    return { day: fmtDate(dateForIndex(i)), sec: Math.round(d.laneTotalSec), sec2: (two && d.laneTotal2Sec>0) ? Math.round(d.laneTotal2Sec) : null, cars: d.totalCars };
   });
   return range==='today' ? rows.slice(0,1) : rows;
 }
@@ -61777,7 +61791,7 @@ function getHazards(code, range){
 }
 function getPeople(code, range){
   const shop = CODE_TO_SHOP[code], S = idxSetFor(range), map = new Map();
-  records.forEach((r, ri) => {
+  records.forEach(r => {
     if(r.shop!==shop || !S.has(r.dayIndex)) return;
     const mentions = (r.namedMentions && r.namedMentions.length) ? r.namedMentions
       : (r.flags||[]).filter(f=>f.employee).map(f=>({ name:f.employee, kind:f.kind, source:f.text }));
@@ -61789,7 +61803,7 @@ function getPeople(code, range){
       const e = map.get(key);
       if(m.kind==='good') e.good++; else e.bad++;
       const src = (m.source||'').toString().trim();
-      if(src && src.toLowerCase()!=='none') e.excerpts.push({ kind:m.kind, when: r.shift+' · '+fmtDate(dateForIndex(r.dayIndex)), text: src, _d:r.dayIndex, ri:ri });
+      if(src && src.toLowerCase()!=='none') e.excerpts.push({ kind:m.kind, when: r.shift+' · '+fmtDate(dateForIndex(r.dayIndex)), text: src, _d:r.dayIndex });
     });
   });
   const arr = [...map.values()];
@@ -61932,43 +61946,46 @@ function metricTabs(active, attr, only){
 }
 
 /* ---- home ---- */
+// cross-shop lane-total average from each stand's most recent real HME day
+function ohTimesSummary(){
+  let total = 0, n = 0;
+  ACTIVE_SHOPS.forEach(shop => {
+    const arr = dailyOps[shop]; if(!arr) return;
+    let latest = -1;
+    for(let i=arr.length-1; i>=0; i--){ if(arr[i] && arr[i].isRealTimer){ latest = i; break; } }
+    if(latest < 0) return;
+    total += arr[latest].laneTotalSec; n++;
+  });
+  return n ? { avg: Math.round(total/n), shops: n } : null;
+}
+
+/* ---- home (masthead + tile grid) ---- */
 function homeView(){
+  const t = ohTimesSummary();
+  const timesPreview = t ? (mmss(t.avg) + ' avg · ' + t.shops + ' stand' + (t.shops===1?'':'s') + ' reporting') : 'No timer data yet';
+  const tiles = [['overview','Overview'], ['stands','Stands'], ['compare','Compare'], ['board','Leaderboard']];
+  return '<div class="oh-masthead"><div class="oh-mh-eyebrow">DB Sac</div><div class="oh-mh-title">Ops Hub</div></div>'
+    + '<div class="oh-grid">'
+    + tiles.map(t2 => '<button class="oh-tile" data-home="' + t2[0] + '"><span class="oh-tile-label">' + esc(t2[1]) + ' <span class="oh-tile-arrow">&rarr;</span></span></button>').join('')
+    + '</div>'
+    + '<button class="oh-tile oh-tile-wide" data-home="times">'
+      + '<span class="oh-tile-wide-left"><span class="oh-tile-label">Window Times</span>'
+      + '<span class="oh-tile-preview">' + esc(timesPreview) + '</span></span>'
+      + '<span class="oh-tile-arrow oh-tile-arrow-r">&rarr;</span>'
+    + '</button>';
+}
+
+/* ---- stands list (moved off home) ---- */
+function standsView(){
   const meta = rangeMeta();
-  const custom = ohRange === 'custom' && !ohRan;
-  let html = head('Ops Hub', '', 'DB Sac', true)
-    + '<div class="oh-ranges">' + RANGES.map(r =>
-        '<button class="oh-range" data-range="' + r.key + '" aria-pressed="' + (r.key === ohRange) + '">'
-        + esc(r.label) + '</button>').join('') + '</div>';
-
-  if (custom){
-    return html + '<div class="oh-custom"><h3>Pick a date range</h3>'
-      + '<div class="oh-dates"><div class="oh-date">Start</div><div class="oh-date">End</div></div>'
-      + '<button class="oh-run" id="oh-run">Run range</button>'
-      + '<div class="oh-foot" style="padding-top:0">The stand list stays hidden until the range runs, so you never read stale numbers under a new date.</div></div>';
-  }
-
   const stands = getStands(ohRange).map(s => Object.assign({}, s, { tone: classify(s, shiftsInRange()) }));
   const act = stands.filter(s => s.tone !== 'ok').sort((a,b) => (a.tone === 'bad' ? 0 : 1) - (b.tone === 'bad' ? 0 : 1));
   const clean = stands.filter(s => s.tone === 'ok');
-  const sum = k => stands.reduce((n,s) => n + s[k], 0);
-  let weekMissing = 0;
-  indicesForRange('7d').forEach(d => ACTIVE_SHOPS.forEach(shop => SHIFTS.forEach(sh => { if(submissionStatus[d+'|'+shop+'|'+sh]==='missing') weekMissing++; })));
-
-  html += '<div class="oh-kpis">'
-    + '<div class="oh-kpi"><div class="oh-kpi-n">' + sum('recaps') + '</div><div class="oh-kpi-l">RECAPS</div></div>'
-    + '<div class="oh-kpi"><div class="oh-kpi-n" style="color:var(--good)">+' + sum('goodN') + '</div><div class="oh-kpi-l">GOOD FLAGS</div></div>'
-    + '<div class="oh-kpi"><div class="oh-kpi-n" style="color:var(--bad)">-' + sum('badN') + '</div><div class="oh-kpi-l">BAD FLAGS</div></div>'
-    + '</div>'
-    + '<div class="oh-sub">' + stands.length + ' stands · ' + sum('late') + ' late · ' + sum('missing') + ' missing · ' + esc(meta.word) + '</div>'
-    + '<div class="oh-jump"><button data-go="overview"><b>Overview</b><span>&rsaquo;</span></button>'
-    + '<button id="oh-compare"><b>Compare</b><span>&rsaquo;</span></button>'
-    + '<button id="oh-board"><b>Leaderboard</b><span>&rsaquo;</span></button></div>'
-    + '<button class="oh-navcard" data-go="missing" style="width:100%;margin-top:11px;"><span><b>Missing this week</b>'
-    + '<i class="' + (weekMissing ? 'warn' : '') + '">' + weekMissing + ' not filed &middot; last 7 days</i></span>'
-    + '<span class="oh-caret" style="font-size:18px">&rsaquo;</span></button>';
-
+  let html = '<div style="display:flex;align-items:center;flex-wrap:wrap;gap:9px">' + rangePill() + '</div>'
+    + '<h2 class="oh-h2" style="padding-top:8px">Stands</h2>'
+    + '<div class="oh-context">' + stands.length + ' stands · ' + esc(meta.word) + '</div>'
+    + rangeDrawer('stand list');
   if (!act.length) html += '<div class="oh-allclear">Nothing needs you — every stand is clean for ' + esc(meta.word) + '</div>';
-
   if (act.length){
     html += '<div class="oh-section act">Act now &middot; ' + act.length + '</div><div class="oh-cards">'
       + act.map(s => '<button class="oh-card ' + s.tone + '" data-code="' + esc(s.code) + '">'
@@ -62042,9 +62059,7 @@ function recapsView(){
             + '<span class="b">' + esc(r.bad) + '</span><span class="m">' + esc(r.by) + '</span></span>')
         + (r.note ? '<span class="oh-meta" style="color:#DBE5F1;line-height:1.5">' + esc(r.note) + '</span>' : '')
         + (r.missing || r.late ? '<span class="oh-chips"><span class="oh-chip ' + (r.missing ? 'bad' : 'watch') + '">'
-            + (r.missing ? 'no recap on file' : 'filed late') + '</span>'
-            + (r.scheduled ? '<span class="oh-chip">scheduled: ' + esc(r.scheduled) + '</span>' : '')
-            + '</span>' : '')
+            + (r.missing ? 'no recap on file' : 'filed late') + '</span></span>' : '')
         + '</div>';
     }).join('') + '</div>'
     + '<div class="oh-foot">Newest first. Shifts with no recap stay in the list as red cards so a gap is never invisible.</div>';
@@ -62052,7 +62067,7 @@ function recapsView(){
 
 function timesView(){
   const rows = getTimes(ohCode, ohRange), lead = rows[0];
-  return subHead('Window times', lead ? 'HME uploads · latest ' + mmss(lead.sec) + ' lane total' + (lead.window ? ' · ' + lead.window : '') : 'No HME uploads in range')
+  return subHead('Window times', lead ? 'HME uploads · latest ' + mmss(lead.sec) + ' lane total' : 'No HME uploads in range')
     + '<div style="margin-top:20px">'
     + (rows.length
       ? '<div class="oh-thead"><div style="flex:1">DAY</div><div style="width:80px">LANE TOTAL</div><div style="width:70px;text-align:right">CARS</div></div>'
@@ -62066,12 +62081,11 @@ function timesView(){
             + '<div class="oh-tsub"><span>'
             + (diff === null ? 'first upload' : diff === 0 ? 'flat vs prior day'
                 : (diff > 0 ? '+' : '\u2212') + Math.abs(diff) + 's vs prior day') + '</span>'
-            + (d.sec2 ? '<span>lane 2 ' + mmss(d.sec2) + '</span>' : '')
-            + (d.window ? '<span>' + esc(d.window) + '</span>' : '') + '</div></div>';
+            + (d.sec2 ? '<span>lane 2 ' + mmss(d.sec2) + '</span>' : '') + '</div></div>';
         }).join('')
       : '<div class="oh-empty">No HME upload for this stand yet</div>')
     + '</div>'
-    + '<div class="oh-foot">Lane total is the HME average across the report window shown on each day — under 1:30 green, over 2:00 red. Uploaded days only.</div>';
+    + '<div class="oh-foot">Lane total is the HME average for the whole business day — under 1:30 green, over 2:00 red. Uploaded days only.</div>';
 }
 
 function hazView(){
@@ -62089,29 +62103,24 @@ function peopleView(){
   const all = getPeople(ohCode, ohRange);
   const shown = all.filter(p => matches(p, ohQ)).sort((a,b) => b.bad - a.bad || b.good - a.good);
   const flagged = all.filter(p => p.bad > 0).length;
-  const row = p =>
-    '<button class="oh-row" data-person="' + esc(p.name) + '">'
-    + '<span style="display:flex;align-items:center;gap:11px;min-width:0">'
-    + '<span class="oh-dot" style="background:' + (p.bad > 1 ? 'var(--bad)' : p.bad === 1 ? 'var(--watch)' : 'var(--good)') + '"></span>'
-    + '<span><span class="oh-rowname">' + esc(p.name) + '</span>'
-    + '<span class="oh-meta" style="display:block;padding-top:4px">'
-    + (p.excerpts.length === 1 ? '1 excerpt' : p.excerpts.length + ' excerpts') + '</span></span></span>'
-    + '<span style="display:flex;align-items:center;gap:11px" class="oh-meta">'
-    + '<span style="color:#DBE5F1">+' + p.good + '  −' + p.bad + '</span>'
-    + '<span class="oh-caret">&rsaquo;</span></span></button>';
-  const needsLook = shown.filter(p => p.bad > 0);
-  const standouts = shown.filter(p => p.bad === 0);
-  let list = '';
-  if(needsLook.length) list += '<div class="oh-section act">Needs a look &middot; ' + needsLook.length + '</div>' + needsLook.map(row).join('');
-  if(standouts.length) list += '<div class="oh-section clean">Standouts &middot; ' + standouts.length + '</div>' + standouts.map(row).join('');
-  if(!shown.length) list = '<div class="oh-empty" style="margin-top:8px">Nobody at this stand matches that</div>';
   const ctx = ohQ.trim() ? shown.length + ' of ' + all.length + ' match “' + ohQ.trim() + '”'
                          : all.length + ' mentioned by name · ' + flagged + ' flagged';
   return subHead('People', ctx)
     + '<div class="oh-search"><span style="color:var(--text-faint)">&#8981;</span>'
       + '<input id="oh-q" type="search" placeholder="Search a name or a recap line" value="' + esc(ohQ) + '">'
       + (ohQ ? '<button id="oh-clear">clear</button>' : '') + '</div>'
-    + '<div style="margin-top:12px">' + list + '</div>'
+    + '<div style="margin-top:12px">' + shown.map(p =>
+        '<button class="oh-row" data-person="' + esc(p.name) + '">'
+        + '<span style="display:flex;align-items:center;gap:11px;min-width:0">'
+        + '<span class="oh-dot" style="background:' + (p.bad > 1 ? 'var(--bad)' : p.bad === 1 ? 'var(--watch)' : 'var(--good)') + '"></span>'
+        + '<span><span class="oh-rowname">' + esc(p.name) + '</span>'
+        + '<span class="oh-meta" style="display:block;padding-top:4px">'
+        + (p.excerpts.length === 1 ? '1 excerpt' : p.excerpts.length + ' excerpts') + '</span></span></span>'
+        + '<span style="display:flex;align-items:center;gap:11px" class="oh-meta">'
+        + '<span style="color:#DBE5F1">+' + p.good + '  \u2212' + p.bad + '</span>'
+        + '<span class="oh-caret">&rsaquo;</span></span></button>').join('')
+    + (shown.length ? '' : '<div class="oh-empty" style="margin-top:8px">Nobody at this stand matches that</div>')
+    + '</div>'
     + '<div class="oh-foot">Search covers names and the recap text itself, so “drain cover” finds the person who reported it. Ranked by who is being flagged, not alphabetically.</div>';
 }
 
@@ -62120,11 +62129,11 @@ function personView(){
   if (!p) return '';
   return subHead(p.name, p.good + ' good · ' + p.bad + ' bad')
     + '<div class="oh-cards" style="margin-top:20px">' + p.excerpts.map(e =>
-        '<button class="oh-card ' + (e.kind === 'bad' ? 'bad' : 'good') + '" onclick="openRecapModal(' + e.ri + ')">'
-        + '<span class="oh-quote clamp3">' + esc(e.text) + '</span>'
+        '<div class="oh-card ' + (e.kind === 'bad' ? 'bad' : 'good') + '" style="cursor:default">'
+        + '<span class="oh-quote">' + esc(e.text) + '</span>'
         + '<span class="oh-metrics"><span style="color:' + (e.kind === 'bad' ? '#FFB3BB' : '#7FE0C2') + '">'
         + (e.kind === 'bad' ? 'flagged' : 'called out') + '</span>'
-        + '<span class="m">' + esc(e.when) + '</span></span></button>').join('') + '</div>'
+        + '<span class="m">' + esc(e.when) + '</span></span></div>').join('') + '</div>'
     + '<div class="oh-foot">Excerpts are shown as written — the sentence is the evidence, so it is never rewritten into a count.</div>';
 }
 
@@ -62170,192 +62179,10 @@ function boardView(){
 }
 
 /* ---- shell ---- */
-/* ---- overview: whole-franchise triage across every stand, one range ----
-   Built entirely from v3's own adapters (getStands / idxSetFor / isRealFlag /
-   isHazardFlag) so its numbers can never drift from the home + stand screens. */
-const OV_STOP = new Set(['this','that','with','have','were','they','today','shift','about','there','their','would','could','should','which','while','still','also','some','just','been','being','when','then','than','from','into','over','under','again','doing','does','didn','wasn','aren','isn','the','and','for','are','was','but','not','you','all','can','had','has','out','get','got','need','needed','wear','hats','more','into']);
-
-function ovItems(range){
-  const S = idxSetFor(range), needs = [], worth = [];
-  CODES.forEach(code => {
-    const shop = CODE_TO_SHOP[code];
-    records.forEach((r, ri) => {
-      if (r.shop !== shop || !S.has(r.dayIndex) || !r.employee) return;
-      (r.flags || []).forEach(f => {
-        const bad = f.kind === 'bad';
-        if (bad ? !isSubstantiveFlag(f) : !isRealFlag(f)) return;
-        const item = { code, shift: r.shift, dayIndex: r.dayIndex, text: f.text, hazard: isHazardFlag(f), recordIndex: ri };
-        (bad ? needs : worth).push(item);
-      });
-    });
-  });
-  needs.sort((a,b) => (b.hazard?1:0)-(a.hazard?1:0) || b.dayIndex-a.dayIndex);
-  worth.sort((a,b) => b.dayIndex-a.dayIndex);
-  return { needs, worth };
-}
-
-// Structural / boilerplate terms that appear on recaps by design, not by coincidence —
-// fixed question prompts, flag prefixes, tardy-note language, generic filler, and pronouns.
-// Any phrase containing one is skipped, so cross-shop patterns reflect real shared wording
-// (e.g. "tap machine", "rapid rinser") rather than the form's own boilerplate.
-const OV_BOILER = new Set([
-  'hazard','reported','xbro','tardy','understaffed','coaching','chore','completed','submitted','recap','negotiables','nonnegotiables','wear','hats','struggled','note','shift','staffed',
-  'sent','send','sending','home','went','leave','left','early','late','goes','go',
-  'really','well','make','makes','making','sure','pretty','good','great','nice','going','doing','thing','things','stuff','lot','bit','definitely','actually','everyone','everybody','nobody','today','tonight','morning','night','felt','little','few','times','time','only','struggle','struggles','struggling','everything','done','easiest','able','though','around','broken','equipment',
-  'her','his','him','she','our','its','your','they','them','told','because','did','does','had','has','been','were','was'
-]);
-
-// Cross-shop patterns: 2-3 word phrases (n-grams) shared across >=2 shops. Phrase matching
-// (not single words) avoids boilerplate collisions ("hazard"/"reported"/"xbro") and
-// coincidental common-word collisions ("came"/"very"); a shared adjacent phrase with 2+
-// content words is genuinely unlikely to co-occur by chance.
-function ovPatterns(needs){
-  const pc = {}, ps = {};
-  needs.forEach(it => {
-    const toks = String(it.text).toLowerCase().replace(/[^a-z\s]/g,' ').split(/\s+/).filter(Boolean);
-    const seen = new Set();
-    for (let n = 2; n <= 3; n++)
-      for (let i = 0; i + n <= toks.length; i++){
-        const gram = toks.slice(i, i + n);
-        if (gram.some(w => OV_BOILER.has(w))) continue;
-        if (gram.filter(w => !OV_STOP.has(w) && w.length >= 3).length < 2) continue;
-        const key = gram.join(' ');
-        if (seen.has(key)) continue; seen.add(key);
-        (pc[key] = pc[key] || new Set()).add(it.code);
-        if (!ps[key]) ps[key] = it.text;
-      }
-  });
-  const ranked = Object.keys(pc).filter(k => pc[k].size >= 2)
-    .map(k => ({ word: k, codes: [...pc[k]], sample: ps[k] }))
-    .sort((a,b) => b.codes.length - a.codes.length || b.word.length - a.word.length);
-  const out = [];
-  for (const p of ranked){
-    if (out.some(q => q.word.includes(p.word) || p.word.includes(q.word))) continue;
-    out.push(p); if (out.length >= 5) break;
-  }
-  return out;
-}
-
-function ovItemHtml(i, cls){
-  return '<button class="ov-item ' + cls + '" onclick="openRecapModal(' + i.recordIndex + ')">'
-    + '<span class="ov-item-top"><span class="ov-item-shop">' + esc(i.code) + '</span>'
-    + '<span class="ov-item-meta">' + esc(fmtDate(dateForIndex(i.dayIndex))) + ' &middot; ' + esc(i.shift) + '</span></span>'
-    + '<span class="ov-item-text clamp3">' + esc(i.text) + '</span></button>';
-}
-
-function overviewView(){
-  const meta = rangeMeta();
-  const stands = getStands(ohRange);
-  const sum = k => stands.reduce((n,s) => n + s[k], 0);
-  const clean = stands.filter(s => s.badN === 0 && s.hazards === 0)
-    .sort((a,b) => a.code.localeCompare(b.code));
-  const { needs, worth } = ovItems(ohRange);
-  const patterns = ovPatterns(needs);
-  const CAP = 25;
-
-  let html = head('Overview', '', 'DB Sac', true)
-    + '<div class="oh-ranges">' + RANGES.map(r =>
-        '<button class="oh-range" data-range="' + r.key + '" aria-pressed="' + (r.key === ohRange) + '">'
-        + esc(r.label) + '</button>').join('') + '</div>';
-
-  html += '<div class="ov-stats">'
-    + '<div class="ov-stat"><div class="v bad">' + sum('hazards') + '</div><div class="l">Hazards</div></div>'
-    + '<div class="ov-stat"><div class="v watch">' + sum('badN') + '</div><div class="l">Flagged</div></div>'
-    + '<div class="ov-stat"><div class="v good">' + sum('recaps') + '</div><div class="l">Recaps filed</div></div>'
-    + '</div>';
-
-  html += '<div class="oh-section act">Needs attention &middot; ' + needs.length + '</div>';
-  if(needs.length){
-    // Cluster under category headers in a fixed order; needs is already sorted
-    // (hazards first, then newest), so items stay ordered within each group.
-    const NEED_CATS = [
-      { cat:'Safety hazard',     icon:'🛑' },
-      { cat:'Understaffed',      icon:'📉' },
-      { cat:'Crew feedback',     icon:'👥' },
-      { cat:'Tardy / early-out', icon:'🕐' }
-    ];
-    const grouped = {};
-    needs.forEach(i => { const c = flagCategory(i.text); (grouped[c] = grouped[c] || []).push(i); });
-    const ordered = NEED_CATS.concat(Object.keys(grouped)
-      .filter(c => !NEED_CATS.some(x => x.cat === c))
-      .map(c => ({ cat:c, icon:'•' })));
-    let rendered = 0;
-    ordered.forEach(g => {
-      const items = grouped[g.cat];
-      if(!items || !items.length) return;
-      html += '<div class="oh-section">' + g.icon + ' ' + esc(g.cat) + ' &middot; ' + items.length + '</div>';
-      items.forEach(i => { if(rendered < CAP){ html += ovItemHtml(i, 'urgent'); rendered++; } });
-    });
-    if(needs.length > CAP) html += '<div class="oh-foot">+' + (needs.length - CAP) + ' more — narrow the range to see them all</div>';
-  } else {
-    html += '<div class="oh-allclear">Nothing flagged across the franchise for ' + esc(meta.word) + '</div>';
-  }
-
-  html += '<div class="oh-section">Cross-shop patterns</div>';
-  html += patterns.length
-    ? patterns.map(p => '<div class="ov-pattern"><div class="ov-pattern-label">&#9889; &ldquo;' + esc(p.word) + '&rdquo; &middot; ' + p.codes.length + ' stands</div>'
-        + '<div class="ov-pattern-text"><b>' + p.codes.map(esc).join(', ') + '</b> — ' + esc(p.sample) + '</div></div>').join('')
-    : '<div class="oh-foot">No wording repeats across two or more stands in this range.</div>';
-
-  html += '<div class="oh-section">Worth knowing</div>';
-  html += worth.length
-    ? worth.slice(0,10).map(i => ovItemHtml(i, 'good')).join('')
-    : '<div class="oh-foot">Nothing notable in this range.</div>';
-
-  html += '<div class="oh-section clean">All routine &middot; ' + (clean.length + INACTIVE_SHOPS.size) + '</div>';
-  html += '<div class="ov-routine">'
-    + clean.map(s => '<div class="ov-routine-row"><span class="name">' + esc(s.code) + '</span><span class="tag">clean</span></div>').join('')
-    + [...INACTIVE_SHOPS].map(shop => '<div class="ov-routine-row"><span class="name">' + esc(shop) + '</span><span class="tag off">not connected</span></div>').join('')
-    + '</div>';
-
-  return html + '<div class="oh-foot">Every stand across the franchise in one range. Tap any stand to open its detail.</div>';
-}
-
-/* ---- missing this week: cross-shop recaps not filed over the last 7 days ----
-   Pure read of submissionStatus (empty-slot shifts are already marked 'untracked',
-   so they never show here) + the Deputy scheduledLead for who was responsible. */
-function missingThisWeek(){
-  const days = [];
-  indicesForRange('7d').slice().sort((a,b)=> b-a).forEach(d=>{
-    const rows = [];
-    ACTIVE_SHOPS.forEach(shop => SHIFTS.forEach(shift => {
-      if(submissionStatus[d+'|'+shop+'|'+shift] === 'missing'){
-        rows.push({ code: shop.toUpperCase(), shift, lead: scheduledLead(d, shop, shift) });
-      }
-    }));
-    days.push({ dayIndex: d, date: dateForIndex(d), rows });
-  });
-  return days;
-}
-function missingView(){
-  const days = missingThisWeek();
-  const total = days.reduce((n,x)=> n + x.rows.length, 0);
-  let html = head('Missing this week', '', 'DB Sac', true)
-    + '<div class="oh-sub" style="margin:6px 0 16px;">' + total + ' recap' + (total===1?'':'s') + ' not filed &middot; last 7 days &middot; newest first</div>';
-  if(total === 0){
-    return html + '<div class="oh-allclear">Every scheduled recap is in for the last 7 days.</div>'
-      + '<div class="oh-foot">Empty-slot shifts (nobody scheduled) are treated as N/A, never counted as missing.</div>';
-  }
-  days.forEach(day=>{
-    if(!day.rows.length) return;
-    html += '<div class="oh-section act">' + esc(fmtDate(day.date)) + (day.dayIndex===TODAY_INDEX ? ' &middot; Today' : '') + ' &middot; ' + day.rows.length + '</div>'
-      + day.rows.map(r =>
-          '<button class="ov-item urgent" data-code="' + esc(r.code) + '">'
-          + '<span class="ov-item-top"><span class="ov-item-shop">' + esc(r.code) + '</span>'
-          + '<span class="ov-item-meta">' + esc(r.shift) + '</span></span>'
-          + (r.lead
-              ? '<span class="ov-item-text">scheduled: ' + esc(r.lead) + '</span>'
-              : '<span class="ov-item-text" style="color:var(--text-faint)">no schedule data for this day</span>')
-          + '</button>').join('');
-  });
-  return html + '<div class="oh-foot">Tap a shift to open the stand. Empty-slot shifts (nobody scheduled) are treated as N/A, never counted as missing.</div>';
-}
-
 function render(){
   const host = document.getElementById('oh-app');
   const body = ohScreen === 'home' ? homeView()
-    : ohScreen === 'overview' ? overviewView()
-    : ohScreen === 'missing' ? missingView()
+    : ohScreen === 'stands' ? standsView()
     : ohScreen === 'stand' ? standView()
     : ohScreen === 'recaps' ? recapsView()
     : ohScreen === 'times' ? timesView()
@@ -62365,13 +62192,15 @@ function render(){
     : ohScreen === 'board' ? boardView()
     : personView();
 
-  const backLabel = (ohScreen === 'stand' || ohScreen === 'compare' || ohScreen === 'board' || ohScreen === 'overview' || ohScreen === 'missing') ? 'All stands'
+  const backLabel = (ohScreen === 'stands' || ohScreen === 'compare' || ohScreen === 'board') ? 'Home'
+    : ohScreen === 'stand' ? 'All stands'
     : ohScreen === 'person' ? 'People' : ohCode;
   host.innerHTML = (ohScreen === 'home' ? '' : '<button class="oh-back" id="oh-back">&larr; ' + esc(backLabel) + '</button>') + body;
 
   const on = (sel, fn) => { const el = host.querySelector(sel); if (el) el.addEventListener('click', fn); };
   on('#oh-back', () => {
-    ohScreen = (ohScreen === 'stand' || ohScreen === 'compare' || ohScreen === 'board' || ohScreen === 'overview' || ohScreen === 'missing') ? 'home'
+    ohScreen = (ohScreen === 'stands' || ohScreen === 'compare' || ohScreen === 'board') ? 'home'
+      : ohScreen === 'stand' ? 'stands'
       : ohScreen === 'person' ? 'people' : 'stand';
     ohRangeOpen = false;
     render();
@@ -62382,6 +62211,13 @@ function render(){
   }));
   on('#oh-compare', () => { ohScreen = 'compare'; ohRangeOpen = false; render(); });
   on('#oh-board', () => { ohScreen = 'board'; ohRangeOpen = false; render(); });
+  host.querySelectorAll('[data-home]').forEach(b => b.addEventListener('click', () => {
+    const dest = b.dataset.home;
+    if(dest === 'overview'){ if(typeof showView==='function') showView('overview'); if(typeof renderOverview==='function') renderOverview(typeof ovRangeState!=='undefined' ? ovRangeState : 'today'); return; }
+    if(dest === 'times'){ ohScreen = 'board'; ohMetric = 'times'; }
+    else { ohScreen = dest; }
+    ohRangeOpen = false; render();
+  }));
   host.querySelectorAll('[data-cmpcode]').forEach(b => b.addEventListener('click', () => {
     const c = b.dataset.cmpcode, i = ohCmpPicked.indexOf(c);
     if (i === -1) ohCmpPicked = ohCmpPicked.concat([c]); else ohCmpPicked = ohCmpPicked.filter(x => x !== c);
@@ -62424,6 +62260,100 @@ render();
 // the new app owns the whole screen; retire the old global header + views
 (function(){ const h=document.querySelector('header'); if(h) h.style.display='none'; })();
 })();
+
+/* ===== Overview screen logic (top-level; deps confirmed present) ===== */
+// Shim: file has INACTIVE_SHOPS (a Set); the overview code expects UNTRACKED_SHOPS as an array.
+const UNTRACKED_SHOPS = [...INACTIVE_SHOPS];
+
+const OV_STOPWORDS = new Set(['this','that','with','have','were','they','today','shift','about','there','their','would','could','should','which','while','still','also','some','just','been','being','when','then','than','from','into','over','under','again','doing','does','didn','wasn','aren','isn','the','and','for','are','was','but','not','you','all','can','had','has','out','get','got']);
+
+function detectCrossShopPatterns(indices){
+  const idxSet = new Set(indices);
+  const wordShops = {}, wordSamples = {};
+  const trackedShops = SHOPS.filter(s => !UNTRACKED_SHOPS.includes(s));
+  records.forEach(r=>{
+    if(!trackedShops.includes(r.shop) || !idxSet.has(r.dayIndex)) return;
+    r.flags.forEach(f=>{
+      if(f.kind!=='bad') return;
+      const seen = new Set();
+      f.text.toLowerCase().replace(/[^a-z\s]/g,' ').split(/\s+/)
+        .filter(w=>w.length>=4 && !OV_STOPWORDS.has(w))
+        .forEach(w=>{
+          if(seen.has(w)) return; seen.add(w);
+          if(!wordShops[w]){ wordShops[w]=new Set(); wordSamples[w]=[]; }
+          wordShops[w].add(r.shop);
+          wordSamples[w].push({shop:r.shop, text:f.text});
+        });
+    });
+  });
+  return Object.keys(wordShops)
+    .filter(w=>wordShops[w].size>=2)
+    .map(w=>({word:w, shops:[...wordShops[w]], samples:wordSamples[w].slice(0,3)}))
+    .sort((a,b)=>b.shops.length - a.shops.length)
+    .slice(0,5);
+}
+
+function renderOverview(rangeKey){
+  const indices = indicesForRange(rangeKey);
+  const idxSet = new Set(indices);
+  const trackedShops = SHOPS.filter(s => !UNTRACKED_SHOPS.includes(s));
+  const needsAttention = [], worthKnowing = [], routineShops = [];
+
+  trackedShops.forEach(shop=>{
+    const recs = records.filter(r=>r.shop===shop && idxSet.has(r.dayIndex));
+    let hasFlag = false;
+    recs.forEach(r=>{
+      r.flags.forEach(f=>{
+        if(flagCategory(f.text)==='Late submission') return;
+        const item = {shop, shift:r.shift, dayIndex:r.dayIndex, text:f.text, recordIndex:records.indexOf(r)};
+        if(f.kind==='bad'){ needsAttention.push(item); hasFlag = true; }
+        else worthKnowing.push(item);
+      });
+    });
+    if(!hasFlag) routineShops.push(shop);
+  });
+  needsAttention.sort((a,b)=>b.dayIndex-a.dayIndex);
+  worthKnowing.sort((a,b)=>b.dayIndex-a.dayIndex);
+
+  document.getElementById('ov-stat-hazards').textContent = needsAttention.filter(i=>i.text.startsWith('Hazard reported')).length;
+  document.getElementById('ov-stat-flagged').textContent = needsAttention.length;
+  document.getElementById('ov-stat-filed').textContent = records.filter(r=>trackedShops.includes(r.shop) && idxSet.has(r.dayIndex)).length;
+
+  document.getElementById('ov-needs-attention').innerHTML = needsAttention.length===0
+    ? `<div class="ov-empty">Nothing flagged in this range.</div>`
+    : needsAttention.slice(0,25).map(i=>`<div class="ov-item urgent" onclick="openRecapModal(${i.recordIndex})">
+        <div class="ov-item-top"><span class="ov-item-shop">${escapeHtml(i.shop)}</span><span class="ov-item-meta">${fmtDate(dateForIndex(i.dayIndex))} · ${i.shift}</span></div>
+        <div class="ov-item-text">${escapeHtml(i.text)}</div></div>`).join('')
+      + (needsAttention.length>25 ? `<div class="ov-empty">+${needsAttention.length-25} more — narrow the range to see all</div>` : '');
+
+  const patterns = detectCrossShopPatterns(indices);
+  document.getElementById('ov-patterns').innerHTML = patterns.length===0
+    ? `<div class="ov-empty">No repeated issues across shops in this range.</div>`
+    : patterns.map(p=>`<div class="ov-pattern-box">
+        <div class="ov-pattern-label">⚡ "${escapeHtml(p.word)}" mentioned by ${p.shops.length} shops</div>
+        <div class="ov-pattern-text"><b>${p.shops.map(escapeHtml).join(', ')}</b> — ${escapeHtml(p.samples[0].text)}</div></div>`).join('');
+
+  document.getElementById('ov-worth-knowing').innerHTML = worthKnowing.length===0
+    ? `<div class="ov-empty">Nothing notable in this range.</div>`
+    : worthKnowing.slice(0,10).map(i=>`<div class="ov-item good" onclick="openRecapModal(${i.recordIndex})">
+        <div class="ov-item-top"><span class="ov-item-shop">${escapeHtml(i.shop)}</span><span class="ov-item-meta">${fmtDate(dateForIndex(i.dayIndex))} · ${i.shift}</span></div>
+        <div class="ov-item-text">${escapeHtml(i.text)}</div></div>`).join('');
+
+  document.getElementById('ov-routine').innerHTML =
+    routineShops.map(shop=>`<div class="ov-roundup-row"><span class="name">${escapeHtml(shop)}</span><span class="nums">clean</span></div>`).join('') +
+    UNTRACKED_SHOPS.map(shop=>`<div class="ov-roundup-row"><span class="name">${escapeHtml(shop)}</span><span class="nums" style="color:var(--ov-faint);">not connected</span></div>`).join('');
+}
+
+let ovRangeState = 'today';
+document.getElementById('btn-back-home-ov').addEventListener('click', ()=>showView('home'));
+document.querySelectorAll('.range-picker[data-range-group="overview"] .range-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    ovRangeState = btn.dataset.range;
+    document.querySelectorAll('.range-picker[data-range-group="overview"] .range-btn').forEach(b=>b.classList.toggle('active', b.dataset.range===ovRangeState));
+    renderOverview(ovRangeState);
+  });
+});
+
 </script>
 </body>
 </html>
