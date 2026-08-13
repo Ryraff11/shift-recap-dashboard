@@ -231,11 +231,19 @@ def main():
             continue
         if _dep_in_window(parts[0]):
             deputy_inject[key] = {'lead': v.get('lead'), 'empty': bool(v.get('empty'))}
-    d_start = html.index("const REAL_DEPUTY_SCHEDULE = ")
-    d_end = html.index(";", d_start)
-    html = html[:d_start] + f"const REAL_DEPUTY_SCHEDULE = {json.dumps(deputy_inject)}" + html[d_end:]
-    empties = sum(1 for x in deputy_inject.values() if x['empty'])
-    print(f'  injected REAL_DEPUTY_SCHEDULE ({len(deputy_inject)} slot(s) in last {DEPUTY_WINDOW_DAYS}d, {empties} empty)')
+    # Only inject if the template actually declares the marker. A template that
+    # doesn't render the deputy schedule (e.g. the masthead/grid rebuild) simply
+    # has no "const REAL_DEPUTY_SCHEDULE = " to write into -- skip gracefully
+    # rather than crashing the whole build. The history above is still updated.
+    _dep_marker = "const REAL_DEPUTY_SCHEDULE = "
+    if _dep_marker in html:
+        d_start = html.index(_dep_marker)
+        d_end = html.index(";", d_start)
+        html = html[:d_start] + f"const REAL_DEPUTY_SCHEDULE = {json.dumps(deputy_inject)}" + html[d_end:]
+        empties = sum(1 for x in deputy_inject.values() if x['empty'])
+        print(f'  injected REAL_DEPUTY_SCHEDULE ({len(deputy_inject)} slot(s) in last {DEPUTY_WINDOW_DAYS}d, {empties} empty)')
+    else:
+        print('  SKIP REAL_DEPUTY_SCHEDULE injection — template has no deputy marker (feature not in this template); history still updated')
 
     # keep the dashboard's internal "today" in sync with the actual current date
     today = datetime.now(ZoneInfo('America/Los_Angeles'))
