@@ -147,8 +147,39 @@ def main():
         'REAL_MANZ_RECORDS': 'manz_records_full_window.json',
         'REAL_OV_RECORDS': 'ov_records_full_window.json',
     }
-    # load all shops, harvest the filer roster, scrub names, then inject
+    # load all shops, harvest the name roster, scrub names, then inject.
+    # Roster = every filer name (reliable: comes from the form's name field) plus
+    # mention names that are SHAPED like a real person name. Mention extraction
+    # produces junk phrases too ("Aiden Kicked Butt", "Definitely Gabe") — replacing
+    # those in prose would mangle sentences without protecting anyone, so a mention
+    # only joins the roster when both tokens look like name tokens.
     import re as _re
+    _STOP = {
+        'both','always','girl','boy','everybody','everyone','generally','really','think','thought',
+        'probably','definitely','def','okay','just','lil','thin','homes','came','kicked','stayed',
+        'honestly','whole','crew','team','player','best','trainee','from','would','say','doing',
+        'extra','butt','since','because','omg','umm','our','my','so','productive','multitasked',
+        'and','the','was','is','are','been','being','of','to','too','again','today','tonight',
+        'helped','went','got','said','did','has','had','were','not','but','for','with','all',
+    }
+    def _norm_tok(t):
+        return _re.sub(r'(.)\1{2,}', r'\1', t.lower())  # 'Reeeeally' -> 'really'
+    def _looks_like_person(nm):
+        toks = nm.split()
+        if len(toks) != 2:
+            return False
+        return all(t.isalpha() and len(t) >= 3 and _norm_tok(t) not in _STOP for t in toks)
+    def _mention_name_prefix(nm):
+        """Return the scrub-worthy name inside a mention, or None.
+        2 tokens: the name itself if person-shaped. 3 tokens where the last is a
+        filler word ('Maddie Watts Doing'): the leading 2-token name."""
+        toks = nm.split()
+        if len(toks) == 2 and _looks_like_person(nm):
+            return nm
+        if len(toks) == 3 and _looks_like_person(' '.join(toks[:2])) and _norm_tok(toks[2]) in _STOP:
+            return ' '.join(toks[:2])
+        return None
+
     shop_records = {}
     _roster = set()
     for var_name, jf in shop_files.items():
@@ -158,6 +189,10 @@ def main():
             emp = (r.get('employee') or '').strip()
             if len(emp.split()) >= 2:
                 _roster.add(emp)
+            for m in r.get('namedMentions') or []:
+                cand = _mention_name_prefix((m.get('name') or '').strip())
+                if cand:
+                    _roster.add(cand)
     _patterns = [(_re.compile(r'\b' + _re.escape(n) + r'\b', _re.IGNORECASE), _privacy_name(n))
                  for n in sorted(_roster, key=len, reverse=True)]
 
