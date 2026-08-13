@@ -20,7 +20,7 @@ USAGE:
   It overwrites shift-recap-dashboard.html with fresh data for all 7 shops.
 """
 import csv, json, subprocess, sys
-from datetime import datetime
+from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
 BUILD_SCRIPTS = [
@@ -122,10 +122,6 @@ def main():
             json.dump(recs, f, indent=2)
     print(f'  rolled {rolled} after-midnight Close recap(s) back to the prior shift-day')
 
-    step('Injecting fresh data into dashboard HTML')
-    with open(DASHBOARD_FILE) as f:
-        html = f.read()
-
     # PRIVACY: index.html is committed to a PUBLIC repo, so recap records are scrubbed
     # to "First L." at this choke point (covers every shop regardless of build-script
     # quirks). Structured name fields are truncated unconditionally; free-text fields
@@ -136,132 +132,6 @@ def main():
         if len(parts) < 2:
             return full
         return f'{parts[0]} {parts[-1][0]}.'
-
-    shop_files = {
-        'REAL_ANTELOPE_RECORDS': 'antelope_records_full_window.json',
-        'REAL_FAIROAKS_RECORDS': 'fairoaks_records_full_window.json',
-        'REAL_AUBURN_RECORDS': 'auburn_records_full_window.json',
-        'REAL_MADHOUSE_RECORDS': 'madhouse_records_full_window.json',
-        'REAL_LICHEN_RECORDS': 'lichen_records_full_window.json',
-        'REAL_FIRESIDE_RECORDS': 'fireside_records_full_window.json',
-        'REAL_MANZ_RECORDS': 'manz_records_full_window.json',
-        'REAL_OV_RECORDS': 'ov_records_full_window.json',
-    }
-    # load all shops, harvest the name roster, scrub names, then inject.
-    # Roster = every filer name (reliable: comes from the form's name field) plus
-    # mention names that are SHAPED like a real person name. Mention extraction
-    # produces junk phrases too ("Aiden Kicked Butt", "Definitely Gabe") — replacing
-    # those in prose would mangle sentences without protecting anyone, so a mention
-    # only joins the roster when both tokens look like name tokens.
-    import re as _re
-    _STOP = {
-        'both','always','girl','boy','everybody','everyone','generally','really','think','thought',
-        'probably','definitely','def','okay','just','lil','thin','homes','came','kicked','stayed',
-        'honestly','whole','crew','team','player','best','trainee','from','would','say','doing',
-        'extra','butt','since','because','omg','umm','our','my','so','productive','multitasked',
-        'and','the','was','is','are','been','being','of','to','too','again','today','tonight',
-        'helped','went','got','said','did','has','had','were','not','but','for','with','all',
-    }
-    def _norm_tok(t):
-        return _re.sub(r'(.)\1{2,}', r'\1', t.lower())  # 'Reeeeally' -> 'really'
-    def _looks_like_person(nm):
-        toks = nm.split()
-        if len(toks) != 2:
-            return False
-        return all(t.isalpha() and len(t) >= 3 and _norm_tok(t) not in _STOP for t in toks)
-    def _mention_name_prefix(nm):
-        """Return the scrub-worthy name inside a mention, or None.
-        2 tokens: the name itself if person-shaped. 3 tokens where the last is a
-        filler word ('Maddie Watts Doing'): the leading 2-token name."""
-        toks = nm.split()
-        if len(toks) == 2 and _looks_like_person(nm):
-            return nm
-        if len(toks) == 3 and _looks_like_person(' '.join(toks[:2])) and _norm_tok(toks[2]) in _STOP:
-            return ' '.join(toks[:2])
-        return None
-
-    shop_records = {}
-    _roster = set()
-    for var_name, jf in shop_files.items():
-        with open(jf) as f:
-            shop_records[var_name] = json.load(f)
-        for r in shop_records[var_name]:
-            emp = (r.get('employee') or '').strip()
-            if len(emp.split()) >= 2:
-                _roster.add(emp)
-            for m in r.get('namedMentions') or []:
-                cand = _mention_name_prefix((m.get('name') or '').strip())
-                if cand:
-                    _roster.add(cand)
-    _patterns = [(_re.compile(r'\b' + _re.escape(n) + r'\b', _re.IGNORECASE), _privacy_name(n))
-                 for n in sorted(_roster, key=len, reverse=True)]
-
-    def _scrub_text(s):
-        for pat, short in _patterns:
-            s = pat.sub(short, s)
-        return s
-
-    _n_names, _n_prose = 0, 0
-    for recs in shop_records.values():
-        for r in recs:
-            emp = r.get('employee') or ''
-            if len(emp.split()) >= 2:
-                r['employee'] = _privacy_name(emp)
-                _n_names += 1
-            for m in r.get('namedMentions') or []:
-                nm = m.get('name') or ''
-                if len(nm.split()) >= 2:
-                    m['name'] = _privacy_name(nm)
-                    _n_names += 1
-                if m.get('source'):
-                    _new = _scrub_text(m['source'])
-                    if _new != m['source']:
-                        m['source'] = _new
-                        _n_prose += 1
-            for fl in r.get('flags') or []:
-                fe = fl.get('employee') or ''
-                if len(fe.split()) >= 2:
-                    fl['employee'] = _privacy_name(fe)
-                    _n_names += 1
-                if fl.get('text'):
-                    _new = _scrub_text(fl['text'])
-                    if _new != fl['text']:
-                        fl['text'] = _new
-                        _n_prose += 1
-            fr = r.get('fullRecap') or {}
-            for k, v in list(fr.items()):
-                if isinstance(v, str) and v:
-                    _new = _scrub_text(v)
-                    if _new != v:
-                        fr[k] = _new
-                        _n_prose += 1
-    print(f'  privacy: shortened {_n_names} structured name(s), scrubbed {_n_prose} free-text field(s) '
-          f'(roster of {len(_roster)} full name(s))')
-
-    var_names = list(shop_files.keys())
-    for i, var_name in enumerate(var_names):
-        payload = json.dumps(shop_records[var_name], indent=2)
-        start_marker = f"const {var_name} = "
-        if i + 1 < len(var_names):
-            end_marker = f"\nconst {var_names[i+1]} = "
-        else:
-            end_marker = "\nconst records = [];"
-        start_idx = html.index(start_marker)
-        end_idx = html.index(end_marker, start_idx)
-        html = html[:start_idx] + f"{start_marker}{payload}" + html[end_idx:]
-        print(f'  injected {var_name} ({len(payload)} chars)')
-
-    # inject real HME drive-thru timer history (empty {} if hme_timer_history.json isn't present yet).
-    # update_timer_history.py owns this file and re-injects fresher data after the recap build;
-    # reading it here keeps the build self-consistent even if the HME step is skipped this run.
-    timer = {}
-    if os.path.exists('hme_timer_history.json'):
-        with open('hme_timer_history.json') as f:
-            timer = json.load(f)
-    t_start = html.index("const REAL_TIMER_DATA = ")
-    t_end = html.index(";", t_start)
-    html = html[:t_start] + f"const REAL_TIMER_DATA = {json.dumps(timer)}" + html[t_end:]
-    print(f'  injected REAL_TIMER_DATA ({len(timer)} shop(s), {sum(len(v) for v in timer.values())} shop-day(s))')
 
     # Deputy shift-lead schedule. Exported from the Deputy sheet as deputy_schedule_raw.csv
     # (Date, Shop, ShiftLabel, EmployeeName, EmployeeId, IsEmptySlot, ScheduledStart, ScheduledEnd).
@@ -403,6 +273,216 @@ def main():
               f'{len(deputy_hist)} total in history')
     else:
         print('  deputy_schedule_raw.csv not present — using existing deputy_schedule_history.json as-is')
+
+    step('Injecting fresh data into dashboard HTML')
+    with open(DASHBOARD_FILE) as f:
+        html = f.read()
+
+    shop_files = {
+        'REAL_ANTELOPE_RECORDS': 'antelope_records_full_window.json',
+        'REAL_FAIROAKS_RECORDS': 'fairoaks_records_full_window.json',
+        'REAL_AUBURN_RECORDS': 'auburn_records_full_window.json',
+        'REAL_MADHOUSE_RECORDS': 'madhouse_records_full_window.json',
+        'REAL_LICHEN_RECORDS': 'lichen_records_full_window.json',
+        'REAL_FIRESIDE_RECORDS': 'fireside_records_full_window.json',
+        'REAL_MANZ_RECORDS': 'manz_records_full_window.json',
+        'REAL_OV_RECORDS': 'ov_records_full_window.json',
+    }
+    # load all shops, harvest the name roster, scrub names, then inject.
+    # Roster = every filer name (reliable: comes from the form's name field) plus
+    # mention names that are SHAPED like a real person name. Mention extraction
+    # produces junk phrases too ("Aiden Kicked Butt", "Definitely Gabe") — replacing
+    # those in prose would mangle sentences without protecting anyone, so a mention
+    # only joins the roster when both tokens look like name tokens.
+    import re as _re
+    _STOP = {
+        'both','always','girl','boy','everybody','everyone','generally','really','think','thought',
+        'probably','definitely','def','okay','just','lil','thin','homes','came','kicked','stayed',
+        'honestly','whole','crew','team','player','best','trainee','from','would','say','doing',
+        'extra','butt','since','because','omg','umm','our','my','so','productive','multitasked',
+        'and','the','was','is','are','been','being','of','to','too','again','today','tonight',
+        'helped','went','got','said','did','has','had','were','not','but','for','with','all',
+    }
+    def _norm_tok(t):
+        return _re.sub(r'(.)\1{2,}', r'\1', t.lower())  # 'Reeeeally' -> 'really'
+    def _looks_like_person(nm):
+        toks = nm.split()
+        if len(toks) != 2:
+            return False
+        return all(t.isalpha() and len(t) >= 3 and _norm_tok(t) not in _STOP for t in toks)
+    def _mention_name_prefix(nm):
+        """Return the scrub-worthy name inside a mention, or None.
+        2 tokens: the name itself if person-shaped. 3 tokens where the last is a
+        filler word ('Maddie Watts Doing'): the leading 2-token name."""
+        toks = nm.split()
+        if len(toks) == 2 and _looks_like_person(nm):
+            return nm
+        if len(toks) == 3 and _looks_like_person(' '.join(toks[:2])) and _norm_tok(toks[2]) in _STOP:
+            return ' '.join(toks[:2])
+        return None
+
+    shop_records = {}
+    _roster = set()
+    for var_name, jf in shop_files.items():
+        with open(jf) as f:
+            shop_records[var_name] = json.load(f)
+        for r in shop_records[var_name]:
+            emp = (r.get('employee') or '').strip()
+            if len(emp.split()) >= 2:
+                _roster.add(emp)
+            for m in r.get('namedMentions') or []:
+                cand = _mention_name_prefix((m.get('name') or '').strip())
+                if cand:
+                    _roster.add(cand)
+    # SHIFT RE-ATTRIBUTION AGAINST THE DEPUTY SCHEDULE. parse_shift falls back to
+    # filing-time inference when the recap's name field names no shift, so a Mid
+    # lead filing late (6:32pm) lands under Close — and scores as ON TIME for the
+    # wrong shift. Where the schedule knows the dayparts, the schedule wins: a
+    # filer matching exactly ONE scheduled lead that day moves to that shift and
+    # lateness is recomputed against the correct cutoff. Ambiguous name matches,
+    # already-occupied target slots, and days with no schedule data are untouched.
+    from shift_cutoffs import cutoff_for
+    _TODAY_LA = datetime.now(ZoneInfo('America/Los_Angeles')).date()
+    _DAYS_WINDOW = 60  # dayIndex 59 == today; matches every build script
+
+    def _idx_date(di):
+        return (_TODAY_LA - timedelta(days=(_DAYS_WINDOW - 1 - di))).isoformat()
+
+    def _sched_for(date_iso, shop_name):
+        out = {}
+        for sh in ('Open', 'Mid', 'Close'):
+            v = deputy_hist.get(f'{date_iso}|{shop_name}|{sh}')
+            if v and v.get('lead'):
+                out[sh] = v['lead']
+        return out
+
+    def _lead_match(raw_emp, lead):
+        e = _privacy_name(raw_emp).lower().rstrip('.')
+        l = lead.lower().rstrip('.')
+        if e == l:
+            return True
+        # bare first name on the recap matches a scheduled lead's first name
+        return len(e.split()) == 1 and e == l.split()[0]
+
+    _moved = 0
+    for recs in shop_records.values():
+        for r in recs:
+            emp = (r.get('employee') or '').strip()
+            di = r.get('dayIndex')
+            if not emp or di is None:
+                continue
+            sched = _sched_for(_idx_date(di), r.get('shop'))
+            if not sched:
+                continue
+            matches = [sh for sh, lead in sched.items() if _lead_match(emp, lead)]
+            if len(matches) != 1 or matches[0] == r.get('shift'):
+                continue
+            target = matches[0]
+            if any(x is not r and x.get('dayIndex') == di and x.get('shift') == target for x in recs):
+                continue  # slot already filed — don't guess
+            r['shift'] = target
+            r['shiftFromSchedule'] = True
+            try:
+                dt = datetime.strptime(r.get('timestamp') or '', '%m/%d/%Y %H:%M:%S')
+            except ValueError:
+                dt = None
+            if dt is not None:
+                c = cutoff_for(r.get('shop'), target, dt)
+                if c is not None:
+                    ch, cm = c
+                    if target == 'Close':
+                        if ch < 5:  # after-midnight cutoff (e.g. 00:20)
+                            late = 0 <= dt.hour <= 3 and (dt.hour, dt.minute) > (ch, cm)
+                        else:       # evening cutoff — mirrors the builders' Close rule
+                            if dt.hour == ch:
+                                late = dt.minute > cm
+                            elif ch < dt.hour < 24 or 0 <= dt.hour <= 3:
+                                late = True
+                            else:
+                                late = False
+                    else:
+                        late = (dt.hour, dt.minute) > (ch, cm)
+                    r['isLate'] = late
+                    r['flags'] = [f for f in (r.get('flags') or [])
+                                  if not (f.get('text') or '').startswith('Recap submitted late')]
+                    if late:
+                        r['flags'].append({'kind': 'bad', 'employee': None,
+                            'text': f'Recap submitted late — arrived {dt.strftime("%-I:%M %p")}, after the '
+                                    f'{ch:02d}:{cm:02d} grace-period cutoff for {target} (shift set from the Deputy schedule).'})
+            _moved += 1
+    if _moved:
+        print(f"  re-attributed {_moved} recap(s) to the filer's scheduled shift (Deputy schedule wins over filing time)")
+
+    _patterns = [(_re.compile(r'\b' + _re.escape(n) + r'\b', _re.IGNORECASE), _privacy_name(n))
+                 for n in sorted(_roster, key=len, reverse=True)]
+
+    def _scrub_text(s):
+        for pat, short in _patterns:
+            s = pat.sub(short, s)
+        return s
+
+    _n_names, _n_prose = 0, 0
+    for recs in shop_records.values():
+        for r in recs:
+            emp = r.get('employee') or ''
+            if len(emp.split()) >= 2:
+                r['employee'] = _privacy_name(emp)
+                _n_names += 1
+            for m in r.get('namedMentions') or []:
+                nm = m.get('name') or ''
+                if len(nm.split()) >= 2:
+                    m['name'] = _privacy_name(nm)
+                    _n_names += 1
+                if m.get('source'):
+                    _new = _scrub_text(m['source'])
+                    if _new != m['source']:
+                        m['source'] = _new
+                        _n_prose += 1
+            for fl in r.get('flags') or []:
+                fe = fl.get('employee') or ''
+                if len(fe.split()) >= 2:
+                    fl['employee'] = _privacy_name(fe)
+                    _n_names += 1
+                if fl.get('text'):
+                    _new = _scrub_text(fl['text'])
+                    if _new != fl['text']:
+                        fl['text'] = _new
+                        _n_prose += 1
+            fr = r.get('fullRecap') or {}
+            for k, v in list(fr.items()):
+                if isinstance(v, str) and v:
+                    _new = _scrub_text(v)
+                    if _new != v:
+                        fr[k] = _new
+                        _n_prose += 1
+    print(f'  privacy: shortened {_n_names} structured name(s), scrubbed {_n_prose} free-text field(s) '
+          f'(roster of {len(_roster)} full name(s))')
+
+    var_names = list(shop_files.keys())
+    for i, var_name in enumerate(var_names):
+        payload = json.dumps(shop_records[var_name], indent=2)
+        start_marker = f"const {var_name} = "
+        if i + 1 < len(var_names):
+            end_marker = f"\nconst {var_names[i+1]} = "
+        else:
+            end_marker = "\nconst records = [];"
+        start_idx = html.index(start_marker)
+        end_idx = html.index(end_marker, start_idx)
+        html = html[:start_idx] + f"{start_marker}{payload}" + html[end_idx:]
+        print(f'  injected {var_name} ({len(payload)} chars)')
+
+    # inject real HME drive-thru timer history (empty {} if hme_timer_history.json isn't present yet).
+    # update_timer_history.py owns this file and re-injects fresher data after the recap build;
+    # reading it here keeps the build self-consistent even if the HME step is skipped this run.
+    timer = {}
+    if os.path.exists('hme_timer_history.json'):
+        with open('hme_timer_history.json') as f:
+            timer = json.load(f)
+    t_start = html.index("const REAL_TIMER_DATA = ")
+    t_end = html.index(";", t_start)
+    html = html[:t_start] + f"const REAL_TIMER_DATA = {json.dumps(timer)}" + html[t_end:]
+    print(f'  injected REAL_TIMER_DATA ({len(timer)} shop(s), {sum(len(v) for v in timer.values())} shop-day(s))')
+
 
     # Inject a trailing window of RESOLVED (Open/Mid/Close) slots as REAL_DEPUTY_SCHEDULE,
     # keyed exactly as the client reads it. Unlabeled (#id) keys stay in history but out of
