@@ -18,6 +18,8 @@ pipeline/*_recap_prepped.csv
 # pipeline/hme_timer_history.json, so the raw bodies don't need to be tracked.
 pipeline/hme_data/
 pipeline/hme_*.txt
+# 'checked, no report today' markers — ephemeral run signal, regenerated each run
+pipeline/hme_*.none
 
 # Python cache
 __pycache__/

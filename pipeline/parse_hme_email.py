@@ -17,17 +17,37 @@ Returns {'error': ...} when the store/date/lane can't be read, or None if it isn
 import re
 from datetime import datetime
 
-STORE_MAP = {
-    '175': 'Mad',
-    '2008': 'Lichen',
-    '280': 'Manz',
-    '207': 'Fair Oaks',   # sent under the old nickname "K Town"
-    # PDF "Day Summary Report" stores (numbers may carry leading zeros in the header):
-    '181': 'Auburn',
-    '4341': 'Antelope',
-    '2011': 'OV',
-    '2015': 'Fireside',
-}
+# ── CANONICAL HME SHOP REGISTRY ─────────────────────────────────────────────
+# The SINGLE SOURCE OF TRUTH for which shops the HME timer pipeline expects each
+# run and how each report is fetched. STORE_MAP (below), the per-run coverage
+# check in update_timer_history.py, and the scheduled run's fetch list all
+# derive from THIS list — so a shop can never silently fall out of sync: add or
+# remove one here and the coverage check immediately expects the change (an
+# un-fetched shop then shows up as a loud gap instead of a silent zero).
+#   source 'text' -> Gmail plain-text "Other - Day Report", saved as hme_<store>.txt
+#   source 'pdf'  -> Drive "Day Summary Report" PDF text,    saved as hme_pdf_<store>.txt
+HME_SHOPS = [
+    {'store': '175',  'shop': 'Mad',       'source': 'text', 'locator': 'HME ZOOM: Other #175 - Day Report'},
+    {'store': '2008', 'shop': 'Lichen',    'source': 'text', 'locator': 'HME ZOOM: Other #2008 - Day Report'},
+    {'store': '280',  'shop': 'Manz',      'source': 'text', 'locator': 'HME ZOOM: Other #280 - Day Report'},
+    {'store': '207',  'shop': 'Fair Oaks', 'source': 'text', 'locator': 'HME ZOOM: Other #207 - Day Report'},  # old nickname "K Town"
+    {'store': '181',  'shop': 'Auburn',    'source': 'pdf',  'locator': 'title contains "000181"'},
+    {'store': '4341', 'shop': 'Antelope',  'source': 'pdf',  'locator': 'title contains "4341"'},
+    {'store': '2011', 'shop': 'OV',        'source': 'pdf',  'locator': 'title contains "2011"'},
+    {'store': '2015', 'shop': 'Fireside',  'source': 'pdf',  'locator': 'title contains "2015"'},
+]
+
+# Derived downstream — do NOT hand-maintain a second copy.
+STORE_MAP = {e['store']: e['shop'] for e in HME_SHOPS}
+
+def input_basename(entry):
+    """The gitignored raw-input filename the run writes for this shop's report."""
+    return f"hme_pdf_{entry['store']}.txt" if entry['source'] == 'pdf' else f"hme_{entry['store']}.txt"
+
+def none_basename(entry):
+    """Marker the run writes to record 'checked, genuinely no report today' —
+    the signal that separates a real quiet day from a silent fetch miss."""
+    return f"hme_pdf_{entry['store']}.none" if entry['source'] == 'pdf' else f"hme_{entry['store']}.none"
 
 def shop_for_store(store_num):
     return STORE_MAP.get(store_num) or STORE_MAP.get(store_num.lstrip('0'))
