@@ -61769,11 +61769,12 @@ function getRecaps(code, range){
   const byRecency = SHIFTS.slice().sort((a,b)=> order[a]-order[b]);
   const out = [];
   idxs.forEach(d => byRecency.forEach(sh => {
-    const rec = records.find(r => r.shop===shop && r.dayIndex===d && r.shift===sh && r.employee);
+    const ri = records.findIndex(r => r.shop===shop && r.dayIndex===d && r.shift===sh && r.employee);
+    const rec = ri === -1 ? null : records[ri];
     if(rec){
       let g=0, b=0;
       (rec.flags||[]).forEach(f=>{ if(!isRealFlag(f)) return; if(f.kind==='good') g++; else b++; });
-      out.push({ shift: sh, filed: filedText(rec), late: !!rec.isLate, good:'+'+g, bad:'-'+b, by: ohShortName(rec.employee), note: recapNote(rec) });
+      out.push({ shift: sh, filed: filedText(rec), late: !!rec.isLate, good:'+'+g, bad:'-'+b, by: ohShortName(rec.employee), note: recapNote(rec), recordIndex: ri });
     } else if(submissionStatus[d+'|'+shop+'|'+sh]==='missing'){
       out.push({ shift: sh, filed:'not filed', missing:true });
     }
@@ -62143,7 +62144,8 @@ function recapsView(){
   return subHead('Recaps', shiftsInRange() + ' shifts in range · most recent first')
     + '<div class="oh-cards" style="margin-top:20px">' + rows.map(r => {
       const tone = r.missing ? 'bad' : r.late ? 'watch' : '';
-      return '<div class="oh-card ' + tone + '" style="cursor:default">'
+      const tag = r.missing ? 'div' : 'button';
+      return '<' + tag + ' class="oh-card ' + tone + '"' + (r.missing ? ' style="cursor:default"' : ' data-openrec="' + r.recordIndex + '"') + '>'
         + '<span class="oh-card-top"><span class="oh-name" style="font-size:20px">' + esc(r.shift) + '</span>'
         + '<span class="oh-meta">' + esc(r.filed) + '</span></span>'
         + (r.missing ? '' : '<span class="oh-metrics"><span class="g">' + esc(r.good) + '</span>'
@@ -62151,9 +62153,9 @@ function recapsView(){
         + (r.note ? '<span class="oh-meta" style="color:#DBE5F1;line-height:1.5">' + esc(r.note) + '</span>' : '')
         + (r.missing || r.late ? '<span class="oh-chips"><span class="oh-chip ' + (r.missing ? 'bad' : 'watch') + '">'
             + (r.missing ? 'no recap on file' : 'filed late') + '</span></span>' : '')
-        + '</div>';
+        + '</' + tag + '>';
     }).join('') + '</div>'
-    + '<div class="oh-foot">Newest first. Shifts with no recap stay in the list as red cards so a gap is never invisible.</div>';
+    + '<div class="oh-foot">Newest first. Tap a filed recap to read the full submission. Shifts with no recap stay in the list as red cards so a gap is never invisible.</div>';
 }
 
 function timesView(){
@@ -62375,6 +62377,9 @@ function render(){
   }));
   host.querySelectorAll('[data-person]').forEach(b => b.addEventListener('click', () => {
     ohPerson = b.dataset.person; ohScreen = 'person'; render();
+  }));
+  host.querySelectorAll('[data-openrec]').forEach(b => b.addEventListener('click', () => {
+    if(typeof openRecapModal === 'function') openRecapModal(+b.dataset.openrec);
   }));
   const q = host.querySelector('#oh-q');
   if (q){
