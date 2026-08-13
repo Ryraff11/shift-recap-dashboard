@@ -61850,7 +61850,7 @@ CODES.forEach(code => Object.defineProperty(PERF, code, { get(){ return perfFor(
 
 /* ── RENDER (no edits needed) ─────────────────────────────────────────────── */
 
-let ohScreen = 'home', ohRange = '7d', ohCode = null, ohPerson = null, ohRan = false, ohQ = '', ohRangeOpen = false;
+let ohScreen = 'home', ohRange = '7d', ohCode = null, ohPerson = null, ohRan = false, ohQ = '', ohRangeOpen = false, ohStandFrom = 'stands';
 let ohCmpPicked = ['MAD','FAIR OAKS','AUBURN'], ohCmpMetric = 'recaps', ohMetric = 'times';
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -62276,14 +62276,14 @@ function render(){
     : personView();
 
   const backLabel = (ohScreen === 'stands' || ohScreen === 'compare' || ohScreen === 'board' || ohScreen === 'missed') ? 'Home'
-    : ohScreen === 'stand' ? 'All stands'
+    : ohScreen === 'stand' ? (ohStandFrom === 'missed' ? 'Missed Recaps' : ohStandFrom === 'board' ? 'Leaderboard' : ohStandFrom === 'compare' ? 'Compare' : 'All stands')
     : ohScreen === 'person' ? 'People' : ohCode;
   host.innerHTML = (ohScreen === 'home' ? '' : '<button class="oh-back" id="oh-back">&larr; ' + esc(backLabel) + '</button>') + body;
 
   const on = (sel, fn) => { const el = host.querySelector(sel); if (el) el.addEventListener('click', fn); };
   on('#oh-back', () => {
     ohScreen = (ohScreen === 'stands' || ohScreen === 'compare' || ohScreen === 'board' || ohScreen === 'missed') ? 'home'
-      : ohScreen === 'stand' ? 'stands'
+      : ohScreen === 'stand' ? ohStandFrom
       : ohScreen === 'person' ? 'people' : 'stand';
     ohRangeOpen = false;
     render();
@@ -62318,7 +62318,7 @@ function render(){
     ohRange = b.dataset.range; ohRan = false; ohRangeOpen = false; render();
   }));
   host.querySelectorAll('[data-code]').forEach(b => b.addEventListener('click', () => {
-    ohCode = b.dataset.code; ohScreen = 'stand'; ohPerson = null; ohQ = ''; ohRangeOpen = false; render();
+    ohCode = b.dataset.code; ohStandFrom = (ohScreen === 'missed' || ohScreen === 'compare' || ohScreen === 'board') ? ohScreen : 'stands'; ohScreen = 'stand'; ohPerson = null; ohQ = ''; ohRangeOpen = false; render();
   }));
   host.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => {
     ohScreen = b.dataset.go; if (ohScreen === 'people') ohQ = ''; render();

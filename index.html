@@ -108,6 +108,8 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
 .oh-cmpcol{width:82px; font-family:'JetBrains Mono',monospace; font-size:14px;}
 .oh-bar{height:4px; border-radius:2px; background:rgba(255,255,255,.05); overflow:hidden;}
 .oh-bar span{display:block; height:4px; border-radius:2px;}
+.oh-stack{display:flex; height:6px; border-radius:3px; overflow:hidden; background:rgba(255,255,255,.05);}
+.oh-stack i{display:block; height:6px;}
 .oh-tabs{display:flex; gap:20px; border-bottom:1px solid var(--hairline);}
 .oh-tab{background:none; border:none; border-bottom:2px solid transparent; padding:0 0 11px; cursor:pointer;
   white-space:nowrap; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.06em;
@@ -584,9 +586,9 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
     <div class="category active" id="cat-recaps">
       <div class="range-picker" data-range-group="recaps">
         <button class="range-btn" data-range="today">Today</button>
+        <button class="range-btn" data-range="yesterday">Yesterday</button>
+        <button class="range-btn" data-range="3d">3 Days</button>
         <button class="range-btn active" data-range="7d">7 Days</button>
-        <button class="range-btn" data-range="30d">30 Days</button>
-        <button class="range-btn" data-range="mtd">Month to Date</button>
       </div>
       <div class="stat-row" id="recap-stats"></div>
       <div class="alert-banner-stack" id="shop-missing-banner"></div>
@@ -612,9 +614,10 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
     <!-- TIMES -->
     <div class="category" id="cat-times">
       <div class="range-picker" data-range-group="times">
+        <button class="range-btn" data-range="today">Today</button>
+        <button class="range-btn" data-range="yesterday">Yesterday</button>
+        <button class="range-btn" data-range="3d">3 Days</button>
         <button class="range-btn active" data-range="7d">7 Days</button>
-        <button class="range-btn" data-range="30d">30 Days</button>
-        <button class="range-btn" data-range="mtd">Month to Date</button>
       </div>
       <div class="stat-row" id="times-stats"></div>
       <div id="times-source" style="font-size:12px;color:var(--text-dim);margin:-2px 0 10px;"></div>
@@ -626,9 +629,9 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
     <div class="category" id="cat-netsales">
       <div class="range-picker" data-range-group="netsales">
         <button class="range-btn" data-range="today">Today</button>
+        <button class="range-btn" data-range="yesterday">Yesterday</button>
+        <button class="range-btn" data-range="3d">3 Days</button>
         <button class="range-btn active" data-range="7d">7 Days</button>
-        <button class="range-btn" data-range="30d">30 Days</button>
-        <button class="range-btn" data-range="mtd">Month to Date</button>
       </div>
       <div class="stat-row" id="netsales-stats"></div>
       <div class="section-sub">Net sales by day</div>
@@ -639,9 +642,9 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
     <div class="category" id="cat-dph">
       <div class="range-picker" data-range-group="dph">
         <button class="range-btn" data-range="today">Today</button>
+        <button class="range-btn" data-range="yesterday">Yesterday</button>
+        <button class="range-btn" data-range="3d">3 Days</button>
         <button class="range-btn active" data-range="7d">7 Days</button>
-        <button class="range-btn" data-range="30d">30 Days</button>
-        <button class="range-btn" data-range="mtd">Month to Date</button>
       </div>
       <div class="stat-row" id="dph-stats"></div>
       <div class="section-sub">Drinks per hour by day</div>
@@ -652,9 +655,9 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
     <div class="category" id="cat-peak">
       <div class="range-picker" data-range-group="peak">
         <button class="range-btn" data-range="today">Today</button>
+        <button class="range-btn" data-range="yesterday">Yesterday</button>
+        <button class="range-btn" data-range="3d">3 Days</button>
         <button class="range-btn active" data-range="7d">7 Days</button>
-        <button class="range-btn" data-range="30d">30 Days</button>
-        <button class="range-btn" data-range="mtd">Month to Date</button>
       </div>
       <div class="peak-badge" id="peak-badge"></div>
       <div class="peak-scroll" id="peak-bars"></div>
@@ -664,9 +667,9 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
     <div class="category" id="cat-payroll">
       <div class="range-picker" data-range-group="payroll">
         <button class="range-btn" data-range="today">Today</button>
+        <button class="range-btn" data-range="yesterday">Yesterday</button>
+        <button class="range-btn" data-range="3d">3 Days</button>
         <button class="range-btn active" data-range="7d">7 Days</button>
-        <button class="range-btn" data-range="30d">30 Days</button>
-        <button class="range-btn" data-range="mtd">Month to Date</button>
       </div>
       <div class="stat-row" id="payroll-stats"></div>
       <div class="section-sub">Labor hours by day</div>
@@ -696,9 +699,9 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
     <div class="category" id="cmp-cat-times">
       <div class="range-picker" data-range-group="cmp">
         <button class="range-btn" data-range="today">Today</button>
+        <button class="range-btn" data-range="yesterday">Yesterday</button>
+        <button class="range-btn" data-range="3d">3 Days</button>
         <button class="range-btn active" data-range="7d">7 Days</button>
-        <button class="range-btn" data-range="30d">30 Days</button>
-        <button class="range-btn" data-range="mtd">Month to Date</button>
       </div>
       <div id="cmp-times-list"></div>
     </div>
@@ -706,9 +709,9 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
     <div class="category" id="cmp-cat-netsales">
       <div class="range-picker" data-range-group="cmp">
         <button class="range-btn" data-range="today">Today</button>
+        <button class="range-btn" data-range="yesterday">Yesterday</button>
+        <button class="range-btn" data-range="3d">3 Days</button>
         <button class="range-btn active" data-range="7d">7 Days</button>
-        <button class="range-btn" data-range="30d">30 Days</button>
-        <button class="range-btn" data-range="mtd">Month to Date</button>
       </div>
       <div id="cmp-netsales-list"></div>
     </div>
@@ -716,9 +719,9 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
     <div class="category" id="cmp-cat-dph">
       <div class="range-picker" data-range-group="cmp">
         <button class="range-btn" data-range="today">Today</button>
+        <button class="range-btn" data-range="yesterday">Yesterday</button>
+        <button class="range-btn" data-range="3d">3 Days</button>
         <button class="range-btn active" data-range="7d">7 Days</button>
-        <button class="range-btn" data-range="30d">30 Days</button>
-        <button class="range-btn" data-range="mtd">Month to Date</button>
       </div>
       <div id="cmp-dph-list"></div>
     </div>
@@ -726,9 +729,9 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
     <div class="category" id="cmp-cat-peak">
       <div class="range-picker" data-range-group="cmp">
         <button class="range-btn" data-range="today">Today</button>
+        <button class="range-btn" data-range="yesterday">Yesterday</button>
+        <button class="range-btn" data-range="3d">3 Days</button>
         <button class="range-btn active" data-range="7d">7 Days</button>
-        <button class="range-btn" data-range="30d">30 Days</button>
-        <button class="range-btn" data-range="mtd">Month to Date</button>
       </div>
       <div id="cmp-peak-list"></div>
     </div>
@@ -736,9 +739,9 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
     <div class="category" id="cmp-cat-payroll">
       <div class="range-picker" data-range-group="cmp">
         <button class="range-btn" data-range="today">Today</button>
+        <button class="range-btn" data-range="yesterday">Yesterday</button>
+        <button class="range-btn" data-range="3d">3 Days</button>
         <button class="range-btn active" data-range="7d">7 Days</button>
-        <button class="range-btn" data-range="30d">30 Days</button>
-        <button class="range-btn" data-range="mtd">Month to Date</button>
       </div>
       <div id="cmp-payroll-list"></div>
     </div>
@@ -764,9 +767,9 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
 
     <div class="range-picker" data-range-group="overview">
       <button class="range-btn active" data-range="today">Today</button>
+      <button class="range-btn" data-range="yesterday">Yesterday</button>
+      <button class="range-btn" data-range="3d">3 Days</button>
       <button class="range-btn" data-range="7d">7 Days</button>
-      <button class="range-btn" data-range="30d">30 Days</button>
-      <button class="range-btn" data-range="mtd">Month to Date</button>
     </div>
 
     <div class="stat-row" style="display:flex; gap:8px; padding:16px 20px 4px;">
@@ -884,6 +887,8 @@ function fmtMoney(n){ return '$'+Math.round(n).toLocaleString(); }
 // ---------- range presets ----------
 function indicesForRange(preset){
   if(preset==='today') return [TODAY_INDEX];
+  if(preset==='yesterday') return TODAY_INDEX>=1 ? [TODAY_INDEX-1] : [TODAY_INDEX];
+  if(preset==='3d') return Array.from({length:3},(_,k)=>TODAY_INDEX-2+k);
   if(preset==='7d') return Array.from({length:7},(_,k)=>TODAY_INDEX-6+k);
   if(preset==='30d') return Array.from({length:30},(_,k)=>TODAY_INDEX-29+k); // last 30 days (window is 60)
   if(preset==='mtd'){
@@ -66038,9 +66043,10 @@ renderOpsHome();
 (function(){
 /* CONFIG */
 const RANGES = [
-  { key:'today',  label:'Today',   word:'today',                shifts:3  },
-  { key:'week',   label:'7 days',  word:'the last 7 days',      shifts:21 },
-  { key:'month',  label:'30 days', word:'the last 30 days',     shifts:90 }
+  { key:'today',     label:'Today',     word:'today',               shifts:3  },
+  { key:'yesterday', label:'Yesterday', word:'yesterday',           shifts:3  },
+  { key:'3d',        label:'3 days',    word:'the last 3 days',     shifts:9  },
+  { key:'7d',        label:'7 days',    word:'the last 7 days',     shifts:21 }
 ];
 
 // Compare and Leaderboard are now built into this file (see compareView /
@@ -66082,7 +66088,7 @@ function classify(s, shifts){
    Every count scoped to `range` via indicesForRange(); PERF is a live getter so
    Compare/Leaderboard figures track the selected range too. Net sales stays
    behind SALES_PENDING on the board (Xenial not connected). ── */
-const RANGE_PRESET = { today:'today', week:'7d', month:'30d', custom:'30d' };
+const RANGE_PRESET = { today:'today', yesterday:'yesterday', '3d':'3d', '7d':'7d' };
 const CODES = ACTIVE_SHOPS.map(s => s.toUpperCase());
 const CODE_TO_SHOP = {}; ACTIVE_SHOPS.forEach(s => { CODE_TO_SHOP[s.toUpperCase()] = s; });
 function ohShortName(full){
@@ -66090,7 +66096,7 @@ function ohShortName(full){
   const p = String(full).trim().split(/\s+/);
   return p.length===1 ? p[0] : p[0][0] + '. ' + p.slice(1).join(' ');
 }
-function idxListFor(range){ return indicesForRange(RANGE_PRESET[range] || '30d'); }
+function idxListFor(range){ return indicesForRange(RANGE_PRESET[range] || '7d'); }
 function idxSetFor(range){ return new Set(idxListFor(range)); }
 
 const OH_NEG = new Set(['no','none','na','nope','nah','naur','nada','nadda','nan','non','bo','x','nothing','allgood','allclear','fine','good','ok','okay','negative','nul','null','nohazards','nohazard','nonetoday','noneseen','nonenoted','nonefound','nothingtoreport','nothingunsafe','notreally','allgoodhere','noissues','noconcerns','nothingofnote']);
@@ -66267,13 +66273,13 @@ CODES.forEach(code => Object.defineProperty(PERF, code, { get(){ return perfFor(
 
 /* ── RENDER (no edits needed) ─────────────────────────────────────────────── */
 
-let ohScreen = 'home', ohRange = 'month', ohCode = null, ohPerson = null, ohRan = false, ohQ = '', ohRangeOpen = false;
+let ohScreen = 'home', ohRange = '7d', ohCode = null, ohPerson = null, ohRan = false, ohQ = '', ohRangeOpen = false, ohStandFrom = 'stands';
 let ohCmpPicked = ['MAD','FAIR OAKS','AUBURN'], ohCmpMetric = 'recaps', ohMetric = 'times';
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const mmss = s => Math.floor(s/60) + ':' + String(s%60).padStart(2,'0');
-const rangeMeta = () => RANGES.find(r => r.key === ohRange) || RANGES[2];
-const shiftsInRange = () => rangeMeta().shifts || RANGES[2].shifts;
+const rangeMeta = () => RANGES.find(r => r.key === ohRange) || RANGES[3];
+const shiftsInRange = () => rangeMeta().shifts || RANGES[3].shifts;
 
 function onTimeText(s){
   return s.onTime + '/' + shiftsInRange() + ' on time'
@@ -66299,7 +66305,7 @@ function rangeDrawer(scopeWord){
         '<button class="oh-range" data-standrange="' + r.key + '" aria-pressed="'
         + (r.key === ohRange) + '">' + esc(r.label) + '</button>').join('')
     + '</div><div class="oh-foot" style="padding-top:9px">Changes every number on this '
-    + scopeWord + ' and follows you back to home. Custom dates are set on home.</div></div>';
+    + scopeWord + ' and follows you back to home.</div></div>';
 }
 
 function head(title, context, eyebrow, brand){
@@ -66383,6 +66389,15 @@ function ohTimesSummary(){
 }
 
 /* ---- home (masthead + tile grid) ---- */
+function ohMissedSummary(){
+  let miss = 0, late = 0;
+  getStands('today').forEach(s => { miss += s.missing; late += s.late; });
+  if(!miss && !late) return 'All recaps in today';
+  const parts = [];
+  if(miss) parts.push(miss + ' not filed');
+  if(late) parts.push(late + ' late');
+  return parts.join(' · ') + ' today';
+}
 function homeView(){
   const t = ohTimesSummary();
   const timesPreview = t ? (mmss(t.avg) + ' avg · ' + t.shops + ' stand' + (t.shops===1?'':'s') + ' reporting') : 'No timer data yet';
@@ -66391,11 +66406,78 @@ function homeView(){
     + '<div class="oh-grid">'
     + tiles.map(t2 => '<button class="oh-tile" data-home="' + t2[0] + '"><span class="oh-tile-label">' + esc(t2[1]) + ' <span class="oh-tile-arrow">&rarr;</span></span></button>').join('')
     + '</div>'
+    + '<button class="oh-tile oh-tile-wide" data-home="missed">'
+      + '<span class="oh-tile-wide-left"><span class="oh-tile-label">Missed Recaps</span>'
+      + '<span class="oh-tile-preview">' + esc(ohMissedSummary()) + '</span></span>'
+      + '<span class="oh-tile-arrow oh-tile-arrow-r">&rarr;</span>'
+    + '</button>'
     + '<button class="oh-tile oh-tile-wide" data-home="times">'
       + '<span class="oh-tile-wide-left"><span class="oh-tile-label">Window Times</span>'
       + '<span class="oh-tile-preview">' + esc(timesPreview) + '</span></span>'
       + '<span class="oh-tile-arrow oh-tile-arrow-r">&rarr;</span>'
     + '</button>';
+}
+
+/* ---- missed & late recaps (home tile) ---- */
+function missedDetail(code, range){
+  const shop = CODE_TO_SHOP[code];
+  const idxs = idxListFor(range).slice().sort((a,b)=>b-a);
+  const slots = [];
+  idxs.forEach(d => SHIFTS.forEach(sh => {
+    if(submissionStatus[d+'|'+shop+'|'+sh]==='missing') slots.push(fmtDate(dateForIndex(d))+' '+sh);
+  }));
+  const S = idxSetFor(range), byWho = {};
+  records.forEach(r => {
+    if(r.shop!==shop || !S.has(r.dayIndex) || !r.employee || !r.isLate) return;
+    const nm = ohShortName(r.employee)||'Unknown'; byWho[nm]=(byWho[nm]||0)+1;
+  });
+  const lateNames = Object.keys(byWho).sort((a,b)=>byWho[b]-byWho[a]).map(nm => byWho[nm]>1 ? nm+' ×'+byWho[nm] : nm);
+  return { slots, lateNames };
+}
+function missedView(){
+  const meta = rangeMeta();
+  const stands = getStands(ohRange);
+  const totMiss = stands.reduce((a,s)=>a+s.missing,0), totLate = stands.reduce((a,s)=>a+s.late,0);
+  const rows = stands.slice().sort((a,b)=> (b.missing-a.missing) || (b.late-a.late) || (b.recaps-a.recaps));
+  const dirty = rows.filter(s => s.missing>0 || s.late>0);
+  const clean = rows.filter(s => !s.missing && !s.late);
+  let html = '<div style="display:flex;align-items:center;flex-wrap:wrap;gap:9px">' + rangePill() + '</div>'
+    + '<h2 class="oh-h2" style="padding-top:8px">Missed Recaps</h2>'
+    + '<div class="oh-context">' + (totMiss+totLate
+        ? totMiss + ' not filed · ' + totLate + ' late · ' + esc(meta.word)
+        : 'Every recap in · ' + esc(meta.word)) + '</div>'
+    + rangeDrawer('report');
+  if(!dirty.length){
+    html += '<div class="oh-allclear">Every shift recap for ' + esc(meta.word) + ' was filed on time</div>';
+  } else {
+    html += '<div class="oh-section act">Behind · ' + dirty.length + '</div><div class="oh-cards">'
+      + dirty.map(s => {
+        const det = missedDetail(s.code, ohRange);
+        const tracked = (s.onTime + s.late + s.missing) || 1;
+        const pc = n => Math.round(n/tracked*100);
+        const slotsTxt = det.slots.slice(0,4).join(' · ') + (det.slots.length>4 ? ' · +' + (det.slots.length-4) + ' more' : '');
+        return '<button class="oh-card ' + (s.missing>0 ? 'bad' : 'watch') + '" data-code="' + esc(s.code) + '">'
+          + '<span style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">'
+            + '<span class="oh-rowname" style="font-size:19px">' + esc(s.code) + '</span>'
+            + '<span class="oh-meta">' + s.onTime + ' on time · ' + s.late + ' late · ' + s.missing + ' not filed</span>'
+          + '</span>'
+          + '<span class="oh-stack">'
+            + '<i style="width:' + pc(s.onTime) + '%;background:var(--good)"></i>'
+            + '<i style="width:' + pc(s.late) + '%;background:var(--watch)"></i>'
+            + '<i style="width:' + pc(s.missing) + '%;background:var(--bad)"></i>'
+          + '</span>'
+          + (det.slots.length ? '<span class="oh-meta">Not filed: ' + esc(slotsTxt) + '</span>' : '')
+          + (det.lateNames.length ? '<span class="oh-meta">Late: ' + esc(det.lateNames.slice(0,3).join(' · ')) + '</span>' : '')
+          + '</button>';
+      }).join('') + '</div>';
+    if(clean.length){
+      html += '<div class="oh-section">All in · ' + clean.length + '</div><div>'
+        + clean.map(s => '<button class="oh-row" data-code="' + esc(s.code) + '"><span class="oh-rowname">' + esc(s.code) + '</span><span class="oh-meta">' + s.onTime + ' filed on time</span></button>').join('')
+        + '</div>';
+    }
+  }
+  html += '<div class="oh-foot">Green filed on time, yellow late, red never filed — out of every expected Open / Mid / Close shift in range. Shifts still inside their filing window don’t count against a stand. Tap a stand to open it.</div>';
+  return html;
 }
 
 /* ---- stands list (moved off home) ---- */
@@ -66606,6 +66688,7 @@ function render(){
   const host = document.getElementById('oh-app');
   const body = ohScreen === 'home' ? homeView()
     : ohScreen === 'stands' ? standsView()
+    : ohScreen === 'missed' ? missedView()
     : ohScreen === 'stand' ? standView()
     : ohScreen === 'recaps' ? recapsView()
     : ohScreen === 'times' ? timesView()
@@ -66615,15 +66698,15 @@ function render(){
     : ohScreen === 'board' ? boardView()
     : personView();
 
-  const backLabel = (ohScreen === 'stands' || ohScreen === 'compare' || ohScreen === 'board') ? 'Home'
-    : ohScreen === 'stand' ? 'All stands'
+  const backLabel = (ohScreen === 'stands' || ohScreen === 'compare' || ohScreen === 'board' || ohScreen === 'missed') ? 'Home'
+    : ohScreen === 'stand' ? (ohStandFrom === 'missed' ? 'Missed Recaps' : ohStandFrom === 'board' ? 'Leaderboard' : ohStandFrom === 'compare' ? 'Compare' : 'All stands')
     : ohScreen === 'person' ? 'People' : ohCode;
   host.innerHTML = (ohScreen === 'home' ? '' : '<button class="oh-back" id="oh-back">&larr; ' + esc(backLabel) + '</button>') + body;
 
   const on = (sel, fn) => { const el = host.querySelector(sel); if (el) el.addEventListener('click', fn); };
   on('#oh-back', () => {
-    ohScreen = (ohScreen === 'stands' || ohScreen === 'compare' || ohScreen === 'board') ? 'home'
-      : ohScreen === 'stand' ? 'stands'
+    ohScreen = (ohScreen === 'stands' || ohScreen === 'compare' || ohScreen === 'board' || ohScreen === 'missed') ? 'home'
+      : ohScreen === 'stand' ? ohStandFrom
       : ohScreen === 'person' ? 'people' : 'stand';
     ohRangeOpen = false;
     render();
@@ -66658,7 +66741,7 @@ function render(){
     ohRange = b.dataset.range; ohRan = false; ohRangeOpen = false; render();
   }));
   host.querySelectorAll('[data-code]').forEach(b => b.addEventListener('click', () => {
-    ohCode = b.dataset.code; ohScreen = 'stand'; ohPerson = null; ohQ = ''; ohRangeOpen = false; render();
+    ohCode = b.dataset.code; ohStandFrom = (ohScreen === 'missed' || ohScreen === 'compare' || ohScreen === 'board') ? ohScreen : 'stands'; ohScreen = 'stand'; ohPerson = null; ohQ = ''; ohRangeOpen = false; render();
   }));
   host.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => {
     ohScreen = b.dataset.go; if (ohScreen === 'people') ohQ = ''; render();
