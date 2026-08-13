@@ -60703,6 +60703,8 @@ const HOUR_WEIGHTS = [0.015,0.045,0.085,0.095,0.065,0.05,0.045,0.05,0.07,0.09,0.
 // Real drive-thru timer data from HME (injected by refresh_dashboard.py from timer_history.json).
 // Shape: { "<Shop>": { "YYYY-MM-DD": {laneTotalSec, laneTotal2Sec, totalCars} } }. Empty until injected.
 const REAL_TIMER_DATA = {"Lichen": {"2026-07-27": {"laneTotalSec": 81, "laneTotal2Sec": null, "totalCars": 561}}, "Mad": {"2026-07-27": {"laneTotalSec": 124, "laneTotal2Sec": 126, "totalCars": 717}}, "Manz": {"2026-07-27": {"laneTotalSec": 72, "laneTotal2Sec": null, "totalCars": 514}}};
+const REAL_WASTE_DATA = {};
+
 function isoForIndex(i){ const dt=dateForIndex(i); return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0'); }
 
 const dailyOps = {}; // dailyOps[shop][d] = {totalCars, laneTotalSec, laneTotal2Sec, isRealTimer, goalLaneTotal, goalLaneTotal2, netSales, dph, hourly[], sched, actualHrs, otHrs, laborCost}
@@ -61157,10 +61159,15 @@ function openRecapModal(idx){
   const dateStr = fmtDate(dateForIndex(r.dayIndex));
   let fieldsHtml = '';
   if(r.fullRecap){
-    fieldsHtml = Object.entries(r.fullRecap).map(([label,val])=>{
-      const v = (val||'').toString().trim();
-      return `<div class="modal-field"><div class="modal-field-label">${escapeHtml(label)}</div><div class="modal-field-value ${v?'':'empty'}">${v?highlightText(v):'Not answered'}</div></div>`;
-    }).join('');
+    // only fields with a real answer — blank/null fields are noise, not information
+    const answered = Object.entries(r.fullRecap)
+      .map(([label,val])=>[label,(val||'').toString().trim()])
+      .filter(([,v])=>v);
+    fieldsHtml = answered.length
+      ? answered.map(([label,v])=>
+          `<div class="modal-field"><div class="modal-field-label">${escapeHtml(label)}</div><div class="modal-field-value">${highlightText(v)}</div></div>`
+        ).join('')
+      : `<div class="modal-field"><div class="modal-field-value empty">No answers recorded on this recap</div></div>`;
   } else {
     fieldsHtml = `<div class="modal-field"><div class="modal-field-label">Comment</div><div class="modal-field-value">${highlightText(r.comment||'')}</div></div>` +
       r.flags.map(f=>`<div class="modal-field"><div class="modal-field-label">${f.kind==='good'?'Good flag':'Needs attention'}</div><div class="modal-field-value">${highlightText(f.text)}</div></div>`).join('');
@@ -62109,7 +62116,8 @@ function standView(){
     ['recaps','Recaps', s.recaps + ' filed in range', false],
     ['times','Window times', t ? 'lane total ' + mmss(t.sec) + ' · ' + t.cars + ' cars · ' + t.day : 'No HME upload yet', false],
     ['haz','Hazards', hazText(hz) + (hz ? ' · latest ' + getHazards(ohCode, ohRange)[0].meta.split(' · ')[1] : ''), hz > 0],
-    ['people','People', ppl.length + ' mentioned by name' + (flagged ? ' · ' + flagged + ' flagged' : ''), flagged > 0]
+    ['people','People', ppl.length + ' mentioned by name' + (flagged ? ' · ' + flagged + ' flagged' : ''), flagged > 0],
+    ['waste','Waste', wastePreview(ohCode), false]
   ];
   return '<h1 class="oh-h1">' + esc(s.code) + '</h1>'
     + '<div class="oh-pillrow">' + rangePill()
@@ -62261,6 +62269,46 @@ function boardView(){
     + '<div class="oh-foot">' + note + '</div>';
 }
 
+/* ---- waste (expired product log) ---- */
+function getWaste(code){
+  const shop = CODE_TO_SHOP[code];
+  const rows = (typeof REAL_WASTE_DATA !== 'undefined' && REAL_WASTE_DATA[shop]) || [];
+  // newest first; undated entries sink to the bottom
+  return rows.slice().sort((a,b)=> (b.date||'0000') < (a.date||'0000') ? -1 : 1);
+}
+function wasteFmtDate(iso){
+  if(!iso) return 'no date';
+  const p = iso.split('-');
+  return (+p[1]) + '/' + (+p[2]);
+}
+function wastePreview(code){
+  const rows = getWaste(code);
+  if(!rows.length) return 'Nothing logged yet';
+  const latest = rows.find(r=>r.date);
+  return rows.length + ' item' + (rows.length===1?'':'s') + ' logged' + (latest ? ' · latest ' + wasteFmtDate(latest.date) : '');
+}
+function wasteView(){
+  const rows = getWaste(ohCode);
+  const flagged = rows.filter(r=>r.flag).length;
+  return '<div style="display:flex;align-items:center;flex-wrap:wrap;gap:9px">'
+      + '<span class="oh-eyebrow">' + esc(ohCode) + '</span></div>'
+    + '<h2 class="oh-h2" style="padding-top:8px">Waste</h2>'
+    + '<div class="oh-context">Expired product log · ' + rows.length + ' entr' + (rows.length===1?'y':'ies')
+      + (flagged ? ' · ' + flagged + ' with data issues' : '') + ' · newest first</div>'
+    + '<div style="margin-top:20px">'
+    + (rows.length
+      ? '<div class="oh-thead"><div style="flex:1">ITEM</div><div style="width:90px">QTY</div><div style="width:70px;text-align:right">DATE</div></div>'
+        + rows.map(r => '<div class="oh-trow"><div class="oh-trow-main">'
+            + '<div class="oh-day" style="flex:1">' + esc(r.item) + (r.note ? ' <span class="oh-meta">' + esc(r.note) + '</span>' : '') + '</div>'
+            + '<div class="oh-lane" style="width:90px;color:' + (r.flag ? 'var(--watch)' : 'var(--text)') + '">' + esc(r.qty || '?') + '</div>'
+            + '<div class="oh-cars" style="color:' + (r.date ? 'var(--text-dim)' : 'var(--watch)') + '">' + esc(wasteFmtDate(r.date)) + '</div></div>'
+            + (r.flag ? '<div class="oh-tsub"><span style="color:var(--watch)">' + esc(r.flag) + '</span></div>' : '')
+          + '</div>').join('')
+      : '<div class="oh-empty">Nothing in the expired product log for this stand yet</div>')
+    + '</div>'
+    + '<div class="oh-foot">Straight from the Expired Product Log sheet. Rows the log recorded incompletely (unreadable quantity or date) are kept and flagged, not hidden.</div>';
+}
+
 /* ---- shell ---- */
 function render(){
   const host = document.getElementById('oh-app');
@@ -62271,6 +62319,7 @@ function render(){
     : ohScreen === 'recaps' ? recapsView()
     : ohScreen === 'times' ? timesView()
     : ohScreen === 'haz' ? hazView()
+    : ohScreen === 'waste' ? wasteView()
     : ohScreen === 'people' ? peopleView()
     : ohScreen === 'compare' ? compareView()
     : ohScreen === 'board' ? boardView()

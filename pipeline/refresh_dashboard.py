@@ -365,6 +365,80 @@ def main():
     else:
         print('  SKIP REAL_DEPUTY_SCHEDULE injection — template has no deputy marker (feature not in this template); history still updated')
 
+    # Expired Product Log ("Waste" tab). Exported from the Expired Product Log 2026
+    # sheet as expired_product_raw.csv (SHOP, ITEM, QUANTITY, DATE DISCARDED).
+    # The log is hand-entered, so parse defensively:
+    #   - shop names use the sheet's own convention (ORANGEVALE, MANZANITA, MAD...)
+    #     and are mapped to dashboard names; unknown shops are skipped and counted
+    #   - blank/'?' quantities and missing dates keep the row but flag it visibly
+    #   - some rows jumble a note + date into the date column ("nonfat 8/11/26)"),
+    #     so the date is salvaged by pattern anywhere in the cell, remainder -> note
+    WASTE_SHOP_MAP = {
+        'MAD': 'Mad', 'MADHOUSE': 'Mad',
+        'FAIR OAKS': 'Fair Oaks', 'FAIROAKS': 'Fair Oaks', 'K TOWN': 'Fair Oaks',
+        'AUBURN': 'Auburn', 'LICHEN': 'Lichen', 'ANTELOPE': 'Antelope',
+        'FIRESIDE': 'Fireside', 'ORANGEVALE': 'OV', 'OV': 'OV',
+        'MANZANITA': 'Manz', 'MANZ': 'Manz',
+    }
+    _date_pat = _re.compile(r'(\d{1,2})/(\d{1,2})/(\d{2,4})')
+
+    def _waste_date(cell):
+        """Return (iso_date_or_None, leftover_note). Salvages a date embedded
+        anywhere in a jumbled cell; whatever isn't the date becomes the note."""
+        m = _date_pat.search(cell)
+        if not m:
+            return None, cell.strip(' ()&,')
+        mm, dd, yy = int(m.group(1)), int(m.group(2)), int(m.group(3))
+        if yy < 100:
+            yy += 2000
+        note = (cell[:m.start()] + cell[m.end():]).strip(' ()&,')
+        try:
+            iso = datetime(yy, mm, dd).strftime('%Y-%m-%d')
+        except ValueError:
+            return None, cell.strip(' ()&,')
+        return iso, note
+
+    waste = {}
+    if os.path.exists('expired_product_raw.csv'):
+        w_kept, w_flagged, w_skipped = 0, 0, 0
+        with open('expired_product_raw.csv', newline='', encoding='utf-8-sig') as f:
+            for row in csv.DictReader(f):
+                shop_raw = (row.get('SHOP') or '').strip().upper()
+                item = (row.get('ITEM') or '').strip()
+                qty = (row.get('QUANTITY') or '').strip()
+                date_cell = (row.get('DATE DISCARDED') or '').strip()
+                shop = WASTE_SHOP_MAP.get(shop_raw)
+                if not shop or not item:
+                    w_skipped += 1
+                    continue
+                iso, note = _waste_date(date_cell)
+                flags = []
+                if not qty or qty == '?':
+                    flags.append('quantity not recorded')
+                    qty = ''
+                if not iso:
+                    flags.append('date not recorded')
+                entry = {'item': item, 'qty': qty, 'date': iso}
+                if note:
+                    entry['note'] = note
+                if flags:
+                    entry['flag'] = ' · '.join(flags)
+                    w_flagged += 1
+                waste.setdefault(shop, []).append(entry)
+                w_kept += 1
+        print(f'  parsed expired product log: {w_kept} row(s) kept ({w_flagged} flagged), {w_skipped} skipped')
+    else:
+        print('  expired_product_raw.csv not present — REAL_WASTE_DATA left empty')
+
+    _waste_marker = 'const REAL_WASTE_DATA = '
+    if _waste_marker in html:
+        w_start = html.index(_waste_marker)
+        w_end = html.index(';', w_start)
+        html = html[:w_start] + f'const REAL_WASTE_DATA = {json.dumps(waste)}' + html[w_end:]
+        print(f'  injected REAL_WASTE_DATA ({sum(len(v) for v in waste.values())} entr(ies) across {len(waste)} shop(s))')
+    else:
+        print('  SKIP REAL_WASTE_DATA injection — template has no waste marker')
+
     # keep the dashboard's internal "today" in sync with the actual current date
     today = datetime.now(ZoneInfo('America/Los_Angeles'))
     old_today_line_start = html.index("const TODAY_DATE = new Date(")
