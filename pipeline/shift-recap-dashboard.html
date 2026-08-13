@@ -62427,7 +62427,7 @@ function renderOverview(rangeKey){
     recs.forEach(r=>{
       r.flags.forEach(f=>{
         if(flagCategory(f.text)==='Late submission') return;
-        const item = {shop, shift:r.shift, dayIndex:r.dayIndex, text:f.text, recordIndex:records.indexOf(r)};
+        const item = {shop, shift:r.shift, dayIndex:r.dayIndex, text:f.text, employee:r.employee, recordIndex:records.indexOf(r)};
         if(f.kind==='bad'){ needsAttention.push(item); hasFlag = true; }
         else worthKnowing.push(item);
       });
@@ -62451,7 +62451,7 @@ function renderOverview(rangeKey){
         const items = byCat[cat] || [];
         const body = items.length
           ? items.slice(0,15).map(i=>`<div class="ov-item urgent" onclick="openRecapModal(${i.recordIndex})">
-              <div class="ov-item-top"><span class="ov-item-shop">${escapeHtml(i.shop)}</span><span class="ov-item-meta">${fmtDate(dateForIndex(i.dayIndex))} · ${i.shift}</span></div>
+              <div class="ov-item-top"><span class="ov-item-shop">${escapeHtml(i.shop)}</span><span class="ov-item-meta">${i.employee && i.employee !== 'Unknown' ? escapeHtml(i.employee) + ' · ' : ''}${fmtDate(dateForIndex(i.dayIndex))} · ${i.shift}</span></div>
               <div class="ov-item-text">${escapeHtml(i.text)}</div></div>`).join('')
             + (items.length>15 ? `<div class="ov-empty">+${items.length-15} more — narrow the range to see all</div>` : '')
           : `<div class="ov-empty">None in this range.</div>`;
@@ -62463,7 +62463,7 @@ function renderOverview(rangeKey){
   const wkBody = worthKnowing.length===0
     ? `<div class="ov-empty">Nothing notable in this range.</div>`
     : worthKnowing.slice(0,10).map(i=>`<div class="ov-item good" onclick="openRecapModal(${i.recordIndex})">
-        <div class="ov-item-top"><span class="ov-item-shop">${escapeHtml(i.shop)}</span><span class="ov-item-meta">${fmtDate(dateForIndex(i.dayIndex))} · ${i.shift}</span></div>
+        <div class="ov-item-top"><span class="ov-item-shop">${escapeHtml(i.shop)}</span><span class="ov-item-meta">${i.employee && i.employee !== 'Unknown' ? escapeHtml(i.employee) + ' · ' : ''}${fmtDate(dateForIndex(i.dayIndex))} · ${i.shift}</span></div>
         <div class="ov-item-text">${escapeHtml(i.text)}</div></div>`).join('')
       + (worthKnowing.length>10 ? `<div class="ov-empty">+${worthKnowing.length-10} more — narrow the range to see all</div>` : '');
   document.getElementById('ov-worth-knowing').innerHTML =
