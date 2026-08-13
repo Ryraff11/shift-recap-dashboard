@@ -164,10 +164,13 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
 .ov-item-meta{ font-size:10px; color:var(--ov-faint); }
 .ov-item-text{ font-size:12px; line-height:1.5; color:#cbd6e0; }
 
-.ov-pattern-box{ background:var(--ov-surface-raised); border-radius:8px; padding:13px 14px; border-left:3px solid var(--ov-amber); margin-bottom:9px; }
-.ov-pattern-label{ font-size:10px; font-weight:700; color:var(--ov-amber); text-transform:uppercase; letter-spacing:.06em; margin-bottom:5px; }
-.ov-pattern-text{ font-size:12.5px; line-height:1.5; color:#eef2f6; }
-.ov-pattern-text b{ color:#fff; }
+.ov-cat{ margin-bottom:10px; }
+.ov-cat-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; cursor:pointer; list-style:none; padding:9px 12px; border-radius:8px; background:var(--ov-surface-raised); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:#eef2f6; margin-bottom:8px; }
+.ov-cat-head::-webkit-details-marker{ display:none; }
+.ov-cat-head::after{ content:'\25be'; color:var(--ov-faint); }
+details.ov-cat:not([open]) > .ov-cat-head::after{ content:'\25b8'; }
+.ov-cat-count{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ov-amber); }
+.ov-cat-count.zero{ color:var(--ov-faint); }
 
 .ov-roundup{ background:var(--ov-surface); border-radius:8px; }
 .ov-roundup-row{ display:flex; justify-content:space-between; padding:10px 14px; border-bottom:1px solid var(--ov-line); font-size:11.5px; }
@@ -780,9 +783,6 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
 
     <div class="section-sub">Needs attention</div>
     <div id="ov-needs-attention"></div>
-
-    <div class="section-sub">Cross-shop patterns</div>
-    <div id="ov-patterns"></div>
 
     <div class="section-sub">Worth knowing</div>
     <div id="ov-worth-knowing"></div>
@@ -62398,34 +62398,6 @@ render();
 // Shim: file has INACTIVE_SHOPS (a Set); the overview code expects UNTRACKED_SHOPS as an array.
 const UNTRACKED_SHOPS = [...INACTIVE_SHOPS];
 
-const OV_STOPWORDS = new Set(['this','that','with','have','were','they','today','shift','about','there','their','would','could','should','which','while','still','also','some','just','been','being','when','then','than','from','into','over','under','again','doing','does','didn','wasn','aren','isn','the','and','for','are','was','but','not','you','all','can','had','has','out','get','got']);
-
-function detectCrossShopPatterns(indices){
-  const idxSet = new Set(indices);
-  const wordShops = {}, wordSamples = {};
-  const trackedShops = SHOPS.filter(s => !UNTRACKED_SHOPS.includes(s));
-  records.forEach(r=>{
-    if(!trackedShops.includes(r.shop) || !idxSet.has(r.dayIndex)) return;
-    r.flags.forEach(f=>{
-      if(f.kind!=='bad') return;
-      const seen = new Set();
-      f.text.toLowerCase().replace(/[^a-z\s]/g,' ').split(/\s+/)
-        .filter(w=>w.length>=4 && !OV_STOPWORDS.has(w))
-        .forEach(w=>{
-          if(seen.has(w)) return; seen.add(w);
-          if(!wordShops[w]){ wordShops[w]=new Set(); wordSamples[w]=[]; }
-          wordShops[w].add(r.shop);
-          wordSamples[w].push({shop:r.shop, text:f.text});
-        });
-    });
-  });
-  return Object.keys(wordShops)
-    .filter(w=>wordShops[w].size>=2)
-    .map(w=>({word:w, shops:[...wordShops[w]], samples:wordSamples[w].slice(0,3)}))
-    .sort((a,b)=>b.shops.length - a.shops.length)
-    .slice(0,5);
-}
-
 function renderOverview(rangeKey){
   const indices = indicesForRange(rangeKey);
   const idxSet = new Set(indices);
@@ -62452,19 +62424,24 @@ function renderOverview(rangeKey){
   document.getElementById('ov-stat-flagged').textContent = needsAttention.length;
   document.getElementById('ov-stat-filed').textContent = records.filter(r=>trackedShops.includes(r.shop) && idxSet.has(r.dayIndex)).length;
 
+  // grouped by flag category; a category with items starts expanded, an empty one collapsed
+  const OV_CATS = ['Safety hazard','Understaffed','Tardy / early-out','Crew feedback'];
+  const byCat = {}; OV_CATS.forEach(c=>byCat[c]=[]);
+  needsAttention.forEach(i=>{ const c = flagCategory(i.text); (byCat[c] = byCat[c] || []).push(i); });
   document.getElementById('ov-needs-attention').innerHTML = needsAttention.length===0
     ? `<div class="ov-empty">Nothing flagged in this range.</div>`
-    : needsAttention.slice(0,25).map(i=>`<div class="ov-item urgent" onclick="openRecapModal(${i.recordIndex})">
-        <div class="ov-item-top"><span class="ov-item-shop">${escapeHtml(i.shop)}</span><span class="ov-item-meta">${fmtDate(dateForIndex(i.dayIndex))} · ${i.shift}</span></div>
-        <div class="ov-item-text">${escapeHtml(i.text)}</div></div>`).join('')
-      + (needsAttention.length>25 ? `<div class="ov-empty">+${needsAttention.length-25} more — narrow the range to see all</div>` : '');
-
-  const patterns = detectCrossShopPatterns(indices);
-  document.getElementById('ov-patterns').innerHTML = patterns.length===0
-    ? `<div class="ov-empty">No repeated issues across shops in this range.</div>`
-    : patterns.map(p=>`<div class="ov-pattern-box">
-        <div class="ov-pattern-label">⚡ "${escapeHtml(p.word)}" mentioned by ${p.shops.length} shops</div>
-        <div class="ov-pattern-text"><b>${p.shops.map(escapeHtml).join(', ')}</b> — ${escapeHtml(p.samples[0].text)}</div></div>`).join('');
+    : OV_CATS.map(cat=>{
+        const items = byCat[cat] || [];
+        const body = items.length
+          ? items.slice(0,15).map(i=>`<div class="ov-item urgent" onclick="openRecapModal(${i.recordIndex})">
+              <div class="ov-item-top"><span class="ov-item-shop">${escapeHtml(i.shop)}</span><span class="ov-item-meta">${fmtDate(dateForIndex(i.dayIndex))} · ${i.shift}</span></div>
+              <div class="ov-item-text">${escapeHtml(i.text)}</div></div>`).join('')
+            + (items.length>15 ? `<div class="ov-empty">+${items.length-15} more — narrow the range to see all</div>` : '')
+          : `<div class="ov-empty">None in this range.</div>`;
+        return `<details class="ov-cat"${items.length?' open':''}>
+          <summary class="ov-cat-head"><span>${escapeHtml(cat)}</span><span class="ov-cat-count${items.length?'':' zero'}">${items.length}</span></summary>
+          ${body}</details>`;
+      }).join('');
 
   document.getElementById('ov-worth-knowing').innerHTML = worthKnowing.length===0
     ? `<div class="ov-empty">Nothing notable in this range.</div>`
