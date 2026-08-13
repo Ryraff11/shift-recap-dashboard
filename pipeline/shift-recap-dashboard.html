@@ -784,7 +784,6 @@ details.ov-cat:not([open]) > .ov-cat-head::after{ content:'\25b8'; }
     <div class="section-sub">Needs attention</div>
     <div id="ov-needs-attention"></div>
 
-    <div class="section-sub">Worth knowing</div>
     <div id="ov-worth-knowing"></div>
 
     <div class="section-sub">All routine</div>
@@ -62461,11 +62460,16 @@ function renderOverview(rangeKey){
           ${body}</details>`;
       }).join('');
 
-  document.getElementById('ov-worth-knowing').innerHTML = worthKnowing.length===0
+  const wkBody = worthKnowing.length===0
     ? `<div class="ov-empty">Nothing notable in this range.</div>`
     : worthKnowing.slice(0,10).map(i=>`<div class="ov-item good" onclick="openRecapModal(${i.recordIndex})">
         <div class="ov-item-top"><span class="ov-item-shop">${escapeHtml(i.shop)}</span><span class="ov-item-meta">${fmtDate(dateForIndex(i.dayIndex))} · ${i.shift}</span></div>
-        <div class="ov-item-text">${escapeHtml(i.text)}</div></div>`).join('');
+        <div class="ov-item-text">${escapeHtml(i.text)}</div></div>`).join('')
+      + (worthKnowing.length>10 ? `<div class="ov-empty">+${worthKnowing.length-10} more — narrow the range to see all</div>` : '');
+  document.getElementById('ov-worth-knowing').innerHTML =
+    `<details class="ov-cat" style="margin-top:18px"${worthKnowing.length?' open':''}>
+      <summary class="ov-cat-head"><span>Worth knowing</span><span class="ov-cat-count${worthKnowing.length?'':' zero'}">${worthKnowing.length}</span></summary>
+      ${wkBody}</details>`;
 
   document.getElementById('ov-routine').innerHTML =
     routineShops.map(shop=>`<div class="ov-roundup-row"><span class="name">${escapeHtml(shop)}</span><span class="nums">clean</span></div>`).join('') +
