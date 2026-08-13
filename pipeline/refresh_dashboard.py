@@ -126,6 +126,17 @@ def main():
     with open(DASHBOARD_FILE) as f:
         html = f.read()
 
+    # PRIVACY: index.html is committed to a PUBLIC repo, so recap records are scrubbed
+    # to "First L." at this choke point (covers every shop regardless of build-script
+    # quirks). Structured name fields are truncated unconditionally; free-text fields
+    # (flag text, mention sources, fullRecap answers) get exact word-boundary
+    # replacement of the known filer roster only, so ordinary prose isn't mangled.
+    def _privacy_name(full):
+        parts = full.split()
+        if len(parts) < 2:
+            return full
+        return f'{parts[0]} {parts[-1][0]}.'
+
     shop_files = {
         'REAL_ANTELOPE_RECORDS': 'antelope_records_full_window.json',
         'REAL_FAIROAKS_RECORDS': 'fairoaks_records_full_window.json',
@@ -136,10 +147,65 @@ def main():
         'REAL_MANZ_RECORDS': 'manz_records_full_window.json',
         'REAL_OV_RECORDS': 'ov_records_full_window.json',
     }
+    # load all shops, harvest the filer roster, scrub names, then inject
+    import re as _re
+    shop_records = {}
+    _roster = set()
+    for var_name, jf in shop_files.items():
+        with open(jf) as f:
+            shop_records[var_name] = json.load(f)
+        for r in shop_records[var_name]:
+            emp = (r.get('employee') or '').strip()
+            if len(emp.split()) >= 2:
+                _roster.add(emp)
+    _patterns = [(_re.compile(r'\b' + _re.escape(n) + r'\b', _re.IGNORECASE), _privacy_name(n))
+                 for n in sorted(_roster, key=len, reverse=True)]
+
+    def _scrub_text(s):
+        for pat, short in _patterns:
+            s = pat.sub(short, s)
+        return s
+
+    _n_names, _n_prose = 0, 0
+    for recs in shop_records.values():
+        for r in recs:
+            emp = r.get('employee') or ''
+            if len(emp.split()) >= 2:
+                r['employee'] = _privacy_name(emp)
+                _n_names += 1
+            for m in r.get('namedMentions') or []:
+                nm = m.get('name') or ''
+                if len(nm.split()) >= 2:
+                    m['name'] = _privacy_name(nm)
+                    _n_names += 1
+                if m.get('source'):
+                    _new = _scrub_text(m['source'])
+                    if _new != m['source']:
+                        m['source'] = _new
+                        _n_prose += 1
+            for fl in r.get('flags') or []:
+                fe = fl.get('employee') or ''
+                if len(fe.split()) >= 2:
+                    fl['employee'] = _privacy_name(fe)
+                    _n_names += 1
+                if fl.get('text'):
+                    _new = _scrub_text(fl['text'])
+                    if _new != fl['text']:
+                        fl['text'] = _new
+                        _n_prose += 1
+            fr = r.get('fullRecap') or {}
+            for k, v in list(fr.items()):
+                if isinstance(v, str) and v:
+                    _new = _scrub_text(v)
+                    if _new != v:
+                        fr[k] = _new
+                        _n_prose += 1
+    print(f'  privacy: shortened {_n_names} structured name(s), scrubbed {_n_prose} free-text field(s) '
+          f'(roster of {len(_roster)} full name(s))')
+
     var_names = list(shop_files.keys())
     for i, var_name in enumerate(var_names):
-        with open(shop_files[var_name]) as f:
-            payload = json.dumps(json.load(f), indent=2)
+        payload = json.dumps(shop_records[var_name], indent=2)
         start_marker = f"const {var_name} = "
         if i + 1 < len(var_names):
             end_marker = f"\nconst {var_names[i+1]} = "
@@ -177,16 +243,9 @@ def main():
     # record but are NOT injected — they have no Open/Mid/Close slot to display.
     DEPUTY_HISTORY_FILE = 'deputy_schedule_history.json'
     DEPUTY_WINDOW_DAYS = 45
-
-    def _privacy_name(full):
-        """This history file is committed to a PUBLIC repo, so a full surname tied to
-        a work schedule must never be stored: 'Myah Newton' -> 'Myah N.'. Single-token
-        names pass through unchanged."""
-        parts = full.split()
-        if len(parts) < 2:
-            return full
-        return f'{parts[0]} {parts[-1][0]}.'
-
+    # _privacy_name (defined above, at the recap injection step) applies here too:
+    # this history file is committed to the public repo, so a full surname tied to
+    # a work schedule must never be stored — 'Myah Newton' -> 'Myah N.'.
     deputy_hist = {}
     if os.path.exists(DEPUTY_HISTORY_FILE):
         with open(DEPUTY_HISTORY_FILE) as f:
