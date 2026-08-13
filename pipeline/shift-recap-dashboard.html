@@ -60704,6 +60704,7 @@ const HOUR_WEIGHTS = [0.015,0.045,0.085,0.095,0.065,0.05,0.045,0.05,0.07,0.09,0.
 // Shape: { "<Shop>": { "YYYY-MM-DD": {laneTotalSec, laneTotal2Sec, totalCars} } }. Empty until injected.
 const REAL_TIMER_DATA = {"Lichen": {"2026-07-27": {"laneTotalSec": 81, "laneTotal2Sec": null, "totalCars": 561}}, "Mad": {"2026-07-27": {"laneTotalSec": 124, "laneTotal2Sec": 126, "totalCars": 717}}, "Manz": {"2026-07-27": {"laneTotalSec": 72, "laneTotal2Sec": null, "totalCars": 514}}};
 const REAL_WASTE_DATA = {};
+const REAL_DEPUTY_SCHEDULE = {};
 
 function isoForIndex(i){ const dt=dateForIndex(i); return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0'); }
 
@@ -61776,7 +61777,7 @@ function getRecaps(code, range){
       (rec.flags||[]).forEach(f=>{ if(!isRealFlag(f)) return; if(f.kind==='good') g++; else b++; });
       out.push({ shift: sh, filed: filedText(rec), late: !!rec.isLate, good:'+'+g, bad:'-'+b, by: ohShortName(rec.employee), note: recapNote(rec), recordIndex: ri });
     } else if(submissionStatus[d+'|'+shop+'|'+sh]==='missing'){
-      out.push({ shift: sh, filed:'not filed', missing:true });
+      out.push({ shift: sh, filed:'not filed', missing:true, dayIndex: d });
     }
   }));
   return out;
@@ -62010,7 +62011,10 @@ function missedDetail(code, range){
   const idxs = idxListFor(range).slice().sort((a,b)=>b-a);
   const slots = [];
   idxs.forEach(d => SHIFTS.forEach(sh => {
-    if(submissionStatus[d+'|'+shop+'|'+sh]==='missing') slots.push(fmtDate(dateForIndex(d))+' '+sh);
+    if(submissionStatus[d+'|'+shop+'|'+sh]==='missing'){
+      const led = deputyFor(code, d, sh);
+      slots.push(fmtDate(dateForIndex(d))+' '+sh+(led ? ' ('+led+')' : ''));
+    }
   }));
   const S = idxSetFor(range), byWho = {};
   records.forEach(r => {
@@ -62151,6 +62155,8 @@ function recapsView(){
         + (r.missing ? '' : '<span class="oh-metrics"><span class="g">' + esc(r.good) + '</span>'
             + '<span class="b">' + esc(r.bad) + '</span><span class="m">' + esc(r.by) + '</span></span>')
         + (r.note ? '<span class="oh-meta" style="color:#DBE5F1;line-height:1.5">' + esc(r.note) + '</span>' : '')
+        + (r.missing ? (function(){ const led = deputyFor(ohCode, r.dayIndex, r.shift);
+            return led ? '<span class="oh-meta">scheduled: ' + esc(led) + '</span>' : ''; })() : '')
         + (r.missing || r.late ? '<span class="oh-chips"><span class="oh-chip ' + (r.missing ? 'bad' : 'watch') + '">'
             + (r.missing ? 'no recap on file' : 'filed late') + '</span></span>' : '')
         + '</' + tag + '>';
@@ -62269,6 +62275,13 @@ function boardView(){
       + (ohMetric === 'sales' ? '<div class="oh-empty">' + SALES_PENDING + '</div>' : rankRows(all, ohMetric))
     + '</div>'
     + '<div class="oh-foot">' + note + '</div>';
+}
+
+/* ---- scheduled shift-lead lookup (deputy history, privacy-truncated names) ---- */
+function deputyFor(code, dayIdx, sh){
+  if(typeof REAL_DEPUTY_SCHEDULE === 'undefined' || dayIdx == null) return null;
+  const rec = REAL_DEPUTY_SCHEDULE[isoForIndex(dayIdx) + '|' + CODE_TO_SHOP[code] + '|' + sh];
+  return rec && rec.lead ? rec.lead : null;
 }
 
 /* ---- waste (expired product log) ---- */

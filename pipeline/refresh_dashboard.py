@@ -300,33 +300,103 @@ def main():
             json.dump(deputy_hist, f, indent=2, sort_keys=True)
         print(f'  privacy: shortened {_scrubbed} pre-existing full name(s) in deputy history')
     if os.path.exists('deputy_schedule_raw.csv'):
-        merged, unlabeled = 0, 0
+        merged, unlabeled, inferred_n = 0, 0, 0
         with open('deputy_schedule_raw.csv', newline='', encoding='utf-8-sig') as f:
-            for i, row in enumerate(csv.DictReader(f)):
-                date = (row.get('Date') or '').strip()
-                shop = (row.get('Shop') or '').strip()
-                shift = (row.get('ShiftLabel') or '').strip()
-                if not (date and shop):
+            _rows = list(csv.DictReader(f))
+
+        def _start_min(r):
+            s = r.get('ScheduledStart') or ''
+            try:
+                return int(s[11:13]) * 60 + int(s[14:16])
+            except (ValueError, IndexError):
+                return None
+
+        # TIME-WINDOW LABEL INFERENCE. Deputy's Apps Script only labels Open/Mid/Close
+        # when a day has exactly 3 shift leads; a 4th (swing/overlap) shift blanks ALL
+        # labels for that day — throwing away three unambiguous assignments (recurring
+        # at Auburn: half its days). Recover them conservatively:
+        #   canonical window start per (shop, shift) = mode of this export's labeled rows
+        #   an unlabeled entry claims the nearest canonical window within 60 min
+        #   a window claimed by exactly ONE entry -> labeled (marked 'inferred')
+        #   a swing shift matching no window, or a collision (2+ claims), stays unlabeled
+        #   days with any labeled row, or shops with incomplete canon, are left alone
+        from collections import Counter
+        _canon_counts = {}
+        for r in _rows:
+            sh = (r.get('ShiftLabel') or '').strip()
+            shop_ = (r.get('Shop') or '').strip()
+            m = _start_min(r)
+            if sh in ('Open', 'Mid', 'Close') and shop_ and m is not None:
+                _canon_counts.setdefault((shop_, sh), Counter())[m] += 1
+        _canon = {k: c.most_common(1)[0][0] for k, c in _canon_counts.items()}
+
+        _TOL_MIN = 60
+        _labeled_days = {((r.get('Date') or '').strip(), (r.get('Shop') or '').strip())
+                         for r in _rows if (r.get('ShiftLabel') or '').strip() in ('Open', 'Mid', 'Close')}
+        _by_day = {}
+        for r in _rows:
+            if (r.get('ShiftLabel') or '').strip() in ('Open', 'Mid', 'Close'):
+                continue
+            date_ = (r.get('Date') or '').strip()
+            shop_ = (r.get('Shop') or '').strip()
+            if not (date_ and shop_) or (date_, shop_) in _labeled_days:
+                continue
+            ident = (r.get('EmployeeId') or '').strip() or (r.get('EmployeeName') or '').strip()
+            _by_day.setdefault((date_, shop_), {})[(ident, _start_min(r))] = True  # dedupes exact duplicate rows
+        _inferred = {}  # (date, shop, ident, start_min) -> 'Open'|'Mid'|'Close'
+        for (date_, shop_), entries in _by_day.items():
+            wins = {sh: _canon.get((shop_, sh)) for sh in ('Open', 'Mid', 'Close')}
+            if any(v is None for v in wins.values()):
+                continue
+            claims = {}
+            for (ident, m) in entries:
+                if m is None:
                     continue
-                empty = (row.get('IsEmptySlot') or '').strip().upper() == 'TRUE'
-                # truncate at the ingest boundary so a full name never reaches the
-                # committed JSON — neither in 'lead' nor embedded in an unlabeled key
-                name = _privacy_name((row.get('EmployeeName') or '').strip())
-                emp_id = (row.get('EmployeeId') or '').strip()
-                if shift in ('Open', 'Mid', 'Close'):
-                    key = f'{date}|{shop}|{shift}'
-                else:
-                    unlabeled += 1
-                    # collision-proof: unlabeled/overlapping leads keyed by roster id so they
-                    # never overwrite each other (they simply won't render as a daypart).
-                    key = f'{date}|{shop}|#{emp_id or name or i}'
-                deputy_hist[key] = {
-                    'lead': (None if empty or not name else name),
-                    'empty': empty,
-                    'shift': shift,
-                    'id': emp_id,
-                }
-                merged += 1
+                best_sh, best_start = min(wins.items(), key=lambda kv: abs(m - kv[1]))
+                if abs(m - best_start) <= _TOL_MIN:
+                    claims.setdefault(best_sh, []).append((ident, m))
+            for sh, claimants in claims.items():
+                if len(claimants) == 1:
+                    _inferred[(date_, shop_) + claimants[0]] = sh
+
+        for i, row in enumerate(_rows):
+            date = (row.get('Date') or '').strip()
+            shop = (row.get('Shop') or '').strip()
+            shift = (row.get('ShiftLabel') or '').strip()
+            if not (date and shop):
+                continue
+            empty = (row.get('IsEmptySlot') or '').strip().upper() == 'TRUE'
+            # truncate at the ingest boundary so a full name never reaches the
+            # committed JSON — neither in 'lead' nor embedded in an unlabeled key
+            raw_name = (row.get('EmployeeName') or '').strip()
+            name = _privacy_name(raw_name)
+            emp_id = (row.get('EmployeeId') or '').strip()
+            inferred = False
+            if shift not in ('Open', 'Mid', 'Close'):
+                _lab = _inferred.get((date, shop, emp_id or raw_name, _start_min(row)))
+                if _lab:
+                    shift = _lab
+                    inferred = True
+                    inferred_n += 1
+            if shift in ('Open', 'Mid', 'Close'):
+                key = f'{date}|{shop}|{shift}'
+            else:
+                unlabeled += 1
+                # collision-proof: unlabeled/overlapping leads keyed by roster id so they
+                # never overwrite each other (they simply won't render as a daypart).
+                key = f'{date}|{shop}|#{emp_id or name or i}'
+            entry = {
+                'lead': (None if empty or not name else name),
+                'empty': empty,
+                'shift': shift,
+                'id': emp_id,
+            }
+            if inferred:
+                entry['inferred'] = True
+            deputy_hist[key] = entry
+            merged += 1
+        if inferred_n:
+            print(f'  inferred {inferred_n} Open/Mid/Close label(s) by time window on blank-labeled day(s)')
         with open(DEPUTY_HISTORY_FILE, 'w') as f:
             json.dump(deputy_hist, f, indent=2, sort_keys=True)
         print(f'  merged deputy schedule: {merged} row(s) this run ({unlabeled} unlabeled), '
