@@ -61860,7 +61860,7 @@ CODES.forEach(code => Object.defineProperty(PERF, code, { get(){ return perfFor(
 /* ── RENDER (no edits needed) ─────────────────────────────────────────────── */
 
 let ohScreen = 'home', ohRange = '7d', ohCode = null, ohPerson = null, ohRan = false, ohQ = '', ohRangeOpen = false, ohStandFrom = 'stands';
-let ohCmpPicked = ['MAD','FAIR OAKS','AUBURN'], ohCmpMetric = 'recaps', ohMetric = 'times';
+let ohCmpPicked = ['MAD','FAIR OAKS','AUBURN'], ohCmpMetric = 'recaps', ohMetric = 'times', ohTimesSort = 'lane';
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const mmss = s => Math.floor(s/60) + ':' + String(s%60).padStart(2,'0');
@@ -61921,6 +61921,10 @@ function score(code, metric){
     ? { v:-p.lane, better:'low', txt:mmss(p.lane), unit:'lane total avg',
         sub:'Lane total ' + mmss(p.lane) + (p.carsPerDay ? ' · ' + p.carsPerDay.toLocaleString() + ' cars/day' : '') }
     : { v:-1e9, better:'low', txt:'—', unit:'lane total avg', sub:'No HME uploads in range' };
+  if (metric === 'timescars') return p.hasTimer
+    ? { v:p.carsPerDay || 0, better:'high', txt:(p.carsPerDay || 0).toLocaleString() + ' cars/day', unit:'cars/day',
+        sub:(p.carsPerDay || 0).toLocaleString() + ' cars/day · lane total ' + mmss(p.lane) }
+    : { v:0, better:'high', txt:'—', unit:'cars/day', sub:'No HME uploads in range' };
   if (metric === 'sales')   return { v:p.sales, better:'high', txt:money(p.sales), unit:'net sales',
     sub:money(p.sales) + ' · ' + p.dph + ' drinks/hr' };
   if (metric === 'dph')     return { v:p.dph, better:'high', txt:p.dph.toFixed(1), unit:'drinks / hour',
@@ -62261,17 +62265,25 @@ function compareView(){
 /* ---- leaderboard ---- */
 function boardView(){
   const all = getStands(ohRange).map(s => s.code);
-  const note = ohMetric === 'times' ? 'Lane total average across the range — lower is better, so the fastest stand leads.'
+  // Times tab sorts by lane total avg or cars/day; the subtitle line is the toggle.
+  const bm = (ohMetric === 'times' && ohTimesSort === 'cars') ? 'timescars' : ohMetric;
+  const note = ohMetric === 'times'
+      ? (ohTimesSort === 'cars'
+          ? 'Cars per day across the range — higher is better, so the busiest stand leads. Tap the line above the tabs to rank by lane total again.'
+          : 'Lane total average across the range — lower is better, so the fastest stand leads. Tap the line above the tabs to rank by cars/day instead.')
     : ohMetric === 'sales' ? 'Ranks by net sales once the Xenial upload is connected.'
     : 'Higher is better. Tap any row to open that stand.';
+  const contextLine = ohMetric === 'sales' ? 'Net sales · pending'
+    : 'All ' + all.length + ' stands by ' + esc(score(all[0], bm).unit) + ' · tap any row to open it';
   return '<div style="display:flex;align-items:center;flex-wrap:wrap;gap:9px">' + rangePill() + '</div>'
     + '<h2 class="oh-h2" style="padding-top:8px">Leaderboard</h2>'
-    + '<div class="oh-context">' + (ohMetric === 'sales' ? 'Net sales · pending'
-        : 'All ' + all.length + ' stands by ' + esc(score(all[0], ohMetric).unit) + ' · tap any row to open it') + '</div>'
+    + (ohMetric === 'times'
+        ? '<div class="oh-context" id="oh-times-sort" style="cursor:pointer">' + contextLine + ' <span style="color:var(--amber)">&#8645;</span></div>'
+        : '<div class="oh-context">' + contextLine + '</div>')
     + rangeDrawer('leaderboard')
     + metricTabs(ohMetric, 'data-metric', BOARD_METRICS)
     + '<div style="margin-top:18px">'
-      + (ohMetric === 'sales' ? '<div class="oh-empty">' + SALES_PENDING + '</div>' : rankRows(all, ohMetric))
+      + (ohMetric === 'sales' ? '<div class="oh-empty">' + SALES_PENDING + '</div>' : rankRows(all, bm))
     + '</div>'
     + '<div class="oh-foot">' + note + '</div>';
 }
@@ -62353,6 +62365,7 @@ function render(){
     render();
   });
   on('#oh-rangepill', () => { ohRangeOpen = !ohRangeOpen; render(); });
+  on('#oh-times-sort', () => { ohTimesSort = ohTimesSort === 'lane' ? 'cars' : 'lane'; render(); });
   host.querySelectorAll('[data-standrange]').forEach(b => b.addEventListener('click', () => {
     ohRange = b.dataset.standrange; ohRangeOpen = false; render();
   }));
