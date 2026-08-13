@@ -61670,8 +61670,9 @@ const CODES = ACTIVE_SHOPS.map(s => s.toUpperCase());
 const CODE_TO_SHOP = {}; ACTIVE_SHOPS.forEach(s => { CODE_TO_SHOP[s.toUpperCase()] = s; });
 function ohShortName(full){
   if(!full) return '';
+  // privacy: first name + last initial only ("Myah N."), never a full surname
   const p = String(full).trim().split(/\s+/);
-  return p.length===1 ? p[0] : p[0][0] + '. ' + p.slice(1).join(' ');
+  return p.length===1 ? p[0] : p[0] + ' ' + p[p.length-1][0] + '.';
 }
 function idxListFor(range){ return indicesForRange(RANGE_PRESET[range] || '7d'); }
 function idxSetFor(range){ return new Set(idxListFor(range)); }

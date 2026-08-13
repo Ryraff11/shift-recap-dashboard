@@ -177,10 +177,34 @@ def main():
     # record but are NOT injected — they have no Open/Mid/Close slot to display.
     DEPUTY_HISTORY_FILE = 'deputy_schedule_history.json'
     DEPUTY_WINDOW_DAYS = 45
+
+    def _privacy_name(full):
+        """This history file is committed to a PUBLIC repo, so a full surname tied to
+        a work schedule must never be stored: 'Myah Newton' -> 'Myah N.'. Single-token
+        names pass through unchanged."""
+        parts = full.split()
+        if len(parts) < 2:
+            return full
+        return f'{parts[0]} {parts[-1][0]}.'
+
     deputy_hist = {}
     if os.path.exists(DEPUTY_HISTORY_FILE):
         with open(DEPUTY_HISTORY_FILE) as f:
             deputy_hist = json.load(f)
+    # Self-heal entries written before the privacy rule existed, and persist the
+    # scrub even on runs where no fresh CSV export is present.
+    _scrubbed = 0
+    for _v in deputy_hist.values():
+        _lead = _v.get('lead')
+        if _lead:
+            _short = _privacy_name(_lead)
+            if _short != _lead:
+                _v['lead'] = _short
+                _scrubbed += 1
+    if _scrubbed:
+        with open(DEPUTY_HISTORY_FILE, 'w') as f:
+            json.dump(deputy_hist, f, indent=2, sort_keys=True)
+        print(f'  privacy: shortened {_scrubbed} pre-existing full name(s) in deputy history')
     if os.path.exists('deputy_schedule_raw.csv'):
         merged, unlabeled = 0, 0
         with open('deputy_schedule_raw.csv', newline='', encoding='utf-8-sig') as f:
@@ -191,7 +215,9 @@ def main():
                 if not (date and shop):
                     continue
                 empty = (row.get('IsEmptySlot') or '').strip().upper() == 'TRUE'
-                name = (row.get('EmployeeName') or '').strip()
+                # truncate at the ingest boundary so a full name never reaches the
+                # committed JSON — neither in 'lead' nor embedded in an unlabeled key
+                name = _privacy_name((row.get('EmployeeName') or '').strip())
                 emp_id = (row.get('EmployeeId') or '').strip()
                 if shift in ('Open', 'Mid', 'Close'):
                     key = f'{date}|{shop}|{shift}'
