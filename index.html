@@ -18,6 +18,7 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
 .oh-h2{font-family:'Anton',sans-serif; font-size:34px; line-height:1; text-transform:uppercase; padding-top:4px;}
 .oh-context{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-dim); padding-top:9px;}
 .oh-foot{padding-top:22px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-faint); text-wrap:pretty;}
+.oh-asof{padding-top:18px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.05em; color:var(--text-faint); opacity:.7;}
 .oh-back{display:inline-flex; align-items:center; min-height:44px; background:none; border:none; padding:0;
   font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--amber); cursor:pointer;}
 
@@ -809,7 +810,7 @@ function getPacificNow(){
 const days = 60; // 60-day data window powers the Late Submissions tally; the recaps day-strip below stays a fixed trailing 7 days so the grid is unchanged
 const TODAY_INDEX = days - 1;
 const TODAY_DATE = new Date(2026, 7, 18); // auto-updated by refresh_dashboard.py;
-const BUILD_STAMP = "Tue · Aug 18 · updated 1:35 PM PT"; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
+const BUILD_STAMP = "Tue · Aug 18 · updated 1:39 PM PT"; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
 
 function dateForIndex(i){
   const dt = new Date(TODAY_DATE);
@@ -67989,6 +67990,11 @@ function ohFreshLine(){
   try { return TODAY_DATE.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' }); }
   catch(e){ return ''; }
 }
+// Subtle "as of" note for detail screens — reuses the publish stamp, trimmed to date + time.
+function ohAsOf(){
+  if(typeof BUILD_STAMP === 'undefined' || !BUILD_STAMP) return '';
+  return 'Data as of ' + BUILD_STAMP.replace(/^[A-Za-z]+ · /, '').replace('updated ', '');
+}
 // small monochrome tile glyphs (inherit currentColor → the yellow accent)
 const OH_ICO_OVERVIEW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/></svg>';
 const OH_ICO_MISSED = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><path d="M9 10h6M9 14h4"/></svg>';
@@ -68305,7 +68311,8 @@ function render(){
   const backLabel = (ohScreen === 'board' || ohScreen === 'missed') ? 'Home'
     : ohScreen === 'stand' ? (ohStandFrom === 'board' ? 'Window Times' : 'Missed Recaps')
     : ohScreen === 'person' ? 'People' : ohCode;
-  host.innerHTML = (ohScreen === 'home' ? '' : '<button class="oh-back" id="oh-back">&larr; ' + esc(backLabel) + '</button>') + body;
+  const asOf = (ohScreen !== 'home' && ohAsOf()) ? '<div class="oh-asof">' + esc(ohAsOf()) + '</div>' : '';
+  host.innerHTML = (ohScreen === 'home' ? '' : '<button class="oh-back" id="oh-back">&larr; ' + esc(backLabel) + '</button>') + body + asOf;
 
   const on = (sel, fn) => { const el = host.querySelector(sel); if (el) el.addEventListener('click', fn); };
   on('#oh-back', () => {
