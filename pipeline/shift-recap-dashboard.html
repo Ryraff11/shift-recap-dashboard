@@ -61904,6 +61904,8 @@ function ohMissedSummary(){
   return parts.join(' · ') + ' today';
 }
 function homeView(){
+  const t = ohTimesSummary();
+  const timesPreview = t ? (mmss(t.avg) + ' avg · ' + t.shops + ' stand' + (t.shops===1?'':'s') + ' reporting') : 'No timer data yet';
   return '<div class="oh-masthead"><div class="oh-mh-eyebrow">DB Sac</div><div class="oh-mh-title">Ops Hub</div></div>'
     // Overview gets top billing: full-width tile above everything else.
     + '<button class="oh-tile oh-tile-wide" data-home="overview" style="margin-top:0">'
@@ -61913,9 +61915,14 @@ function homeView(){
     + '</button>'
     // Missed Recaps + Window Times side by side directly below Overview.
     // (Missed Recaps is now the entry point into every stand's detail screen.)
+    // Each carries a small at-a-glance excerpt, like the Overview tile.
     + '<div class="oh-grid" style="margin-top:12px">'
-    + '<button class="oh-tile" data-home="missed"><span class="oh-tile-label">Missed Recaps <span class="oh-tile-arrow">&rarr;</span></span></button>'
-    + '<button class="oh-tile" data-home="board"><span class="oh-tile-label">Window Times <span class="oh-tile-arrow">&rarr;</span></span></button>'
+    + '<button class="oh-tile" data-home="missed"><span class="oh-tile-wide-left">'
+      + '<span class="oh-tile-label">Missed Recaps <span class="oh-tile-arrow">&rarr;</span></span>'
+      + '<span class="oh-tile-preview">' + esc(ohMissedSummary()) + '</span></span></button>'
+    + '<button class="oh-tile" data-home="board"><span class="oh-tile-wide-left">'
+      + '<span class="oh-tile-label">Window Times <span class="oh-tile-arrow">&rarr;</span></span>'
+      + '<span class="oh-tile-preview">' + esc(timesPreview) + '</span></span></button>'
     + '</div>';
 }
 
