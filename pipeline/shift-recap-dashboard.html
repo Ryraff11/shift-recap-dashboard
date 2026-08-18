@@ -558,7 +558,6 @@ details.ov-cat:not([open]) > .ov-cat-head::after{ content:'\25b8'; }
       <h1 class="anton">Ops Hub</h1>
     </div>
     <div style="display:flex; gap:8px;">
-      <button class="ghost-btn" id="btn-compare">Compare →</button>
       <button class="ghost-btn" id="btn-leaderboard">Leaderboard →</button>
     </div>
   </div>
@@ -677,76 +676,6 @@ details.ov-cat:not([open]) > .ov-cat-head::after{ content:'\25b8'; }
       <div class="stat-row" id="payroll-stats"></div>
       <div class="section-sub">Labor hours by day</div>
       <div class="bar-scroll" id="payroll-bars"></div>
-    </div>
-  </div>
-
-  <!-- ============ COMPARE ============ -->
-  <div class="view" id="view-compare">
-    <button class="back-btn" id="btn-back-home-3">← Home</button>
-    <div class="section-title" style="margin-bottom:12px;">Pick stands to compare</div>
-    <div class="compare-chips" id="compare-chips"></div>
-
-    <div class="subtabs" id="compare-subtabs">
-      <button class="subtab active" data-cat="recaps">Recaps</button>
-      <button class="subtab" data-cat="times">Times</button>
-      <button class="subtab" data-cat="netsales">Net Sales</button>
-      <button class="subtab" data-cat="dph">Drinks/Hr</button>
-      <button class="subtab" data-cat="peak">Peak Hours</button>
-      <button class="subtab" data-cat="payroll">Payroll</button>
-    </div>
-
-    <div class="category active" id="cmp-cat-recaps">
-      <div id="cmp-recaps-list"></div>
-    </div>
-
-    <div class="category" id="cmp-cat-times">
-      <div class="range-picker" data-range-group="cmp">
-        <button class="range-btn" data-range="today">Today</button>
-        <button class="range-btn" data-range="yesterday">Yesterday</button>
-        <button class="range-btn" data-range="3d">3 Days</button>
-        <button class="range-btn active" data-range="7d">7 Days</button>
-      </div>
-      <div id="cmp-times-list"></div>
-    </div>
-
-    <div class="category" id="cmp-cat-netsales">
-      <div class="range-picker" data-range-group="cmp">
-        <button class="range-btn" data-range="today">Today</button>
-        <button class="range-btn" data-range="yesterday">Yesterday</button>
-        <button class="range-btn" data-range="3d">3 Days</button>
-        <button class="range-btn active" data-range="7d">7 Days</button>
-      </div>
-      <div id="cmp-netsales-list"></div>
-    </div>
-
-    <div class="category" id="cmp-cat-dph">
-      <div class="range-picker" data-range-group="cmp">
-        <button class="range-btn" data-range="today">Today</button>
-        <button class="range-btn" data-range="yesterday">Yesterday</button>
-        <button class="range-btn" data-range="3d">3 Days</button>
-        <button class="range-btn active" data-range="7d">7 Days</button>
-      </div>
-      <div id="cmp-dph-list"></div>
-    </div>
-
-    <div class="category" id="cmp-cat-peak">
-      <div class="range-picker" data-range-group="cmp">
-        <button class="range-btn" data-range="today">Today</button>
-        <button class="range-btn" data-range="yesterday">Yesterday</button>
-        <button class="range-btn" data-range="3d">3 Days</button>
-        <button class="range-btn active" data-range="7d">7 Days</button>
-      </div>
-      <div id="cmp-peak-list"></div>
-    </div>
-
-    <div class="category" id="cmp-cat-payroll">
-      <div class="range-picker" data-range-group="cmp">
-        <button class="range-btn" data-range="today">Today</button>
-        <button class="range-btn" data-range="yesterday">Yesterday</button>
-        <button class="range-btn" data-range="3d">3 Days</button>
-        <button class="range-btn active" data-range="7d">7 Days</button>
-      </div>
-      <div id="cmp-payroll-list"></div>
     </div>
   </div>
 
@@ -60782,9 +60711,7 @@ function showView(name){
 }
 document.getElementById('btn-back-home').addEventListener('click', ()=>showView('home'));
 document.getElementById('btn-back-home-2').addEventListener('click', ()=>showView('home'));
-document.getElementById('btn-back-home-3').addEventListener('click', ()=>showView('home'));
 document.getElementById('btn-leaderboard').addEventListener('click', ()=>{ showView('leaderboard'); renderLeaderboard(); });
-document.getElementById('btn-compare').addEventListener('click', ()=>{ showView('compare'); renderCompareChips(); renderCompareAll(); });
 
 document.querySelectorAll('#shop-subtabs .subtab').forEach(tab=>{
   tab.addEventListener('click', ()=>{
@@ -60792,15 +60719,6 @@ document.querySelectorAll('#shop-subtabs .subtab').forEach(tab=>{
     document.querySelectorAll('#view-shop-detail .category').forEach(c=>c.classList.remove('active'));
     tab.classList.add('active');
     document.getElementById('cat-'+tab.dataset.cat).classList.add('active');
-  });
-});
-
-document.querySelectorAll('#compare-subtabs .subtab').forEach(tab=>{
-  tab.addEventListener('click', ()=>{
-    document.querySelectorAll('#compare-subtabs .subtab').forEach(t=>t.classList.remove('active'));
-    document.querySelectorAll('#view-compare .category').forEach(c=>c.classList.remove('active'));
-    tab.classList.add('active');
-    document.getElementById('cmp-cat-'+tab.dataset.cat).classList.add('active');
   });
 });
 
@@ -61633,11 +61551,8 @@ const RANGES = [
   { key:'7d',        label:'7 days',    word:'the last 7 days',     shifts:21 }
 ];
 
-// Compare and Leaderboard are now built into this file (see compareView /
-// boardView below) and read the same adapters as every other screen. If you
-// prefer to keep the dashboard's OLD compare/leaderboard views, delete those
-// two functions and point these at the existing router calls instead.
-// Leaderboard shows only these three; Compare keeps the full set.
+// Window Times (the ranked board, see boardView below) reads the same adapters
+// as every other screen. These three metrics are its tabs.
 const BOARD_METRICS = ['recaps','times','sales'];
 // Net sales is not wired yet — shown as a pending state until the Xenial upload
 // lands. Replace this string with your exact wording.
@@ -61989,21 +61904,21 @@ function ohMissedSummary(){
   return parts.join(' · ') + ' today';
 }
 function homeView(){
-  const t = ohTimesSummary();
-  const timesPreview = t ? (mmss(t.avg) + ' avg · ' + t.shops + ' stand' + (t.shops===1?'':'s') + ' reporting') : 'No timer data yet';
-  const tiles = [['overview','Overview'], ['stands','Stands'], ['compare','Compare'], ['board','Leaderboard']];
   return '<div class="oh-masthead"><div class="oh-mh-eyebrow">DB Sac</div><div class="oh-mh-title">Ops Hub</div></div>'
-    + '<div class="oh-grid">'
-    + tiles.map(t2 => '<button class="oh-tile" data-home="' + t2[0] + '"><span class="oh-tile-label">' + esc(t2[1]) + ' <span class="oh-tile-arrow">&rarr;</span></span></button>').join('')
+    // Overview gets top billing: full-width tile above everything else.
+    + '<button class="oh-tile oh-tile-wide" data-home="overview" style="margin-top:0">'
+      + '<span class="oh-tile-wide-left"><span class="oh-tile-label">Overview</span>'
+      + '<span class="oh-tile-preview">Hazards, flags &amp; recap status</span></span>'
+      + '<span class="oh-tile-arrow oh-tile-arrow-r">&rarr;</span>'
+    + '</button>'
+    // Stands + Window Times side by side directly below Overview.
+    + '<div class="oh-grid" style="margin-top:12px">'
+    + '<button class="oh-tile" data-home="stands"><span class="oh-tile-label">Stands <span class="oh-tile-arrow">&rarr;</span></span></button>'
+    + '<button class="oh-tile" data-home="board"><span class="oh-tile-label">Window Times <span class="oh-tile-arrow">&rarr;</span></span></button>'
     + '</div>'
     + '<button class="oh-tile oh-tile-wide" data-home="missed">'
       + '<span class="oh-tile-wide-left"><span class="oh-tile-label">Missed Recaps</span>'
       + '<span class="oh-tile-preview">' + esc(ohMissedSummary()) + '</span></span>'
-      + '<span class="oh-tile-arrow oh-tile-arrow-r">&rarr;</span>'
-    + '</button>'
-    + '<button class="oh-tile oh-tile-wide" data-home="times">'
-      + '<span class="oh-tile-wide-left"><span class="oh-tile-label">Window Times</span>'
-      + '<span class="oh-tile-preview">' + esc(timesPreview) + '</span></span>'
       + '<span class="oh-tile-arrow oh-tile-arrow-r">&rarr;</span>'
     + '</button>';
 }
@@ -62240,29 +62155,7 @@ function personView(){
 }
 
 /* ---- compare ---- */
-function compareView(){
-  const all = getStands(ohRange).map(s => s.code);
-  const label = (METRICS.find(m => m.key === ohCmpMetric) || METRICS[0]).label.toLowerCase();
-  return '<div style="display:flex;align-items:center;flex-wrap:wrap;gap:9px">' + rangePill() + '</div>'
-    + '<h2 class="oh-h2" style="padding-top:8px">Compare</h2>'
-    + '<div class="oh-context">' + (ohCmpMetric === 'sales' ? 'Net sales · pending' : ohCmpPicked.length + ' of ' + all.length + ' stands · ranked by ' + label) + '</div>'
-    + rangeDrawer('comparison')
-    + '<div style="margin-top:18px;display:flex;flex-direction:column;gap:9px">'
-      + '<div class="oh-eyebrow">Pick stands</div><div class="oh-chiprow">'
-      + all.map(c => { const on = ohCmpPicked.indexOf(c) !== -1;
-          return '<button class="oh-pick" data-cmpcode="' + esc(c) + '" aria-pressed="' + on + '">'
-            + esc(c) + '</button>'; }).join('')
-      + '</div></div>'
-    + metricTabs(ohCmpMetric, 'data-cmpmetric', BOARD_METRICS)
-    + '<div style="margin-top:18px">'
-      + (ohCmpMetric === 'sales' ? '<div class="oh-empty">' + SALES_PENDING + '</div>'
-         : ohCmpPicked.length ? rankRows(ohCmpPicked, ohCmpMetric)
-         : '<div class="oh-empty">Pick at least one stand above</div>')
-    + '</div>'
-    + '<div class="oh-foot">Same picks and metrics as before — the bar makes the gap between stands readable without comparing digits, and any row opens that stand.</div>';
-}
-
-/* ---- leaderboard ---- */
+/* ---- window times (ranked board) ---- */
 function boardView(){
   const all = getStands(ohRange).map(s => s.code);
   // Times tab sorts by lane total avg or cars/day; the subtitle line is the toggle.
@@ -62276,7 +62169,7 @@ function boardView(){
   const contextLine = ohMetric === 'sales' ? 'Net sales · pending'
     : 'All ' + all.length + ' stands by ' + esc(score(all[0], bm).unit) + ' · tap any row to open it';
   return '<div style="display:flex;align-items:center;flex-wrap:wrap;gap:9px">' + rangePill() + '</div>'
-    + '<h2 class="oh-h2" style="padding-top:8px">Leaderboard</h2>'
+    + '<h2 class="oh-h2" style="padding-top:8px">Window Times</h2>'
     + (ohMetric === 'times'
         ? '<div class="oh-context" id="oh-times-sort" style="cursor:pointer">' + contextLine + ' <span style="color:var(--amber)">&#8645;</span></div>'
         : '<div class="oh-context">' + contextLine + '</div>')
@@ -62347,18 +62240,17 @@ function render(){
     : ohScreen === 'haz' ? hazView()
     : ohScreen === 'waste' ? wasteView()
     : ohScreen === 'people' ? peopleView()
-    : ohScreen === 'compare' ? compareView()
     : ohScreen === 'board' ? boardView()
     : personView();
 
-  const backLabel = (ohScreen === 'stands' || ohScreen === 'compare' || ohScreen === 'board' || ohScreen === 'missed') ? 'Home'
-    : ohScreen === 'stand' ? (ohStandFrom === 'missed' ? 'Missed Recaps' : ohStandFrom === 'board' ? 'Leaderboard' : ohStandFrom === 'compare' ? 'Compare' : 'All stands')
+  const backLabel = (ohScreen === 'stands' || ohScreen === 'board' || ohScreen === 'missed') ? 'Home'
+    : ohScreen === 'stand' ? (ohStandFrom === 'missed' ? 'Missed Recaps' : ohStandFrom === 'board' ? 'Window Times' : 'All stands')
     : ohScreen === 'person' ? 'People' : ohCode;
   host.innerHTML = (ohScreen === 'home' ? '' : '<button class="oh-back" id="oh-back">&larr; ' + esc(backLabel) + '</button>') + body;
 
   const on = (sel, fn) => { const el = host.querySelector(sel); if (el) el.addEventListener('click', fn); };
   on('#oh-back', () => {
-    ohScreen = (ohScreen === 'stands' || ohScreen === 'compare' || ohScreen === 'board' || ohScreen === 'missed') ? 'home'
+    ohScreen = (ohScreen === 'stands' || ohScreen === 'board' || ohScreen === 'missed') ? 'home'
       : ohScreen === 'stand' ? ohStandFrom
       : ohScreen === 'person' ? 'people' : 'stand';
     ohRangeOpen = false;
@@ -62369,22 +62261,14 @@ function render(){
   host.querySelectorAll('[data-standrange]').forEach(b => b.addEventListener('click', () => {
     ohRange = b.dataset.standrange; ohRangeOpen = false; render();
   }));
-  on('#oh-compare', () => { ohScreen = 'compare'; ohRangeOpen = false; render(); });
   on('#oh-board', () => { ohScreen = 'board'; ohRangeOpen = false; render(); });
   host.querySelectorAll('[data-home]').forEach(b => b.addEventListener('click', () => {
     const dest = b.dataset.home;
     if(dest === 'overview'){ if(typeof showView==='function') showView('overview'); if(typeof renderOverview==='function') renderOverview(typeof ovRangeState!=='undefined' ? ovRangeState : 'today'); return; }
-    if(dest === 'times'){ ohScreen = 'board'; ohMetric = 'times'; }
+    // "Window Times" tile opens the ranked board on its Times tab by default.
+    if(dest === 'board'){ ohScreen = 'board'; ohMetric = 'times'; }
     else { ohScreen = dest; }
     ohRangeOpen = false; render();
-  }));
-  host.querySelectorAll('[data-cmpcode]').forEach(b => b.addEventListener('click', () => {
-    const c = b.dataset.cmpcode, i = ohCmpPicked.indexOf(c);
-    if (i === -1) ohCmpPicked = ohCmpPicked.concat([c]); else ohCmpPicked = ohCmpPicked.filter(x => x !== c);
-    render();
-  }));
-  host.querySelectorAll('[data-cmpmetric]').forEach(b => b.addEventListener('click', () => {
-    ohCmpMetric = b.dataset.cmpmetric; render();
   }));
   host.querySelectorAll('[data-metric]').forEach(b => b.addEventListener('click', () => {
     ohMetric = b.dataset.metric; render();
@@ -62395,7 +62279,7 @@ function render(){
     ohRange = b.dataset.range; ohRan = false; ohRangeOpen = false; render();
   }));
   host.querySelectorAll('[data-code]').forEach(b => b.addEventListener('click', () => {
-    ohCode = b.dataset.code; ohStandFrom = (ohScreen === 'missed' || ohScreen === 'compare' || ohScreen === 'board') ? ohScreen : 'stands'; ohScreen = 'stand'; ohPerson = null; ohQ = ''; ohRangeOpen = false; render();
+    ohCode = b.dataset.code; ohStandFrom = (ohScreen === 'missed' || ohScreen === 'board') ? ohScreen : 'stands'; ohScreen = 'stand'; ohPerson = null; ohQ = ''; ohRangeOpen = false; render();
   }));
   host.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => {
     ohScreen = b.dataset.go; if (ohScreen === 'people') ohQ = ''; render();
