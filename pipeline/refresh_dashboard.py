@@ -597,6 +597,18 @@ def main():
     html = html[:old_today_line_start] + new_today_line + html[old_today_line_end:]
     print(f'  updated TODAY_DATE to {today.strftime("%B %d, %Y")}')
 
+    # Freshness stamp shown on the home masthead, e.g. "Tue · Aug 18 · updated 1:07 PM PT".
+    # Filled by replacing the string literal between the quotes (no comment growth).
+    stamp = today.strftime('%a · %b %-d · updated %-I:%M %p PT')
+    bs_marker = 'const BUILD_STAMP = "'
+    if bs_marker in html:
+        bs_q1 = html.index(bs_marker) + len(bs_marker)
+        bs_q2 = html.index('"', bs_q1)
+        html = html[:bs_q1] + stamp + html[bs_q2:]
+        print(f'  updated BUILD_STAMP to "{stamp}"')
+    else:
+        print('  NOTE: no BUILD_STAMP marker in template — skipping freshness stamp')
+
     with open(DASHBOARD_FILE, 'w') as f:
         f.write(html)
 
