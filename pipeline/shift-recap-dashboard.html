@@ -195,15 +195,18 @@ body.home-active{ padding-bottom:0; }
 body.home-active main{ padding-bottom:0; }
 #oh-app.oh-home-active{ min-height:calc(100dvh - 14px); display:flex; flex-direction:column; padding-bottom:0; }
 .oh-home{ flex:1; display:flex; flex-direction:column; gap:13px; padding:14px 0 4px; min-height:0; }
-.oh-htile{ flex:1; min-height:128px; background:#132741; border:1px solid #22395c; border-radius:18px; color:#fff; font:inherit; text-align:left; cursor:pointer; padding:22px 22px 20px; display:flex; flex-direction:column; justify-content:space-between; gap:16px; transition:transform .08s ease, background .12s ease; }
+.oh-htile{ flex:1; min-height:128px; background:#132741; border:1px solid #22395c; border-radius:18px; color:#fff; font:inherit; text-align:left; cursor:pointer; padding:24px; display:flex; flex-direction:column; justify-content:flex-start; gap:14px; transition:transform .08s ease, background .12s ease; }
 .oh-htile:hover{ background:#16304f; }
 .oh-htile:active{ transform:scale(.99); background:#0e1f36; }
 .oh-htile-top{ display:flex; align-items:center; justify-content:space-between; }
-.oh-htile-ico{ width:30px; height:30px; color:#F8E316; flex:none; }
+.oh-htile-ico{ width:34px; height:34px; color:#F8E316; flex:none; }
 .oh-htile-ico svg{ width:100%; height:100%; display:block; }
-.oh-htile-arrow{ color:#F8E316; font-size:20px; line-height:1; }
-.oh-htile-main{ display:flex; flex-direction:column; gap:7px; }
-.oh-htile-label{ font-family:'Anton',sans-serif; font-size:19px; font-weight:400; text-transform:uppercase; letter-spacing:.02em; color:#F8E316; }
+.oh-htile-arrow{ color:#F8E316; font-size:26px; line-height:1; }
+/* big type, centered in the card — fills the space through scale, not padding */
+.oh-htile-main{ flex:1; display:flex; flex-direction:column; justify-content:center; gap:13px; min-height:0; }
+.oh-htile-label{ font-family:'Anton',sans-serif; font-size:clamp(30px,8.5vw,40px); font-weight:400; text-transform:uppercase; letter-spacing:.02em; line-height:1; color:#F8E316; text-wrap:balance; }
+.oh-htile .oh-tile-preview{ font-size:16px; gap:9px; }
+.oh-htile .oh-tile-preview .oh-dot{ width:11px; height:11px; }
 .oh-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 .oh-tile{ aspect-ratio:1.25 / 1; display:flex; align-items:flex-end; padding:16px; border-radius:14px; background:#132741; border:1px solid #22395c; cursor:pointer; color:#fff; font:inherit; text-align:left; transition:transform .08s ease, background .12s ease; }
 .oh-tile:hover{ background:#16304f; }
