@@ -184,14 +184,28 @@ details.ov-cat:not([open]) > .ov-cat-head::after{ content:'\25b8'; }
 .oh-masthead{ width:100vw; margin:-34px 0 20px calc(50% - 50vw); padding:18px 20px; background:#156299; border-bottom:3px solid #F8E316; text-align:center; }
 .oh-mh-eyebrow{ font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#F8E316; }
 .oh-mh-title{ font-family:'Anton',sans-serif; font-size:26px; text-transform:uppercase; color:#fff; line-height:1; padding-top:3px; }
+.oh-mh-fresh{ font-family:'JetBrains Mono',monospace; font-size:9.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#cfe0f0; opacity:.82; padding-top:7px; }
 .oh-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 .oh-tile{ aspect-ratio:1.25 / 1; display:flex; align-items:flex-end; padding:16px; border-radius:14px; background:#132741; border:1px solid #22395c; cursor:pointer; color:#fff; font:inherit; text-align:left; transition:transform .08s ease, background .12s ease; }
+.oh-tile:hover{ background:#16304f; }
 .oh-tile:active{ transform:scale(.97); background:#0e1f36; }
-.oh-tile-label{ font-family:'Anton',sans-serif; font-size:15px; font-weight:400; text-transform:uppercase; letter-spacing:.02em; color:#F8E316; }
+.oh-tile-ico{ width:26px; height:26px; color:#F8E316; flex:none; }
+.oh-tile-ico svg{ width:100%; height:100%; display:block; }
+.oh-tile-label{ font-family:'Anton',sans-serif; font-size:15px; font-weight:400; text-transform:uppercase; letter-spacing:.02em; color:#F8E316; display:flex; align-items:center; gap:6px; }
 .oh-tile-arrow{ color:#F8E316; }
-.oh-tile-wide{ aspect-ratio:auto; width:100%; margin-top:12px; flex-direction:row; align-items:center; justify-content:space-between; }
+.oh-tile-wide{ aspect-ratio:auto; width:100%; margin-top:12px; flex-direction:row; align-items:center; justify-content:flex-start; gap:13px; }
+.oh-tile-wide .oh-tile-ico{ width:30px; height:30px; }
+.oh-tile-wide .oh-tile-arrow-r{ margin-left:auto; }
 .oh-tile-wide-left{ display:flex; flex-direction:column; gap:5px; }
-.oh-tile-preview{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-dim); }
+/* square tiles (Missed Recaps / Window Times): icon top-left, label+excerpt at the bottom, a touch taller */
+.oh-grid .oh-tile{ aspect-ratio:auto; min-height:138px; flex-direction:column; align-items:flex-start; justify-content:space-between; gap:16px; }
+.oh-tile-preview{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-dim); display:flex; align-items:center; gap:7px; line-height:1.35; }
+/* BUFF: the excerpt carries state at a glance */
+.oh-tile-preview.good{ color:var(--ov-good); } .oh-tile-preview.watch{ color:var(--watch); }
+.oh-tile-preview.bad{ color:#FF8B96; } .oh-tile-preview.neutral{ color:var(--text-dim); }
+.oh-dot{ width:8px; height:8px; border-radius:50%; flex:none; }
+.oh-dot.good{ background:var(--ov-good); } .oh-dot.watch{ background:var(--watch); }
+.oh-dot.bad{ background:var(--bad); } .oh-dot.neutral{ background:var(--text-faint); }
 .oh-tile-arrow-r{ font-size:18px; }
 </style>
 <style>
@@ -794,7 +808,8 @@ function getPacificNow(){
 }
 const days = 60; // 60-day data window powers the Late Submissions tally; the recaps day-strip below stays a fixed trailing 7 days so the grid is unchanged
 const TODAY_INDEX = days - 1;
-const TODAY_DATE = new Date(2026, 7, 18); // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
+const TODAY_DATE = new Date(2026, 7, 18); // auto-updated by refresh_dashboard.py;
+const BUILD_STAMP = "Tue · Aug 18 · updated 1:35 PM PT"; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
 
 function dateForIndex(i){
   const dt = new Date(TODAY_DATE);
@@ -25848,7 +25863,7 @@ const REAL_MADHOUSE_RECORDS = [
       {
         "kind": "bad",
         "employee": null,
-        "text": "Tardy/early-out note: I sent Glenn and Tyler both home early and Sophia d."
+        "text": "Tardy/early-out note: I sent Glenn and Tyler both home early and sophia D."
       },
       {
         "kind": "bad",
@@ -25860,7 +25875,7 @@ const REAL_MADHOUSE_RECORDS = [
       "Staffing": "Overstaffed (trying to find things to do, sent people home)",
       "Line times / leaderboard": "They were really good around 1:00-1:20 was top of board all shift ",
       "Best team player / wear more hats": "Kylie was the best team player Glenn could have worn more hats he was in a pretty bad mood all shift",
-      "Tardy / early out": "I sent Glenn and Tyler both home early and Sophia d.",
+      "Tardy / early out": "I sent Glenn and Tyler both home early and sophia D.",
       "Morning SL: gravers feedback": "",
       "Safety hazards": "No",
       "Additional comments": "",
@@ -67951,35 +67966,57 @@ function ohTimesSummary(){
 }
 
 /* ---- home (masthead + tile grid) ---- */
-function ohMissedSummary(){
+// Each home excerpt returns {text, tone} so the tile can carry state at a glance:
+//   good = nothing needs you · watch = heads-up · bad = go look · neutral = informational
+function ohMissedStatus(){
   let miss = 0, late = 0;
   getStands('today').forEach(s => { miss += s.missing; late += s.late; });
-  if(!miss && !late) return 'All recaps in today';
+  if(!miss && !late) return { text:'All recaps in today', tone:'good' };
   const parts = [];
   if(miss) parts.push(miss + ' not filed');
   if(late) parts.push(late + ' late');
-  return parts.join(' · ') + ' today';
+  return { text: parts.join(' · ') + ' today', tone: miss > 0 ? 'bad' : 'watch' };
+}
+function ohTimesStatus(){
+  const t = ohTimesSummary(), total = ACTIVE_SHOPS.length;
+  if(!t) return { text:'No timer data yet', tone:'watch' };
+  if(t.shops < total) return { text: mmss(t.avg) + ' avg · ' + t.shops + ' of ' + total + ' in', tone:'watch' };
+  return { text: mmss(t.avg) + ' avg · ' + t.shops + ' stands in', tone:'neutral' };
+}
+// Freshness line: the pipeline stamps BUILD_STAMP at publish; fall back to TODAY_DATE's date if unset.
+function ohFreshLine(){
+  if(typeof BUILD_STAMP !== 'undefined' && BUILD_STAMP) return BUILD_STAMP;
+  try { return TODAY_DATE.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' }); }
+  catch(e){ return ''; }
+}
+// small monochrome tile glyphs (inherit currentColor → the yellow accent)
+const OH_ICO_OVERVIEW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/></svg>';
+const OH_ICO_MISSED = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><path d="M9 10h6M9 14h4"/></svg>';
+const OH_ICO_TIMES = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="7"/><path d="M12 14V10.2"/><path d="M9.5 2.5h5"/><path d="M18.6 8.1l1.1-1.1"/></svg>';
+function ohTileExcerpt(st){
+  return '<span class="oh-tile-preview ' + st.tone + '"><span class="oh-dot ' + st.tone + '"></span>' + esc(st.text) + '</span>';
 }
 function homeView(){
-  const t = ohTimesSummary();
-  const timesPreview = t ? (mmss(t.avg) + ' avg · ' + t.shops + ' stand' + (t.shops===1?'':'s') + ' reporting') : 'No timer data yet';
-  return '<div class="oh-masthead"><div class="oh-mh-eyebrow">DB Sac</div><div class="oh-mh-title">Ops Hub</div></div>'
+  const missed = ohMissedStatus(), times = ohTimesStatus();
+  return '<div class="oh-masthead"><div class="oh-mh-eyebrow">DB Sac</div><div class="oh-mh-title">Ops Hub</div>'
+      + '<div class="oh-mh-fresh">' + esc(ohFreshLine()) + '</div></div>'
     // Overview gets top billing: full-width tile above everything else.
     + '<button class="oh-tile oh-tile-wide" data-home="overview" style="margin-top:0">'
+      + '<span class="oh-tile-ico" aria-hidden="true">' + OH_ICO_OVERVIEW + '</span>'
       + '<span class="oh-tile-wide-left"><span class="oh-tile-label">Overview</span>'
       + '<span class="oh-tile-preview">Hazards, flags &amp; recap status</span></span>'
       + '<span class="oh-tile-arrow oh-tile-arrow-r">&rarr;</span>'
     + '</button>'
-    // Missed Recaps + Window Times side by side directly below Overview.
-    // (Missed Recaps is now the entry point into every stand's detail screen.)
-    // Each carries a small at-a-glance excerpt, like the Overview tile.
+    // Missed Recaps + Window Times side by side, each with a status-aware excerpt.
     + '<div class="oh-grid" style="margin-top:12px">'
-    + '<button class="oh-tile" data-home="missed"><span class="oh-tile-wide-left">'
-      + '<span class="oh-tile-label">Missed Recaps <span class="oh-tile-arrow">&rarr;</span></span>'
-      + '<span class="oh-tile-preview">' + esc(ohMissedSummary()) + '</span></span></button>'
-    + '<button class="oh-tile" data-home="board"><span class="oh-tile-wide-left">'
-      + '<span class="oh-tile-label">Window Times <span class="oh-tile-arrow">&rarr;</span></span>'
-      + '<span class="oh-tile-preview">' + esc(timesPreview) + '</span></span></button>'
+    + '<button class="oh-tile" data-home="missed">'
+      + '<span class="oh-tile-ico" aria-hidden="true">' + OH_ICO_MISSED + '</span>'
+      + '<span class="oh-tile-wide-left"><span class="oh-tile-label">Missed Recaps <span class="oh-tile-arrow">&rarr;</span></span>'
+      + ohTileExcerpt(missed) + '</span></button>'
+    + '<button class="oh-tile" data-home="board">'
+      + '<span class="oh-tile-ico" aria-hidden="true">' + OH_ICO_TIMES + '</span>'
+      + '<span class="oh-tile-wide-left"><span class="oh-tile-label">Window Times <span class="oh-tile-arrow">&rarr;</span></span>'
+      + ohTileExcerpt(times) + '</span></button>'
     + '</div>';
 }
 
