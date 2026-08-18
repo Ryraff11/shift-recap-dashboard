@@ -195,9 +195,10 @@ details.ov-cat:not([open]) > .ov-cat-head::after{ content:'\25b8'; }
 .oh-mh-title{ font-family:'Anton',sans-serif; font-size:26px; text-transform:uppercase; color:#fff; line-height:1; padding-top:3px; }
 .oh-mh-fresh{ font-family:'JetBrains Mono',monospace; font-size:9.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#cfe0f0; opacity:.82; padding-top:7px; }
 /* ===== Ops Hub home — "Ledger" layout (full-bleed rows, no cards) ===== */
-body.home-active{ background:#0B1D2E; padding-bottom:0; }
-body.home-active main{ padding-bottom:0; }
-#oh-app.oh-home-active{ min-height:calc(100dvh - 14px); display:flex; flex-direction:column; padding:0; background:#0B1D2E; }
+body.home-active{ background:#0B1D2E; padding:0; overflow:hidden; }
+body.home-active main{ padding:0; }
+/* Full-bleed, single-screen: root fills the viewport exactly (no scroll), rails/tints/hairlines run edge to edge. All horizontal inset comes from the rows' own padding. */
+#oh-app.oh-home-active{ height:100dvh; max-width:none; margin:0; box-sizing:border-box; padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom); display:flex; flex-direction:column; background:#0B1D2E; }
 .lh-header{ padding:14px 20px 16px; display:flex; flex-direction:column; gap:9px; border-bottom:1px solid rgba(147,169,188,.16); }
 .lh-eyebrow{ display:flex; align-items:center; justify-content:space-between; font:500 9.5px/1 'JetBrains Mono',monospace; letter-spacing:.18em; color:#93A9BC; }
 .lh-eyebrow .lh-site{ color:#F5E31F; }
@@ -842,7 +843,7 @@ function getPacificNow(){
 const days = 60; // 60-day data window powers the Late Submissions tally; the recaps day-strip below stays a fixed trailing 7 days so the grid is unchanged
 const TODAY_INDEX = days - 1;
 const TODAY_DATE = new Date(2026, 7, 18); // auto-updated by refresh_dashboard.py;
-const BUILD_STAMP = "Tue · Aug 18 · updated 4:15 PM PT"; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
+const BUILD_STAMP = "Tue · Aug 18 · updated 4:23 PM PT"; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
 
 function dateForIndex(i){
   const dt = new Date(TODAY_DATE);
@@ -25896,7 +25897,7 @@ const REAL_MADHOUSE_RECORDS = [
       {
         "kind": "bad",
         "employee": null,
-        "text": "Tardy/early-out note: I sent Glenn and Tyler both home early and Sophia d."
+        "text": "Tardy/early-out note: I sent Glenn and Tyler both home early and sophia D."
       },
       {
         "kind": "bad",
@@ -25908,7 +25909,7 @@ const REAL_MADHOUSE_RECORDS = [
       "Staffing": "Overstaffed (trying to find things to do, sent people home)",
       "Line times / leaderboard": "They were really good around 1:00-1:20 was top of board all shift ",
       "Best team player / wear more hats": "Kylie was the best team player Glenn could have worn more hats he was in a pretty bad mood all shift",
-      "Tardy / early out": "I sent Glenn and Tyler both home early and Sophia d.",
+      "Tardy / early out": "I sent Glenn and Tyler both home early and sophia D.",
       "Morning SL: gravers feedback": "",
       "Safety hazards": "No",
       "Additional comments": "",
