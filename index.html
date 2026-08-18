@@ -188,10 +188,22 @@ details.ov-cat:not([open]) > .ov-cat-head::after{ content:'\25b8'; }
 .oh-mh-eyebrow{ font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#F8E316; }
 .oh-mh-title{ font-family:'Anton',sans-serif; font-size:26px; text-transform:uppercase; color:#fff; line-height:1; padding-top:3px; }
 .oh-mh-fresh{ font-family:'JetBrains Mono',monospace; font-size:9.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#cfe0f0; opacity:.82; padding-top:7px; }
-/* Home fills the screen: masthead on top, three full-width bars centered below. */
-#oh-app.oh-home-active{ min-height:100dvh; display:flex; flex-direction:column; padding-bottom:20px; }
-.oh-home{ flex:1; display:flex; flex-direction:column; justify-content:space-evenly; gap:14px; padding:6px 0 2px; }
-.oh-home .oh-tile-wide{ margin-top:0; min-height:132px; }
+/* Home fills the screen with three poster cards: icon + arrow up top, label + excerpt anchored at the bottom. */
+/* Home fits the viewport exactly: drop the page's bottom padding and size the fill to
+   what's left after the top gutter (main 14px), so three poster cards fill with no scroll. */
+body.home-active{ padding-bottom:0; }
+body.home-active main{ padding-bottom:0; }
+#oh-app.oh-home-active{ min-height:calc(100dvh - 14px); display:flex; flex-direction:column; padding-bottom:0; }
+.oh-home{ flex:1; display:flex; flex-direction:column; gap:13px; padding:14px 0 4px; min-height:0; }
+.oh-htile{ flex:1; min-height:128px; background:#132741; border:1px solid #22395c; border-radius:18px; color:#fff; font:inherit; text-align:left; cursor:pointer; padding:22px 22px 20px; display:flex; flex-direction:column; justify-content:space-between; gap:16px; transition:transform .08s ease, background .12s ease; }
+.oh-htile:hover{ background:#16304f; }
+.oh-htile:active{ transform:scale(.99); background:#0e1f36; }
+.oh-htile-top{ display:flex; align-items:center; justify-content:space-between; }
+.oh-htile-ico{ width:30px; height:30px; color:#F8E316; flex:none; }
+.oh-htile-ico svg{ width:100%; height:100%; display:block; }
+.oh-htile-arrow{ color:#F8E316; font-size:20px; line-height:1; }
+.oh-htile-main{ display:flex; flex-direction:column; gap:7px; }
+.oh-htile-label{ font-family:'Anton',sans-serif; font-size:19px; font-weight:400; text-transform:uppercase; letter-spacing:.02em; color:#F8E316; }
 .oh-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 .oh-tile{ aspect-ratio:1.25 / 1; display:flex; align-items:flex-end; padding:16px; border-radius:14px; background:#132741; border:1px solid #22395c; cursor:pointer; color:#fff; font:inherit; text-align:left; transition:transform .08s ease, background .12s ease; }
 .oh-tile:hover{ background:#16304f; }
@@ -816,7 +828,7 @@ function getPacificNow(){
 const days = 60; // 60-day data window powers the Late Submissions tally; the recaps day-strip below stays a fixed trailing 7 days so the grid is unchanged
 const TODAY_INDEX = days - 1;
 const TODAY_DATE = new Date(2026, 7, 18); // auto-updated by refresh_dashboard.py;
-const BUILD_STAMP = "Tue · Aug 18 · updated 2:08 PM PT"; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
+const BUILD_STAMP = "Tue · Aug 18 · updated 3:00 PM PT"; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
 
 function dateForIndex(i){
   const dt = new Date(TODAY_DATE);
@@ -66787,6 +66799,8 @@ function openShop(shop){
 function showView(name){
   document.querySelectorAll('main > .view').forEach(v=>v.classList.remove('active'));
   document.getElementById('view-'+name).classList.add('active');
+  // home-active drops the page's bottom padding so the home fills exactly; other views keep it.
+  document.body.classList.toggle('home-active', name === 'home');
 }
 document.getElementById('btn-back-home').addEventListener('click', ()=>showView('home'));
 document.getElementById('btn-back-home-2').addEventListener('click', ()=>showView('home'));
@@ -68008,12 +68022,11 @@ const OH_ICO_TIMES = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
 function ohTileExcerpt(st){
   return '<span class="oh-tile-preview ' + st.tone + '"><span class="oh-dot ' + st.tone + '"></span>' + esc(st.text) + '</span>';
 }
-// One full-width home tile (Option B): icon · label + excerpt · arrow.
+// One home poster card: icon + arrow across the top, label + excerpt anchored at the bottom.
 function ohHomeTile(dest, ico, label, excerptHtml){
-  return '<button class="oh-tile oh-tile-wide" data-home="' + dest + '">'
-    + '<span class="oh-tile-ico" aria-hidden="true">' + ico + '</span>'
-    + '<span class="oh-tile-wide-left"><span class="oh-tile-label">' + label + '</span>' + excerptHtml + '</span>'
-    + '<span class="oh-tile-arrow oh-tile-arrow-r">&rarr;</span>'
+  return '<button class="oh-htile" data-home="' + dest + '">'
+    + '<span class="oh-htile-top"><span class="oh-htile-ico" aria-hidden="true">' + ico + '</span><span class="oh-htile-arrow" aria-hidden="true">&rarr;</span></span>'
+    + '<span class="oh-htile-main"><span class="oh-htile-label">' + label + '</span>' + excerptHtml + '</span>'
   + '</button>';
 }
 function homeView(){
@@ -68315,6 +68328,7 @@ function render(){
     : ohScreen === 'person' ? 'People' : ohCode;
   const asOf = (ohScreen !== 'home' && ohAsOf()) ? '<div class="oh-asof">' + esc(ohAsOf()) + '</div>' : '';
   host.classList.toggle('oh-home-active', ohScreen === 'home');
+  document.body.classList.toggle('home-active', ohScreen === 'home');
   host.innerHTML = (ohScreen === 'home' ? '' : '<button class="oh-back" id="oh-back">&larr; ' + esc(backLabel) + '</button>') + body + asOf;
 
   const on = (sel, fn) => { const el = host.querySelector(sel); if (el) el.addEventListener('click', fn); };
