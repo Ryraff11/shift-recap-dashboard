@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dutch Bros Ops Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Nunito+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Big+Shoulders+Display:wght@800&family=Nunito+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style id="oh-mobile-css">
 *{box-sizing:border-box; margin:0; padding:0;}
 html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',sans-serif; -webkit-font-smoothing:antialiased;}
@@ -188,25 +189,31 @@ details.ov-cat:not([open]) > .ov-cat-head::after{ content:'\25b8'; }
 .oh-mh-eyebrow{ font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#F8E316; }
 .oh-mh-title{ font-family:'Anton',sans-serif; font-size:26px; text-transform:uppercase; color:#fff; line-height:1; padding-top:3px; }
 .oh-mh-fresh{ font-family:'JetBrains Mono',monospace; font-size:9.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#cfe0f0; opacity:.82; padding-top:7px; }
-/* Home fills the screen with three poster cards: icon + arrow up top, label + excerpt anchored at the bottom. */
-/* Home fits the viewport exactly: drop the page's bottom padding and size the fill to
-   what's left after the top gutter (main 14px), so three poster cards fill with no scroll. */
-body.home-active{ padding-bottom:0; }
+/* ===== Ops Hub home — "Ledger" layout (full-bleed rows, no cards) ===== */
+body.home-active{ background:#0B1D2E; padding-bottom:0; }
 body.home-active main{ padding-bottom:0; }
-#oh-app.oh-home-active{ min-height:calc(100dvh - 14px); display:flex; flex-direction:column; padding-bottom:0; }
-.oh-home{ flex:1; display:flex; flex-direction:column; gap:13px; padding:14px 0 4px; min-height:0; }
-.oh-htile{ flex:1; min-height:128px; background:#132741; border:1px solid #22395c; border-radius:18px; color:#fff; font:inherit; text-align:left; cursor:pointer; padding:24px; display:flex; flex-direction:column; justify-content:flex-start; gap:14px; transition:transform .08s ease, background .12s ease; }
-.oh-htile:hover{ background:#16304f; }
-.oh-htile:active{ transform:scale(.99); background:#0e1f36; }
-.oh-htile-top{ display:flex; align-items:center; justify-content:space-between; }
-.oh-htile-ico{ width:34px; height:34px; color:#F8E316; flex:none; }
-.oh-htile-ico svg{ width:100%; height:100%; display:block; }
-.oh-htile-arrow{ color:#F8E316; font-size:26px; line-height:1; }
-/* big type, centered in the card — fills the space through scale, not padding */
-.oh-htile-main{ flex:1; display:flex; flex-direction:column; justify-content:center; gap:13px; min-height:0; }
-.oh-htile-label{ font-family:'Anton',sans-serif; font-size:clamp(30px,8.5vw,40px); font-weight:400; text-transform:uppercase; letter-spacing:.02em; line-height:1; color:#F8E316; text-wrap:balance; }
-.oh-htile .oh-tile-preview{ font-size:16px; gap:9px; }
-.oh-htile .oh-tile-preview .oh-dot{ width:11px; height:11px; }
+#oh-app.oh-home-active{ min-height:calc(100dvh - 14px); display:flex; flex-direction:column; padding:0; background:#0B1D2E; }
+.lh-header{ padding:14px 20px 16px; display:flex; flex-direction:column; gap:9px; border-bottom:1px solid rgba(147,169,188,.16); }
+.lh-eyebrow{ display:flex; align-items:center; justify-content:space-between; font:500 9.5px/1 'JetBrains Mono',monospace; letter-spacing:.18em; color:#93A9BC; }
+.lh-eyebrow .lh-site{ color:#F5E31F; }
+.lh-titlerow{ display:flex; align-items:flex-end; justify-content:space-between; gap:10px; }
+.lh-wordmark{ font:800 44px/0.86 'Big Shoulders Display',sans-serif; letter-spacing:.02em; color:#fff; text-transform:uppercase; }
+.lh-updated{ display:flex; align-items:center; gap:6px; font:400 9.5px/1 'JetBrains Mono',monospace; letter-spacing:.06em; color:#93A9BC; padding-bottom:4px; white-space:nowrap; }
+.lh-updated .lh-livedot{ width:6px; height:6px; border-radius:50%; background:#F5E31F; flex:none; }
+.lh-row{ appearance:none; -webkit-appearance:none; -webkit-tap-highlight-color:transparent; display:grid; grid-template-columns:30px 1fr auto; align-items:center; gap:14px; padding:26px 20px; border:0; border-bottom:1px solid rgba(147,169,188,.14); flex:1; cursor:pointer; width:100%; text-align:left; background:transparent; color:inherit; font:inherit; }
+.lh-row:active{ background:#102436; }
+.lh-row:focus-visible{ outline:2px solid #F5E31F; outline-offset:-2px; }
+.lh-idx{ font:400 10px/1 'JetBrains Mono',monospace; color:#5C7286; }
+.lh-body{ display:flex; flex-direction:column; gap:5px; min-width:0; }
+.lh-title{ font:800 46px/0.88 'Big Shoulders Display',sans-serif; letter-spacing:.02em; color:#F5E31F; text-transform:uppercase; }
+.lh-sub{ display:flex; gap:16px; font:400 12.5px/1.35 'JetBrains Mono',monospace; color:#93A9BC; }
+.lh-arrow{ font:400 20px/1 'JetBrains Mono',monospace; color:#5C7286; }
+.lh-row.lh-alert{ border-left:3px solid #F2506A; background:rgba(242,80,106,.06); }
+.lh-row.lh-alert:active{ background:rgba(242,80,106,.13); }
+.lh-row.lh-alert .lh-sub{ color:#F2506A; }
+.lh-row.lh-alert .lh-arrow{ color:#F2506A; }
+.lh-footer{ padding:16px 20px 0; font:400 9.5px/1.4 'JetBrains Mono',monospace; letter-spacing:.1em; color:#5C7286; }
+@media (max-width:379px){ .lh-title{ font-size:40px; } }
 .oh-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 .oh-tile{ aspect-ratio:1.25 / 1; display:flex; align-items:flex-end; padding:16px; border-radius:14px; background:#132741; border:1px solid #22395c; cursor:pointer; color:#fff; font:inherit; text-align:left; transition:transform .08s ease, background .12s ease; }
 .oh-tile:hover{ background:#16304f; }
@@ -61975,16 +61982,56 @@ function ohHomeTile(dest, ico, label, excerptHtml){
     + '<span class="oh-htile-main"><span class="oh-htile-label">' + label + '</span>' + excerptHtml + '</span>'
   + '</button>';
 }
+// ===== Ops Hub home — "Ledger" layout =====
+// Header date, e.g. "TUE · AUG 18".
+function ohLedgerDate(){
+  try{
+    const d = TODAY_DATE;
+    const wd = d.toLocaleDateString('en-US', { weekday:'short' }).toUpperCase();
+    const mo = d.toLocaleDateString('en-US', { month:'short' }).toUpperCase();
+    return wd + ' · ' + mo + ' ' + d.getDate();
+  }catch(e){ return ''; }
+}
+// Header updated line, e.g. "UPDATED 3:08 PM PT" — pulled from the publish stamp.
+function ohUpdatedLine(){
+  if(typeof BUILD_STAMP === 'undefined' || !BUILD_STAMP) return '';
+  const parts = BUILD_STAMP.split(/updated\s+/i);
+  return parts[1] ? 'UPDATED ' + parts[1].toUpperCase() : '';
+}
+// One ledger row. The whole row is the tap target; it routes via the existing [data-home] handler.
+function ohLedgerRow(index, dest, title, subSpans, alert, aria){
+  return '<button class="lh-row' + (alert ? ' lh-alert' : '') + '" data-home="' + dest + '" aria-label="' + esc(aria) + '">'
+    + '<span class="lh-idx">' + index + '</span>'
+    + '<span class="lh-body"><span class="lh-title">' + title + '</span>'
+      + '<span class="lh-sub">' + subSpans + '</span></span>'
+    + '<span class="lh-arrow" aria-hidden="true">&rarr;</span>'
+  + '</button>';
+}
 function homeView(){
-  const missed = ohMissedStatus(), times = ohTimesStatus();
-  return '<div class="oh-masthead"><div class="oh-mh-eyebrow">DB Sac</div><div class="oh-mh-title">Ops Hub</div>'
-      + '<div class="oh-mh-fresh">' + esc(ohFreshLine()) + '</div></div>'
-    // Three full-width bars, centered to fill the screen on mobile.
-    + '<div class="oh-home">'
-    + ohHomeTile('overview', OH_ICO_OVERVIEW, 'Overview', '<span class="oh-tile-preview">Hazards, flags &amp; recap status</span>')
-    + ohHomeTile('missed', OH_ICO_MISSED, 'Missed Recaps', ohTileExcerpt(missed))
-    + ohHomeTile('board', OH_ICO_TIMES, 'Window Times', ohTileExcerpt(times))
-    + '</div>';
+  // Row 02 — missed recaps: two separate counts; the red rail shows only when something is outstanding.
+  let miss = 0, late = 0;
+  getStands('today').forEach(s => { miss += s.missing; late += s.late; });
+  const missAlert = (miss > 0 || late > 0);
+  const missSub = '<span>' + miss + ' not filed</span><span>' + late + ' late today</span>';
+  const missAria = 'Missed Recaps. ' + miss + ' not filed, ' + late + ' late today.';
+  // Row 03 — window times: average lane total + count of stands reporting.
+  const t = ohTimesSummary();
+  const timesSub = t
+    ? '<span>' + mmss(t.avg) + ' avg</span><span>' + t.shops + ' stand' + (t.shops === 1 ? '' : 's') + ' in</span>'
+    : '<span>no timer data yet</span>';
+  const timesAria = 'Window Times. ' + (t ? mmss(t.avg) + ' average, ' + t.shops + ' stand' + (t.shops === 1 ? '' : 's') + ' in.' : 'no timer data yet.');
+
+  const upd = ohUpdatedLine();
+  return '<div class="lh-header">'
+      + '<div class="lh-eyebrow"><span class="lh-site">DB SAC</span><span>' + esc(ohLedgerDate()) + '</span></div>'
+      + '<div class="lh-titlerow"><div class="lh-wordmark">Ops Hub</div>'
+        + (upd ? '<div class="lh-updated"><span class="lh-livedot"></span>' + esc(upd) + '</div>' : '')
+      + '</div>'
+    + '</div>'
+    + ohLedgerRow('01', 'overview', 'Overview', '<span>Hazards, flags &amp; recap status</span>', false, 'Overview. Hazards, flags and recap status.')
+    + ohLedgerRow('02', 'missed', 'Missed Recaps', missSub, missAlert, missAria)
+    + ohLedgerRow('03', 'board', 'Window Times', timesSub, false, timesAria)
+    + '<div class="lh-footer">TAP A SECTION</div>';
 }
 
 /* ---- missed & late recaps (home tile) ---- */
