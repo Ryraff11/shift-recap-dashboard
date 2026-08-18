@@ -25691,7 +25691,7 @@ const REAL_MADHOUSE_RECORDS = [
       {
         "kind": "bad",
         "employee": null,
-        "text": "Tardy/early-out note: I sent Glenn and Tyler both home early and Sophia D."
+        "text": "Tardy/early-out note: I sent Glenn and Tyler both home early and Sophia d."
       },
       {
         "kind": "bad",
@@ -25703,7 +25703,7 @@ const REAL_MADHOUSE_RECORDS = [
       "Staffing": "Overstaffed (trying to find things to do, sent people home)",
       "Line times / leaderboard": "They were really good around 1:00-1:20 was top of board all shift ",
       "Best team player / wear more hats": "Kylie was the best team player Glenn could have worn more hats he was in a pretty bad mood all shift",
-      "Tardy / early out": "I sent Glenn and Tyler both home early and Sophia D.",
+      "Tardy / early out": "I sent Glenn and Tyler both home early and Sophia d.",
       "Morning SL: gravers feedback": "",
       "Safety hazards": "No",
       "Additional comments": "",
@@ -67451,7 +67451,7 @@ CODES.forEach(code => Object.defineProperty(PERF, code, { get(){ return perfFor(
 
 /* ── RENDER (no edits needed) ─────────────────────────────────────────────── */
 
-let ohScreen = 'home', ohRange = '7d', ohCode = null, ohPerson = null, ohRan = false, ohQ = '', ohRangeOpen = false, ohStandFrom = 'stands';
+let ohScreen = 'home', ohRange = '7d', ohCode = null, ohPerson = null, ohRan = false, ohQ = '', ohRangeOpen = false, ohStandFrom = 'missed';
 let ohCmpPicked = ['MAD','FAIR OAKS','AUBURN'], ohCmpMetric = 'recaps', ohMetric = 'times', ohTimesSort = 'lane';
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -67588,16 +67588,12 @@ function homeView(){
       + '<span class="oh-tile-preview">Hazards, flags &amp; recap status</span></span>'
       + '<span class="oh-tile-arrow oh-tile-arrow-r">&rarr;</span>'
     + '</button>'
-    // Stands + Window Times side by side directly below Overview.
+    // Missed Recaps + Window Times side by side directly below Overview.
+    // (Missed Recaps is now the entry point into every stand's detail screen.)
     + '<div class="oh-grid" style="margin-top:12px">'
-    + '<button class="oh-tile" data-home="stands"><span class="oh-tile-label">Stands <span class="oh-tile-arrow">&rarr;</span></span></button>'
+    + '<button class="oh-tile" data-home="missed"><span class="oh-tile-label">Missed Recaps <span class="oh-tile-arrow">&rarr;</span></span></button>'
     + '<button class="oh-tile" data-home="board"><span class="oh-tile-label">Window Times <span class="oh-tile-arrow">&rarr;</span></span></button>'
-    + '</div>'
-    + '<button class="oh-tile oh-tile-wide" data-home="missed">'
-      + '<span class="oh-tile-wide-left"><span class="oh-tile-label">Missed Recaps</span>'
-      + '<span class="oh-tile-preview">' + esc(ohMissedSummary()) + '</span></span>'
-      + '<span class="oh-tile-arrow oh-tile-arrow-r">&rarr;</span>'
-    + '</button>';
+    + '</div>';
 }
 
 /* ---- missed & late recaps (home tile) ---- */
@@ -67655,54 +67651,17 @@ function missedView(){
           + (det.lateNames.length ? '<span class="oh-meta">Late: ' + esc(det.lateNames.slice(0,3).join(' · ')) + '</span>' : '')
           + '</button>';
       }).join('') + '</div>';
-    if(clean.length){
-      html += '<div class="oh-section">All in · ' + clean.length + '</div><div>'
-        + clean.map(s => '<button class="oh-row" data-code="' + esc(s.code) + '"><span class="oh-rowname">' + esc(s.code) + '</span><span class="oh-meta">' + s.onTime + ' filed on time</span></button>').join('')
-        + '</div>';
-    }
+  }
+  // Every clean stand is always listed as a tappable row so all 8 stands stay
+  // reachable here — Missed Recaps is now the sole home entry point into the
+  // per-stand detail screens (including stands with zero missed/late recaps).
+  if(clean.length){
+    html += '<div class="oh-section">All in · ' + clean.length + '</div><div>'
+      + clean.map(s => '<button class="oh-row" data-code="' + esc(s.code) + '"><span class="oh-rowname">' + esc(s.code) + '</span><span class="oh-meta">' + s.onTime + ' filed on time</span></button>').join('')
+      + '</div>';
   }
   html += '<div class="oh-foot">Green filed on time, yellow late, red never filed — out of every expected Open / Mid / Close shift in range. Shifts still inside their filing window don’t count against a stand. Tap a stand to open it.</div>';
   return html;
-}
-
-/* ---- stands list (moved off home) ---- */
-function standsView(){
-  const meta = rangeMeta();
-  const stands = getStands(ohRange).map(s => Object.assign({}, s, { tone: classify(s, shiftsInRange()) }));
-  const act = stands.filter(s => s.tone !== 'ok').sort((a,b) => (a.tone === 'bad' ? 0 : 1) - (b.tone === 'bad' ? 0 : 1));
-  const clean = stands.filter(s => s.tone === 'ok');
-  let html = '<div style="display:flex;align-items:center;flex-wrap:wrap;gap:9px">' + rangePill() + '</div>'
-    + '<h2 class="oh-h2" style="padding-top:8px">Stands</h2>'
-    + '<div class="oh-context">' + stands.length + ' stands · ' + esc(meta.word) + '</div>'
-    + rangeDrawer('stand list');
-  if (!act.length) html += '<div class="oh-allclear">Nothing needs you — every stand is clean for ' + esc(meta.word) + '</div>';
-  if (act.length){
-    html += '<div class="oh-section act">Act now &middot; ' + act.length + '</div><div class="oh-cards">'
-      + act.map(s => '<button class="oh-card ' + s.tone + '" data-code="' + esc(s.code) + '">'
-        + '<span class="oh-card-top"><span class="oh-name">' + esc(s.code) + '</span>'
-        + '<span class="oh-meta">' + (s.recaps === 1 ? '1 recap' : s.recaps + ' recaps') + '</span></span>'
-        + '<span class="oh-metrics"><span class="g">+' + s.goodN + '</span><span class="b">-' + s.badN + '</span>'
-        + '<span style="color:' + (s.tone === 'bad' ? '#FF8B96' : 'var(--watch)') + '">' + esc(onTimeText(s)) + '</span></span>'
-        + (s.lateWho || s.hazards
-            ? '<span class="oh-chips">'
-              + (s.lateWho ? '<span class="oh-chip">' + esc(s.lateWho) + '</span>' : '')
-              + (s.hazards ? '<span class="oh-chip ' + (s.tone === 'bad' ? 'bad' : 'watch') + '">' + (s.hazards === 1 ? '1 hazard' : s.hazards + ' hazards') + '</span>' : '')
-              + '</span>'
-            : '')
-        + '</button>').join('') + '</div>';
-  }
-  if (clean.length){
-    html += '<div class="oh-section clean">Clean &middot; ' + clean.length + '</div><div>'
-      + clean.map(s => '<button class="oh-row" data-code="' + esc(s.code) + '">'
-        + '<span style="display:flex;align-items:center;gap:11px">'
-        + '<span class="oh-dot" style="background:var(--good)"></span>'
-        + '<span class="oh-rowname">' + esc(s.code) + '</span></span>'
-        + '<span style="display:flex;align-items:center;gap:11px" class="oh-meta">'
-        + '<span style="color:var(--good)">+' + s.goodN + '</span>'
-        + '<span>' + esc(onTimeText(s)) + '</span><span class="oh-caret">&rsaquo;</span></span>'
-        + '</button>').join('') + '</div>';
-  }
-  return html + '<div class="oh-foot">Stands are ranked by whether they need you, not alphabetically. Everything running clean collapses to one line each.</div>';
 }
 
 /* ---- stand overview ---- */
@@ -67909,7 +67868,6 @@ function wasteView(){
 function render(){
   const host = document.getElementById('oh-app');
   const body = ohScreen === 'home' ? homeView()
-    : ohScreen === 'stands' ? standsView()
     : ohScreen === 'missed' ? missedView()
     : ohScreen === 'stand' ? standView()
     : ohScreen === 'recaps' ? recapsView()
@@ -67920,14 +67878,14 @@ function render(){
     : ohScreen === 'board' ? boardView()
     : personView();
 
-  const backLabel = (ohScreen === 'stands' || ohScreen === 'board' || ohScreen === 'missed') ? 'Home'
-    : ohScreen === 'stand' ? (ohStandFrom === 'missed' ? 'Missed Recaps' : ohStandFrom === 'board' ? 'Window Times' : 'All stands')
+  const backLabel = (ohScreen === 'board' || ohScreen === 'missed') ? 'Home'
+    : ohScreen === 'stand' ? (ohStandFrom === 'board' ? 'Window Times' : 'Missed Recaps')
     : ohScreen === 'person' ? 'People' : ohCode;
   host.innerHTML = (ohScreen === 'home' ? '' : '<button class="oh-back" id="oh-back">&larr; ' + esc(backLabel) + '</button>') + body;
 
   const on = (sel, fn) => { const el = host.querySelector(sel); if (el) el.addEventListener('click', fn); };
   on('#oh-back', () => {
-    ohScreen = (ohScreen === 'stands' || ohScreen === 'board' || ohScreen === 'missed') ? 'home'
+    ohScreen = (ohScreen === 'board' || ohScreen === 'missed') ? 'home'
       : ohScreen === 'stand' ? ohStandFrom
       : ohScreen === 'person' ? 'people' : 'stand';
     ohRangeOpen = false;
@@ -67956,7 +67914,7 @@ function render(){
     ohRange = b.dataset.range; ohRan = false; ohRangeOpen = false; render();
   }));
   host.querySelectorAll('[data-code]').forEach(b => b.addEventListener('click', () => {
-    ohCode = b.dataset.code; ohStandFrom = (ohScreen === 'missed' || ohScreen === 'board') ? ohScreen : 'stands'; ohScreen = 'stand'; ohPerson = null; ohQ = ''; ohRangeOpen = false; render();
+    ohCode = b.dataset.code; ohStandFrom = ohScreen === 'board' ? 'board' : 'missed'; ohScreen = 'stand'; ohPerson = null; ohQ = ''; ohRangeOpen = false; render();
   }));
   host.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => {
     ohScreen = b.dataset.go; if (ohScreen === 'people') ohQ = ''; render();
