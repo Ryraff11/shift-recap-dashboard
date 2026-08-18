@@ -157,13 +157,15 @@ html,body{background:var(--bg); color:var(--text); font-family:'Nunito Sans',san
 .ov-stat-card .v.bad{ color:var(--ov-bad); } .ov-stat-card .v.amber{ color:var(--ov-amber); } .ov-stat-card .v.ok{ color:var(--ov-good); }
 .ov-stat-card .l{ font-size:8.5px; color:var(--ov-faint); text-transform:uppercase; letter-spacing:.03em; margin-top:3px; }
 
-.ov-item{ background:var(--ov-surface); border-radius:8px; padding:12px 14px; margin-bottom:9px; border-left:3px solid transparent; cursor:pointer; }
+.ov-item{ background:var(--ov-surface); border-radius:10px; padding:14px 16px 15px; margin-bottom:11px; border-left:4px solid transparent; cursor:pointer; display:flex; flex-direction:column; gap:8px; }
 .ov-item.urgent{ border-left-color:var(--ov-bad); }
 .ov-item.good{ border-left-color:var(--ov-good); }
-.ov-item-top{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px; }
-.ov-item-shop{ font-family:'Anton',sans-serif; font-weight:400; font-size:14px; }
-.ov-item-meta{ font-size:10px; color:var(--ov-faint); }
-.ov-item-text{ font-size:12px; line-height:1.5; color:#cbd6e0; }
+.ov-item-head{ display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.ov-item-shop{ font-family:'Anton',sans-serif; font-weight:400; font-size:17px; letter-spacing:.01em; }
+.ov-item-shift{ font-family:'JetBrains Mono',monospace; font-size:9.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ov-faint); background:rgba(175,199,222,.10); border:1px solid rgba(175,199,222,.20); border-radius:20px; padding:3px 9px; flex:none; white-space:nowrap; }
+.ov-item-meta{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.02em; color:var(--ov-faint); margin-top:-4px; }
+.ov-item-divider{ height:1px; background:linear-gradient(90deg, var(--ov-line), transparent); }
+.ov-item-text{ font-size:13.5px; line-height:1.6; color:#c9d6e2; }
 
 .ov-cat{ margin-bottom:10px; }
 .ov-cat-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; cursor:pointer; list-style:none; padding:9px 12px; border-radius:8px; background:var(--ov-surface-raised); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:#eef2f6; margin-bottom:8px; }
@@ -186,6 +188,10 @@ details.ov-cat:not([open]) > .ov-cat-head::after{ content:'\25b8'; }
 .oh-mh-eyebrow{ font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#F8E316; }
 .oh-mh-title{ font-family:'Anton',sans-serif; font-size:26px; text-transform:uppercase; color:#fff; line-height:1; padding-top:3px; }
 .oh-mh-fresh{ font-family:'JetBrains Mono',monospace; font-size:9.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#cfe0f0; opacity:.82; padding-top:7px; }
+/* Home fills the screen: masthead on top, three full-width bars centered below. */
+#oh-app.oh-home-active{ min-height:100dvh; display:flex; flex-direction:column; padding-bottom:20px; }
+.oh-home{ flex:1; display:flex; flex-direction:column; justify-content:space-evenly; gap:14px; padding:6px 0 2px; }
+.oh-home .oh-tile-wide{ margin-top:0; min-height:132px; }
 .oh-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 .oh-tile{ aspect-ratio:1.25 / 1; display:flex; align-items:flex-end; padding:16px; border-radius:14px; background:#132741; border:1px solid #22395c; cursor:pointer; color:#fff; font:inherit; text-align:left; transition:transform .08s ease, background .12s ease; }
 .oh-tile:hover{ background:#16304f; }
@@ -810,7 +816,7 @@ function getPacificNow(){
 const days = 60; // 60-day data window powers the Late Submissions tally; the recaps day-strip below stays a fixed trailing 7 days so the grid is unchanged
 const TODAY_INDEX = days - 1;
 const TODAY_DATE = new Date(2026, 7, 18); // auto-updated by refresh_dashboard.py;
-const BUILD_STAMP = "Tue · Aug 18 · updated 1:39 PM PT"; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
+const BUILD_STAMP = "Tue · Aug 18 · updated 2:08 PM PT"; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
 
 function dateForIndex(i){
   const dt = new Date(TODAY_DATE);
@@ -68002,27 +68008,23 @@ const OH_ICO_TIMES = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
 function ohTileExcerpt(st){
   return '<span class="oh-tile-preview ' + st.tone + '"><span class="oh-dot ' + st.tone + '"></span>' + esc(st.text) + '</span>';
 }
+// One full-width home tile (Option B): icon · label + excerpt · arrow.
+function ohHomeTile(dest, ico, label, excerptHtml){
+  return '<button class="oh-tile oh-tile-wide" data-home="' + dest + '">'
+    + '<span class="oh-tile-ico" aria-hidden="true">' + ico + '</span>'
+    + '<span class="oh-tile-wide-left"><span class="oh-tile-label">' + label + '</span>' + excerptHtml + '</span>'
+    + '<span class="oh-tile-arrow oh-tile-arrow-r">&rarr;</span>'
+  + '</button>';
+}
 function homeView(){
   const missed = ohMissedStatus(), times = ohTimesStatus();
   return '<div class="oh-masthead"><div class="oh-mh-eyebrow">DB Sac</div><div class="oh-mh-title">Ops Hub</div>'
       + '<div class="oh-mh-fresh">' + esc(ohFreshLine()) + '</div></div>'
-    // Overview gets top billing: full-width tile above everything else.
-    + '<button class="oh-tile oh-tile-wide" data-home="overview" style="margin-top:0">'
-      + '<span class="oh-tile-ico" aria-hidden="true">' + OH_ICO_OVERVIEW + '</span>'
-      + '<span class="oh-tile-wide-left"><span class="oh-tile-label">Overview</span>'
-      + '<span class="oh-tile-preview">Hazards, flags &amp; recap status</span></span>'
-      + '<span class="oh-tile-arrow oh-tile-arrow-r">&rarr;</span>'
-    + '</button>'
-    // Missed Recaps + Window Times side by side, each with a status-aware excerpt.
-    + '<div class="oh-grid" style="margin-top:12px">'
-    + '<button class="oh-tile" data-home="missed">'
-      + '<span class="oh-tile-ico" aria-hidden="true">' + OH_ICO_MISSED + '</span>'
-      + '<span class="oh-tile-wide-left"><span class="oh-tile-label">Missed Recaps <span class="oh-tile-arrow">&rarr;</span></span>'
-      + ohTileExcerpt(missed) + '</span></button>'
-    + '<button class="oh-tile" data-home="board">'
-      + '<span class="oh-tile-ico" aria-hidden="true">' + OH_ICO_TIMES + '</span>'
-      + '<span class="oh-tile-wide-left"><span class="oh-tile-label">Window Times <span class="oh-tile-arrow">&rarr;</span></span>'
-      + ohTileExcerpt(times) + '</span></button>'
+    // Three full-width bars, centered to fill the screen on mobile.
+    + '<div class="oh-home">'
+    + ohHomeTile('overview', OH_ICO_OVERVIEW, 'Overview', '<span class="oh-tile-preview">Hazards, flags &amp; recap status</span>')
+    + ohHomeTile('missed', OH_ICO_MISSED, 'Missed Recaps', ohTileExcerpt(missed))
+    + ohHomeTile('board', OH_ICO_TIMES, 'Window Times', ohTileExcerpt(times))
     + '</div>';
 }
 
@@ -68312,6 +68314,7 @@ function render(){
     : ohScreen === 'stand' ? (ohStandFrom === 'board' ? 'Window Times' : 'Missed Recaps')
     : ohScreen === 'person' ? 'People' : ohCode;
   const asOf = (ohScreen !== 'home' && ohAsOf()) ? '<div class="oh-asof">' + esc(ohAsOf()) + '</div>' : '';
+  host.classList.toggle('oh-home-active', ohScreen === 'home');
   host.innerHTML = (ohScreen === 'home' ? '' : '<button class="oh-back" id="oh-back">&larr; ' + esc(backLabel) + '</button>') + body + asOf;
 
   const on = (sel, fn) => { const el = host.querySelector(sel); if (el) el.addEventListener('click', fn); };
@@ -68378,6 +68381,29 @@ render();
 // Shim: file has INACTIVE_SHOPS (a Set); the overview code expects UNTRACKED_SHOPS as an array.
 const UNTRACKED_SHOPS = [...INACTIVE_SHOPS];
 
+// Drop the template's category label from an Overview note — the section header already
+// says it (Safety Hazard / Tardy). Keeps the crew member's own wording verbatim; the
+// standalone "Shift reported understaffed." collapses to nothing (shop + tag say it all).
+function ovStripLabel(t){
+  if(!t) return '';
+  let s = String(t).trim();
+  s = s.replace(/^(Hazard reported|Tardy\/early-out note)\s*:\s*/i, '');
+  s = s.replace(/^Shift reported understaffed\.?\s*$/i, '');
+  return s.trim();
+}
+// One Overview card: shop + shift tag, a quiet author·date line, a hairline, then the note.
+function ovItemHtml(i, tone){
+  const who = i.employee && i.employee !== 'Unknown' ? escapeHtml(i.employee) + ' · ' : '';
+  const meta = who + fmtDate(dateForIndex(i.dayIndex));
+  const shift = i.shift ? '<span class="ov-item-shift">' + escapeHtml(i.shift) + ' shift</span>' : '';
+  const body = ovStripLabel(i.text);
+  return '<div class="ov-item ' + tone + '" onclick="openRecapModal(' + i.recordIndex + ')">'
+    + '<div class="ov-item-head"><span class="ov-item-shop">' + escapeHtml(i.shop) + '</span>' + shift + '</div>'
+    + '<div class="ov-item-meta">' + meta + '</div>'
+    + (body ? '<div class="ov-item-divider"></div><div class="ov-item-text">' + escapeHtml(body) + '</div>' : '')
+  + '</div>';
+}
+
 function renderOverview(rangeKey){
   const indices = indicesForRange(rangeKey);
   const idxSet = new Set(indices);
@@ -68413,9 +68439,7 @@ function renderOverview(rangeKey){
     : OV_CATS.map(cat=>{
         const items = byCat[cat] || [];
         const body = items.length
-          ? items.slice(0,15).map(i=>`<div class="ov-item urgent" onclick="openRecapModal(${i.recordIndex})">
-              <div class="ov-item-top"><span class="ov-item-shop">${escapeHtml(i.shop)}</span><span class="ov-item-meta">${i.employee && i.employee !== 'Unknown' ? escapeHtml(i.employee) + ' · ' : ''}${fmtDate(dateForIndex(i.dayIndex))} · ${i.shift}</span></div>
-              <div class="ov-item-text">${escapeHtml(i.text)}</div></div>`).join('')
+          ? items.slice(0,15).map(i=>ovItemHtml(i,'urgent')).join('')
             + (items.length>15 ? `<div class="ov-empty">+${items.length-15} more — narrow the range to see all</div>` : '')
           : `<div class="ov-empty">None in this range.</div>`;
         return `<details class="ov-cat"${items.length?' open':''}>
@@ -68425,9 +68449,7 @@ function renderOverview(rangeKey){
 
   const wkBody = worthKnowing.length===0
     ? `<div class="ov-empty">Nothing notable in this range.</div>`
-    : worthKnowing.slice(0,10).map(i=>`<div class="ov-item good" onclick="openRecapModal(${i.recordIndex})">
-        <div class="ov-item-top"><span class="ov-item-shop">${escapeHtml(i.shop)}</span><span class="ov-item-meta">${i.employee && i.employee !== 'Unknown' ? escapeHtml(i.employee) + ' · ' : ''}${fmtDate(dateForIndex(i.dayIndex))} · ${i.shift}</span></div>
-        <div class="ov-item-text">${escapeHtml(i.text)}</div></div>`).join('')
+    : worthKnowing.slice(0,10).map(i=>ovItemHtml(i,'good')).join('')
       + (worthKnowing.length>10 ? `<div class="ov-empty">+${worthKnowing.length-10} more — narrow the range to see all</div>` : '');
   document.getElementById('ov-worth-knowing').innerHTML =
     `<details class="ov-cat" style="margin-top:18px"${worthKnowing.length?' open':''}>
