@@ -898,7 +898,7 @@ function getPacificNow(){
 const days = 60; // 60-day data window powers the Late Submissions tally; the recaps day-strip below stays a fixed trailing 7 days so the grid is unchanged
 const TODAY_INDEX = days - 1;
 const TODAY_DATE = new Date(2026, 7, 18); // auto-updated by refresh_dashboard.py;
-const BUILD_STAMP = "Tue · Aug 18 · updated 7:13 PM PT"; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
+const BUILD_STAMP = "Tue · Aug 18 · updated 7:21 PM PT"; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
 
 function dateForIndex(i){
   const dt = new Date(TODAY_DATE);
@@ -69061,9 +69061,9 @@ function renderOverview(rangeKey){
   // key across range switches and navigation within the session (default: open).
   window.ovOpenState = window.ovOpenState || {};
   const isOpen = key => window.ovOpenState[key] !== false;
-  const catSection = (key, title, isHaz, items, cap) => {
-    const cards = items.slice(0,cap).map(i=>ovItemHtml(i, isHaz?'hazard':'')).join('')
-      + (items.length>cap ? `<div class="ov-empty">+${items.length-cap} more — narrow the range to see all</div>` : '');
+  const catSection = (key, title, isHaz, items) => {
+    // Show every item in the selected range — no "+N more" truncation.
+    const cards = items.map(i=>ovItemHtml(i, isHaz?'hazard':'')).join('');
     return `<details class="ov-cat${isHaz?' hazard':''}" data-cat="${escapeHtml(key)}"${isOpen(key)?' open':''}>`
       + `<summary class="ov-cat-head"><span class="ov-cat-title" data-group-title>${escapeHtml(title)}</span>`
       + `<span class="ov-cat-count">${items.length}</span><span class="ov-cat-caret"></span></summary>`
@@ -69072,10 +69072,10 @@ function renderOverview(rangeKey){
 
   document.getElementById('ov-needs-attention').innerHTML = needsAttention.length===0
     ? `<div class="ov-empty-line">NOTHING FLAGGED IN THIS RANGE</div>`
-    : OV_CATS.filter(cat => (byCat[cat]||[]).length > 0).map(cat => catSection(cat, cat, cat==='Safety hazard', byCat[cat], 15)).join('');
+    : OV_CATS.filter(cat => (byCat[cat]||[]).length > 0).map(cat => catSection(cat, cat, cat==='Safety hazard', byCat[cat])).join('');
 
   document.getElementById('ov-worth-knowing').innerHTML = worthKnowing.length===0 ? ''
-    : catSection('Worth knowing', 'Worth knowing', false, worthKnowing, 10);
+    : catSection('Worth knowing', 'Worth knowing', false, worthKnowing);
 
   document.getElementById('ov-routine').innerHTML =
     routineShops.map(shop=>`<div class="ov-roundup-row"><span class="name">${escapeHtml(shop)}</span><span class="nums">CLEAN</span></div>`).join('') +
