@@ -188,7 +188,8 @@ body.overview-active main{ padding:0; }
 
 /* Group rows (a category is a details/summary; summary is the row) */
 .ov-cat{ margin:0; }
-.ov-cat-head{ display:grid; grid-template-columns:1fr auto 14px; align-items:center; gap:12px; cursor:pointer; list-style:none; padding:15px 20px; border-top:1px solid rgba(147,169,188,.14); }
+.ov-cat-head{ display:grid; grid-template-columns:1fr auto 14px; align-items:center; gap:12px; cursor:pointer; list-style:none; padding:15px 20px; background:#0B1D2E; border-top:1px solid rgba(147,169,188,.14); }
+.ov-cat-head:active{ background:#102436; }
 .ov-cat-head::-webkit-details-marker{ display:none; }
 .ov-cat-title{ font:800 26px/0.9 'Big Shoulders Display',sans-serif; letter-spacing:.02em; color:#fff; text-transform:uppercase; }
 .ov-cat-count{ font:700 15px/1 'JetBrains Mono',monospace; color:#F5E31F; }
@@ -196,19 +197,19 @@ body.overview-active main{ padding:0; }
 .ov-cat-caret{ font:400 13px/1 'JetBrains Mono',monospace; color:#5C7286; text-align:right; }
 .ov-cat-caret::after{ content:'\25b8'; }
 details.ov-cat[open] > .ov-cat-head .ov-cat-caret::after{ content:'\25be'; }
-/* Hazard group keeps its coral rail; the band now owns the background (no tint here). */
+/* Hazard section keeps its coral rail on header + every card; no tint (shading encodes state). */
 .ov-cat.hazard > .ov-cat-head{ border-left:3px solid #F2506A; }
 .ov-cat.hazard > .ov-cat-head .ov-cat-count{ color:#F2506A; }
 
-/* Alternating section bands: each section wraps its header + cards in one value block. */
-[data-band="a"]{ background:#102639; }
-[data-band="b"]{ background:#0B1D2E; }
+/* Shading encodes open/closed: headers stay page-color; an OPEN drawer is the only lighter block. */
+.ov-drawer{ background:#102639; border-top:1px solid rgba(147,169,188,.14); }
 
-/* Child recap cards — full-bleed, no radius; band provides the background so no card tint. */
+/* Child recap cards — full-bleed, no radius; the drawer provides the background. */
 .ov-item{ padding:13px 20px; cursor:pointer; display:flex; flex-direction:column; gap:5px; border-top:1px solid rgba(147,169,188,.1); }
+.ov-drawer > .ov-item:first-child{ border-top:none; }   /* drawer's own .14 rule already sits here */
 .ov-item.hazard{ border-left:3px solid #F2506A; }
-[data-band="a"] .ov-item:active{ background:#16324A; }
-[data-band="b"] .ov-item:active{ background:#102436; }
+.ov-drawer .ov-item:active{ background:#16324A; }
+.ov-cat.hazard .ov-drawer .ov-item:active{ background:rgba(242,80,106,.13); }
 /* top row: shop name (left) + author·date (right), baseline aligned */
 .ov-item-head{ display:flex; align-items:baseline; justify-content:space-between; gap:10px; }
 /* Shop name is DATA, not a heading — mono, so Big Shoulders stays exclusive to group headers. */
@@ -227,9 +228,7 @@ details.ov-cat[open] > .ov-cat-head .ov-cat-caret::after{ content:'\25be'; }
 .ov-stat.tappable{ cursor:pointer; }
 /* Ledger sheet list rows (flag list + mentions) — press state follows the band. */
 .ls-row{ cursor:pointer; }
-.ls-row:active{ background:#102436; }
-[data-band="a"] .ls-row:active{ background:#16324A; }
-[data-band="b"] .ls-row:active{ background:#102436; }
+.ls-row:active{ background:#16324A; }
 .ls-row.flagged:active{ background:rgba(242,80,106,.13); }
 
 
@@ -61304,27 +61303,29 @@ function openFlagSheet(scrollToHazard){
     + `<div style="font:800 32px/0.88 'Big Shoulders Display',sans-serif;letter-spacing:.02em;color:#fff;text-transform:uppercase">Flagged</div>`
     + (tally ? `<div style="font:400 9px/1 'JetBrains Mono',monospace;letter-spacing:.12em;color:#F5E31F;padding-bottom:3px">${tally}</div>` : '')
     + `</div>`;
-  let html = '', bandIdx = 0;
+  let html = '';
   if(!d.categories.length){
     html = `<div class="ov-empty-line">NOTHING FLAGGED IN THIS RANGE</div>`;
   } else {
+    // Shading encodes header vs content, not position: category headers on the page color,
+    // their entries in an always-open drawer (#102639). No alternation.
     d.categories.forEach(cat=>{
-      const a = bandIdx % 2 === 0; bandIdx++;
       const rail = cat.isHazard ? ';border-left:3px solid #F2506A' : '';
       const labelColor = cat.isHazard ? '#F2506A' : '#5C7286';
       const countColor = cat.isHazard ? '#F2506A' : '#F5E31F';
-      const head = `<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 20px 9px;border-top:1px solid rgba(147,169,188,.14)${rail}">`
+      const head = `<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 20px 9px;background:#0B1D2E;border-top:1px solid rgba(147,169,188,.14)${rail}">`
         + `<span style="font:500 9.5px/1 'JetBrains Mono',monospace;letter-spacing:.2em;color:${labelColor}">${escapeHtml(cat.label.toUpperCase())}</span>`
         + `<span style="font:700 12px/1 'JetBrains Mono',monospace;color:${countColor}">${cat.count}</span></div>`;
-      const rows = cat.items.map(it=>{
+      const rows = cat.items.map((it,ri)=>{
         const meta = (it.author ? escapeHtml(String(it.author).toUpperCase()) + ' · ' : '') + fmtDate(dateForIndex(it.dayIndex));
-        return `<div class="ls-row" onclick="openRecapModal(${it.recordIndex})" style="padding:12px 20px;border-top:1px solid rgba(147,169,188,.1)${rail};display:flex;flex-direction:column;gap:5px">`
+        const topB = ri===0 ? '' : 'border-top:1px solid rgba(147,169,188,.1);';
+        return `<div class="ls-row" onclick="openRecapModal(${it.recordIndex})" style="padding:12px 20px;${topB}${rail?'border-left:3px solid #F2506A;':''}display:flex;flex-direction:column;gap:5px">`
           + `<div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">`
           + `<span style="font:700 12px/1 'JetBrains Mono',monospace;letter-spacing:.16em;color:#fff">${escapeHtml(it.shop)}</span>`
           + `<span style="font:400 9.5px/1 'JetBrains Mono',monospace;letter-spacing:.1em;color:#5C7286">${meta}</span></div>`
           + `<div style="font:400 13.5px/1.45 Barlow,sans-serif;color:#E6EDF3">${highlightText(it.answer)}</div></div>`;
       }).join('');
-      html += `<div data-band="${a?'a':'b'}"${cat.isHazard?' id="flag-haz-anchor"':''}>${head}${rows}</div>`;
+      html += `<div${cat.isHazard?' id="flag-haz-anchor"':''}>${head}<div class="ov-drawer">${rows}</div></div>`;
     });
   }
   const list = document.getElementById('recap-sheet-entries');
@@ -62691,34 +62692,35 @@ function renderOverview(rangeKey){
   const byCat = {}; OV_CATS.forEach(c=>byCat[c]=[]);
   needsAttention.forEach(i=>{ const c = flagCategory(i.text); (byCat[c] = byCat[c] || []).push(i); });
 
-  // Alternating section bands: one continuous positional counter across every RENDERED section
-  // (needs-attention categories → worth knowing → all routine). Even = band A, odd = band B.
-  let bandIdx = 0;
-  const bandWrap = (inner) => { const a = bandIdx % 2 === 0; bandIdx++; return `<div data-band="${a?'a':'b'}">${inner}</div>`; };
+  // Shading encodes open/closed, not position: each category is a <details> whose child cards
+  // live in an .ov-drawer (#102639) rendered only when open. Open/closed persists per category
+  // key across range switches and navigation within the session (default: open).
+  window.ovOpenState = window.ovOpenState || {};
+  const isOpen = key => window.ovOpenState[key] !== false;
+  const catSection = (key, title, isHaz, items, cap) => {
+    const cards = items.slice(0,cap).map(i=>ovItemHtml(i, isHaz?'hazard':'')).join('')
+      + (items.length>cap ? `<div class="ov-empty">+${items.length-cap} more — narrow the range to see all</div>` : '');
+    return `<details class="ov-cat${isHaz?' hazard':''}" data-cat="${escapeHtml(key)}"${isOpen(key)?' open':''}>`
+      + `<summary class="ov-cat-head"><span class="ov-cat-title" data-group-title>${escapeHtml(title)}</span>`
+      + `<span class="ov-cat-count">${items.length}</span><span class="ov-cat-caret"></span></summary>`
+      + `<div class="ov-drawer">${cards}</div></details>`;
+  };
 
-  const naSections = OV_CATS.filter(cat => (byCat[cat]||[]).length > 0).map(cat=>{
-    const items = byCat[cat];
-    const isHaz = cat==='Safety hazard';
-    const body = items.slice(0,15).map(i=>ovItemHtml(i, isHaz?'hazard':'')).join('')
-      + (items.length>15 ? `<div class="ov-empty">+${items.length-15} more — narrow the range to see all</div>` : '');
-    return bandWrap(`<details class="ov-cat${isHaz?' hazard':''}" open>`
-      + `<summary class="ov-cat-head"><span class="ov-cat-title" data-group-title>${escapeHtml(cat)}</span>`
-      + `<span class="ov-cat-count">${items.length}</span><span class="ov-cat-caret"></span></summary>${body}</details>`);
-  }).join('');
   document.getElementById('ov-needs-attention').innerHTML = needsAttention.length===0
     ? `<div class="ov-empty-line">NOTHING FLAGGED IN THIS RANGE</div>`
-    : naSections;
+    : OV_CATS.filter(cat => (byCat[cat]||[]).length > 0).map(cat => catSection(cat, cat, cat==='Safety hazard', byCat[cat], 15)).join('');
 
-  document.getElementById('ov-worth-knowing').innerHTML = worthKnowing.length===0 ? '' : bandWrap(
-    `<details class="ov-cat" open><summary class="ov-cat-head"><span class="ov-cat-title" data-group-title>Worth knowing</span>`
-    + `<span class="ov-cat-count">${worthKnowing.length}</span><span class="ov-cat-caret"></span></summary>`
-    + worthKnowing.slice(0,10).map(i=>ovItemHtml(i,'')).join('')
-    + (worthKnowing.length>10 ? `<div class="ov-empty">+${worthKnowing.length-10} more — narrow the range to see all</div>` : '')
-    + `</details>`);
+  document.getElementById('ov-worth-knowing').innerHTML = worthKnowing.length===0 ? ''
+    : catSection('Worth knowing', 'Worth knowing', false, worthKnowing, 10);
 
-  document.getElementById('ov-routine').innerHTML = bandWrap(
+  document.getElementById('ov-routine').innerHTML =
     routineShops.map(shop=>`<div class="ov-roundup-row"><span class="name">${escapeHtml(shop)}</span><span class="nums">CLEAN</span></div>`).join('') +
-    UNTRACKED_SHOPS.map(shop=>`<div class="ov-roundup-row"><span class="name">${escapeHtml(shop)}</span><span class="nums dim">NOT CONNECTED</span></div>`).join(''));
+    UNTRACKED_SHOPS.map(shop=>`<div class="ov-roundup-row"><span class="name">${escapeHtml(shop)}</span><span class="nums dim">NOT CONNECTED</span></div>`).join('');
+
+  // Persist open/closed as the user toggles a section (not an accordion — many may be open).
+  document.querySelectorAll('#view-overview details.ov-cat').forEach(d=>{
+    d.addEventListener('toggle', ()=>{ window.ovOpenState[d.dataset.cat] = d.open; });
+  });
 
   // Data for the flag-list sheet (FLAGGED / HAZARDS stat cells) — derived from the rendered arrays.
   window.ovFlagData = (function(){
