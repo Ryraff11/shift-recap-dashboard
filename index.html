@@ -907,8 +907,8 @@ function getPacificNow(){
 }
 const days = 60; // 60-day data window powers the Late Submissions tally; the recaps day-strip below stays a fixed trailing 7 days so the grid is unchanged
 const TODAY_INDEX = days - 1;
-const TODAY_DATE = new Date(2026, 7, 19); // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py;
-const BUILD_STAMP = "Wed · Aug 19 · updated 1:17 AM PT"; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
+const TODAY_DATE = new Date(2026, 7, 19); // auto-updated by refresh_dashboard.py;
+const BUILD_STAMP = "Wed · Aug 19 · updated 1:14 PM PT"; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
 
 function dateForIndex(i){
   const dt = new Date(TODAY_DATE);
@@ -7496,6 +7496,56 @@ const REAL_ANTELOPE_RECORDS = [
         "source": "Haley was the best team player for this shift. Otherwise I felt like everybody else did pretty good."
       }
     ]
+  },
+  {
+    "shop": "Antelope",
+    "shift": "Open",
+    "dayIndex": 59,
+    "timestamp": "8/19/2026 12:46:42",
+    "employee": "Sara",
+    "isLate": true,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "today\u2019s open went great! It was a bit slow in the beginning of sticker day but towards eight ish, we definitely got the peak of the busyness this morning! It trickled down towards 10, everyone was so productive! We found lots of time to do overhead stock and clean. thank ya!!",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "andrew was great. was very good at asking more from the crew on shift like locking in/ helping out! no one needed to wear more hats"
+      },
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "today\u2019s open went great! It was a bit slow in the beginning of sticker day but towards eight ish, we definitely got the peak of the busyness this morning! It trickled down towards 10, everyone was so productive! We found lots of time to do overhead stock and clean. thank ya!!"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Recap submitted late \u2014 arrived 12:46 PM, after the 12:15 grace-period cutoff for Open."
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+      "Line times / leaderboard": "Times were steady under 40-1:00s! we were pretty consistent for most of the morning at the top of the leaderboard ",
+      "Team player / needed to step up": "andrew was great. was very good at asking more from the crew on shift like locking in/ helping out! no one needed to wear more hats",
+      "Tardy / early out": "no tardies, sent Hei H., mia, johnny, andrew, and kobin home early!",
+      "Food inventory sheet": "Blank",
+      "Safety hazards": "no!",
+      "Xbro / non-negotiables": "xbro went great, communication was good & the only clamp we had was drink making due to lack of bodies for a bit from 8-9! ",
+      "Additional comments": "today\u2019s open went great! It was a bit slow in the beginning of sticker day but towards eight ish, we definitely got the peak of the busyness this morning! It trickled down towards 10, everyone was so productive! We found lots of time to do overhead stock and clean. thank ya!!",
+      "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
+      "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?"
+    },
+    "namedMentions": [
+      {
+        "name": "Andrew",
+        "kind": "good",
+        "source": "andrew was great. was very good at asking more from the crew on shift like locking in/ helping out! no one needed to wear more hats"
+      }
+    ]
   }
 ]
 const REAL_FAIROAKS_RECORDS = [
@@ -13892,6 +13942,51 @@ const REAL_FAIROAKS_RECORDS = [
         "name": "Aryana",
         "kind": "good",
         "source": "Aryana killed it , she did so many closing tasks and cleaned throughly"
+      }
+    ]
+  },
+  {
+    "shop": "Fair Oaks",
+    "shift": "Open",
+    "dayIndex": 59,
+    "timestamp": "8/19/2026 11:28:16",
+    "employee": "Graci",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "No comments, standard shift.",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Sophia is a great team player always! Bella M was also doing a great job at GSD. I would like to see Josephine asking what more she could do before she is clocking out. She appears eager to leave."
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Hazard reported: No. But the seal on the fridge is broken and everytime you open the big door to enter the fridge the front fridge door opens and stays open"
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "\u200b\u200bPerfect (sometimes struggling, sometimes ahead - evened out)",
+      "Line times / leaderboard": "GREAT! We actually did so good today! ",
+      "Team player / needed to step up": "Sophia is a great team player always! Bella M was also doing a great job at GSD. I would like to see Josephine asking what more she could do before she is clocking out. She appears eager to leave. ",
+      "Tardy / early out": "No. ",
+      "Food inventory sheet": "No / In progress",
+      "Safety hazards": "No. But the seal on the fridge is broken and everytime you open the big door to enter the fridge the front fridge door opens and stays open ",
+      "Xbro / non-negotiables": "It went good! I was handing out drinks and Galaxy was on chef/prep and it went super smooth! ",
+      "Additional comments": "",
+      "Closing: Verifone WiFi": "Not the night SL",
+      "Closing checklist": ""
+    },
+    "namedMentions": [
+      {
+        "name": "Sophia",
+        "kind": "good",
+        "source": "Sophia is a great team player always! Bella M was also doing a great job at GSD. I would like to see Josephine asking what more she could do before she is clock"
       }
     ]
   }
@@ -24306,6 +24401,84 @@ const REAL_AUBURN_RECORDS = [
         "source": "I think Lucy is really doing so much better when shes asked to do things and getting them done quickly i just feel like her morale has been pretty low so im try"
       }
     ]
+  },
+  {
+    "shop": "Auburn",
+    "shift": "Open",
+    "dayIndex": 59,
+    "timestamp": "8/19/2026 12:17:38",
+    "employee": "Greta G.",
+    "isLate": true,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "No comments, standard shift.",
+    "flags": [
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Shift reported understaffed."
+      },
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Cadence 100% was the best team player today.  She was everywhere on her breaker shift today and giving it her all.  She also became a huge help when we dropped bodies and I needed an extra runner.  She was running in and outside the whole hour and killing it.  \n\nJustin still had a bit of a problem today on window/ focusing.  I did speak to him about chatting it up more with the customers and he took my coaching a lot better then he did the other day"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Tardy/early-out note: Tanya was 1 minute late back from her 10"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Hazard reported: Homeless man with sharp stick going through our WU trash :(,  Chris S spoke to him and got him to throw the trash away and leave without me even asking."
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "I think XBro went good today.  I was really struggling later in the shift during rushes with not having an XBRO 2.  I had lots of blinkers,  lots of WUs,  lots of drinks to run to window,  lots of cars,  and I did feel quite overwhelmed.  I don\u2019t think anyone struggled with non- negotiables"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Recap submitted late \u2014 arrived 12:17 PM, after the 12:15 grace-period cutoff for Open."
+      }
+    ],
+    "fullRecap": {
+      "Shift time": "",
+      "Staffing": "Understaffed! Def could've used an xtra body or more!",
+      "Rush timing": "",
+      "Cleanest on bar": "",
+      "Line times / leaderboard": "We were top 3 early in the AM,  once the bigger rushes (around 9) we got stuck down at the bottom of the leaderboard and it was really hard to get ahead of the line.  Biggest clamp was definetly drink production I was hopping on with bars to help them out.  Later once we droppe pit/ runner2 our clamps were bouncing between drink production and order taking.  I definetly felt like we could\u2019ve used an extra body at least until 11.  It was quite a popular sticker.  It did slow down from 11-12",
+      "Safety hazards": "Homeless man with sharp stick going through our WU trash :(,  Chris S spoke to him and got him to throw the trash away and leave without me even asking.  ",
+      "Xbro / non-negotiables": "I think XBro went good today.  I was really struggling later in the shift during rushes with not having an XBRO 2.  I had lots of blinkers,  lots of WUs,  lots of drinks to run to window,  lots of cars,  and I did feel quite overwhelmed.  I don\u2019t think anyone struggled with non- negotiables",
+      "Coaching notes": "",
+      "Xbro effectiveness (1-5)": "",
+      "Team player (system buy-in)": "",
+      "Needs replacing / broken": "",
+      "Quarterly comp tallies (OAs not ready)": "",
+      "Closing: Verifone WiFi": "Not the night SL",
+      "Tardy / early-out": "Tanya was 1 minute late back from her 10",
+      "Fridge seals check": "",
+      "XBRO staffing struggles": "",
+      "Clamps": "",
+      "Closing: positionless helper": "",
+      "Closing: efficiency reflection": "",
+      "Expired milk check": "DONE! It all looked good!",
+      "Additional comments": "",
+      "Best team player / wear more hats": "Cadence 100% was the best team player today.  She was everywhere on her breaker shift today and giving it her all.  She also became a huge help when we dropped bodies and I needed an extra runner.  She was running in and outside the whole hour and killing it.  \n\nJustin still had a bit of a problem today on window/ focusing.  I did speak to him about chatting it up more with the customers and he took my coaching a lot better then he did the other day",
+      "Culture competition": ""
+    },
+    "namedMentions": [
+      {
+        "name": "Cadence 1.",
+        "kind": "good",
+        "source": "Cadence 100% was the best team player today.  She was everywhere on her breaker shift today and giving it her all.  She also became a huge help when we dropped "
+      }
+    ]
   }
 ]
 const REAL_MADHOUSE_RECORDS = [
@@ -25623,7 +25796,7 @@ const REAL_MADHOUSE_RECORDS = [
       {
         "kind": "bad",
         "employee": null,
-        "text": "Tardy/early-out note: I sent Glenn and Tyler both home early and Sophia D."
+        "text": "Tardy/early-out note: I sent Glenn and Tyler both home early and sophia D."
       },
       {
         "kind": "bad",
@@ -25635,7 +25808,7 @@ const REAL_MADHOUSE_RECORDS = [
       "Staffing": "Overstaffed (trying to find things to do, sent people home)",
       "Line times / leaderboard": "They were really good around 1:00-1:20 was top of board all shift ",
       "Best team player / wear more hats": "Kylie was the best team player Glenn could have worn more hats he was in a pretty bad mood all shift",
-      "Tardy / early out": "I sent Glenn and Tyler both home early and Sophia D.",
+      "Tardy / early out": "I sent Glenn and Tyler both home early and sophia D.",
       "Morning SL: gravers feedback": "",
       "Safety hazards": "No",
       "Additional comments": "",
@@ -32681,6 +32854,47 @@ const REAL_MADHOUSE_RECORDS = [
         "name": "Zack P.",
         "kind": "good",
         "source": "Zack team player. Went crazy on bar."
+      }
+    ]
+  },
+  {
+    "shop": "Mad",
+    "shift": "Open",
+    "dayIndex": 59,
+    "timestamp": "8/19/2026 12:07:32",
+    "employee": "Diego A.",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "No comments, standard shift.",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Zack was great to open with"
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "\u200b\u200bPerfect (sometimes struggling, sometimes ahead - evened out)",
+      "Line times / leaderboard": "Great top of the leaderboard ",
+      "Best team player / wear more hats": "Zack was great to open with ",
+      "Tardy / early out": "No ",
+      "Morning SL: gravers feedback": "They tried their best but it was definitely not stocked up!",
+      "Safety hazards": "No",
+      "Additional comments": "",
+      "Xbro non-negotiables struggle": "No",
+      "Shift chore completed": "No",
+      "Closing: Verifone WiFi": "N/A // Not on the night shift",
+      "Closing: bakery item inventory": ""
+    },
+    "namedMentions": [
+      {
+        "name": "Zack",
+        "kind": "good",
+        "source": "Zack was great to open with"
       }
     ]
   }
@@ -42959,6 +43173,73 @@ const REAL_LICHEN_RECORDS = [
         "source": "Joey was a beast tonight! I tried to really let him get his reps in on bar for a close without letting him drown!"
       }
     ]
+  },
+  {
+    "shop": "Lichen",
+    "shift": "Open",
+    "dayIndex": 59,
+    "timestamp": "8/19/2026 11:25:18",
+    "employee": "Sidney B.",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "N/A",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "The best team player was Dylan! He picked up a lot of slack on walk bar when we were slower training on bar. He also helped with a lot of GSD and improving the flow of the shift. However, Milana was definitely struggling. She was running and I noticed many mistakes with putting orders in, multiple cars who got their orders skipped, not pulling cars up, coming inside, etc. I had to ask her to be reading back orders and talk to her a few times. She also had a bit of attitude when she asked about going on a 10 in her last hour and was told no."
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Tardy/early-out note: Faith was about an hour late to her shift, and she wasn\u2019t able to be reached until then. Calls to her went straight to voicemail and she ended up coming in around 7:30 when her start time was 6:30."
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Good, Ethan Xbroed while I was training and was such a good Xbro!!"
+      },
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "N/A"
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "Well staffed! It was PERFECT!",
+      "Line times / leaderboard": "We were about fourth on the leaderboard/in the middle for most of the shift. It was slow at the very beginning but then super busy for sticker day, so times went up at some busier points. We had a full staff but also were training on bar which slowed us down a tiny bit. ",
+      "Times throughout shift": "",
+      "Best team player / wear more hats": "The best team player was Dylan! He picked up a lot of slack on walk bar when we were slower training on bar. He also helped with a lot of GSD and improving the flow of the shift. However, Milana was definitely struggling. She was running and I noticed many mistakes with putting orders in, multiple cars who got their orders skipped, not pulling cars up, coming inside, etc. I had to ask her to be reading back orders and talk to her a few times. She also had a bit of attitude when she asked about going on a 10 in her last hour and was told no. ",
+      "Tardy / early out": "Faith was about an hour late to her shift, and she wasn\u2019t able to be reached until then. Calls to her went straight to voicemail and she ended up coming in around 7:30 when her start time was 6:30. ",
+      "Coaching notes": "",
+      "What could have gone smoother": "",
+      "Safety hazards": "No",
+      "Additional comments": "N/A",
+      "Fridge seals cleaned": "",
+      "New staffing/XBRO: went well / challenging": "",
+      "XBRO effectiveness": "",
+      "Bought into new system": "",
+      "Struggled with new staffing/XBRO": "",
+      "Clamps": "",
+      "Closing checklist": "not the night lead",
+      "Quarterly contest tallies": "",
+      "Xbro non-negotiables struggle": "Good, Ethan Xbroed while I was training and was such a good Xbro!!",
+      "Chef position feedback": "Good",
+      "Closing: Verifone WiFi": "N/A // Not on the night shift",
+      "Aug contest: OA runner": "",
+      "Aug contest: why": ""
+    },
+    "namedMentions": [
+      {
+        "name": "Dylannnnn",
+        "kind": "good",
+        "source": "The best team player was Dylan! He picked up a lot of slack on walk bar when we were slower training on bar. He also helped with a lot of GSD and improving the "
+      }
+    ]
   }
 ]
 const REAL_FIRESIDE_RECORDS = [
@@ -51844,6 +52125,51 @@ const REAL_FIRESIDE_RECORDS = [
         "source": "Khamari did great today!"
       }
     ]
+  },
+  {
+    "shop": "Fireside",
+    "shift": "Open",
+    "dayIndex": 59,
+    "timestamp": "8/19/2026 11:28:25",
+    "employee": "Igor M.",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "Nothing to note welcome LV!!",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "I had Izzy on xbro officially since she\u2019s a SL now and she did great!"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Hazard reported: Everything went smoothly we had maintenance on our ice machine today"
+      },
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Nothing to note welcome LV!!"
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+      "Line times / leaderboard": "Times were good we were always in the top two thirds ",
+      "Best team player / wear more hats": "I had Izzy on xbro officially since she\u2019s a SL now and she did great! ",
+      "Tardy / early out": "No tardies and no one got sent home early today",
+      "Xbro / non-negotiables": "Xbro went great Izzy knew exactly what to prioritize ",
+      "Safety hazards": "Everything went smoothly we had maintenance on our ice machine today",
+      "Additional comments": "Nothing to note welcome LV!!",
+      "Fridge seals cleaned": "Done!",
+      "Closing: Verifone WiFi": "Not the night SL",
+      "Closing: food inventory texted to managers": "",
+      "Closing: safe/tills/iPads/doors checklist": "not the night SL"
+    },
+    "namedMentions": []
   }
 ]
 const REAL_MANZ_RECORDS = [
@@ -62363,6 +62689,73 @@ const REAL_MANZ_RECORDS = [
       "Closing: Verifone WiFi": "Yes"
     },
     "namedMentions": []
+  },
+  {
+    "shop": "Manz",
+    "shift": "Open",
+    "dayIndex": 59,
+    "timestamp": "8/19/2026 10:54:39",
+    "employee": "Desiree S.",
+    "isLate": true,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "Everyone was so great and really had the best teamwork on shift. We all worked together and communicated very well to keep our shop in 1st on the leader board. The vibes were so good",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Lilia was such a good team player helping everyone out and being super good energy the whole shift. Cam was also a great team player doing exactly what was asked of him and hyping everyone up!"
+      },
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Everyone was so great and really had the best teamwork on shift. We all worked together and communicated very well to keep our shop in 1st on the leader board. The vibes were so good"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Recap submitted late \u2014 arrived 10:54 AM, after the 10:45 grace-period cutoff for Open (Mon/Wed/Sat schedule)."
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+      "Line times / leaderboard": "Lines were very long with it being a sticker droppp. We stayed in 1st place for about 90% of the time! ",
+      "Best percentage / leaderboard hour": "",
+      "What could have gone smoother": "",
+      "Best team player / wear more hats": "Lilia was such a good team player helping everyone out and being super good energy the whole shift. Cam was also a great team player doing exactly what was asked of him and hyping everyone up!",
+      "Tardy / early out": "N/A",
+      "Tips split confirmed": "",
+      "Safety hazards": "N/A",
+      "Fridge gaskets wiped": "",
+      "Xbro / non-negotiables": "Xbro was good today and very helpful with getting drinks out fast and helping with the person on window.",
+      "Additional comments": "Everyone was so great and really had the best teamwork on shift. We all worked together and communicated very well to keep our shop in 1st on the leader board. The vibes were so good ",
+      "Bought into new system": "",
+      "Struggled with new staffing": "",
+      "Biggest clamp": "",
+      "XBRO feedback": "",
+      "Forgot single-drink-claim comp": "",
+      "Perfect pour comp": "",
+      "Remake comp": "",
+      "Caught fraud apps / bday drinks w/o ID": "",
+      "Got shift change": "",
+      "Best hourly window average": "",
+      "Cleanest person on shift": "",
+      "Window contest winner": "",
+      "Window contest: why": "",
+      "Cleanliness contest winner": "",
+      "Cleanliness contest: why": "",
+      "Closing: Verifone WiFi": "N/A // Not on the night shift"
+    },
+    "namedMentions": [
+      {
+        "name": "Lilia",
+        "kind": "good",
+        "source": "Lilia was such a good team player helping everyone out and being super good energy the whole shift. Cam was also a great team player doing exactly what was aske"
+      }
+    ]
   }
 ]
 const REAL_OV_RECORDS = [
@@ -66380,6 +66773,85 @@ const REAL_OV_RECORDS = [
         "source": "xbro was good, during our busier times today it was nice to see how much ive improved setting up drinks. I think it really helped our time today. no coaching mo"
       }
     ]
+  },
+  {
+    "shop": "OV",
+    "shift": "Close",
+    "dayIndex": 59,
+    "timestamp": "8/19/2026 10:23:03",
+    "employee": "Warr.",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "No comments, standard shift.",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "preston was great. nobody needed to wear more hats."
+      }
+    ],
+    "fullRecap": {
+      "staffing": "Overstaffed (trying to find things to do, sent bodies home)",
+      "lineTimes": "we weren\u2019t busy at all so it was average ",
+      "teamPlayer": "preston was great. nobody needed to wear more hats. ",
+      "tardy": "no",
+      "foodInventory": "No / In progress",
+      "safety": "no",
+      "xbro": "n/a",
+      "comments": "",
+      "closingVerifone": "Yes",
+      "closingChecklist": ""
+    },
+    "namedMentions": [
+      {
+        "name": "Preston",
+        "kind": "good",
+        "source": "preston was great. nobody needed to wear more hats."
+      }
+    ]
+  },
+  {
+    "shop": "OV",
+    "shift": "Open",
+    "dayIndex": 59,
+    "timestamp": "8/19/2026 12:09:28",
+    "employee": "Heidi",
+    "isLate": true,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "No comments, standard shift.",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Myah // NA"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Recap submitted late \u2014 arrived 12:09 PM, after the 12:00 grace-period cutoff for Open."
+      }
+    ],
+    "fullRecap": {
+      "staffing": "Perfect (sometimes struggling, sometimes ahead- evened out",
+      "lineTimes": "Good!",
+      "teamPlayer": "Myah // NA",
+      "tardy": "No!",
+      "foodInventory": "No / In progress",
+      "safety": "No",
+      "xbro": "XBro was good myah too over while I was training",
+      "comments": "",
+      "closingVerifone": "N/A ; Not closing shift lead",
+      "closingChecklist": ""
+    },
+    "namedMentions": []
   }
 ]
 const records = [];
@@ -66491,8 +66963,8 @@ const HOUR_WEIGHTS = [0.015,0.045,0.085,0.095,0.065,0.05,0.045,0.05,0.07,0.09,0.
 
 // Real drive-thru timer data from HME (injected by refresh_dashboard.py from timer_history.json).
 // Shape: { "<Shop>": { "YYYY-MM-DD": {laneTotalSec, laneTotal2Sec, totalCars} } }. Empty until injected.
-const REAL_TIMER_DATA = {"Lichen": {"2026-07-27": {"laneTotalSec": 81, "laneTotal2Sec": null, "totalCars": 561}, "2026-07-28": {"laneTotalSec": 77, "laneTotal2Sec": null, "totalCars": 605}, "2026-07-29": {"laneTotalSec": 87, "laneTotal2Sec": null, "totalCars": 576}, "2026-07-30": {"laneTotalSec": 72, "laneTotal2Sec": null, "totalCars": 654}, "2026-07-31": {"laneTotalSec": 74, "laneTotal2Sec": null, "totalCars": 699}, "2026-08-01": {"laneTotalSec": 67, "laneTotal2Sec": null, "totalCars": 746}, "2026-08-02": {"laneTotalSec": 74, "laneTotal2Sec": null, "totalCars": 664}, "2026-08-03": {"laneTotalSec": 92, "laneTotal2Sec": null, "totalCars": 559}, "2026-08-04": {"laneTotalSec": 84, "laneTotal2Sec": null, "totalCars": 611}, "2026-08-05": {"laneTotalSec": 73, "laneTotal2Sec": null, "totalCars": 680}, "2026-08-06": {"laneTotalSec": 80, "laneTotal2Sec": null, "totalCars": 632}, "2026-08-07": {"laneTotalSec": 69, "laneTotal2Sec": null, "totalCars": 700, "window": "5:00a\u20134:59a"}, "2026-08-08": {"laneTotalSec": 64, "laneTotal2Sec": null, "totalCars": 765, "window": "5:00a\u20134:59a"}, "2026-08-09": {"laneTotalSec": 69, "laneTotal2Sec": null, "totalCars": 684, "window": "5:00a\u20134:59a"}, "2026-08-10": {"laneTotalSec": 80, "laneTotal2Sec": null, "totalCars": 588, "window": "5:00a\u20134:59a"}, "2026-08-11": {"laneTotalSec": 82, "laneTotal2Sec": null, "totalCars": 555, "window": "5:00a\u20134:59a"}, "2026-08-12": {"laneTotalSec": 84, "laneTotal2Sec": null, "totalCars": 644, "window": "5:00a\u20134:59a"}, "2026-08-13": {"laneTotalSec": 71, "laneTotal2Sec": null, "totalCars": 623, "window": "5:00a\u201311:00p"}, "2026-08-14": {"laneTotalSec": 74, "laneTotal2Sec": null, "totalCars": 647, "window": "5:00a\u20134:59a"}, "2026-08-15": {"laneTotalSec": 66, "laneTotal2Sec": null, "totalCars": 676, "window": "5:00a\u20134:59a"}, "2026-08-16": {"laneTotalSec": 73, "laneTotal2Sec": null, "totalCars": 684, "window": "5:00a\u20134:59a"}, "2026-08-17": {"laneTotalSec": 82, "laneTotal2Sec": null, "totalCars": 579, "window": "5:00a\u20134:59a"}}, "Mad": {"2026-07-27": {"laneTotalSec": 124, "laneTotal2Sec": 126, "totalCars": 717}, "2026-07-28": {"laneTotalSec": 151, "laneTotal2Sec": 123, "totalCars": 710}, "2026-07-29": {"laneTotalSec": 138, "laneTotal2Sec": 133, "totalCars": 600}, "2026-07-30": {"laneTotalSec": 136, "laneTotal2Sec": 114, "totalCars": 713}, "2026-08-01": {"laneTotalSec": 168, "laneTotal2Sec": 147, "totalCars": 99}, "2026-08-04": {"laneTotalSec": 142, "laneTotal2Sec": 136, "totalCars": 499}, "2026-08-05": {"laneTotalSec": 135, "laneTotal2Sec": 113, "totalCars": 873}, "2026-08-06": {"laneTotalSec": 132, "laneTotal2Sec": 128, "totalCars": 768}, "2026-08-07": {"laneTotalSec": 128, "laneTotal2Sec": 115, "totalCars": 842, "window": "5:00a\u20134:59a"}, "2026-08-08": {"laneTotalSec": 126, "laneTotal2Sec": 114, "totalCars": 877, "window": "5:00a\u20134:59a"}, "2026-08-10": {"laneTotalSec": 131, "laneTotal2Sec": 134, "totalCars": 715, "window": "5:00a\u20134:59a"}, "2026-08-11": {"laneTotalSec": 147, "laneTotal2Sec": 136, "totalCars": 704, "window": "5:00a\u20134:59a"}, "2026-08-12": {"laneTotalSec": 133, "laneTotal2Sec": 117, "totalCars": 839, "window": "5:00a\u20134:59a"}, "2026-08-13": {"laneTotalSec": 126, "laneTotal2Sec": 120, "totalCars": 732, "window": "5:00a\u201311:00p"}, "2026-08-14": {"laneTotalSec": 130, "laneTotal2Sec": 123, "totalCars": 803, "window": "5:00a\u20134:59a"}, "2026-08-15": {"laneTotalSec": 115, "laneTotal2Sec": 105, "totalCars": 809, "window": "5:00a\u20134:59a"}, "2026-08-16": {"laneTotalSec": 146, "laneTotal2Sec": 129, "totalCars": 788, "window": "5:00a\u20134:59a"}, "2026-08-17": {"laneTotalSec": 132, "laneTotal2Sec": 126, "totalCars": 708, "window": "5:00a\u20134:59a"}}, "Manz": {"2026-07-27": {"laneTotalSec": 72, "laneTotal2Sec": null, "totalCars": 514}, "2026-07-28": {"laneTotalSec": 74, "laneTotal2Sec": null, "totalCars": 540}, "2026-07-29": {"laneTotalSec": 71, "laneTotal2Sec": null, "totalCars": 555}, "2026-07-30": {"laneTotalSec": 70, "laneTotal2Sec": null, "totalCars": 589}, "2026-07-31": {"laneTotalSec": 77, "laneTotal2Sec": null, "totalCars": 618}, "2026-08-01": {"laneTotalSec": 74, "laneTotal2Sec": null, "totalCars": 588}, "2026-08-02": {"laneTotalSec": 79, "laneTotal2Sec": null, "totalCars": 572}, "2026-08-03": {"laneTotalSec": 85, "laneTotal2Sec": null, "totalCars": 509}, "2026-08-04": {"laneTotalSec": 76, "laneTotal2Sec": null, "totalCars": 542}, "2026-08-05": {"laneTotalSec": 66, "laneTotal2Sec": null, "totalCars": 654}, "2026-08-06": {"laneTotalSec": 77, "laneTotal2Sec": null, "totalCars": 567}, "2026-08-07": {"laneTotalSec": 78, "laneTotal2Sec": null, "totalCars": 587}, "2026-08-08": {"laneTotalSec": 78, "laneTotal2Sec": null, "totalCars": 606, "window": "5:00a\u201311:00p"}, "2026-08-09": {"laneTotalSec": 75, "laneTotal2Sec": null, "totalCars": 591, "window": "5:00a\u201311:00p"}, "2026-08-10": {"laneTotalSec": 82, "laneTotal2Sec": null, "totalCars": 505, "window": "5:00a\u201311:00p"}, "2026-08-11": {"laneTotalSec": 83, "laneTotal2Sec": null, "totalCars": 535, "window": "5:00a\u201311:00p"}, "2026-08-12": {"laneTotalSec": 87, "laneTotal2Sec": null, "totalCars": 591, "window": "5:00a\u201311:00p"}, "2026-08-13": {"laneTotalSec": 82, "laneTotal2Sec": null, "totalCars": 568, "window": "5:00a\u201311:00p"}, "2026-08-14": {"laneTotalSec": 73, "laneTotal2Sec": null, "totalCars": 622, "window": "5:00a\u201311:00p"}, "2026-08-15": {"laneTotalSec": 77, "laneTotal2Sec": null, "totalCars": 586, "window": "5:00a\u201311:00p"}, "2026-08-16": {"laneTotalSec": 86, "laneTotal2Sec": null, "totalCars": 526, "window": "5:00a\u201311:00p"}, "2026-08-17": {"laneTotalSec": 81, "laneTotal2Sec": null, "totalCars": 576, "window": "5:00a\u201311:00p"}, "2026-08-18": {"laneTotalSec": 79, "laneTotal2Sec": null, "totalCars": 549, "window": "5:00a\u201311:00p"}}, "Antelope": {"2026-07-28": {"laneTotalSec": 62, "laneTotal2Sec": null, "totalCars": 821}, "2026-07-29": {"laneTotalSec": 68, "laneTotal2Sec": null, "totalCars": 803}, "2026-07-30": {"laneTotalSec": 60, "laneTotal2Sec": null, "totalCars": 917}, "2026-07-31": {"laneTotalSec": 59, "laneTotal2Sec": null, "totalCars": 961}, "2026-08-01": {"laneTotalSec": 56, "laneTotal2Sec": null, "totalCars": 993}, "2026-08-02": {"laneTotalSec": 61, "laneTotal2Sec": null, "totalCars": 884}, "2026-08-03": {"laneTotalSec": 69, "laneTotal2Sec": null, "totalCars": 815}, "2026-08-04": {"laneTotalSec": 63, "laneTotal2Sec": null, "totalCars": 805}, "2026-08-05": {"laneTotalSec": 54, "laneTotal2Sec": null, "totalCars": 1004}, "2026-08-06": {"laneTotalSec": 62, "laneTotal2Sec": null, "totalCars": 904}, "2026-08-07": {"laneTotalSec": 61, "laneTotal2Sec": null, "totalCars": 925}, "2026-08-08": {"laneTotalSec": 58, "laneTotal2Sec": null, "totalCars": 947, "window": "5:00a\u201311:00p"}, "2026-08-09": {"laneTotalSec": 58, "laneTotal2Sec": null, "totalCars": 952, "window": "5:00a\u201311:00p"}, "2026-08-10": {"laneTotalSec": 65, "laneTotal2Sec": null, "totalCars": 829, "window": "5:00a\u201311:00p"}, "2026-08-11": {"laneTotalSec": 66, "laneTotal2Sec": null, "totalCars": 795, "window": "5:00a\u201311:00p"}, "2026-08-12": {"laneTotalSec": 55, "laneTotal2Sec": null, "totalCars": 962, "window": "5:00a\u201311:00p"}, "2026-08-13": {"laneTotalSec": 62, "laneTotal2Sec": null, "totalCars": 849, "window": "5:00a\u201311:00p"}, "2026-08-14": {"laneTotalSec": 61, "laneTotal2Sec": null, "totalCars": 881, "window": "5:00a\u201311:00p"}, "2026-08-15": {"laneTotalSec": 54, "laneTotal2Sec": null, "totalCars": 978, "window": "5:00a\u201311:00p"}, "2026-08-16": {"laneTotalSec": 57, "laneTotal2Sec": null, "totalCars": 917, "window": "5:00a\u201311:00p"}, "2026-08-17": {"laneTotalSec": 65, "laneTotal2Sec": null, "totalCars": 842, "window": "5:00a\u201311:00p"}, "2026-08-18": {"laneTotalSec": 67, "laneTotal2Sec": null, "totalCars": 807, "window": "5:00a\u201311:00p"}}, "OV": {"2026-07-28": {"laneTotalSec": 73, "laneTotal2Sec": null, "totalCars": 348}, "2026-07-29": {"laneTotalSec": 70, "laneTotal2Sec": null, "totalCars": 387}, "2026-07-30": {"laneTotalSec": 78, "laneTotal2Sec": null, "totalCars": 396}, "2026-07-31": {"laneTotalSec": 73, "laneTotal2Sec": null, "totalCars": 447}, "2026-08-01": {"laneTotalSec": 66, "laneTotal2Sec": null, "totalCars": 464}, "2026-08-02": {"laneTotalSec": 74, "laneTotal2Sec": null, "totalCars": 429}, "2026-08-03": {"laneTotalSec": 83, "laneTotal2Sec": null, "totalCars": 382}, "2026-08-04": {"laneTotalSec": 87, "laneTotal2Sec": null, "totalCars": 374}, "2026-08-05": {"laneTotalSec": 73, "laneTotal2Sec": null, "totalCars": 495}, "2026-08-06": {"laneTotalSec": 73, "laneTotal2Sec": null, "totalCars": 432}, "2026-08-07": {"laneTotalSec": 74, "laneTotal2Sec": null, "totalCars": 466}, "2026-08-08": {"laneTotalSec": 72, "laneTotal2Sec": null, "totalCars": 513, "window": "5:00a\u201311:00p"}, "2026-08-09": {"laneTotalSec": 78, "laneTotal2Sec": null, "totalCars": 426, "window": "5:00a\u201311:00p"}, "2026-08-10": {"laneTotalSec": 77, "laneTotal2Sec": null, "totalCars": 398, "window": "5:00a\u201311:00p"}, "2026-08-11": {"laneTotalSec": 82, "laneTotal2Sec": null, "totalCars": 391, "window": "5:00a\u201311:00p"}, "2026-08-12": {"laneTotalSec": 86, "laneTotal2Sec": null, "totalCars": 407, "window": "5:00a\u201311:00p"}, "2026-08-13": {"laneTotalSec": 77, "laneTotal2Sec": null, "totalCars": 435, "window": "5:00a\u201311:00p"}, "2026-08-14": {"laneTotalSec": 72, "laneTotal2Sec": null, "totalCars": 419, "window": "5:00a\u201311:00p"}, "2026-08-15": {"laneTotalSec": 81, "laneTotal2Sec": null, "totalCars": 447, "window": "5:00a\u201311:00p"}, "2026-08-16": {"laneTotalSec": 77, "laneTotal2Sec": null, "totalCars": 428, "window": "5:00a\u201311:00p"}, "2026-08-17": {"laneTotalSec": 71, "laneTotal2Sec": null, "totalCars": 397, "window": "5:00a\u201311:00p"}, "2026-08-18": {"laneTotalSec": 74, "laneTotal2Sec": null, "totalCars": 446, "window": "5:00a\u201311:00p"}}, "Fireside": {"2026-07-28": {"laneTotalSec": 88, "laneTotal2Sec": null, "totalCars": 358}, "2026-07-29": {"laneTotalSec": 92, "laneTotal2Sec": null, "totalCars": 350}, "2026-07-30": {"laneTotalSec": 90, "laneTotal2Sec": null, "totalCars": 356}, "2026-07-31": {"laneTotalSec": 80, "laneTotal2Sec": null, "totalCars": 399}, "2026-08-01": {"laneTotalSec": 81, "laneTotal2Sec": null, "totalCars": 473}, "2026-08-02": {"laneTotalSec": 97, "laneTotal2Sec": null, "totalCars": 378}, "2026-08-03": {"laneTotalSec": 100, "laneTotal2Sec": null, "totalCars": 315}, "2026-08-04": {"laneTotalSec": 91, "laneTotal2Sec": null, "totalCars": 347}, "2026-08-05": {"laneTotalSec": 92, "laneTotal2Sec": null, "totalCars": 414}, "2026-08-06": {"laneTotalSec": 93, "laneTotal2Sec": null, "totalCars": 412}, "2026-08-07": {"laneTotalSec": 86, "laneTotal2Sec": null, "totalCars": 392}, "2026-08-08": {"laneTotalSec": 89, "laneTotal2Sec": null, "totalCars": 429, "window": "5:00a\u201311:00p"}, "2026-08-09": {"laneTotalSec": 96, "laneTotal2Sec": null, "totalCars": 408, "window": "5:00a\u201311:00p"}, "2026-08-10": {"laneTotalSec": 90, "laneTotal2Sec": null, "totalCars": 366, "window": "5:00a\u201311:00p"}, "2026-08-11": {"laneTotalSec": 99, "laneTotal2Sec": null, "totalCars": 354, "window": "5:00a\u201311:00p"}, "2026-08-12": {"laneTotalSec": 95, "laneTotal2Sec": null, "totalCars": 429, "window": "5:00a\u201311:00p"}, "2026-08-13": {"laneTotalSec": 92, "laneTotal2Sec": null, "totalCars": 384, "window": "5:00a\u201311:00p"}, "2026-08-14": {"laneTotalSec": 90, "laneTotal2Sec": null, "totalCars": 387, "window": "5:00a\u201311:00p"}, "2026-08-15": {"laneTotalSec": 90, "laneTotal2Sec": null, "totalCars": 415, "window": "5:00a\u201311:00p"}, "2026-08-16": {"laneTotalSec": 96, "laneTotal2Sec": null, "totalCars": 356, "window": "5:00a\u201311:00p"}, "2026-08-17": {"laneTotalSec": 99, "laneTotal2Sec": null, "totalCars": 346, "window": "5:00a\u201311:00p"}, "2026-08-18": {"laneTotalSec": 86, "laneTotal2Sec": null, "totalCars": 326, "window": "5:00a\u201311:00p"}}, "Auburn": {"2026-07-28": {"laneTotalSec": 80, "laneTotal2Sec": null, "totalCars": 642}, "2026-07-29": {"laneTotalSec": 73, "laneTotal2Sec": null, "totalCars": 690}, "2026-07-30": {"laneTotalSec": 69, "laneTotal2Sec": null, "totalCars": 726}, "2026-07-31": {"laneTotalSec": 76, "laneTotal2Sec": null, "totalCars": 763}, "2026-08-01": {"laneTotalSec": 72, "laneTotal2Sec": null, "totalCars": 749}, "2026-08-02": {"laneTotalSec": 75, "laneTotal2Sec": null, "totalCars": 692}, "2026-08-03": {"laneTotalSec": 80, "laneTotal2Sec": null, "totalCars": 624}, "2026-08-04": {"laneTotalSec": 78, "laneTotal2Sec": null, "totalCars": 637}, "2026-08-05": {"laneTotalSec": 69, "laneTotal2Sec": null, "totalCars": 798}, "2026-08-06": {"laneTotalSec": 86, "laneTotal2Sec": null, "totalCars": 673}, "2026-08-07": {"laneTotalSec": 73, "laneTotal2Sec": null, "totalCars": 702}, "2026-08-08": {"laneTotalSec": 64, "laneTotal2Sec": null, "totalCars": 741, "window": "5:00a\u201312:00a"}, "2026-08-09": {"laneTotalSec": 76, "laneTotal2Sec": null, "totalCars": 682, "window": "5:00a\u201312:00a"}, "2026-08-10": {"laneTotalSec": 79, "laneTotal2Sec": null, "totalCars": 609, "window": "5:00a\u201312:00a"}, "2026-08-11": {"laneTotalSec": 83, "laneTotal2Sec": null, "totalCars": 626, "window": "5:00a\u201312:00a"}, "2026-08-12": {"laneTotalSec": 77, "laneTotal2Sec": null, "totalCars": 708, "window": "5:00a\u201312:00a"}, "2026-08-13": {"laneTotalSec": 75, "laneTotal2Sec": null, "totalCars": 651, "window": "5:00a\u201312:00a"}, "2026-08-14": {"laneTotalSec": 75, "laneTotal2Sec": null, "totalCars": 676, "window": "5:00a\u201312:00a"}, "2026-08-15": {"laneTotalSec": 69, "laneTotal2Sec": null, "totalCars": 710, "window": "5:00a\u201312:00a"}, "2026-08-16": {"laneTotalSec": 82, "laneTotal2Sec": null, "totalCars": 624, "window": "5:00a\u201312:00a"}, "2026-08-17": {"laneTotalSec": 81, "laneTotal2Sec": null, "totalCars": 613, "window": "5:00a\u201312:00a"}, "2026-08-18": {"laneTotalSec": 76, "laneTotal2Sec": null, "totalCars": 640, "window": "5:00a\u201312:00a"}}, "Fair Oaks": {"2026-07-27": {"laneTotalSec": 151, "laneTotal2Sec": 122, "totalCars": 458}, "2026-07-28": {"laneTotalSec": 134, "laneTotal2Sec": 110, "totalCars": 487}, "2026-07-29": {"laneTotalSec": 121, "laneTotal2Sec": 98, "totalCars": 480}, "2026-07-30": {"laneTotalSec": 119, "laneTotal2Sec": 102, "totalCars": 561}, "2026-07-31": {"laneTotalSec": 133, "laneTotal2Sec": 116, "totalCars": 533}, "2026-08-01": {"laneTotalSec": 123, "laneTotal2Sec": 114, "totalCars": 565}, "2026-08-02": {"laneTotalSec": 133, "laneTotal2Sec": 117, "totalCars": 534}, "2026-08-03": {"laneTotalSec": 124, "laneTotal2Sec": 99, "totalCars": 502}, "2026-08-04": {"laneTotalSec": 114, "laneTotal2Sec": 109, "totalCars": 470}, "2026-08-05": {"laneTotalSec": 121, "laneTotal2Sec": 98, "totalCars": 565}, "2026-08-06": {"laneTotalSec": 136, "laneTotal2Sec": 120, "totalCars": 515}, "2026-08-07": {"laneTotalSec": 124, "laneTotal2Sec": 109, "totalCars": 566}, "2026-08-08": {"laneTotalSec": 131, "laneTotal2Sec": 116, "totalCars": 564, "window": "5:00a\u201311:00p"}, "2026-08-09": {"laneTotalSec": 117, "laneTotal2Sec": 95, "totalCars": 534, "window": "5:00a\u201311:00p"}, "2026-08-10": {"laneTotalSec": 129, "laneTotal2Sec": 119, "totalCars": 471, "window": "5:00a\u201311:00p"}, "2026-08-11": {"laneTotalSec": 140, "laneTotal2Sec": 117, "totalCars": 452, "window": "5:00a\u201311:00p"}, "2026-08-12": {"laneTotalSec": 139, "laneTotal2Sec": 108, "totalCars": 496, "window": "5:00a\u201311:00p"}, "2026-08-13": {"laneTotalSec": 127, "laneTotal2Sec": 102, "totalCars": 536, "window": "5:00a\u201311:00p"}, "2026-08-14": {"laneTotalSec": 130, "laneTotal2Sec": 117, "totalCars": 554, "window": "5:00a\u201311:00p"}, "2026-08-15": {"laneTotalSec": 118, "laneTotal2Sec": 110, "totalCars": 558, "window": "5:00a\u201311:00p"}, "2026-08-16": {"laneTotalSec": 121, "laneTotal2Sec": 103, "totalCars": 502, "window": "5:00a\u201311:00p"}, "2026-08-17": {"laneTotalSec": 136, "laneTotal2Sec": 110, "totalCars": 508, "window": "5:00a\u201311:00p"}, "2026-08-18": {"laneTotalSec": 102, "laneTotal2Sec": 93, "totalCars": 494, "window": "5:00a\u201311:00p"}}};
-const REAL_WASTE_DATA = {"Auburn": [{"item": "Blueberry muffin", "qty": "10", "date": "2026-08-17", "unit": "Each"}, {"item": "Banana bread", "qty": "15", "date": "2026-08-17", "unit": "Each"}, {"item": "Cake pop", "qty": "12", "date": "2026-08-16", "unit": "Pack"}, {"item": "Milk \u2014 Ice cream mix", "qty": "5", "date": "2026-08-15", "unit": "Jug"}, {"item": "Banana bread", "qty": "6", "date": "2026-08-13", "unit": "Each"}, {"item": "Waffle", "qty": "4", "date": "2026-08-13", "unit": "Each"}, {"item": "Banana bread", "qty": "24", "date": "2026-08-06", "unit": "Each"}, {"item": "Blueberry muffin", "qty": "5", "date": "2026-08-06", "unit": "Each"}, {"item": "Bacon & egg", "qty": "10", "date": "2026-08-06", "unit": "Each"}, {"item": "Waffle", "qty": "23", "date": "2026-08-03", "unit": "Each"}, {"item": "Banana bread", "qty": "6", "date": "2026-08-03", "unit": "Each"}, {"item": "Cake pop", "qty": "144", "date": "2026-08-02", "unit": "Each"}, {"item": "Blueberry muffin", "qty": "20", "date": "2026-07-20", "unit": "Each"}], "Manz": [{"item": "Blueberry muffin", "qty": "1", "date": "2026-08-17", "unit": "Each"}, {"item": "Milk \u2014 Chocolate", "qty": "8", "date": "2026-08-14", "unit": "Each"}, {"item": "Milk \u2014 Nonfat", "qty": "1", "date": "2026-08-13", "unit": "Each"}, {"item": "Milk \u2014 Chocolate", "qty": "3", "date": "2026-08-12", "unit": "Crate"}, {"item": "Chorizo", "qty": "2", "date": "2026-08-11", "unit": "Each"}], "Fireside": [{"item": "Milk \u2014 Chocolate", "qty": "3", "date": "2026-08-17", "unit": "Each"}, {"item": "Milk \u2014 Ice cream mix", "qty": "0.25", "date": "2026-08-13", "unit": "Carton", "note": "original said \"\u00bd of a half carton\""}, {"item": "Milk \u2014 2%", "qty": "2", "date": "2026-08-12", "unit": "Carton"}, {"item": "Other", "qty": "3", "date": "2026-08-11", "unit": "Carton", "note": "milk, type not specified"}, {"item": "Chorizo", "qty": "5", "date": "2026-07-20", "unit": "Each"}, {"item": "Banana bread", "qty": "", "date": "2026-07-20", "unit": "Each", "note": "original qty was \"?\" \u2014 needs a number", "flag": "quantity not recorded"}], "Antelope": [{"item": "Milk \u2014 Nonfat", "qty": "7", "date": "2026-08-15", "unit": "Carton"}, {"item": "Bacon & egg", "qty": "10", "date": "2026-08-13", "unit": "Each"}, {"item": "Chorizo", "qty": "5", "date": "2026-07-20", "unit": "Each"}, {"item": "Bacon & egg", "qty": "8", "date": null, "unit": "Each", "note": "original had no date", "flag": "date not recorded"}], "Fair Oaks": [{"item": "Milk \u2014 Nonfat", "qty": "1", "date": "2026-08-14", "unit": "Each"}, {"item": "Cake pop", "qty": "36", "date": "2026-07-20", "unit": "Each"}, {"item": "Banana bread", "qty": "", "date": "2026-07-20", "unit": "Each", "note": "original qty was \"?\" \u2014 needs a number", "flag": "quantity not recorded"}], "OV": [{"item": "Banana bread", "qty": "1", "date": "2026-08-13", "unit": "Case"}, {"item": "Milk \u2014 2%", "qty": "0.5", "date": "2026-08-12", "unit": "Crate"}, {"item": "Milk \u2014 Ice cream mix", "qty": "2", "date": "2026-08-11", "unit": "Crate", "note": "logged as \"ice cream mix & 2%\" \u2014 split into two rows if both"}], "Lichen": [{"item": "Milk \u2014 Chocolate", "qty": "1", "date": "2026-08-13", "unit": "Case"}, {"item": "Chorizo", "qty": "2", "date": "2026-07-20", "unit": "Each"}, {"item": "Bacon & egg", "qty": "4", "date": "2026-07-18", "unit": "Each"}], "Mad": [{"item": "Cake pop", "qty": "12", "date": "2026-08-11", "unit": "Each"}, {"item": "Cake pop", "qty": "6", "date": "2026-08-11", "unit": "Each"}, {"item": "Blueberry muffin", "qty": "18", "date": "2026-07-27", "unit": "Each"}, {"item": "Banana bread", "qty": "6", "date": "2026-07-27", "unit": "Each"}, {"item": "Banana bread", "qty": "11", "date": "2026-07-18", "unit": "Each"}, {"item": "Blueberry muffin", "qty": "6", "date": "2026-07-18", "unit": "Each"}]};
+const REAL_TIMER_DATA = {"Lichen": {"2026-07-27": {"laneTotalSec": 81, "laneTotal2Sec": null, "totalCars": 561}, "2026-07-28": {"laneTotalSec": 77, "laneTotal2Sec": null, "totalCars": 605}, "2026-07-29": {"laneTotalSec": 87, "laneTotal2Sec": null, "totalCars": 576}, "2026-07-30": {"laneTotalSec": 72, "laneTotal2Sec": null, "totalCars": 654}, "2026-07-31": {"laneTotalSec": 74, "laneTotal2Sec": null, "totalCars": 699}, "2026-08-01": {"laneTotalSec": 67, "laneTotal2Sec": null, "totalCars": 746}, "2026-08-02": {"laneTotalSec": 74, "laneTotal2Sec": null, "totalCars": 664}, "2026-08-03": {"laneTotalSec": 92, "laneTotal2Sec": null, "totalCars": 559}, "2026-08-04": {"laneTotalSec": 84, "laneTotal2Sec": null, "totalCars": 611}, "2026-08-05": {"laneTotalSec": 73, "laneTotal2Sec": null, "totalCars": 680}, "2026-08-06": {"laneTotalSec": 80, "laneTotal2Sec": null, "totalCars": 632}, "2026-08-07": {"laneTotalSec": 69, "laneTotal2Sec": null, "totalCars": 700, "window": "5:00a\u20134:59a"}, "2026-08-08": {"laneTotalSec": 64, "laneTotal2Sec": null, "totalCars": 765, "window": "5:00a\u20134:59a"}, "2026-08-09": {"laneTotalSec": 69, "laneTotal2Sec": null, "totalCars": 684, "window": "5:00a\u20134:59a"}, "2026-08-10": {"laneTotalSec": 80, "laneTotal2Sec": null, "totalCars": 588, "window": "5:00a\u20134:59a"}, "2026-08-11": {"laneTotalSec": 82, "laneTotal2Sec": null, "totalCars": 555, "window": "5:00a\u20134:59a"}, "2026-08-12": {"laneTotalSec": 84, "laneTotal2Sec": null, "totalCars": 644, "window": "5:00a\u20134:59a"}, "2026-08-13": {"laneTotalSec": 71, "laneTotal2Sec": null, "totalCars": 623, "window": "5:00a\u201311:00p"}, "2026-08-14": {"laneTotalSec": 74, "laneTotal2Sec": null, "totalCars": 647, "window": "5:00a\u20134:59a"}, "2026-08-15": {"laneTotalSec": 66, "laneTotal2Sec": null, "totalCars": 676, "window": "5:00a\u20134:59a"}, "2026-08-16": {"laneTotalSec": 73, "laneTotal2Sec": null, "totalCars": 684, "window": "5:00a\u20134:59a"}, "2026-08-17": {"laneTotalSec": 82, "laneTotal2Sec": null, "totalCars": 579, "window": "5:00a\u20134:59a"}, "2026-08-18": {"laneTotalSec": 80, "laneTotal2Sec": null, "totalCars": 597, "window": "5:00a\u20134:59a"}}, "Mad": {"2026-07-27": {"laneTotalSec": 124, "laneTotal2Sec": 126, "totalCars": 717}, "2026-07-28": {"laneTotalSec": 151, "laneTotal2Sec": 123, "totalCars": 710}, "2026-07-29": {"laneTotalSec": 138, "laneTotal2Sec": 133, "totalCars": 600}, "2026-07-30": {"laneTotalSec": 136, "laneTotal2Sec": 114, "totalCars": 713}, "2026-08-01": {"laneTotalSec": 168, "laneTotal2Sec": 147, "totalCars": 99}, "2026-08-04": {"laneTotalSec": 142, "laneTotal2Sec": 136, "totalCars": 499}, "2026-08-05": {"laneTotalSec": 135, "laneTotal2Sec": 113, "totalCars": 873}, "2026-08-06": {"laneTotalSec": 132, "laneTotal2Sec": 128, "totalCars": 768}, "2026-08-07": {"laneTotalSec": 128, "laneTotal2Sec": 115, "totalCars": 842, "window": "5:00a\u20134:59a"}, "2026-08-08": {"laneTotalSec": 126, "laneTotal2Sec": 114, "totalCars": 877, "window": "5:00a\u20134:59a"}, "2026-08-10": {"laneTotalSec": 131, "laneTotal2Sec": 134, "totalCars": 715, "window": "5:00a\u20134:59a"}, "2026-08-11": {"laneTotalSec": 147, "laneTotal2Sec": 136, "totalCars": 704, "window": "5:00a\u20134:59a"}, "2026-08-12": {"laneTotalSec": 133, "laneTotal2Sec": 117, "totalCars": 839, "window": "5:00a\u20134:59a"}, "2026-08-13": {"laneTotalSec": 126, "laneTotal2Sec": 120, "totalCars": 732, "window": "5:00a\u201311:00p"}, "2026-08-14": {"laneTotalSec": 130, "laneTotal2Sec": 123, "totalCars": 803, "window": "5:00a\u20134:59a"}, "2026-08-15": {"laneTotalSec": 115, "laneTotal2Sec": 105, "totalCars": 809, "window": "5:00a\u20134:59a"}, "2026-08-16": {"laneTotalSec": 146, "laneTotal2Sec": 129, "totalCars": 788, "window": "5:00a\u20134:59a"}, "2026-08-17": {"laneTotalSec": 132, "laneTotal2Sec": 126, "totalCars": 708, "window": "5:00a\u20134:59a"}, "2026-08-18": {"laneTotalSec": 143, "laneTotal2Sec": 139, "totalCars": 708, "window": "5:00a\u20134:59a"}}, "Manz": {"2026-07-27": {"laneTotalSec": 72, "laneTotal2Sec": null, "totalCars": 514}, "2026-07-28": {"laneTotalSec": 74, "laneTotal2Sec": null, "totalCars": 540}, "2026-07-29": {"laneTotalSec": 71, "laneTotal2Sec": null, "totalCars": 555}, "2026-07-30": {"laneTotalSec": 70, "laneTotal2Sec": null, "totalCars": 589}, "2026-07-31": {"laneTotalSec": 77, "laneTotal2Sec": null, "totalCars": 618}, "2026-08-01": {"laneTotalSec": 74, "laneTotal2Sec": null, "totalCars": 588}, "2026-08-02": {"laneTotalSec": 79, "laneTotal2Sec": null, "totalCars": 572}, "2026-08-03": {"laneTotalSec": 85, "laneTotal2Sec": null, "totalCars": 509}, "2026-08-04": {"laneTotalSec": 76, "laneTotal2Sec": null, "totalCars": 542}, "2026-08-05": {"laneTotalSec": 66, "laneTotal2Sec": null, "totalCars": 654}, "2026-08-06": {"laneTotalSec": 77, "laneTotal2Sec": null, "totalCars": 567}, "2026-08-07": {"laneTotalSec": 78, "laneTotal2Sec": null, "totalCars": 587}, "2026-08-08": {"laneTotalSec": 78, "laneTotal2Sec": null, "totalCars": 606, "window": "5:00a\u201311:00p"}, "2026-08-09": {"laneTotalSec": 75, "laneTotal2Sec": null, "totalCars": 591, "window": "5:00a\u201311:00p"}, "2026-08-10": {"laneTotalSec": 82, "laneTotal2Sec": null, "totalCars": 505, "window": "5:00a\u201311:00p"}, "2026-08-11": {"laneTotalSec": 83, "laneTotal2Sec": null, "totalCars": 535, "window": "5:00a\u201311:00p"}, "2026-08-12": {"laneTotalSec": 87, "laneTotal2Sec": null, "totalCars": 591, "window": "5:00a\u201311:00p"}, "2026-08-13": {"laneTotalSec": 82, "laneTotal2Sec": null, "totalCars": 568, "window": "5:00a\u201311:00p"}, "2026-08-14": {"laneTotalSec": 73, "laneTotal2Sec": null, "totalCars": 622, "window": "5:00a\u201311:00p"}, "2026-08-15": {"laneTotalSec": 77, "laneTotal2Sec": null, "totalCars": 586, "window": "5:00a\u201311:00p"}, "2026-08-16": {"laneTotalSec": 86, "laneTotal2Sec": null, "totalCars": 526, "window": "5:00a\u201311:00p"}, "2026-08-17": {"laneTotalSec": 81, "laneTotal2Sec": null, "totalCars": 576, "window": "5:00a\u201311:00p"}, "2026-08-18": {"laneTotalSec": 79, "laneTotal2Sec": null, "totalCars": 549, "window": "5:00a\u201311:00p"}}, "Antelope": {"2026-07-28": {"laneTotalSec": 62, "laneTotal2Sec": null, "totalCars": 821}, "2026-07-29": {"laneTotalSec": 68, "laneTotal2Sec": null, "totalCars": 803}, "2026-07-30": {"laneTotalSec": 60, "laneTotal2Sec": null, "totalCars": 917}, "2026-07-31": {"laneTotalSec": 59, "laneTotal2Sec": null, "totalCars": 961}, "2026-08-01": {"laneTotalSec": 56, "laneTotal2Sec": null, "totalCars": 993}, "2026-08-02": {"laneTotalSec": 61, "laneTotal2Sec": null, "totalCars": 884}, "2026-08-03": {"laneTotalSec": 69, "laneTotal2Sec": null, "totalCars": 815}, "2026-08-04": {"laneTotalSec": 63, "laneTotal2Sec": null, "totalCars": 805}, "2026-08-05": {"laneTotalSec": 54, "laneTotal2Sec": null, "totalCars": 1004}, "2026-08-06": {"laneTotalSec": 62, "laneTotal2Sec": null, "totalCars": 904}, "2026-08-07": {"laneTotalSec": 61, "laneTotal2Sec": null, "totalCars": 925}, "2026-08-08": {"laneTotalSec": 58, "laneTotal2Sec": null, "totalCars": 947, "window": "5:00a\u201311:00p"}, "2026-08-09": {"laneTotalSec": 58, "laneTotal2Sec": null, "totalCars": 952, "window": "5:00a\u201311:00p"}, "2026-08-10": {"laneTotalSec": 65, "laneTotal2Sec": null, "totalCars": 829, "window": "5:00a\u201311:00p"}, "2026-08-11": {"laneTotalSec": 66, "laneTotal2Sec": null, "totalCars": 795, "window": "5:00a\u201311:00p"}, "2026-08-12": {"laneTotalSec": 55, "laneTotal2Sec": null, "totalCars": 962, "window": "5:00a\u201311:00p"}, "2026-08-13": {"laneTotalSec": 62, "laneTotal2Sec": null, "totalCars": 849, "window": "5:00a\u201311:00p"}, "2026-08-14": {"laneTotalSec": 61, "laneTotal2Sec": null, "totalCars": 881, "window": "5:00a\u201311:00p"}, "2026-08-15": {"laneTotalSec": 54, "laneTotal2Sec": null, "totalCars": 978, "window": "5:00a\u201311:00p"}, "2026-08-16": {"laneTotalSec": 57, "laneTotal2Sec": null, "totalCars": 917, "window": "5:00a\u201311:00p"}, "2026-08-17": {"laneTotalSec": 65, "laneTotal2Sec": null, "totalCars": 842, "window": "5:00a\u201311:00p"}, "2026-08-18": {"laneTotalSec": 67, "laneTotal2Sec": null, "totalCars": 807, "window": "5:00a\u201311:00p"}}, "OV": {"2026-07-28": {"laneTotalSec": 73, "laneTotal2Sec": null, "totalCars": 348}, "2026-07-29": {"laneTotalSec": 70, "laneTotal2Sec": null, "totalCars": 387}, "2026-07-30": {"laneTotalSec": 78, "laneTotal2Sec": null, "totalCars": 396}, "2026-07-31": {"laneTotalSec": 73, "laneTotal2Sec": null, "totalCars": 447}, "2026-08-01": {"laneTotalSec": 66, "laneTotal2Sec": null, "totalCars": 464}, "2026-08-02": {"laneTotalSec": 74, "laneTotal2Sec": null, "totalCars": 429}, "2026-08-03": {"laneTotalSec": 83, "laneTotal2Sec": null, "totalCars": 382}, "2026-08-04": {"laneTotalSec": 87, "laneTotal2Sec": null, "totalCars": 374}, "2026-08-05": {"laneTotalSec": 73, "laneTotal2Sec": null, "totalCars": 495}, "2026-08-06": {"laneTotalSec": 73, "laneTotal2Sec": null, "totalCars": 432}, "2026-08-07": {"laneTotalSec": 74, "laneTotal2Sec": null, "totalCars": 466}, "2026-08-08": {"laneTotalSec": 72, "laneTotal2Sec": null, "totalCars": 513, "window": "5:00a\u201311:00p"}, "2026-08-09": {"laneTotalSec": 78, "laneTotal2Sec": null, "totalCars": 426, "window": "5:00a\u201311:00p"}, "2026-08-10": {"laneTotalSec": 77, "laneTotal2Sec": null, "totalCars": 398, "window": "5:00a\u201311:00p"}, "2026-08-11": {"laneTotalSec": 82, "laneTotal2Sec": null, "totalCars": 391, "window": "5:00a\u201311:00p"}, "2026-08-12": {"laneTotalSec": 86, "laneTotal2Sec": null, "totalCars": 407, "window": "5:00a\u201311:00p"}, "2026-08-13": {"laneTotalSec": 77, "laneTotal2Sec": null, "totalCars": 435, "window": "5:00a\u201311:00p"}, "2026-08-14": {"laneTotalSec": 72, "laneTotal2Sec": null, "totalCars": 419, "window": "5:00a\u201311:00p"}, "2026-08-15": {"laneTotalSec": 81, "laneTotal2Sec": null, "totalCars": 447, "window": "5:00a\u201311:00p"}, "2026-08-16": {"laneTotalSec": 77, "laneTotal2Sec": null, "totalCars": 428, "window": "5:00a\u201311:00p"}, "2026-08-17": {"laneTotalSec": 71, "laneTotal2Sec": null, "totalCars": 397, "window": "5:00a\u201311:00p"}, "2026-08-18": {"laneTotalSec": 74, "laneTotal2Sec": null, "totalCars": 446, "window": "5:00a\u201311:00p"}}, "Fireside": {"2026-07-28": {"laneTotalSec": 88, "laneTotal2Sec": null, "totalCars": 358}, "2026-07-29": {"laneTotalSec": 92, "laneTotal2Sec": null, "totalCars": 350}, "2026-07-30": {"laneTotalSec": 90, "laneTotal2Sec": null, "totalCars": 356}, "2026-07-31": {"laneTotalSec": 80, "laneTotal2Sec": null, "totalCars": 399}, "2026-08-01": {"laneTotalSec": 81, "laneTotal2Sec": null, "totalCars": 473}, "2026-08-02": {"laneTotalSec": 97, "laneTotal2Sec": null, "totalCars": 378}, "2026-08-03": {"laneTotalSec": 100, "laneTotal2Sec": null, "totalCars": 315}, "2026-08-04": {"laneTotalSec": 91, "laneTotal2Sec": null, "totalCars": 347}, "2026-08-05": {"laneTotalSec": 92, "laneTotal2Sec": null, "totalCars": 414}, "2026-08-06": {"laneTotalSec": 93, "laneTotal2Sec": null, "totalCars": 412}, "2026-08-07": {"laneTotalSec": 86, "laneTotal2Sec": null, "totalCars": 392}, "2026-08-08": {"laneTotalSec": 89, "laneTotal2Sec": null, "totalCars": 429, "window": "5:00a\u201311:00p"}, "2026-08-09": {"laneTotalSec": 96, "laneTotal2Sec": null, "totalCars": 408, "window": "5:00a\u201311:00p"}, "2026-08-10": {"laneTotalSec": 90, "laneTotal2Sec": null, "totalCars": 366, "window": "5:00a\u201311:00p"}, "2026-08-11": {"laneTotalSec": 99, "laneTotal2Sec": null, "totalCars": 354, "window": "5:00a\u201311:00p"}, "2026-08-12": {"laneTotalSec": 95, "laneTotal2Sec": null, "totalCars": 429, "window": "5:00a\u201311:00p"}, "2026-08-13": {"laneTotalSec": 92, "laneTotal2Sec": null, "totalCars": 384, "window": "5:00a\u201311:00p"}, "2026-08-14": {"laneTotalSec": 90, "laneTotal2Sec": null, "totalCars": 387, "window": "5:00a\u201311:00p"}, "2026-08-15": {"laneTotalSec": 90, "laneTotal2Sec": null, "totalCars": 415, "window": "5:00a\u201311:00p"}, "2026-08-16": {"laneTotalSec": 96, "laneTotal2Sec": null, "totalCars": 356, "window": "5:00a\u201311:00p"}, "2026-08-17": {"laneTotalSec": 99, "laneTotal2Sec": null, "totalCars": 346, "window": "5:00a\u201311:00p"}, "2026-08-18": {"laneTotalSec": 86, "laneTotal2Sec": null, "totalCars": 326, "window": "5:00a\u201311:00p"}}, "Auburn": {"2026-07-28": {"laneTotalSec": 80, "laneTotal2Sec": null, "totalCars": 642}, "2026-07-29": {"laneTotalSec": 73, "laneTotal2Sec": null, "totalCars": 690}, "2026-07-30": {"laneTotalSec": 69, "laneTotal2Sec": null, "totalCars": 726}, "2026-07-31": {"laneTotalSec": 76, "laneTotal2Sec": null, "totalCars": 763}, "2026-08-01": {"laneTotalSec": 72, "laneTotal2Sec": null, "totalCars": 749}, "2026-08-02": {"laneTotalSec": 75, "laneTotal2Sec": null, "totalCars": 692}, "2026-08-03": {"laneTotalSec": 80, "laneTotal2Sec": null, "totalCars": 624}, "2026-08-04": {"laneTotalSec": 78, "laneTotal2Sec": null, "totalCars": 637}, "2026-08-05": {"laneTotalSec": 69, "laneTotal2Sec": null, "totalCars": 798}, "2026-08-06": {"laneTotalSec": 86, "laneTotal2Sec": null, "totalCars": 673}, "2026-08-07": {"laneTotalSec": 73, "laneTotal2Sec": null, "totalCars": 702}, "2026-08-08": {"laneTotalSec": 64, "laneTotal2Sec": null, "totalCars": 741, "window": "5:00a\u201312:00a"}, "2026-08-09": {"laneTotalSec": 76, "laneTotal2Sec": null, "totalCars": 682, "window": "5:00a\u201312:00a"}, "2026-08-10": {"laneTotalSec": 79, "laneTotal2Sec": null, "totalCars": 609, "window": "5:00a\u201312:00a"}, "2026-08-11": {"laneTotalSec": 83, "laneTotal2Sec": null, "totalCars": 626, "window": "5:00a\u201312:00a"}, "2026-08-12": {"laneTotalSec": 77, "laneTotal2Sec": null, "totalCars": 708, "window": "5:00a\u201312:00a"}, "2026-08-13": {"laneTotalSec": 75, "laneTotal2Sec": null, "totalCars": 651, "window": "5:00a\u201312:00a"}, "2026-08-14": {"laneTotalSec": 75, "laneTotal2Sec": null, "totalCars": 676, "window": "5:00a\u201312:00a"}, "2026-08-15": {"laneTotalSec": 69, "laneTotal2Sec": null, "totalCars": 710, "window": "5:00a\u201312:00a"}, "2026-08-16": {"laneTotalSec": 82, "laneTotal2Sec": null, "totalCars": 624, "window": "5:00a\u201312:00a"}, "2026-08-17": {"laneTotalSec": 81, "laneTotal2Sec": null, "totalCars": 613, "window": "5:00a\u201312:00a"}, "2026-08-18": {"laneTotalSec": 76, "laneTotal2Sec": null, "totalCars": 640, "window": "5:00a\u201312:00a"}}, "Fair Oaks": {"2026-07-27": {"laneTotalSec": 151, "laneTotal2Sec": 122, "totalCars": 458}, "2026-07-28": {"laneTotalSec": 134, "laneTotal2Sec": 110, "totalCars": 487}, "2026-07-29": {"laneTotalSec": 121, "laneTotal2Sec": 98, "totalCars": 480}, "2026-07-30": {"laneTotalSec": 119, "laneTotal2Sec": 102, "totalCars": 561}, "2026-07-31": {"laneTotalSec": 133, "laneTotal2Sec": 116, "totalCars": 533}, "2026-08-01": {"laneTotalSec": 123, "laneTotal2Sec": 114, "totalCars": 565}, "2026-08-02": {"laneTotalSec": 133, "laneTotal2Sec": 117, "totalCars": 534}, "2026-08-03": {"laneTotalSec": 124, "laneTotal2Sec": 99, "totalCars": 502}, "2026-08-04": {"laneTotalSec": 114, "laneTotal2Sec": 109, "totalCars": 470}, "2026-08-05": {"laneTotalSec": 121, "laneTotal2Sec": 98, "totalCars": 565}, "2026-08-06": {"laneTotalSec": 136, "laneTotal2Sec": 120, "totalCars": 515}, "2026-08-07": {"laneTotalSec": 124, "laneTotal2Sec": 109, "totalCars": 566}, "2026-08-08": {"laneTotalSec": 131, "laneTotal2Sec": 116, "totalCars": 564, "window": "5:00a\u201311:00p"}, "2026-08-09": {"laneTotalSec": 117, "laneTotal2Sec": 95, "totalCars": 534, "window": "5:00a\u201311:00p"}, "2026-08-10": {"laneTotalSec": 129, "laneTotal2Sec": 119, "totalCars": 471, "window": "5:00a\u201311:00p"}, "2026-08-11": {"laneTotalSec": 140, "laneTotal2Sec": 117, "totalCars": 452, "window": "5:00a\u201311:00p"}, "2026-08-12": {"laneTotalSec": 139, "laneTotal2Sec": 108, "totalCars": 496, "window": "5:00a\u201311:00p"}, "2026-08-13": {"laneTotalSec": 127, "laneTotal2Sec": 102, "totalCars": 536, "window": "5:00a\u201311:00p"}, "2026-08-14": {"laneTotalSec": 130, "laneTotal2Sec": 117, "totalCars": 554, "window": "5:00a\u201311:00p"}, "2026-08-15": {"laneTotalSec": 118, "laneTotal2Sec": 110, "totalCars": 558, "window": "5:00a\u201311:00p"}, "2026-08-16": {"laneTotalSec": 121, "laneTotal2Sec": 103, "totalCars": 502, "window": "5:00a\u201311:00p"}, "2026-08-17": {"laneTotalSec": 136, "laneTotal2Sec": 110, "totalCars": 508, "window": "5:00a\u201311:00p"}, "2026-08-18": {"laneTotalSec": 102, "laneTotal2Sec": 93, "totalCars": 494, "window": "5:00a\u201311:00p"}}};
+const REAL_WASTE_DATA = {"Auburn": [{"item": "Blueberry muffin", "qty": "10", "date": "2026-08-17", "unit": "Each"}, {"item": "Banana bread", "qty": "15", "date": "2026-08-17", "unit": "Each"}, {"item": "Cake pop", "qty": "12", "date": "2026-08-16", "unit": "Pack"}, {"item": "Milk \u2014 Ice cream mix", "qty": "5", "date": "2026-08-15", "unit": "Jug"}, {"item": "Banana bread", "qty": "6", "date": "2026-08-13", "unit": "Each"}, {"item": "Maple Waffle", "qty": "4", "date": "2026-08-13", "unit": "Each"}, {"item": "Banana bread", "qty": "24", "date": "2026-08-06", "unit": "Each"}, {"item": "Blueberry muffin", "qty": "5", "date": "2026-08-06", "unit": "Each"}, {"item": "Bacon Slider", "qty": "10", "date": "2026-08-06", "unit": "Each"}, {"item": "Maple Waffle", "qty": "23", "date": "2026-08-03", "unit": "Each"}, {"item": "Banana bread", "qty": "6", "date": "2026-08-03", "unit": "Each"}, {"item": "Cake pop", "qty": "144", "date": "2026-08-02", "unit": "Each"}, {"item": "Blueberry muffin", "qty": "20", "date": "2026-07-20", "unit": "Each"}], "Manz": [{"item": "Blueberry muffin", "qty": "1", "date": "2026-08-17", "unit": "Each"}, {"item": "Milk \u2014 Chocolate", "qty": "8", "date": "2026-08-14", "unit": "Each"}, {"item": "Milk \u2014 Nonfat", "qty": "1", "date": "2026-08-13", "unit": "Each"}, {"item": "Milk \u2014 Chocolate", "qty": "3", "date": "2026-08-12", "unit": "Crate"}, {"item": "Chorizo Wrap", "qty": "2", "date": "2026-08-11", "unit": "Each"}], "Fireside": [{"item": "Milk \u2014 Chocolate", "qty": "3", "date": "2026-08-17", "unit": "Each"}, {"item": "Milk \u2014 Ice cream mix", "qty": "0.25", "date": "2026-08-13", "unit": "Carton", "note": "original said \"\u00bd of a half carton\""}, {"item": "Milk \u2014 2%", "qty": "2", "date": "2026-08-12", "unit": "Carton"}, {"item": "Other", "qty": "3", "date": "2026-08-11", "unit": "Carton", "note": "milk, type not specified"}, {"item": "Chorizo Wrap", "qty": "5", "date": "2026-07-20", "unit": "Each"}, {"item": "Banana bread", "qty": "", "date": "2026-07-20", "unit": "Each", "note": "original qty was \"?\" \u2014 needs a number", "flag": "quantity not recorded"}], "Antelope": [{"item": "Milk \u2014 Nonfat", "qty": "7", "date": "2026-08-15", "unit": "Carton"}, {"item": "Bacon Slider", "qty": "10", "date": "2026-08-13", "unit": "Each"}, {"item": "Chorizo Wrap", "qty": "5", "date": "2026-07-20", "unit": "Each"}, {"item": "Bacon Slider", "qty": "8", "date": null, "unit": "Each", "note": "original had no date", "flag": "date not recorded"}], "Fair Oaks": [{"item": "Milk \u2014 Nonfat", "qty": "1", "date": "2026-08-14", "unit": "Each"}, {"item": "Cake pop", "qty": "36", "date": "2026-07-20", "unit": "Each"}, {"item": "Banana bread", "qty": "", "date": "2026-07-20", "unit": "Each", "note": "original qty was \"?\" \u2014 needs a number", "flag": "quantity not recorded"}], "OV": [{"item": "Banana bread", "qty": "1", "date": "2026-08-13", "unit": "Case"}, {"item": "Milk \u2014 2%", "qty": "0.5", "date": "2026-08-12", "unit": "Crate"}, {"item": "Milk \u2014 Ice cream mix", "qty": "2", "date": "2026-08-11", "unit": "Crate", "note": "logged as \"ice cream mix & 2%\" \u2014 split into two rows if both"}], "Lichen": [{"item": "Milk \u2014 Chocolate", "qty": "1", "date": "2026-08-13", "unit": "Case"}, {"item": "Chorizo Wrap", "qty": "2", "date": "2026-07-20", "unit": "Each"}, {"item": "Bacon Slider", "qty": "4", "date": "2026-07-18", "unit": "Each"}], "Mad": [{"item": "Cake pop", "qty": "12", "date": "2026-08-11", "unit": "Each"}, {"item": "Cake pop", "qty": "6", "date": "2026-08-11", "unit": "Each"}, {"item": "Blueberry muffin", "qty": "18", "date": "2026-07-27", "unit": "Each"}, {"item": "Banana bread", "qty": "6", "date": "2026-07-27", "unit": "Each"}, {"item": "Banana bread", "qty": "11", "date": "2026-07-18", "unit": "Each"}, {"item": "Blueberry muffin", "qty": "6", "date": "2026-07-18", "unit": "Each"}]};
 const REAL_DEPUTY_SCHEDULE = {"2026-08-07|Antelope|Close": {"lead": null, "empty": true}, "2026-08-07|Antelope|Mid": {"lead": "Darius W.", "empty": false}, "2026-08-07|Antelope|Open": {"lead": "Igor M.", "empty": false}, "2026-08-07|Auburn|Close": {"lead": "Sully C.", "empty": false}, "2026-08-07|Auburn|Mid": {"lead": "Grace H.", "empty": false}, "2026-08-07|Auburn|Open": {"lead": "Haleigh S.", "empty": false}, "2026-08-07|Fair Oaks|Close": {"lead": "Graci H.", "empty": false}, "2026-08-07|Fair Oaks|Mid": {"lead": "Aryana A.", "empty": false}, "2026-08-07|Fair Oaks|Open": {"lead": "Amari M.", "empty": false}, "2026-08-07|Fireside|Close": {"lead": "Taylor R.", "empty": false}, "2026-08-07|Fireside|Mid": {"lead": "Erica H.", "empty": false}, "2026-08-07|Fireside|Open": {"lead": "Maddie O.", "empty": false}, "2026-08-07|Lichen|Close": {"lead": "Tajae H.", "empty": false}, "2026-08-07|Lichen|Mid": {"lead": "Kaylee R.", "empty": false}, "2026-08-07|Lichen|Open": {"lead": "Patricia G.", "empty": false}, "2026-08-07|Mad|Close": {"lead": "Kylie H.", "empty": false}, "2026-08-07|Mad|Mid": {"lead": "Lillie M.", "empty": false}, "2026-08-07|Mad|Open": {"lead": "Diego A.", "empty": false}, "2026-08-07|Manz|Close": {"lead": "Desi S.", "empty": false}, "2026-08-07|Manz|Mid": {"lead": "Palina D.", "empty": false}, "2026-08-07|Manz|Open": {"lead": "Emily Y.", "empty": false}, "2026-08-07|OV|Close": {"lead": "Heidi J.", "empty": false}, "2026-08-07|OV|Mid": {"lead": "Matthew W.", "empty": false}, "2026-08-07|OV|Open": {"lead": "Myah N.", "empty": false}, "2026-08-08|Antelope|Close": {"lead": "Cory B.", "empty": false}, "2026-08-08|Antelope|Mid": {"lead": "Ariana V.", "empty": false}, "2026-08-08|Antelope|Open": {"lead": "Nico S.", "empty": false}, "2026-08-08|Auburn|Close": {"lead": "Greta G.", "empty": false}, "2026-08-08|Auburn|Mid": {"lead": "Sully C.", "empty": false}, "2026-08-08|Auburn|Open": {"lead": "Grace H.", "empty": false}, "2026-08-08|Fair Oaks|Close": {"lead": "Aryana A.", "empty": false}, "2026-08-08|Fair Oaks|Mid": {"lead": "Julia M.", "empty": false}, "2026-08-08|Fair Oaks|Open": {"lead": "Laci D.", "empty": false}, "2026-08-08|Fireside|Close": {"lead": "Madison F.", "empty": false}, "2026-08-08|Fireside|Mid": {"lead": "Igor M.", "empty": false}, "2026-08-08|Fireside|Open": {"lead": "Maddie O.", "empty": false}, "2026-08-08|Lichen|Close": {"lead": "Gabriel Z.", "empty": false}, "2026-08-08|Lichen|Mid": {"lead": "Patricia G.", "empty": false}, "2026-08-08|Lichen|Open": {"lead": "Kaylee R.", "empty": false}, "2026-08-08|Mad|Close": {"lead": "Lillie M.", "empty": false}, "2026-08-08|Mad|Mid": {"lead": "Taylor M.", "empty": false}, "2026-08-08|Mad|Open": {"lead": "Katelan B.", "empty": false}, "2026-08-08|Manz|Close": {"lead": "Moriah A.", "empty": false}, "2026-08-08|Manz|Mid": {"lead": "Desi S.", "empty": false}, "2026-08-08|Manz|Open": {"lead": "Madison W.", "empty": false}, "2026-08-08|OV|Close": {"lead": "Isa V.", "empty": false}, "2026-08-08|OV|Mid": {"lead": "Melanie B.", "empty": false}, "2026-08-08|OV|Open": {"lead": "Sophia W.", "empty": false}, "2026-08-09|Antelope|Close": {"lead": "Darius W.", "empty": false}, "2026-08-09|Antelope|Mid": {"lead": "Ariana V.", "empty": false}, "2026-08-09|Antelope|Open": {"lead": "Nico S.", "empty": false}, "2026-08-09|Auburn|Close": {"lead": "Sully C.", "empty": false}, "2026-08-09|Auburn|Mid": {"lead": "Cailey A.", "empty": false}, "2026-08-09|Auburn|Open": {"lead": "Michelle A.", "empty": false}, "2026-08-09|Fair Oaks|Close": {"lead": "Laci D.", "empty": false}, "2026-08-09|Fair Oaks|Mid": {"lead": "Amari M.", "empty": false}, "2026-08-09|Fair Oaks|Open": {"lead": "Graci H.", "empty": false}, "2026-08-09|Fireside|Close": {"lead": "Maddie O.", "empty": false}, "2026-08-09|Fireside|Mid": {"lead": "Madison F.", "empty": false}, "2026-08-09|Fireside|Open": {"lead": "Emma O.", "empty": false}, "2026-08-09|Lichen|Close": {"lead": "Noelle S.", "empty": false}, "2026-08-09|Lichen|Mid": {"lead": "Gabriel Z.", "empty": false}, "2026-08-09|Lichen|Open": {"lead": "Patricia G.", "empty": false}, "2026-08-09|Mad|Close": {"lead": "Diego A.", "empty": false}, "2026-08-09|Mad|Mid": {"lead": "Lillie M.", "empty": false}, "2026-08-09|Mad|Open": {"lead": "Kylie H.", "empty": false}, "2026-08-09|Manz|Close": {"lead": "Emily Y.", "empty": false}, "2026-08-09|Manz|Mid": {"lead": "Moriah A.", "empty": false}, "2026-08-09|Manz|Open": {"lead": "Madison W.", "empty": false}, "2026-08-09|OV|Close": {"lead": "Sophia W.", "empty": false}, "2026-08-09|OV|Mid": {"lead": "Heidi J.", "empty": false}, "2026-08-09|OV|Open": {"lead": "Myah N.", "empty": false}, "2026-08-10|Antelope|Close": {"lead": "Ariana V.", "empty": false}, "2026-08-10|Antelope|Mid": {"lead": "Igor M.", "empty": false}, "2026-08-10|Antelope|Open": {"lead": "Nico S.", "empty": false}, "2026-08-10|Auburn|Close": {"lead": "Sully C.", "empty": false}, "2026-08-10|Auburn|Mid": {"lead": "Greta G.", "empty": false}, "2026-08-10|Auburn|Open": {"lead": "Haleigh S.", "empty": false}, "2026-08-10|Fair Oaks|Close": {"lead": "Rebecca E.", "empty": false}, "2026-08-10|Fair Oaks|Mid": {"lead": "Aryana A.", "empty": false}, "2026-08-10|Fair Oaks|Open": {"lead": "Amari M.", "empty": false}, "2026-08-10|Fireside|Close": {"lead": "Madison F.", "empty": false}, "2026-08-10|Fireside|Mid": {"lead": "Maddie O.", "empty": false}, "2026-08-10|Fireside|Open": {"lead": "Emma O.", "empty": false}, "2026-08-10|Lichen|Close": {"lead": "Patricia G.", "empty": false}, "2026-08-10|Lichen|Mid": {"lead": "Tajae H.", "empty": false}, "2026-08-10|Lichen|Open": {"lead": "Kaylee R.", "empty": false}, "2026-08-10|Mad|Close": {"lead": "Sophia D.", "empty": false}, "2026-08-10|Mad|Mid": {"lead": "Diego A.", "empty": false}, "2026-08-10|Mad|Open": {"lead": "Kylie H.", "empty": false}, "2026-08-10|Manz|Close": {"lead": "Palina D.", "empty": false}, "2026-08-10|Manz|Mid": {"lead": "Emily Y.", "empty": false}, "2026-08-10|Manz|Open": {"lead": "Daphne H.", "empty": false}, "2026-08-10|OV|Close": {"lead": "Isa V.", "empty": false}, "2026-08-10|OV|Mid": {"lead": "Heidi J.", "empty": false}, "2026-08-10|OV|Open": {"lead": "Myah N.", "empty": false}, "2026-08-11|Antelope|Close": {"lead": "Cory B.", "empty": false}, "2026-08-11|Antelope|Mid": {"lead": "Isabelle M.", "empty": false}, "2026-08-11|Antelope|Open": {"lead": "Katelyn L.", "empty": false}, "2026-08-11|Auburn|Close": {"lead": "Sully C.", "empty": false}, "2026-08-11|Auburn|Mid": {"lead": "Ashlee S.", "empty": false}, "2026-08-11|Auburn|Open": {"lead": "Cailey A.", "empty": false}, "2026-08-11|Fair Oaks|Close": {"lead": "Graci H.", "empty": false}, "2026-08-11|Fair Oaks|Mid": {"lead": "Rebecca E.", "empty": false}, "2026-08-11|Fair Oaks|Open": {"lead": "Amari M.", "empty": false}, "2026-08-11|Fireside|Close": {"lead": "Igor M.", "empty": false}, "2026-08-11|Fireside|Mid": {"lead": "Carsen T.", "empty": false}, "2026-08-11|Fireside|Open": {"lead": "Emma O.", "empty": false}, "2026-08-11|Lichen|Close": {"lead": "Gabriel Z.", "empty": false}, "2026-08-11|Lichen|Mid": {"lead": "Ben B.", "empty": false}, "2026-08-11|Lichen|Open": {"lead": "Sidney B.", "empty": false}, "2026-08-11|Mad|Close": {"lead": "Diego A.", "empty": false}, "2026-08-11|Mad|Mid": {"lead": "Sophia D.", "empty": false}, "2026-08-11|Mad|Open": {"lead": "Kylie H.", "empty": false}, "2026-08-11|Manz|Close": {"lead": "Palina D.", "empty": false}, "2026-08-11|Manz|Mid": {"lead": "Emily Y.", "empty": false}, "2026-08-11|Manz|Open": {"lead": "Madison W.", "empty": false}, "2026-08-11|OV|Close": {"lead": "Myah N.", "empty": false}, "2026-08-11|OV|Mid": {"lead": "Isa V.", "empty": false}, "2026-08-11|OV|Open": {"lead": "Heidi J.", "empty": false}, "2026-08-12|Antelope|Close": {"lead": "Igor M.", "empty": false}, "2026-08-12|Antelope|Mid": {"lead": "Sara A.", "empty": false}, "2026-08-12|Antelope|Open": {"lead": "Katelyn L.", "empty": false}, "2026-08-12|Auburn|Close": {"lead": "Haleigh S.", "empty": false}, "2026-08-12|Auburn|Mid": {"lead": "Sully C.", "empty": false}, "2026-08-12|Auburn|Open": {"lead": "Grace H.", "empty": false}, "2026-08-12|Fair Oaks|Close": {"lead": "Julia M.", "empty": false}, "2026-08-12|Fair Oaks|Mid": {"lead": "Graci H.", "empty": false}, "2026-08-12|Fair Oaks|Open": {"lead": "Laci D.", "empty": false}, "2026-08-12|Fireside|Close": {"lead": "Erica H.", "empty": false}, "2026-08-12|Fireside|Mid": {"lead": "Madison F.", "empty": false}, "2026-08-12|Fireside|Open": {"lead": "Taylor R.", "empty": false}, "2026-08-12|Lichen|Close": {"lead": "Sidney B.", "empty": false}, "2026-08-12|Lichen|Mid": {"lead": "Patricia G.", "empty": false}, "2026-08-12|Lichen|Open": {"lead": "Tajae H.", "empty": false}, "2026-08-12|Mad|Close": {"lead": "Diego A.", "empty": false}, "2026-08-12|Mad|Mid": {"lead": "Kylie H.", "empty": false}, "2026-08-12|Mad|Open": {"lead": "Sophia D.", "empty": false}, "2026-08-12|Manz|Close": {"lead": "Magdelana M.", "empty": false}, "2026-08-12|Manz|Mid": {"lead": "Lydia H.", "empty": false}, "2026-08-12|Manz|Open": {"lead": "Madison W.", "empty": false}, "2026-08-12|OV|Close": {"lead": "Heidi J.", "empty": false}, "2026-08-12|OV|Mid": {"lead": "Melanie B.", "empty": false}, "2026-08-12|OV|Open": {"lead": "Isa V.", "empty": false}, "2026-08-13|Antelope|Close": {"lead": "Ariana V.", "empty": false}, "2026-08-13|Antelope|Mid": {"lead": "Isabelle M.", "empty": false}, "2026-08-13|Antelope|Open": {"lead": "Katelyn L.", "empty": false}, "2026-08-13|Auburn|Close": {"lead": "Greta G.", "empty": false}, "2026-08-13|Auburn|Mid": {"lead": "Haleigh S.", "empty": false}, "2026-08-13|Auburn|Open": {"lead": "Sully C.", "empty": false}, "2026-08-13|Fair Oaks|Close": {"lead": "Laci D.", "empty": false}, "2026-08-13|Fair Oaks|Mid": {"lead": "Julia M.", "empty": false}, "2026-08-13|Fair Oaks|Open": {"lead": "Graci H.", "empty": false}, "2026-08-13|Fireside|Close": {"lead": "Maddie O.", "empty": false}, "2026-08-13|Fireside|Mid": {"lead": "Carsen T.", "empty": false}, "2026-08-13|Fireside|Open": {"lead": "Madison F.", "empty": false}, "2026-08-13|Lichen|Close": {"lead": "Gabriel Z.", "empty": false}, "2026-08-13|Lichen|Mid": {"lead": "Noelle S.", "empty": false}, "2026-08-13|Lichen|Open": {"lead": "Tajae H.", "empty": false}, "2026-08-13|Mad|Close": {"lead": "Lillie M.", "empty": false}, "2026-08-13|Mad|Mid": {"lead": "Diego A.", "empty": false}, "2026-08-13|Mad|Open": {"lead": "Kylie H.", "empty": false}, "2026-08-13|Manz|Close": {"lead": "Madison W.", "empty": false}, "2026-08-13|Manz|Mid": {"lead": "Moriah A.", "empty": false}, "2026-08-13|Manz|Open": {"lead": "Lydia H.", "empty": false}, "2026-08-13|OV|Close": {"lead": "Aria W.", "empty": false}, "2026-08-13|OV|Mid": {"lead": "Isa V.", "empty": false}, "2026-08-13|OV|Open": {"lead": "Melanie B.", "empty": false}, "2026-08-14|Antelope|Close": {"lead": "Ariana V.", "empty": false}, "2026-08-14|Antelope|Mid": {"lead": "Darius W.", "empty": false}, "2026-08-14|Antelope|Open": {"lead": "Sara A.", "empty": false}, "2026-08-14|Auburn|Close": {"lead": "Grace H.", "empty": false}, "2026-08-14|Auburn|Mid": {"lead": "Cailey A.", "empty": false}, "2026-08-14|Auburn|Open": {"lead": "Ashlee S.", "empty": false}, "2026-08-14|Fair Oaks|Close": {"lead": "Laci D.", "empty": false}, "2026-08-14|Fair Oaks|Mid": {"lead": "Graci H.", "empty": false}, "2026-08-14|Fair Oaks|Open": {"lead": "Amari M.", "empty": false}, "2026-08-14|Fireside|Close": {"lead": "Taylor R.", "empty": false}, "2026-08-14|Fireside|Mid": {"lead": "Madison F.", "empty": false}, "2026-08-14|Fireside|Open": {"lead": "Emma O.", "empty": false}, "2026-08-14|Lichen|Close": {"lead": "Kaylee R.", "empty": false}, "2026-08-14|Lichen|Mid": {"lead": "Gabriel Z.", "empty": false}, "2026-08-14|Lichen|Open": {"lead": "Sidney B.", "empty": false}, "2026-08-14|Mad|Close": {"lead": "Lillie M.", "empty": false}, "2026-08-14|Mad|Mid": {"lead": "Taylor M.", "empty": false}, "2026-08-14|Mad|Open": {"lead": "Katelan B.", "empty": false}, "2026-08-14|Manz|Close": {"lead": "Madison W.", "empty": false}, "2026-08-14|Manz|Mid": {"lead": "Lydia H.", "empty": false}, "2026-08-14|Manz|Open": {"lead": "Moriah A.", "empty": false}, "2026-08-14|OV|Close": {"lead": "Heidi J.", "empty": false}, "2026-08-14|OV|Mid": {"lead": "Greta G.", "empty": false}, "2026-08-14|OV|Open": {"lead": "Myah N.", "empty": false}, "2026-08-15|Antelope|Close": {"lead": "Cory B.", "empty": false}, "2026-08-15|Antelope|Mid": {"lead": "Igor M.", "empty": false}, "2026-08-15|Antelope|Open": {"lead": "Nico S.", "empty": false}, "2026-08-15|Auburn|Close": {"lead": "Greta G.", "empty": false}, "2026-08-15|Auburn|Mid": {"lead": "Grace H.", "empty": false}, "2026-08-15|Auburn|Open": {"lead": "Cailey A.", "empty": false}, "2026-08-15|Fair Oaks|Close": {"lead": "Rebecca E.", "empty": false}, "2026-08-15|Fair Oaks|Mid": {"lead": "Cassandra G.", "empty": false}, "2026-08-15|Fair Oaks|Open": {"lead": "Julia M.", "empty": false}, "2026-08-15|Fireside|Close": {"lead": "Madison F.", "empty": false}, "2026-08-15|Fireside|Mid": {"lead": "Taylor R.", "empty": false}, "2026-08-15|Fireside|Open": {"lead": "Emma O.", "empty": false}, "2026-08-15|Lichen|Close": {"lead": "Patricia G.", "empty": false}, "2026-08-15|Lichen|Mid": {"lead": "Gabriel Z.", "empty": false}, "2026-08-15|Lichen|Open": {"lead": "Ethan P.", "empty": false}, "2026-08-15|Mad|Close": {"lead": "Lillie M.", "empty": false}, "2026-08-15|Mad|Mid": {"lead": "Kylie H.", "empty": false}, "2026-08-15|Mad|Open": {"lead": "Diego A.", "empty": false}, "2026-08-15|Manz|Close": {"lead": "Lydia H.", "empty": false}, "2026-08-15|Manz|Mid": {"lead": "Madison W.", "empty": false}, "2026-08-15|Manz|Open": {"lead": "Moriah A.", "empty": false}, "2026-08-15|OV|Close": {"lead": "Aria W.", "empty": false}, "2026-08-15|OV|Mid": {"lead": "Melanie B.", "empty": false}, "2026-08-15|OV|Open": {"lead": "Sophia W.", "empty": false}, "2026-08-16|Antelope|Close": {"lead": "Igor M.", "empty": false}, "2026-08-16|Antelope|Mid": {"lead": "Katelyn L.", "empty": false}, "2026-08-16|Antelope|Open": {"lead": "Nico S.", "empty": false}, "2026-08-16|Auburn|Close": {"lead": "Cailey A.", "empty": false}, "2026-08-16|Auburn|Mid": {"lead": "Greta G.", "empty": false}, "2026-08-16|Auburn|Open": {"lead": "Grace H.", "empty": false}, "2026-08-16|Fair Oaks|Close": {"lead": "Aryana A.", "empty": false}, "2026-08-16|Fair Oaks|Mid": {"lead": "Amari M.", "empty": false}, "2026-08-16|Fair Oaks|Open": {"lead": "Graci H.", "empty": false}, "2026-08-16|Fireside|Close": {"lead": "Maddie O.", "empty": false}, "2026-08-16|Fireside|Mid": {"lead": "Taylor R.", "empty": false}, "2026-08-16|Fireside|Open": {"lead": "Isabelle M.", "empty": false}, "2026-08-16|Lichen|Close": {"lead": "Sidney B.", "empty": false}, "2026-08-16|Lichen|Mid": {"lead": "Patricia G.", "empty": false}, "2026-08-16|Lichen|Open": {"lead": "Kaylee R.", "empty": false}, "2026-08-16|Mad|Close": {"lead": "Diego A.", "empty": false}, "2026-08-16|Mad|Mid": {"lead": "Kylie H.", "empty": false}, "2026-08-16|Mad|Open": {"lead": "Sophia D.", "empty": false}, "2026-08-16|Manz|Close": {"lead": "Moriah A.", "empty": false}, "2026-08-16|Manz|Mid": {"lead": "Lydia H.", "empty": false}, "2026-08-16|Manz|Open": {"lead": "Madison W.", "empty": false}, "2026-08-16|OV|Close": {"lead": "Heidi J.", "empty": false}, "2026-08-16|OV|Mid": {"lead": "Myah N.", "empty": false}, "2026-08-16|OV|Open": {"lead": "Alexis W.", "empty": false}, "2026-08-17|Antelope|Close": {"lead": "Ariana V.", "empty": false}, "2026-08-17|Antelope|Mid": {"lead": "Darius W.", "empty": false}, "2026-08-17|Antelope|Open": {"lead": "Nico S.", "empty": false}, "2026-08-17|Auburn|Close": {"lead": "Ashlee S.", "empty": false}, "2026-08-17|Auburn|Mid": {"lead": "Sully C.", "empty": false}, "2026-08-17|Auburn|Open": {"lead": "Grace H.", "empty": false}, "2026-08-17|Fair Oaks|Close": {"lead": "Julia M.", "empty": false}, "2026-08-17|Fair Oaks|Mid": {"lead": "Amari M.", "empty": false}, "2026-08-17|Fair Oaks|Open": {"lead": "Graci H.", "empty": false}, "2026-08-17|Fireside|Close": {"lead": "Madysun C.", "empty": false}, "2026-08-17|Fireside|Mid": {"lead": "Igor M.", "empty": false}, "2026-08-17|Fireside|Open": {"lead": "Carsen T.", "empty": false}, "2026-08-17|Lichen|Close": {"lead": "Patricia G.", "empty": false}, "2026-08-17|Lichen|Mid": {"lead": "Ash A.", "empty": false}, "2026-08-17|Lichen|Open": {"lead": "Kaylee R.", "empty": false}, "2026-08-17|Mad|Close": {"lead": "Sophia D.", "empty": false}, "2026-08-17|Mad|Mid": {"lead": "Diego A.", "empty": false}, "2026-08-17|Mad|Open": {"lead": "Taylor M.", "empty": false}, "2026-08-17|Manz|Close": {"lead": "Madison W.", "empty": false}, "2026-08-17|Manz|Mid": {"lead": "Moriah A.", "empty": false}, "2026-08-17|Manz|Open": {"lead": "Magdelana M.", "empty": false}, "2026-08-17|OV|Close": {"lead": "Myah N.", "empty": false}, "2026-08-17|OV|Mid": {"lead": "Alexis W.", "empty": false}, "2026-08-17|OV|Open": {"lead": "Isa V.", "empty": false}, "2026-08-18|Antelope|Close": {"lead": "Cory B.", "empty": false}, "2026-08-18|Antelope|Mid": {"lead": "Johnathan G.", "empty": false}, "2026-08-18|Antelope|Open": {"lead": "Katelyn L.", "empty": false}, "2026-08-18|Auburn|Close": {"lead": "Grace H.", "empty": false}, "2026-08-18|Auburn|Mid": {"lead": "Sully C.", "empty": false}, "2026-08-18|Auburn|Open": {"lead": "Cailey A.", "empty": false}, "2026-08-18|Fair Oaks|Close": {"lead": "Laci D.", "empty": false}, "2026-08-18|Fair Oaks|Mid": {"lead": "Cassandra G.", "empty": false}, "2026-08-18|Fair Oaks|Open": {"lead": "Amari M.", "empty": false}, "2026-08-18|Fireside|Close": {"lead": "Madison F.", "empty": false}, "2026-08-18|Fireside|Mid": {"lead": "Madysun C.", "empty": false}, "2026-08-18|Fireside|Open": {"lead": "Carsen T.", "empty": false}, "2026-08-18|Lichen|Close": {"lead": "Gabriel Z.", "empty": false}, "2026-08-18|Lichen|Mid": {"lead": "Sidney B.", "empty": false}, "2026-08-18|Lichen|Open": {"lead": "Noelle S.", "empty": false}, "2026-08-18|Mad|Close": {"lead": "Lillie M.", "empty": false}, "2026-08-18|Mad|Mid": {"lead": "Sophia D.", "empty": false}, "2026-08-18|Mad|Open": {"lead": "Diego A.", "empty": false}, "2026-08-18|Manz|Close": {"lead": "Lydia H.", "empty": false}, "2026-08-18|Manz|Mid": {"lead": "Madison W.", "empty": false}, "2026-08-18|Manz|Open": {"lead": "Moriah A.", "empty": false}, "2026-08-18|OV|Close": {"lead": "Sophia W.", "empty": false}, "2026-08-18|OV|Mid": {"lead": "Myah N.", "empty": false}, "2026-08-18|OV|Open": {"lead": "Heidi J.", "empty": false}, "2026-08-19|Antelope|Close": {"lead": "Ariana V.", "empty": false}, "2026-08-19|Antelope|Mid": {"lead": "Darius W.", "empty": false}, "2026-08-19|Antelope|Open": {"lead": "Sara A.", "empty": false}, "2026-08-19|Auburn|Close": {"lead": "Cailey A.", "empty": false}, "2026-08-19|Auburn|Mid": {"lead": "Michelle A.", "empty": false}, "2026-08-19|Auburn|Open": {"lead": "Greta G.", "empty": false}, "2026-08-19|Fair Oaks|Close": {"lead": "Palina D.", "empty": false}, "2026-08-19|Fair Oaks|Mid": {"lead": "Julia M.", "empty": false}, "2026-08-19|Fair Oaks|Open": {"lead": "Graci H.", "empty": false}, "2026-08-19|Fireside|Close": {"lead": "Emma O.", "empty": false}, "2026-08-19|Fireside|Mid": {"lead": "Madysun C.", "empty": false}, "2026-08-19|Fireside|Open": {"lead": "Igor M.", "empty": false}, "2026-08-19|Lichen|Close": {"lead": "Noelle S.", "empty": false}, "2026-08-19|Lichen|Mid": {"lead": "Gabriel Z.", "empty": false}, "2026-08-19|Lichen|Open": {"lead": "Sidney B.", "empty": false}, "2026-08-19|Mad|Close": {"lead": "Lillie M.", "empty": false}, "2026-08-19|Mad|Mid": {"lead": "Taylor M.", "empty": false}, "2026-08-19|Mad|Open": {"lead": "Diego A.", "empty": false}, "2026-08-19|Manz|Close": {"lead": "Moriah A.", "empty": false}, "2026-08-19|Manz|Mid": {"lead": "Madison W.", "empty": false}, "2026-08-19|Manz|Open": {"lead": "Desi S.", "empty": false}, "2026-08-19|OV|Close": {"lead": "Isa V.", "empty": false}, "2026-08-19|OV|Mid": {"lead": "Christopher H.", "empty": false}, "2026-08-19|OV|Open": {"lead": "Heidi J.", "empty": false}};
 
 function isoForIndex(i){ const dt=dateForIndex(i); return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0'); }
