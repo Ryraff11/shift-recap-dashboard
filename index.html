@@ -231,6 +231,16 @@ details.ov-cat[open] > .ov-cat-head .ov-cat-caret::after{ content:'\25be'; }
 .ls-row:active{ background:#16324A; }
 .ls-row.flagged:active{ background:rgba(242,80,106,.13); }
 
+/* ===== Ledger app screens (Missed Recaps, Window Times, Stand hub + sub-screens) ===== */
+/* Full-bleed: zero main's padding and the .oh centering while a non-home SPA screen is active. */
+body.app-active{ background:#0B1D2E; }
+body.app-active main{ padding:0; }
+#oh-app.oh-app-active{ max-width:none; margin:0; padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom); background:#0B1D2E; }
+.lxr{ cursor:pointer; }
+.lxr:active{ background:#102639; }
+.lxr.alert:active{ background:rgba(242,80,106,.13); }
+.lxr:focus-visible{ outline:2px solid #F5E31F; outline-offset:-2px; }
+
 
 /* ===== Home masthead + tile grid ===== */
 .oh-masthead{ width:100vw; margin:-34px 0 20px calc(50% - 50vw); padding:18px 20px; background:#156299; border-bottom:3px solid #F8E316; text-align:center; }
@@ -898,7 +908,7 @@ function getPacificNow(){
 const days = 60; // 60-day data window powers the Late Submissions tally; the recaps day-strip below stays a fixed trailing 7 days so the grid is unchanged
 const TODAY_INDEX = days - 1;
 const TODAY_DATE = new Date(2026, 7, 18); // auto-updated by refresh_dashboard.py;
-const BUILD_STAMP = "Tue · Aug 18 · updated 7:21 PM PT"; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
+const BUILD_STAMP = "Tue · Aug 18 · updated 7:36 PM PT"; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
 
 function dateForIndex(i){
   const dt = new Date(TODAY_DATE);
@@ -68643,6 +68653,45 @@ function homeView(){
     + '<div class="lh-footer">TAP A SECTION</div>';
 }
 
+/* ===== Ledger app screens — shared bits (full-bleed, mono/Big Shoulders/Barlow) ===== */
+const LX_RANGES = [['today','TODAY'],['yesterday','YESTERDAY'],['3d','3 DAYS'],['7d','7 DAYS']];
+const LX_RANGE_SHORT = { today:'TODAY', yesterday:'YESTERDAY', '3d':'3 DAYS', '7d':'7 DAYS' };
+const BS = "800 %s 'Big Shoulders Display',sans-serif";
+const MONO = "'JetBrains Mono',monospace";
+function lxHeader(backText, right, title){
+  return '<div style="padding:14px 20px 0;display:flex;align-items:center;justify-content:space-between;font:500 9.5px/1 ' + MONO + ';letter-spacing:.18em;color:#93A9BC">'
+    + '<span id="oh-back" role="button" tabindex="0" style="color:#F5E31F;cursor:pointer">&#8592; ' + esc(backText) + '</span><span>' + esc(right) + '</span></div>'
+    + '<div style="padding:10px 20px 0;font:800 44px/0.86 \'Big Shoulders Display\',sans-serif;letter-spacing:.02em;color:#fff;text-transform:uppercase">' + esc(title) + '</div>';
+}
+function lxCount(html, bottomHairline){
+  return '<div style="padding:9px 20px ' + (bottomHairline ? '14px' : '0') + ';font:400 9.5px/1 ' + MONO + ';letter-spacing:.1em;color:#5C7286'
+    + (bottomHairline ? ';border-bottom:1px solid rgba(147,169,188,.16)' : '') + '">' + html + '</div>';
+}
+function lxRangeStrip(){
+  return '<div style="display:flex;gap:18px;padding:16px 20px 0;border-bottom:1px solid rgba(147,169,188,.16)">'
+    + LX_RANGES.map(function(r){ var a = r[0] === ohRange;
+        return '<div class="lxr" data-range="' + r[0] + '" style="padding-bottom:9px;font:' + (a ? '500' : '400') + ' 10.5px/1 ' + MONO
+          + ';letter-spacing:.14em;color:' + (a ? '#F5E31F' : '#5C7286') + (a ? ';border-bottom:2px solid #F5E31F' : '') + '">' + r[1] + '</div>';
+      }).join('') + '</div>';
+}
+function lxFoot(html){
+  return '<div style="padding:18px 20px 24px;font:400 11px/1.5 ' + MONO + ';letter-spacing:.04em;color:#5C7286">' + html + '</div>';
+}
+// cells: array of 3 [valueHtml, color, caption]; size defaults to 34 (stand hub passes 32)
+function lxStatStrip(cells, size){
+  size = size || 34;
+  var div = '<div style="background:rgba(147,169,188,.16)"></div>';
+  var cell = function(c){ return '<div style="padding:18px 0 16px;display:flex;flex-direction:column;align-items:center;gap:7px">'
+    + '<span style="font:700 ' + size + 'px/0.85 ' + MONO + ';color:' + c[1] + '">' + c[0] + '</span>'
+    + '<span style="font:400 9px/1 ' + MONO + ';letter-spacing:.14em;color:#93A9BC">' + c[2] + '</span></div>'; };
+  return '<div style="display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;border-bottom:1px solid rgba(147,169,188,.16)">'
+    + cell(cells[0]) + div + cell(cells[1]) + div + cell(cells[2]) + '</div>';
+}
+// lane-total threshold color (seconds): <90 good, 90–120 watch, >120 bad
+function lxLaneColor(sec){ return sec > 120 ? '#F2506A' : sec >= 90 ? '#F5E31F' : '#E6EDF3'; }
+// mono metric line under a stand name (shop-name style)
+function lxDim(txt){ return '<span style="color:#5C7286">' + esc(txt) + '</span>'; }
+
 /* ---- missed & late recaps (home tile) ---- */
 function missedDetail(code, range){
   const shop = CODE_TO_SHOP[code];
@@ -68662,206 +68711,285 @@ function missedDetail(code, range){
   const lateNames = Object.keys(byWho).sort((a,b)=>byWho[b]-byWho[a]).map(nm => byWho[nm]>1 ? nm+' ×'+byWho[nm] : nm);
   return { slots, lateNames };
 }
+function missedBlock(s){
+  const det = missedDetail(s.code, ohRange);
+  const alert = s.missing > 0;
+  const pad = alert ? '14px 20px 14px 17px' : '14px 20px';
+  const rail = alert ? ';border-left:3px solid #F2506A' : '';
+  const nf = alert ? '<span style="color:#F2506A">' + s.missing + ' NOT FILED</span>' : (s.missing + ' NOT FILED');
+  const right = s.onTime + ' ON TIME &middot; ' + s.late + ' LATE &middot; ' + nf;
+  let segs = '';
+  if(s.onTime) segs += '<div style="flex:' + s.onTime + ';background:#E6EDF3"></div>';
+  if(s.late)   segs += '<div style="flex:' + s.late + ';background:#F5E31F"></div>';
+  if(s.missing)segs += '<div style="flex:' + s.missing + ';background:#F2506A"></div>';
+  const bar = '<div style="display:flex;height:3px" aria-hidden="true">' + segs + '</div>';
+  const notFiled = det.slots.length
+    ? '<div style="font:400 12.5px/1.5 Barlow,sans-serif;color:#E6EDF3">Not filed: ' + esc(det.slots.slice(0,4).join(' · ') + (det.slots.length>4 ? ' · +' + (det.slots.length-4) + ' more' : '')) + '</div>'
+    : '';
+  const late = det.lateNames.length
+    ? '<div style="font:400 9.5px/1 ' + MONO + ';letter-spacing:.06em;color:#5C7286;text-transform:uppercase">LATE: ' + esc(det.lateNames.slice(0,3).join(' · ')) + '</div>'
+    : '';
+  return '<div class="lxr' + (alert ? ' alert' : '') + '" data-code="' + esc(s.code) + '"' + (alert ? ' data-alert' : '')
+      + ' role="button" tabindex="0" style="padding:' + pad + ';border-top:1px solid rgba(147,169,188,.14)' + rail + ';display:flex;flex-direction:column;gap:9px">'
+    + '<div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">'
+      + '<span style="font:800 26px/0.9 \'Big Shoulders Display\',sans-serif;letter-spacing:.02em;color:#fff;text-transform:uppercase">' + esc(s.code) + '</span>'
+      + '<span style="font:400 9.5px/1 ' + MONO + ';letter-spacing:.06em;color:#93A9BC">' + right + '</span></div>'
+    + bar + notFiled + late + '</div>';
+}
 function missedView(){
-  const meta = rangeMeta();
   const stands = getStands(ohRange);
-  const totMiss = stands.reduce((a,s)=>a+s.missing,0), totLate = stands.reduce((a,s)=>a+s.late,0);
+  const totMiss = stands.reduce((a,s)=>a+s.missing,0);
+  const totLate = stands.reduce((a,s)=>a+s.late,0);
+  const behind = stands.filter(s=>s.missing>0).length;
   const rows = stands.slice().sort((a,b)=> (b.missing-a.missing) || (b.late-a.late) || (b.recaps-a.recaps));
-  const dirty = rows.filter(s => s.missing>0 || s.late>0);
-  const clean = rows.filter(s => !s.missing && !s.late);
-  let html = '<div style="display:flex;align-items:center;flex-wrap:wrap;gap:9px">' + rangePill() + '</div>'
-    + '<h2 class="oh-h2" style="padding-top:8px">Missed Recaps</h2>'
-    + '<div class="oh-context">' + (totMiss+totLate
-        ? totMiss + ' not filed · ' + totLate + ' late · ' + esc(meta.word)
-        : 'Every recap in · ' + esc(meta.word)) + '</div>'
-    + rangeDrawer('report');
-  if(!dirty.length){
-    html += '<div class="oh-allclear">Every shift recap for ' + esc(meta.word) + ' was filed on time</div>';
-  } else {
-    html += '<div class="oh-section act">Behind · ' + dirty.length + '</div><div class="oh-cards">'
-      + dirty.map(s => {
-        const det = missedDetail(s.code, ohRange);
-        const tracked = (s.onTime + s.late + s.missing) || 1;
-        const pc = n => Math.round(n/tracked*100);
-        const slotsTxt = det.slots.slice(0,4).join(' · ') + (det.slots.length>4 ? ' · +' + (det.slots.length-4) + ' more' : '');
-        return '<button class="oh-card ' + (s.missing>0 ? 'bad' : 'watch') + '" data-code="' + esc(s.code) + '">'
-          + '<span style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">'
-            + '<span class="oh-rowname" style="font-size:19px">' + esc(s.code) + '</span>'
-            + '<span class="oh-meta">' + s.onTime + ' on time · ' + s.late + ' late · ' + s.missing + ' not filed</span>'
-          + '</span>'
-          + '<span class="oh-stack">'
-            + '<i style="width:' + pc(s.onTime) + '%;background:var(--good)"></i>'
-            + '<i style="width:' + pc(s.late) + '%;background:var(--watch)"></i>'
-            + '<i style="width:' + pc(s.missing) + '%;background:var(--bad)"></i>'
-          + '</span>'
-          + (det.slots.length ? '<span class="oh-meta">Not filed: ' + esc(slotsTxt) + '</span>' : '')
-          + (det.lateNames.length ? '<span class="oh-meta">Late: ' + esc(det.lateNames.slice(0,3).join(' · ')) + '</span>' : '')
-          + '</button>';
-      }).join('') + '</div>';
-  }
-  // Every clean stand is always listed as a tappable row so all 8 stands stay
-  // reachable here — Missed Recaps is now the sole home entry point into the
-  // per-stand detail screens (including stands with zero missed/late recaps).
-  if(clean.length){
-    html += '<div class="oh-section">All in · ' + clean.length + '</div><div>'
-      + clean.map(s => '<button class="oh-row" data-code="' + esc(s.code) + '"><span class="oh-rowname">' + esc(s.code) + '</span><span class="oh-meta">' + s.onTime + ' filed on time</span></button>').join('')
-      + '</div>';
-  }
-  html += '<div class="oh-foot">Green filed on time, yellow late, red never filed — out of every expected Open / Mid / Close shift in range. Shifts still inside their filing window don’t count against a stand. Tap a stand to open it.</div>';
-  return html;
+  return lxHeader('HOME', ohLedgerDate(), 'Missed Recaps')
+    + lxRangeStrip()
+    + lxStatStrip([[totMiss, '#F2506A', 'NOT FILED'], [totLate, '#F5E31F', 'LATE'], [behind, '#F2506A', 'BEHIND']])
+    + '<div style="padding:20px 20px 9px;font:500 9.5px/1 ' + MONO + ';letter-spacing:.2em;color:#5C7286">BY STAND &middot; WORST FIRST</div>'
+    + rows.map(missedBlock).join('')
+    + lxFoot('Neutral filed on time, yellow late, coral never filed &mdash; out of every expected Open / Mid / Close shift in range. Tap a stand to open it.');
 }
 
-/* ---- stand overview ---- */
+/* ---- stand hub ---- */
+function lxDest(go, title, subHtml, alert){
+  const pad = alert ? '16px 20px 16px 17px' : '16px 20px';
+  const rail = alert ? ';border-left:3px solid #F2506A' : '';
+  const arrowColor = alert ? '#F2506A' : '#5C7286';
+  return '<div class="lxr' + (alert ? ' alert' : '') + '" data-go="' + go + '"' + (alert ? ' data-alert' : '')
+      + ' role="button" tabindex="0" style="display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;padding:' + pad + ';border-bottom:1px solid rgba(147,169,188,.14)' + rail + '">'
+    + '<div style="display:flex;flex-direction:column;gap:5px;min-width:0">'
+      + '<div style="font:800 26px/0.9 \'Big Shoulders Display\',sans-serif;letter-spacing:.02em;color:#fff;text-transform:uppercase">' + esc(title) + '</div>'
+      + '<div style="font:400 9.5px/1 ' + MONO + ';letter-spacing:.1em;color:' + (alert ? '#F2506A' : '#5C7286') + '">' + subHtml + '</div></div>'
+    + '<div aria-hidden="true" style="font:400 18px/1 ' + MONO + ';color:' + arrowColor + '">&#8594;</div></div>';
+}
 function standView(){
   const s = getStand(ohCode, ohRange);
+  const shifts = shiftsInRange();
   const t = getTimes(ohCode, ohRange)[0];
-  const hz = getHazards(ohCode, ohRange).length;
+  const haz = getHazards(ohCode, ohRange);
   const ppl = getPeople(ohCode, ohRange);
   const flagged = ppl.filter(p => p.bad > 0).length;
-  const nav = [
-    ['recaps','Recaps', s.recaps + ' filed in range', false],
-    ['times','Window times', t ? 'lane total ' + mmss(t.sec) + ' · ' + t.cars + ' cars · ' + t.day : 'No HME upload yet', false],
-    ['haz','Hazards', hazText(hz) + (hz ? ' · latest ' + getHazards(ohCode, ohRange)[0].meta.split(' · ')[1] : ''), hz > 0],
-    ['people','People', ppl.length + ' mentioned by name' + (flagged ? ' · ' + flagged + ' flagged' : ''), flagged > 0],
-    ['waste','Waste', wastePreview(ohCode), false]
-  ];
-  return '<h1 class="oh-h1">' + esc(s.code) + '</h1>'
-    + '<div class="oh-pillrow">' + rangePill()
-      + '<span class="oh-meta">' + esc(onTimeText(s)) + '</span></div>'
-    + rangeDrawer('stand')
-    + '<div class="oh-kpis">'
-      + '<div class="oh-kpi"><div class="oh-kpi-n">' + s.recaps + '/' + shiftsInRange() + '</div><div class="oh-kpi-l">RECAPS</div></div>'
-      + '<div class="oh-kpi"><div class="oh-kpi-n" style="color:var(--good)">+' + s.goodN + '</div><div class="oh-kpi-l">GOOD FLAGS</div></div>'
-      + '<div class="oh-kpi"><div class="oh-kpi-n" style="color:var(--bad)">-' + s.badN + '</div><div class="oh-kpi-l">BAD FLAGS</div></div>'
-    + '</div>'
-    + '<div class="oh-sub" style="color:#DBE5F1">late filing: ' + esc(s.lateWho || 'All filed on time') + '</div>'
-    + '<div class="oh-nav">' + nav.map(n =>
-        '<button class="oh-navcard" data-go="' + n[0] + '"><span><b>' + esc(n[1]) + '</b>'
-        + '<i class="' + (n[3] ? 'warn' : '') + '">' + esc(n[2]) + '</i></span>'
-        + '<span class="oh-caret" style="font-size:18px">&rsaquo;</span></button>').join('') + '</div>'
-    + '<div class="oh-foot">Every number on this stand covers ' + esc(rangeMeta().word)
-      + '. Tap the range pill up top to change it without leaving the stand.</div>';
+  const waste = getWaste(ohCode);
+  const wasteLatest = waste.find(r => r.date);
+  const summ = s.onTime + '/' + shifts + ' ON TIME &middot; ' + s.late + ' LATE &middot; <span style="color:#F2506A">' + s.missing + ' MISSING</span>';
+  const lateWho = s.lateWho ? s.lateWho.toUpperCase() : 'ALL FILED ON TIME';
+  const timesSub = t ? 'LANE TOTAL ' + mmss(t.sec) + ' &middot; ' + t.cars + ' CARS &middot; ' + esc(t.day) : 'NONE IN RANGE';
+  const hazSub = haz.length ? haz.length + ' REPORTED &middot; LATEST ' + esc((haz[0].meta.split(' · ')[1] || '')) : 'NONE IN RANGE';
+  const peopleSub = ppl.length ? ppl.length + ' MENTIONED' + (flagged ? ' &middot; <span style="color:#F5E31F">' + flagged + ' FLAGGED</span>' : '') : 'NONE IN RANGE';
+  const wasteSub = waste.length ? waste.length + ' ITEM' + (waste.length===1?'':'S') + ' LOGGED' + (wasteLatest ? ' &middot; LATEST ' + esc(wasteFmtDate(wasteLatest.date)) : '') : 'NONE IN RANGE';
+  return lxHeader(ohStandFrom === 'board' ? 'WINDOW TIMES' : 'MISSED RECAPS', LX_RANGE_SHORT[ohRange] || '7 DAYS', s.code)
+    + '<div style="padding:9px 20px 14px;font:400 11px/1.5 ' + MONO + ';letter-spacing:.04em;color:#93A9BC;border-bottom:1px solid rgba(147,169,188,.16)">' + summ + '</div>'
+    + lxStatStrip([[s.recaps + '/' + shifts, '#fff', 'RECAPS'], ['+' + s.goodN, '#fff', 'GOOD FLAGS'], ['−' + s.badN, '#F2506A', 'BAD FLAGS']], 32)
+    + '<div style="padding:14px 20px;font:400 9.5px/1.5 ' + MONO + ';letter-spacing:.06em;color:#5C7286;text-transform:uppercase;border-bottom:1px solid rgba(147,169,188,.14)">LATE FILING: ' + esc(lateWho) + '</div>'
+    + lxDest('recaps', 'Recaps', s.recaps + ' FILED IN RANGE', false)
+    + lxDest('times', 'Window Times', timesSub, false)
+    + lxDest('haz', 'Hazards', hazSub, haz.length > 0)
+    + lxDest('people', 'People', peopleSub, false)
+    + lxDest('waste', 'Waste', wasteSub, false)
+    + lxFoot('Every number on this stand covers ' + esc(rangeMeta().word) + '. Set the range from Missed Recaps or Window Times before opening a stand.');
 }
 
 /* ---- sub-screens ---- */
 function recapsView(){
   const rows = getRecaps(ohCode, ohRange);
-  return subHead('Recaps', shiftsInRange() + ' shifts in range · most recent first')
-    + '<div class="oh-cards" style="margin-top:20px">' + rows.map(r => {
-      const tone = r.missing ? 'bad' : r.late ? 'watch' : '';
-      const tag = r.missing ? 'div' : 'button';
-      return '<' + tag + ' class="oh-card ' + tone + '"' + (r.missing ? ' style="cursor:default"' : ' data-openrec="' + r.recordIndex + '"') + '>'
-        + '<span class="oh-card-top"><span class="oh-name" style="font-size:20px">' + esc(r.shift) + '</span>'
-        + '<span class="oh-meta">' + esc(r.filed) + '</span></span>'
-        + (r.missing ? '' : '<span class="oh-metrics"><span class="g">' + esc(r.good) + '</span>'
-            + '<span class="b">' + esc(r.bad) + '</span><span class="m">' + esc(r.by) + '</span></span>')
-        + (r.note ? '<span class="oh-meta" style="color:#DBE5F1;line-height:1.5">' + esc(r.note) + '</span>' : '')
-        + (r.missing ? (function(){ const led = deputyFor(ohCode, r.dayIndex, r.shift);
-            return led ? '<span class="oh-meta">scheduled: ' + esc(led) + '</span>' : ''; })() : '')
-        + (r.missing || r.late ? '<span class="oh-chips"><span class="oh-chip ' + (r.missing ? 'bad' : 'watch') + '">'
-            + (r.missing ? 'no recap on file' : 'filed late') + '</span></span>' : '')
-        + '</' + tag + '>';
-    }).join('') + '</div>'
-    + '<div class="oh-foot">Newest first. Tap a filed recap to read the full submission. Shifts with no recap stay in the list as red cards so a gap is never invisible.</div>';
+  const body = rows.map(function(r){
+    if(r.missing){
+      const led = deputyFor(ohCode, r.dayIndex, r.shift);
+      return '<div style="display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:12px;padding:14px 20px 14px 17px;border-top:1px solid rgba(147,169,188,.14);border-left:3px solid #F2506A">'
+        + '<div style="display:flex;flex-direction:column;gap:6px;min-width:0">'
+        + '<div style="font:800 26px/0.9 \'Big Shoulders Display\',sans-serif;letter-spacing:.02em;color:#fff;text-transform:uppercase">' + esc(r.shift) + '</div>'
+        + '<div style="font:400 9.5px/1 ' + MONO + ';letter-spacing:.1em;color:#5C7286">SCHEDULED: ' + esc((led || '—')).toUpperCase() + '</div></div>'
+        + '<div style="font:500 9.5px/1 ' + MONO + ';letter-spacing:.14em;color:#F2506A">NOT FILED</div></div>';
+    }
+    const gNum = Math.max(0, parseInt(String(r.good).replace(/[^0-9]/g,'')) || 0);
+    const bNum = Math.max(0, parseInt(String(r.bad).replace(/[^0-9]/g,'')) || 0);
+    const flagLine = '<div style="display:flex;align-items:baseline;gap:10px;font:400 9.5px/1 ' + MONO + ';letter-spacing:.1em">'
+      + '<span style="color:' + (gNum>0?'#E6EDF3':'#5C7286') + '">+' + gNum + '</span>'
+      + '<span style="color:' + (bNum>0?'#F2506A':'#5C7286') + '">−' + bNum + '</span>'
+      + (r.by ? '<span style="color:#5C7286">' + esc(r.by).toUpperCase() + '</span>' : '') + '</div>';
+    const excerpt = r.note ? '<div style="font:400 13.5px/1.45 Barlow,sans-serif;color:#E6EDF3">' + esc(r.note) + '</div>' : '';
+    return '<div class="lxr" data-openrec="' + r.recordIndex + '" role="button" tabindex="0" style="display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:12px;padding:14px 20px;border-top:1px solid rgba(147,169,188,.14)">'
+      + '<div style="display:flex;flex-direction:column;gap:6px;min-width:0">'
+      + '<div style="font:800 26px/0.9 \'Big Shoulders Display\',sans-serif;letter-spacing:.02em;color:#fff;text-transform:uppercase">' + esc(r.shift) + '</div>'
+      + flagLine + excerpt + '</div>'
+      + '<div style="font:400 11px/1 ' + MONO + ';letter-spacing:.06em;color:#93A9BC">' + esc(r.filed) + '</div></div>';
+  }).join('');
+  return lxHeader(ohCode, LX_RANGE_SHORT[ohRange] || '7 DAYS', 'Recaps')
+    + lxCount(shiftsInRange() + ' SHIFTS IN RANGE &middot; MOST RECENT FIRST', true)
+    + (rows.length ? body : '<div style="padding:20px;font:400 11px/1.4 ' + MONO + ';letter-spacing:.12em;color:#5C7286">NOTHING IN THIS RANGE</div>')
+    + lxFoot('Tap any filed shift to open its full recap. Unfiled shifts stay in the list so the gap is visible.');
 }
 
 function timesView(){
   const rows = getTimes(ohCode, ohRange), lead = rows[0];
-  return subHead('Window times', lead ? 'HME uploads · latest ' + mmss(lead.sec) + ' lane total' : 'No HME uploads in range')
-    + '<div style="margin-top:20px">'
-    + (rows.length
-      ? '<div class="oh-thead"><div style="flex:1">DAY</div><div style="width:80px">LANE TOTAL</div><div style="width:70px;text-align:right">CARS</div></div>'
-        + rows.map((d,i) => {
+  var body;
+  if(rows.length){
+    body = '<div data-table>'
+      + '<div style="display:grid;grid-template-columns:1fr 78px 52px;gap:18px;padding:9px 20px;border-bottom:1px solid rgba(147,169,188,.28);font:500 9px/1 ' + MONO + ';letter-spacing:.18em;color:#5C7286"><span>DAY</span><span style="text-align:right">LANE TOTAL</span><span style="text-align:right">CARS</span></div>'
+      + rows.map(function(d,i){
           const prev = rows[i+1], diff = prev ? d.sec - prev.sec : null;
-          const tone = d.sec <= 90 ? 'var(--good)' : d.sec <= 120 ? 'var(--watch)' : 'var(--bad)';
-          return '<div class="oh-trow"><div class="oh-trow-main">'
-            + '<div class="oh-day">' + esc(d.day) + '</div>'
-            + '<div class="oh-lane" style="color:' + tone + '">' + mmss(d.sec) + '</div>'
-            + '<div class="oh-cars">' + d.cars + '</div></div>'
-            + '<div class="oh-tsub"><span>'
-            + (diff === null ? 'first upload' : diff === 0 ? 'flat vs prior day'
-                : (diff > 0 ? '+' : '\u2212') + Math.abs(diff) + 's vs prior day') + '</span>'
-            + (d.sec2 ? '<span>lane 2 ' + mmss(d.sec2) + '</span>' : '') + '</div></div>';
-        }).join('')
-      : '<div class="oh-empty">No HME upload for this stand yet</div>')
-    + '</div>'
-    + '<div class="oh-foot">Lane total is the HME average for the whole business day — under 1:30 green, over 2:00 red. Uploaded days only.</div>';
+          const last = i === rows.length-1;
+          var delta, dcolor;
+          if(diff === null){ delta = 'FIRST UPLOAD'; dcolor = '#5C7286'; }
+          else if(diff > 0){ delta = '+' + diff + 's VS PRIOR'; dcolor = '#F5E31F'; }
+          else if(diff < 0){ delta = '\u2212' + Math.abs(diff) + 's VS PRIOR'; dcolor = '#93A9BC'; }
+          else { delta = 'FLAT VS PRIOR'; dcolor = '#5C7286'; }
+          return '<div style="display:grid;grid-template-columns:1fr 78px 52px;gap:18px;align-items:baseline;padding:15px 20px;border-bottom:1px solid rgba(147,169,188,' + (last?'.14':'.1') + ')">'
+            + '<div style="display:flex;flex-direction:column;gap:5px"><span style="font:700 22px/1 ' + MONO + ';color:#fff">' + esc(d.day) + '</span>'
+            + '<span style="font:400 9px/1 ' + MONO + ';letter-spacing:.08em;color:' + dcolor + '">' + delta + '</span></div>'
+            + '<span style="font:700 22px/1 ' + MONO + ';color:' + lxLaneColor(d.sec) + ';text-align:right">' + mmss(d.sec) + '</span>'
+            + '<span style="font:400 13px/1 ' + MONO + ';color:#93A9BC;text-align:right">' + d.cars + '</span></div>';
+        }).join('') + '</div>';
+  } else {
+    body = '<div style="padding:20px;font:400 11px/1.4 ' + MONO + ';letter-spacing:.12em;color:#5C7286">NOTHING IN THIS RANGE</div>';
+  }
+  return lxHeader(ohCode, LX_RANGE_SHORT[ohRange] || '7 DAYS', 'Window Times')
+    + lxCount('HME UPLOADS' + (lead ? ' &middot; LATEST ' + mmss(lead.sec) + ' LANE TOTAL' : ''), true)
+    + body
+    + lxFoot('Lane total is the HME average for the whole business day &mdash; under 1:30 neutral, 1:30&ndash;2:00 yellow, over 2:00 coral. Uploaded days only.');
 }
 
 function hazView(){
   const rows = getHazards(ohCode, ohRange);
-  return subHead('Hazards', (rows.length === 0 ? 'None reported in ' : hazText(rows.length) + ' in ') + rangeMeta().word)
-    + '<div class="oh-cards" style="margin-top:20px">'
-    + (rows.length ? rows.map(h => '<div class="oh-card ' + (h.days <= 2 ? 'bad' : 'watch') + '" style="cursor:default">'
-        + '<span class="oh-quote">' + esc(h.item) + '</span>'
-        + '<span class="oh-meta">' + esc(h.meta) + '</span></div>').join('')
-      : '<div class="oh-empty">No hazards reported in this range</div>') + '</div>'
-    + '<div class="oh-foot">Safety answers from the recaps themselves — red for the last 48 hours, amber for older. Nothing to clear: a hazard drops off once its recap falls outside the range.</div>';
+  const recent = rows.filter(function(h){ return h.days <= 1; });
+  const older = rows.filter(function(h){ return h.days > 1; });
+  function hazRow(h, railed, first){
+    const rail = railed ? ';border-left:3px solid #F2506A' : '';
+    const pad = railed ? '14px 20px 14px 17px' : '14px 20px';
+    const topW = first ? '.14' : '.1';
+    const attColor = railed ? '#F2506A' : '#5C7286';
+    return '<div style="padding:' + pad + ';border-top:1px solid rgba(147,169,188,' + topW + ')' + rail + ';display:flex;flex-direction:column;gap:6px">'
+      + '<div style="font:400 13.5px/1.45 Barlow,sans-serif;color:#E6EDF3">' + esc(h.item) + '</div>'
+      + '<div style="font:400 9.5px/1 ' + MONO + ';letter-spacing:.1em;color:' + attColor + '">' + esc(h.meta).toUpperCase() + '</div></div>';
+  }
+  var body = '';
+  if(recent.length){
+    body += '<div style="padding:20px 20px 9px;font:500 9.5px/1 ' + MONO + ';letter-spacing:.2em;color:#F2506A">LAST 48 HOURS</div>'
+      + recent.map(function(h,i){ return hazRow(h, true, i===0); }).join('');
+  }
+  if(older.length){
+    body += '<div style="padding:20px 20px 9px;font:500 9.5px/1 ' + MONO + ';letter-spacing:.2em;color:#5C7286">OLDER IN RANGE</div>'
+      + older.map(function(h,i){ return hazRow(h, false, i===0); }).join('');
+  }
+  if(!rows.length) body = '<div style="padding:20px;font:400 11px/1.4 ' + MONO + ';letter-spacing:.12em;color:#5C7286">NOTHING IN THIS RANGE</div>';
+  return lxHeader(ohCode, LX_RANGE_SHORT[ohRange] || '7 DAYS', 'Hazards')
+    + lxCount(rows.length + ' REPORTED &middot; <span style="color:#F2506A">' + recent.length + ' IN THE LAST 48 HOURS</span>', true)
+    + body
+    + lxFoot('Safety answers straight from the recaps. Nothing to clear &mdash; a hazard drops off once its recap falls outside the range.');
 }
 
 function peopleView(){
   const all = getPeople(ohCode, ohRange);
-  const shown = all.filter(p => matches(p, ohQ)).sort((a,b) => b.bad - a.bad || b.good - a.good);
-  const flagged = all.filter(p => p.bad > 0).length;
-  const ctx = ohQ.trim() ? shown.length + ' of ' + all.length + ' match “' + ohQ.trim() + '”'
-                         : all.length + ' mentioned by name · ' + flagged + ' flagged';
-  return subHead('People', ctx)
-    + '<div class="oh-search"><span style="color:var(--text-faint)">&#8981;</span>'
-      + '<input id="oh-q" type="search" placeholder="Search a name or a recap line" value="' + esc(ohQ) + '">'
-      + (ohQ ? '<button id="oh-clear">clear</button>' : '') + '</div>'
-    + '<div style="margin-top:12px">' + shown.map(p =>
-        '<button class="oh-row" data-person="' + esc(p.name) + '">'
-        + '<span style="display:flex;align-items:center;gap:11px;min-width:0">'
-        + '<span class="oh-dot" style="background:' + (p.bad > 1 ? 'var(--bad)' : p.bad === 1 ? 'var(--watch)' : 'var(--good)') + '"></span>'
-        + '<span><span class="oh-rowname">' + esc(p.name) + '</span>'
-        + '<span class="oh-meta" style="display:block;padding-top:4px">'
-        + (p.excerpts.length === 1 ? '1 excerpt' : p.excerpts.length + ' excerpts') + '</span></span></span>'
-        + '<span style="display:flex;align-items:center;gap:11px" class="oh-meta">'
-        + '<span style="color:#DBE5F1">+' + p.good + '  \u2212' + p.bad + '</span>'
-        + '<span class="oh-caret">&rsaquo;</span></span></button>').join('')
-    + (shown.length ? '' : '<div class="oh-empty" style="margin-top:8px">Nobody at this stand matches that</div>')
-    + '</div>'
-    + '<div class="oh-foot">Search covers names and the recap text itself, so “drain cover” finds the person who reported it. Ranked by who is being flagged, not alphabetically.</div>';
+  const shown = all.filter(function(p){ return matches(p, ohQ); }).sort(function(a,b){ return b.bad - a.bad || b.good - a.good; });
+  const flagged = all.filter(function(p){ return p.bad > 0; }).length;
+  const countHtml = all.length + ' MENTIONED BY NAME' + (flagged ? ' &middot; <span style="color:#F2506A">' + flagged + ' FLAGGED</span>' : '');
+  const search = '<div style="display:flex;align-items:center;gap:10px;margin:16px 20px 0;padding-bottom:9px;border-bottom:1px solid rgba(147,169,188,.28)">'
+    + '<span style="font:400 11px/1 ' + MONO + ';color:#5C7286">\u2315</span>'
+    + '<input id="oh-q" placeholder="SEARCH A NAME OR RECAP LINE" value="' + esc(ohQ) + '" style="font:400 12px/1 ' + MONO + ';letter-spacing:.06em;color:#E6EDF3;background:transparent;border:0;outline:0;width:100%">'
+    + '</div>';
+  var rowsHtml = shown.map(function(p){
+    const alert = p.bad > 0;
+    const pad = alert ? '14px 20px 14px 17px' : '14px 20px';
+    const rail = alert ? ';border-left:3px solid #F2506A' : '';
+    const exc = p.excerpts.length === 1 ? '1 EXCERPT' : p.excerpts.length + ' EXCERPTS';
+    return '<div class="lxr' + (alert ? ' alert' : '') + '" data-person="' + esc(p.name) + '"' + (alert ? ' data-alert' : '') + ' role="button" tabindex="0" style="display:grid;grid-template-columns:1fr auto auto;align-items:baseline;gap:14px;padding:' + pad + ';border-top:1px solid rgba(147,169,188,.14)' + rail + '">'
+      + '<div style="display:flex;flex-direction:column;gap:5px;min-width:0"><span style="font:800 26px/0.9 \'Big Shoulders Display\',sans-serif;letter-spacing:.02em;color:#fff;text-transform:uppercase">' + esc(p.name) + '</span>'
+      + '<span style="font:400 9.5px/1 ' + MONO + ';letter-spacing:.1em;color:#5C7286">' + exc + '</span></div>'
+      + '<div style="display:flex;gap:9px;font:400 11px/1 ' + MONO + '"><span style="color:' + (p.good>0?'#E6EDF3':'#5C7286') + '">+' + p.good + '</span><span style="color:' + (p.bad>0?'#F2506A':'#5C7286') + '">\u2212' + p.bad + '</span></div>'
+      + '<div aria-hidden="true" style="font:400 16px/1 ' + MONO + ';color:' + (alert?'#F2506A':'#5C7286') + '">\u2192</div></div>';
+  }).join('');
+  if(!shown.length) rowsHtml = '<div style="padding:20px;font:400 11px/1.4 ' + MONO + ';letter-spacing:.12em;color:#5C7286">NOTHING IN THIS RANGE</div>';
+  return lxHeader(ohCode, LX_RANGE_SHORT[ohRange] || '7 DAYS', 'People')
+    + lxCount(countHtml, false)
+    + search
+    + rowsHtml
+    + lxFoot('Tallies count good and bad flags across every recap that names the person. Tap a name for their mentions.');
 }
 
 function personView(){
-  const p = getPeople(ohCode, ohRange).find(x => x.name === ohPerson);
-  if (!p) return '';
-  return subHead(p.name, p.good + ' good · ' + p.bad + ' bad')
-    + '<div class="oh-cards" style="margin-top:20px">' + p.excerpts.map(e =>
-        '<div class="oh-card ' + (e.kind === 'bad' ? 'bad' : 'good') + '" style="cursor:default">'
-        + '<span class="oh-quote">' + esc(e.text) + '</span>'
-        + '<span class="oh-metrics"><span style="color:' + (e.kind === 'bad' ? '#FFB3BB' : '#7FE0C2') + '">'
-        + (e.kind === 'bad' ? 'flagged' : 'called out') + '</span>'
-        + '<span class="m">' + esc(e.when) + '</span></span></div>').join('') + '</div>'
-    + '<div class="oh-foot">Excerpts are shown as written — the sentence is the evidence, so it is never rewritten into a count.</div>';
+  const p = getPeople(ohCode, ohRange).find(function(x){ return x.name === ohPerson; });
+  if(!p) return lxHeader('PEOPLE', LX_RANGE_SHORT[ohRange] || '7 DAYS', 'Person') + lxFoot('No mentions.');
+  const gc = p.good > 0 ? '#E6EDF3' : '#5C7286';
+  const bc = p.bad > 0 ? '#F2506A' : '#5C7286';
+  return lxHeader('PEOPLE', LX_RANGE_SHORT[ohRange] || '7 DAYS', p.name)
+    + lxCount('<span style="color:' + gc + '">+' + p.good + '</span> &middot; <span style="color:' + bc + '">\u2212' + p.bad + '</span> &middot; ' + p.excerpts.length + ' EXCERPT' + (p.excerpts.length===1?'':'S'), true)
+    + p.excerpts.map(function(e){
+        const bad = e.kind === 'bad';
+        const rail = bad ? ';border-left:3px solid #F2506A' : '';
+        const pad = bad ? '14px 20px 14px 17px' : '14px 20px';
+        return '<div style="padding:' + pad + ';border-top:1px solid rgba(147,169,188,.14)' + rail + ';display:flex;flex-direction:column;gap:6px">'
+          + '<div style="font:400 13.5px/1.45 Barlow,sans-serif;color:#E6EDF3">' + esc(e.text) + '</div>'
+          + '<div style="font:400 9.5px/1 ' + MONO + ';letter-spacing:.1em;color:' + (bad?'#F2506A':'#5C7286') + '">' + esc(e.when).toUpperCase() + '</div></div>';
+      }).join('')
+    + lxFoot('Excerpts are shown as written &mdash; the sentence is the evidence, so it is never rewritten into a count.');
 }
 
 /* ---- compare ---- */
 /* ---- window times (ranked board) ---- */
 function boardView(){
-  const all = getStands(ohRange).map(s => s.code);
-  // Times tab sorts by lane total avg or cars/day; the subtitle line is the toggle.
-  const bm = (ohMetric === 'times' && ohTimesSort === 'cars') ? 'timescars' : ohMetric;
-  const note = ohMetric === 'times'
-      ? (ohTimesSort === 'cars'
-          ? 'Cars per day across the range — higher is better, so the busiest stand leads. Tap the line above the tabs to rank by lane total again.'
-          : 'Lane total average across the range — lower is better, so the fastest stand leads. Tap the line above the tabs to rank by cars/day instead.')
-    : ohMetric === 'sales' ? 'Ranks by net sales once the Xenial upload is connected.'
-    : 'Higher is better. Tap any row to open that stand.';
-  const contextLine = ohMetric === 'sales' ? 'Net sales · pending'
-    : 'All ' + all.length + ' stands by ' + esc(score(all[0], bm).unit) + ' · tap any row to open it';
-  return '<div style="display:flex;align-items:center;flex-wrap:wrap;gap:9px">' + rangePill() + '</div>'
-    + '<h2 class="oh-h2" style="padding-top:8px">Window Times</h2>'
-    + (ohMetric === 'times'
-        ? '<div class="oh-context" id="oh-times-sort" style="cursor:pointer">' + contextLine + ' <span style="color:var(--amber)">&#8645;</span></div>'
-        : '<div class="oh-context">' + contextLine + '</div>')
-    + rangeDrawer('leaderboard')
-    + metricTabs(ohMetric, 'data-metric', BOARD_METRICS)
-    + '<div style="margin-top:18px">'
-      + (ohMetric === 'sales' ? '<div class="oh-empty">' + SALES_PENDING + '</div>' : rankRows(all, bm))
-    + '</div>'
-    + '<div class="oh-foot">' + note + '</div>';
+  const codes = getStands(ohRange).map(function(s){ return s.code; });
+  const metricCars = (ohTimesSort === 'cars');
+  const data = codes.map(function(c){ const p = (typeof PERF!=='undefined' && PERF[c]) || {}; return { code:c, has:!!p.hasTimer, lane:p.lane||0, cars:p.carsPerDay||0 }; });
+  const withData = data.filter(function(d){ return d.has; });
+  const noData = data.filter(function(d){ return !d.has; });
+  if(metricCars) withData.sort(function(a,b){ return b.cars - a.cars; });
+  else withData.sort(function(a,b){ return a.lane - b.lane; });
+  const maxCars = withData.reduce(function(m,d){ return Math.max(m,d.cars); }, 0) || 1;
+  const fastest = withData.length ? withData.reduce(function(m,d){ return Math.min(m,d.lane); }, 1e9) : 1;
+  var rowsHtml = withData.map(function(d,i){
+    const leader = i === 0;
+    const laneColor = lxLaneColor(d.lane);
+    const bad = d.lane > 120;
+    const rail = bad ? ';border-left:3px solid #F2506A' : '';
+    const pad = bad ? '14px 20px 14px 17px' : '14px 20px';
+    var indexColor, valueColor, fillColor, fillPct, valueTxt, subTxt, subColor;
+    if(metricCars){
+      indexColor = leader ? '#fff' : '#5C7286';
+      valueColor = leader ? '#fff' : '#E6EDF3';
+      fillColor  = leader ? '#fff' : '#E6EDF3';
+      fillPct = Math.max(4, Math.round(d.cars / maxCars * 100));
+      valueTxt = d.cars.toLocaleString();
+      subTxt = mmss(d.lane) + ' LANE TOTAL';
+      subColor = (laneColor === '#E6EDF3') ? '#5C7286' : laneColor;
+    } else {
+      indexColor = leader ? '#fff' : (bad ? '#F2506A' : '#5C7286');
+      valueColor = leader ? '#fff' : laneColor;
+      fillColor  = leader ? '#fff' : laneColor;
+      fillPct = Math.max(4, Math.round(fastest / d.lane * 100));
+      valueTxt = mmss(d.lane);
+      subTxt = d.cars.toLocaleString() + ' CARS/DAY';
+      subColor = '#5C7286';
+    }
+    return '<div class="lxr' + (bad ? ' alert' : '') + '" data-code="' + esc(d.code) + '"' + (bad ? ' data-alert' : '') + ' role="button" tabindex="0" style="display:grid;grid-template-columns:26px 1fr auto;align-items:center;gap:14px;padding:' + pad + ';border-bottom:1px solid rgba(147,169,188,.14)' + rail + '">'
+      + '<div style="font:' + (leader?'700':'400') + ' 12px/1 ' + MONO + ';color:' + indexColor + '">' + String(i+1).padStart(2,'0') + '</div>'
+      + '<div style="display:flex;flex-direction:column;gap:7px;min-width:0">'
+      + '<div style="font:800 26px/0.9 \'Big Shoulders Display\',sans-serif;letter-spacing:.02em;color:#fff;text-transform:uppercase">' + esc(d.code) + '</div>'
+      + '<div data-sub style="font:400 9.5px/1 ' + MONO + ';letter-spacing:.06em;color:' + subColor + '">' + subTxt + '</div>'
+      + '<div style="height:3px;background:rgba(147,169,188,.16)" aria-hidden="true"><div style="width:' + fillPct + '%;height:3px;background:' + fillColor + '"></div></div></div>'
+      + '<div style="font:700 26px/1 ' + MONO + ';color:' + valueColor + '">' + valueTxt + '</div></div>';
+  }).join('');
+  var noDataHtml = noData.map(function(d){
+    return '<div class="lxr" data-code="' + esc(d.code) + '" role="button" tabindex="0" style="display:grid;grid-template-columns:26px 1fr auto;align-items:center;gap:14px;padding:14px 20px;border-bottom:1px solid rgba(147,169,188,.14)">'
+      + '<div style="font:400 12px/1 ' + MONO + ';color:#5C7286">\u2014</div>'
+      + '<div style="display:flex;flex-direction:column;gap:7px;min-width:0"><div style="font:800 26px/0.9 \'Big Shoulders Display\',sans-serif;letter-spacing:.02em;color:#fff;text-transform:uppercase">' + esc(d.code) + '</div>'
+      + '<div data-sub style="font:400 9.5px/1 ' + MONO + ';letter-spacing:.06em;color:#5C7286">NO HME DATA</div></div>'
+      + '<div style="font:700 26px/1 ' + MONO + ';color:#5C7286">\u2014</div></div>';
+  }).join('');
+  const toggle = '<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 20px;border-bottom:1px solid rgba(147,169,188,.16)">'
+    + '<span style="font:500 9px/1 ' + MONO + ';letter-spacing:.2em;color:#5C7286">RANK BY</span>'
+    + '<div style="display:flex;gap:16px">'
+    + '<span class="lxr" data-toggle="lane" role="button" tabindex="0" style="font:' + (metricCars?'400':'500') + ' 10px/1 ' + MONO + ';letter-spacing:.14em;color:' + (metricCars?'#5C7286':'#F5E31F') + '">LANE TOTAL</span>'
+    + '<span class="lxr" data-toggle="cars" role="button" tabindex="0" style="font:' + (metricCars?'500':'400') + ' 10px/1 ' + MONO + ';letter-spacing:.14em;color:' + (metricCars?'#F5E31F':'#5C7286') + '">CARS/DAY</span>'
+    + '</div></div>';
+  const foot = metricCars
+    ? 'Cars per day averaged across the range &mdash; higher is better, so the busiest stand leads. Volume has no target, so the rank ramp stays neutral &mdash; but each stand&rsquo;s lane total is still colored by its own threshold, and stands over 2:00 keep their rail.'
+    : 'Lane total average across the range &mdash; lower is better, so the fastest stand leads. Under 1:30 white, 1:30&ndash;2:00 yellow, over 2:00 coral.';
+  return lxHeader('HOME', ohLedgerDate(), 'Window Times')
+    + lxCount('ALL ' + codes.length + ' STANDS &middot; TAP A ROW TO OPEN IT', false)
+    + lxRangeStrip()
+    + toggle
+    + rowsHtml + noDataHtml
+    + lxFoot(foot);
 }
 
 /* ---- scheduled shift-lead lookup (deputy history, privacy-truncated names) ---- */
@@ -68891,24 +69019,37 @@ function wastePreview(code){
 }
 function wasteView(){
   const rows = getWaste(ohCode);
-  const flagged = rows.filter(r=>r.flag).length;
-  return '<div style="display:flex;align-items:center;flex-wrap:wrap;gap:9px">'
-      + '<span class="oh-eyebrow">' + esc(ohCode) + '</span></div>'
-    + '<h2 class="oh-h2" style="padding-top:8px">Waste</h2>'
-    + '<div class="oh-context">Expired product log · ' + rows.length + ' entr' + (rows.length===1?'y':'ies')
-      + (flagged ? ' · ' + flagged + ' with data issues' : '') + ' · newest first</div>'
-    + '<div style="margin-top:20px">'
-    + (rows.length
-      ? '<div class="oh-thead"><div style="flex:1">ITEM</div><div style="width:90px">QTY</div><div style="width:70px;text-align:right">DATE</div></div>'
-        + rows.map(r => '<div class="oh-trow"><div class="oh-trow-main">'
-            + '<div class="oh-day" style="flex:1">' + esc(r.item) + (r.note ? ' <span class="oh-meta">' + esc(r.note) + '</span>' : '') + '</div>'
-            + '<div class="oh-lane" style="width:90px;color:' + (r.flag ? 'var(--watch)' : 'var(--text)') + '">' + esc(r.qty || '?') + '</div>'
-            + '<div class="oh-cars" style="color:' + (r.date ? 'var(--text-dim)' : 'var(--watch)') + '">' + esc(wasteFmtDate(r.date)) + '</div></div>'
-            + (r.flag ? '<div class="oh-tsub"><span style="color:var(--watch)">' + esc(r.flag) + '</span></div>' : '')
-          + '</div>').join('')
-      : '<div class="oh-empty">Nothing in the expired product log for this stand yet</div>')
-    + '</div>'
-    + '<div class="oh-foot">Straight from the Expired Product Log sheet. Rows the log recorded incompletely (unreadable quantity or date) are kept and flagged, not hidden.</div>';
+  const flagged = rows.filter(function(r){ return r.flag; }).length;
+  var body;
+  if(rows.length){
+    body = '<div data-table>'
+      + '<div style="display:grid;grid-template-columns:1fr 82px 62px;gap:18px;padding:9px 20px;border-bottom:1px solid rgba(147,169,188,.28);font:500 9px/1 ' + MONO + ';letter-spacing:.18em;color:#5C7286"><span>ITEM</span><span style="text-align:right">QTY</span><span style="text-align:right">DATE</span></div>'
+      + rows.map(function(r,i){
+          const last = i === rows.length-1;
+          const inc = !!r.flag || !r.date || !r.qty;
+          const rail = inc ? ';border-left:3px solid #F5E31F' : '';
+          const pad = inc ? '15px 20px 15px 17px' : '15px 20px';
+          const noteTxt = !r.date ? 'DATE NOT RECORDED' : (!r.qty ? 'QTY NOT RECORDED' : (r.flag || ''));
+          const note = (inc && noteTxt) ? '<span style="font:400 9px/1 ' + MONO + ';letter-spacing:.08em;color:#F5E31F">' + esc(noteTxt).toUpperCase() + '</span>' : '';
+          const itemCell = note
+            ? '<div style="display:flex;flex-direction:column;gap:5px"><span style="font:400 14px/1.3 Barlow,sans-serif;color:#E6EDF3">' + esc(r.item) + '</span>' + note + '</div>'
+            : '<span style="font:400 14px/1.3 Barlow,sans-serif;color:#E6EDF3">' + esc(r.item) + '</span>';
+          const qtyTxt = r.qty ? esc(r.qty) : 'NO QTY';
+          const qtyColor = r.qty ? '#E6EDF3' : '#F5E31F';
+          const dateTxt = r.date ? esc(wasteFmtDate(r.date)).toUpperCase() : 'NO DATE';
+          const dateColor = r.date ? '#93A9BC' : '#F5E31F';
+          return '<div style="display:grid;grid-template-columns:1fr 82px 62px;gap:18px;align-items:baseline;padding:' + pad + ';border-bottom:1px solid rgba(147,169,188,' + (last?'.14':'.1') + ')' + rail + '">'
+            + itemCell
+            + '<span style="font:400 12.5px/1.3 ' + MONO + ';color:' + qtyColor + ';text-align:right">' + qtyTxt + '</span>'
+            + '<span style="font:400 12.5px/1.3 ' + MONO + ';color:' + dateColor + ';text-align:right">' + dateTxt + '</span></div>';
+        }).join('') + '</div>';
+  } else {
+    body = '<div style="padding:20px;font:400 11px/1.4 ' + MONO + ';letter-spacing:.12em;color:#5C7286">NOTHING IN THIS RANGE</div>';
+  }
+  return lxHeader(ohCode, LX_RANGE_SHORT[ohRange] || '7 DAYS', 'Waste')
+    + lxCount('EXPIRED PRODUCT LOG &middot; ' + rows.length + ' ENTR' + (rows.length===1?'Y':'IES') + (flagged ? ' &middot; <span style="color:#F5E31F">' + flagged + ' INCOMPLETE</span>' : ''), true)
+    + body
+    + lxFoot('Straight from the Expired Product Log sheet. Rows the log recorded incompletely are kept and flagged in yellow, never hidden.');
 }
 
 /* ---- shell ---- */
@@ -68925,13 +69066,13 @@ function render(){
     : ohScreen === 'board' ? boardView()
     : personView();
 
-  const backLabel = (ohScreen === 'board' || ohScreen === 'missed') ? 'Home'
-    : ohScreen === 'stand' ? (ohStandFrom === 'board' ? 'Window Times' : 'Missed Recaps')
-    : ohScreen === 'person' ? 'People' : ohCode;
-  const asOf = (ohScreen !== 'home' && ohAsOf()) ? '<div class="oh-asof">' + esc(ohAsOf()) + '</div>' : '';
+  const isApp = ohScreen !== 'home';
   host.classList.toggle('oh-home-active', ohScreen === 'home');
+  host.classList.toggle('oh-app-active', isApp);
   document.body.classList.toggle('home-active', ohScreen === 'home');
-  host.innerHTML = (ohScreen === 'home' ? '' : '<button class="oh-back" id="oh-back">&larr; ' + esc(backLabel) + '</button>') + body + asOf;
+  document.body.classList.toggle('app-active', isApp);
+  // Each view builds its own Ledger header (with the #oh-back link); no prepended button.
+  host.innerHTML = body;
 
   const on = (sel, fn) => { const el = host.querySelector(sel); if (el) el.addEventListener('click', fn); };
   on('#oh-back', () => {
@@ -68941,22 +69082,15 @@ function render(){
     ohRangeOpen = false;
     render();
   });
-  on('#oh-rangepill', () => { ohRangeOpen = !ohRangeOpen; render(); });
-  on('#oh-times-sort', () => { ohTimesSort = ohTimesSort === 'lane' ? 'cars' : 'lane'; render(); });
-  host.querySelectorAll('[data-standrange]').forEach(b => b.addEventListener('click', () => {
-    ohRange = b.dataset.standrange; ohRangeOpen = false; render();
+  host.querySelectorAll('[data-toggle]').forEach(b => b.addEventListener('click', () => {
+    ohTimesSort = b.dataset.toggle; render();
   }));
-  on('#oh-board', () => { ohScreen = 'board'; ohRangeOpen = false; render(); });
   host.querySelectorAll('[data-home]').forEach(b => b.addEventListener('click', () => {
     const dest = b.dataset.home;
     if(dest === 'overview'){ if(typeof showView==='function') showView('overview'); if(typeof renderOverview==='function') renderOverview(typeof ovRangeState!=='undefined' ? ovRangeState : 'today'); return; }
-    // "Window Times" tile opens the ranked board on its Times tab by default.
     if(dest === 'board'){ ohScreen = 'board'; ohMetric = 'times'; }
     else { ohScreen = dest; }
     ohRangeOpen = false; render();
-  }));
-  host.querySelectorAll('[data-metric]').forEach(b => b.addEventListener('click', () => {
-    ohMetric = b.dataset.metric; render();
   }));
   on('#oh-run', () => { ohRan = true; render(); });
   on('#oh-clear', () => { ohQ = ''; render(); });
