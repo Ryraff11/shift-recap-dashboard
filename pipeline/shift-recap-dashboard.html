@@ -62659,25 +62659,29 @@ function wasteView(){
   var body;
   if(rows.length){
     body = '<div data-table>'
-      + '<div style="display:grid;grid-template-columns:1fr 82px 62px;gap:18px;padding:9px 20px;border-bottom:1px solid rgba(147,169,188,.28);font:500 9px/1 ' + MONO + ';letter-spacing:.18em;color:#5C7286"><span>ITEM</span><span style="text-align:right">QTY</span><span style="text-align:right">DATE</span></div>'
+      + '<div style="display:grid;grid-template-columns:1fr 96px 58px;gap:18px;padding:9px 20px;border-bottom:1px solid rgba(147,169,188,.28);font:500 9px/1 ' + MONO + ';letter-spacing:.18em;color:#5C7286"><span>ITEM</span><span style="text-align:right">QTY</span><span style="text-align:right">DATE</span></div>'
       + rows.map(function(r,i){
           const last = i === rows.length-1;
-          const inc = !!r.flag || !r.date || !r.qty;
+          const noQty = !r.qty;
+          const noDate = !r.date;
+          const inc = !!r.flag || noQty || noDate;
           const rail = inc ? ';border-left:3px solid #F5E31F' : '';
           const pad = inc ? '15px 20px 15px 17px' : '15px 20px';
-          const noteTxt = !r.date ? 'DATE NOT RECORDED' : (!r.qty ? 'QTY NOT RECORDED' : (r.flag || ''));
-          const note = (inc && noteTxt) ? '<span style="font:400 9px/1 ' + MONO + ';letter-spacing:.08em;color:#F5E31F">' + esc(noteTxt).toUpperCase() + '</span>' : '';
+          const noteTxt = r.note ? r.note : (noDate ? 'DATE NOT RECORDED' : (noQty ? 'QTY NOT RECORDED' : ''));
+          const note = noteTxt
+            ? '<span style="font:400 9px/1.3 ' + MONO + ';letter-spacing:.08em;color:' + (inc ? '#F5E31F' : '#5C7286') + '">' + esc(noteTxt).toUpperCase() + '</span>'
+            : '';
           const itemCell = note
-            ? '<div style="display:flex;flex-direction:column;gap:5px"><span style="font:400 14px/1.3 Barlow,sans-serif;color:#E6EDF3">' + esc(r.item) + '</span>' + note + '</div>'
+            ? '<div style="display:flex;flex-direction:column;gap:5px;min-width:0"><span style="font:400 14px/1.3 Barlow,sans-serif;color:#E6EDF3">' + esc(r.item) + '</span>' + note + '</div>'
             : '<span style="font:400 14px/1.3 Barlow,sans-serif;color:#E6EDF3">' + esc(r.item) + '</span>';
-          const qtyTxt = r.qty ? esc(r.qty) : 'NO QTY';
-          const qtyColor = r.qty ? '#E6EDF3' : '#F5E31F';
-          const dateTxt = r.date ? esc(wasteFmtDate(r.date)).toUpperCase() : 'NO DATE';
-          const dateColor = r.date ? '#93A9BC' : '#F5E31F';
-          return '<div style="display:grid;grid-template-columns:1fr 82px 62px;gap:18px;align-items:baseline;padding:' + pad + ';border-bottom:1px solid rgba(147,169,188,' + (last?'.14':'.1') + ')' + rail + '">'
-            + itemCell
-            + '<span style="font:400 12.5px/1.3 ' + MONO + ';color:' + qtyColor + ';text-align:right">' + qtyTxt + '</span>'
-            + '<span style="font:400 12.5px/1.3 ' + MONO + ';color:' + dateColor + ';text-align:right">' + dateTxt + '</span></div>';
+          const qtyCell = noQty
+            ? '<span style="font:400 12.5px/1.3 ' + MONO + ';color:#F5E31F;text-align:right">NO QTY</span>'
+            : '<span style="font:400 12.5px/1.3 ' + MONO + ';color:#E6EDF3;text-align:right">' + esc(r.qty) + (r.unit ? ' <span style="color:#93A9BC">' + esc(r.unit) + '</span>' : '') + '</span>';
+          const dateCell = noDate
+            ? '<span style="font:400 12.5px/1.3 ' + MONO + ';color:#F5E31F;text-align:right">NO DATE</span>'
+            : '<span style="font:400 12.5px/1.3 ' + MONO + ';color:#93A9BC;text-align:right">' + esc(wasteFmtDate(r.date)).toUpperCase() + '</span>';
+          return '<div style="display:grid;grid-template-columns:1fr 96px 58px;gap:18px;align-items:baseline;padding:' + pad + ';border-bottom:1px solid rgba(147,169,188,' + (last?'.14':'.1') + ')' + rail + '">'
+            + itemCell + qtyCell + dateCell + '</div>';
         }).join('') + '</div>';
   } else {
     body = '<div style="padding:20px;font:400 11px/1.4 ' + MONO + ';letter-spacing:.12em;color:#5C7286">NOTHING IN THIS RANGE</div>';
@@ -62685,7 +62689,7 @@ function wasteView(){
   return lxHeader(ohCode, LX_RANGE_SHORT[ohRange] || '7 DAYS', 'Waste')
     + lxCount('EXPIRED PRODUCT LOG &middot; ' + rows.length + ' ENTR' + (rows.length===1?'Y':'IES') + (flagged ? ' &middot; <span style="color:#F5E31F">' + flagged + ' INCOMPLETE</span>' : ''), true)
     + body
-    + lxFoot('Straight from the Expired Product Log sheet. Rows the log recorded incompletely are kept and flagged in yellow, never hidden.');
+    + lxFoot('Straight from the Expired Product Log &mdash; quantity, unit and any note per entry. Rows the log recorded incompletely are kept and flagged in yellow, never hidden.');
 }
 
 /* ---- shell ---- */

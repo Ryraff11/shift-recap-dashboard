@@ -515,14 +515,15 @@ def main():
     else:
         print('  SKIP REAL_DEPUTY_SCHEDULE injection — template has no deputy marker (feature not in this template); history still updated')
 
-    # Expired Product Log ("Waste" tab). Exported from the Expired Product Log 2026
-    # sheet as expired_product_raw.csv (SHOP, ITEM, QUANTITY, DATE DISCARDED).
-    # The log is hand-entered, so parse defensively:
-    #   - shop names use the sheet's own convention (ORANGEVALE, MANZANITA, MAD...)
-    #     and are mapped to dashboard names; unknown shops are skipped and counted
-    #   - blank/'?' quantities and missing dates keep the row but flag it visibly
-    #   - some rows jumble a note + date into the date column ("nonfat 8/11/26)"),
-    #     so the date is salvaged by pattern anywhere in the cell, remainder -> note
+    # Expired Product Log ("Waste" tab). Source: the "New Expired Product Log 2026"
+    # sheet (multi-tab). The scheduled run dumps read_file_content verbatim to
+    # expired_product_raw.md; we extract the "Log" tab specifically (NOT the default
+    # "New Entry" form tab). Log columns:
+    #   Date discarded | Shop | Item | Quantity | Unit | Logged by | Est. cost | Notes
+    # Quantity is a clean number and Unit is its own column ("7" + "Carton"), so no more
+    # mixed "7 cartons" strings. Notes carries migration context. The new entry form
+    # validates before submit, so flags should be ~zero, but the salvage/flag logic stays
+    # as a safety net (blank qty or blank date keeps the row and flags it, never crashes).
     WASTE_SHOP_MAP = {
         'MAD': 'Mad', 'MADHOUSE': 'Mad',
         'FAIR OAKS': 'Fair Oaks', 'FAIROAKS': 'Fair Oaks', 'K TOWN': 'Fair Oaks',
@@ -532,36 +533,55 @@ def main():
     }
     _date_pat = _re.compile(r'(\d{1,2})/(\d{1,2})/(\d{2,4})')
 
-    def _waste_date(cell):
-        """Return (iso_date_or_None, leftover_note). Salvages a date embedded
-        anywhere in a jumbled cell; whatever isn't the date becomes the note."""
-        m = _date_pat.search(cell)
-        if not m:
-            return None, cell.strip(' ()&,')
-        mm, dd, yy = int(m.group(1)), int(m.group(2)), int(m.group(3))
-        if yy < 100:
-            yy += 2000
-        note = (cell[:m.start()] + cell[m.end():]).strip(' ()&,')
-        try:
-            iso = datetime(yy, mm, dd).strftime('%Y-%m-%d')
-        except ValueError:
-            return None, cell.strip(' ()&,')
-        return iso, note
+    def _md_cells(line):
+        s = line.strip()
+        if not s.startswith('|'):
+            return None
+        return [c.strip() for c in s.strip('|').split('|')]
 
     waste = {}
-    if os.path.exists('expired_product_raw.csv'):
-        w_kept, w_flagged, w_skipped = 0, 0, 0
-        with open('expired_product_raw.csv', newline='', encoding='utf-8-sig') as f:
-            for row in csv.DictReader(f):
-                shop_raw = (row.get('SHOP') or '').strip().upper()
-                item = (row.get('ITEM') or '').strip()
-                qty = (row.get('QUANTITY') or '').strip()
-                date_cell = (row.get('DATE DISCARDED') or '').strip()
-                shop = WASTE_SHOP_MAP.get(shop_raw)
+    w_kept, w_flagged, w_skipped = 0, 0, 0
+    _waste_src = 'expired_product_raw.md'
+    if os.path.exists(_waste_src):
+        lines = open(_waste_src, encoding='utf-8').read().splitlines()
+        hdr_idx = -1
+        for i, ln in enumerate(lines):
+            cells = _md_cells(ln)
+            if cells and len(cells) >= 8:
+                low = [c.lower() for c in cells]
+                if low[0] == 'date discarded' and 'quantity' in low and 'unit' in low:
+                    hdr_idx = i
+                    break
+        if hdr_idx >= 0:
+            hdr = [c.lower() for c in _md_cells(lines[hdr_idx])]
+            ci = lambda name: hdr.index(name) if name in hdr else -1
+            ci_date, ci_shop, ci_item = ci('date discarded'), ci('shop'), ci('item')
+            ci_qty, ci_unit, ci_notes = ci('quantity'), ci('unit'), ci('notes')
+            for ln in lines[hdr_idx + 1:]:
+                cells = _md_cells(ln)
+                if cells is None:
+                    break
+                if all(set(c) <= set(':- ') for c in cells):
+                    continue  # markdown alignment row
+                g = lambda k: cells[k].strip() if 0 <= k < len(cells) else ''
+                shop_txt, item = g(ci_shop), g(ci_item)
+                if not shop_txt and not item:
+                    continue  # trailing empty rows
+                shop = WASTE_SHOP_MAP.get(shop_txt.upper())
                 if not shop or not item:
                     w_skipped += 1
                     continue
-                iso, note = _waste_date(date_cell)
+                qty, unit, notes = g(ci_qty), g(ci_unit), g(ci_notes)
+                iso = None
+                m = _date_pat.search(g(ci_date))
+                if m:
+                    mm, dd, yy = int(m.group(1)), int(m.group(2)), int(m.group(3))
+                    if yy < 100:
+                        yy += 2000
+                    try:
+                        iso = datetime(yy, mm, dd).strftime('%Y-%m-%d')
+                    except ValueError:
+                        iso = None
                 flags = []
                 if not qty or qty == '?':
                     flags.append('quantity not recorded')
@@ -569,16 +589,18 @@ def main():
                 if not iso:
                     flags.append('date not recorded')
                 entry = {'item': item, 'qty': qty, 'date': iso}
-                if note:
-                    entry['note'] = note
+                if unit:
+                    entry['unit'] = unit
+                if notes:
+                    entry['note'] = notes
                 if flags:
                     entry['flag'] = ' · '.join(flags)
                     w_flagged += 1
                 waste.setdefault(shop, []).append(entry)
                 w_kept += 1
-        print(f'  parsed expired product log: {w_kept} row(s) kept ({w_flagged} flagged), {w_skipped} skipped')
+        print(f'  parsed expired product log (Log tab): {w_kept} row(s) kept ({w_flagged} flagged), {w_skipped} skipped')
     else:
-        print('  expired_product_raw.csv not present — REAL_WASTE_DATA left empty')
+        print('  expired_product_raw.md not present -- REAL_WASTE_DATA left empty')
 
     _waste_marker = 'const REAL_WASTE_DATA = '
     if _waste_marker in html:
