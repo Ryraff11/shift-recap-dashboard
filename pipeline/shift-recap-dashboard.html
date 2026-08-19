@@ -200,14 +200,15 @@ details.ov-cat[open] > .ov-cat-head .ov-cat-caret::after{ content:'\25be'; }
 .ov-cat.hazard > .ov-cat-head .ov-cat-count{ color:#F2506A; }
 
 /* Expanded child recap cards — full-bleed, no radius */
-.ov-item{ padding:13px 20px 15px; cursor:pointer; display:flex; flex-direction:column; gap:7px; border-top:1px solid rgba(147,169,188,.14); }
+.ov-item{ padding:13px 20px; cursor:pointer; display:flex; flex-direction:column; gap:5px; border-top:1px solid rgba(147,169,188,.14); }
 .ov-item.urgent{ border-left:3px solid #F2506A; background:rgba(242,80,106,.06); }
 .ov-item.good{ border-left:3px solid rgba(147,169,188,.22); }
-.ov-item-head{ display:flex; align-items:center; gap:10px; }
-.ov-item-shop{ font:800 22px/0.9 'Big Shoulders Display',sans-serif; letter-spacing:.02em; color:#fff; text-transform:uppercase; }
-.ov-item-shift{ font:400 9px/1 'JetBrains Mono',monospace; letter-spacing:.14em; text-transform:uppercase; color:#5C7286; border:1px solid rgba(147,169,188,.24); border-radius:0; padding:3px 8px; flex:none; white-space:nowrap; }
-.ov-item-meta{ font:400 11px/1 'JetBrains Mono',monospace; letter-spacing:.02em; color:#5C7286; }
-.ov-item-text{ font:400 13.5px/1.5 Barlow,sans-serif; color:#E6EDF3; }
+.ov-item-head{ display:flex; align-items:center; gap:9px; }
+/* Shop name is DATA, not a heading — mono, so Big Shoulders stays exclusive to group headers. */
+.ov-item-shop{ font:700 12px/1 'JetBrains Mono',monospace; letter-spacing:.16em; color:#fff; text-transform:uppercase; }
+.ov-item-shift{ font:400 8.5px/1 'JetBrains Mono',monospace; letter-spacing:.14em; text-transform:uppercase; color:#5C7286; border:1px solid rgba(147,169,188,.24); border-radius:0; padding:3px 6px; flex:none; white-space:nowrap; }
+.ov-item-meta{ font:400 9.5px/1 'JetBrains Mono',monospace; letter-spacing:.1em; color:#5C7286; text-transform:uppercase; }
+.ov-item-text{ font:400 13.5px/1.45 Barlow,sans-serif; color:#E6EDF3; }
 
 /* Routine rows — shop name + status, full-bleed */
 .ov-roundup-row{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; padding:15px 20px; border-top:1px solid rgba(147,169,188,.14); }
@@ -807,9 +808,8 @@ body.home-active main{ padding:0; }
   <div class="modal-card" id="recap-modal-card"></div>
 </div>
 
-<!-- Full-bleed recap detail sheet (Ledger system): pinned header/footer, only the entry list scrolls. -->
-<div id="recap-scrim" style="display:none;position:fixed;inset:0;background:rgba(11,29,46,.72);z-index:120"></div>
-<div data-recap-sheet id="recap-sheet" style="display:none;position:fixed;left:0;right:0;top:92px;bottom:0;z-index:130;background:#0B1D2E;border-top:2px solid #F5E31F;border-radius:0;box-shadow:none;padding-bottom:env(safe-area-inset-bottom);box-sizing:border-box;flex-direction:column">
+<!-- Full-height recap detail sheet (Ledger system): pinned header/footer, only the entry list scrolls. -->
+<div data-recap-sheet id="recap-sheet" role="dialog" aria-modal="true" style="display:none;position:fixed;inset:0;z-index:130;background:#0B1D2E;border-top:2px solid #F5E31F;border-radius:0;box-shadow:none;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);box-sizing:border-box;flex-direction:column">
   <div id="recap-sheet-header" style="flex:none;padding:12px 20px;border-bottom:1px solid rgba(147,169,188,.16);display:flex;flex-direction:column;gap:6px"></div>
   <div data-recap-entries id="recap-sheet-entries" style="flex:1;overflow:auto;overscroll-behavior:contain"></div>
   <div id="recap-sheet-footer" style="flex:none;padding:11px 20px;border-top:1px solid rgba(147,169,188,.16);display:flex;align-items:center;justify-content:space-between;font:400 9px/1.4 'JetBrains Mono',monospace;letter-spacing:.12em;color:#5C7286"></div>
@@ -61169,15 +61169,18 @@ function escapeHtml(str){
 // ===== Recap detail sheet (full-bleed Ledger sheet; pinned header/footer, list scrolls) =====
 let recapSeq = [], recapPos = 0;
 function ohPad2(n){ return String(n).padStart(2,'0'); }
-// Which flag category a recap field belongs to, by its label — mirrors the Overview's rule.
+// Which NEEDS-ATTENTION group a recap field belongs to, by its label. Returns null for fields
+// outside the taxonomy (line times, leaderboard, culture, best team player, closing checks,
+// milk check, xbro/non-negotiables …) — those are NEVER flagged, however the answer reads.
 function recapFieldCat(l){ l = (l||'').toLowerCase();
   if(/safety|hazard/.test(l)) return 'Safety hazard';
   if(/staff|understaff/.test(l)) return 'Understaffed';
   if(/tardy|early.?out/.test(l)) return 'Tardy / early-out';
-  return 'Crew feedback';
+  if(/additional comment|crew feedback|shift note|anything else|other note/.test(l)) return 'Crew feedback';
+  return null;
 }
-// The set of recap-field labels to flag: derived from the record's own bad flags (same rule
-// the Overview uses), matched back to their source field. Never more than 3, worst first.
+// The set of recap-field labels to flag: a field is flagged only if it maps to one of the four
+// NEEDS-ATTENTION groups AND the record has a matching bad flag. Never more than 3, worst first.
 function flaggedLabelsFor(r){
   const set = new Set();
   if(!r.fullRecap) return set;
@@ -61188,10 +61191,8 @@ function flaggedLabelsFor(r){
   for(const f of bad){
     if(set.size>=3) break;
     const cat = flagCategory(f.text);
-    const core = f.text.replace(/^(Hazard reported|Tardy\/early-out note|Tardy\/early-out)\s*:\s*/i,'')
-                       .replace(/^Shift reported understaffed\.?\s*/i,'').trim().toLowerCase();
-    let m = entries.find(([l])=>recapFieldCat(l)===cat && !set.has(l));
-    if(!m && core.length>3) m = entries.find(([l,v])=>!set.has(l) && v.toLowerCase().indexOf(core.slice(0,40))!==-1);
+    // Only fields that map to THIS bad flag's group are eligible — no cross-field text matching.
+    const m = entries.find(([l])=>recapFieldCat(l)===cat && !set.has(l));
     if(m) set.add(m[0]);
   }
   return set;
@@ -61212,17 +61213,18 @@ function recapEntryHtml(index, label, answer, flagged){
   const flagCss = flagged ? ';border-left:3px solid #F2506A;background:rgba(242,80,106,.06)' : '';
   const L = escapeHtml(String(label).toUpperCase());
   const ans = highlightText(a);
+  const flagAttr = flagged ? ' data-flagged' : '';
   const isShort = a.length <= 16 && !/\s/.test(a);
   if(isShort){
     const pos = /^(done|yes|complete|completed|clean|good)\.?$/i.test(a);
     const aColor = pos ? '#fff' : '#5C7286', aW = pos ? '500' : '400';
-    return `<div style="display:grid;grid-template-columns:26px 1fr auto;gap:12px;align-items:baseline;padding:11px 20px;border-bottom:1px solid rgba(147,169,188,.14)${flagCss}">`
+    return `<div data-recap-entry${flagAttr} style="display:grid;grid-template-columns:26px 1fr auto;gap:12px;align-items:baseline;padding:11px 20px;border-bottom:1px solid rgba(147,169,188,.14)${flagCss}">`
       + `<div style="font:400 9.5px/1.7 'JetBrains Mono',monospace;color:${idxColor}">${index}</div>`
       + `<div data-recap-label style="font:500 9px/1.7 'JetBrains Mono',monospace;letter-spacing:.16em;color:${labelColor}">${L}</div>`
       + `<div data-recap-answer style="font:${aW} 13px/1.4 Barlow,sans-serif;color:${aColor}">${ans}</div>`
       + `</div>`;
   }
-  return `<div style="display:grid;grid-template-columns:26px 1fr;gap:12px;padding:11px 20px;border-bottom:1px solid rgba(147,169,188,.14)${flagCss}">`
+  return `<div data-recap-entry${flagAttr} style="display:grid;grid-template-columns:26px 1fr;gap:12px;padding:11px 20px;border-bottom:1px solid rgba(147,169,188,.14)${flagCss}">`
     + `<div style="font:400 9.5px/1.7 'JetBrains Mono',monospace;color:${idxColor}">${index}</div>`
     + `<div style="display:flex;flex-direction:column;gap:3px;min-width:0">`
       + `<div data-recap-label style="font:500 9px/1.5 'JetBrains Mono',monospace;letter-spacing:.16em;color:${labelColor}">${L}</div>`
@@ -61264,20 +61266,19 @@ function openRecapModal(idx){
   document.getElementById('recap-sheet-footer').innerHTML =
       `<span>RECAP ${ohPad2(recapPos+1)} OF ${ohPad2(recapSeq.length)}</span>`
     + (recapSeq.length>1 ? `<span onclick="recapNext()" style="color:#93A9BC;cursor:pointer">NEXT →</span>` : `<span></span>`);
-  document.getElementById('recap-scrim').style.display = 'block';
   document.getElementById('recap-sheet').style.display = 'flex';
+  document.body.style.overflow = 'hidden';   // the full-height sheet owns the screen; its list keeps its own scroll
 }
 function closeRecapSheet(){
   document.getElementById('recap-sheet').style.display = 'none';
-  document.getElementById('recap-scrim').style.display = 'none';
+  document.body.style.overflow = '';
 }
 function recapNext(){
   if(recapSeq.length<2) return;
   recapPos = (recapPos+1) % recapSeq.length;
   openRecapModal(recapSeq[recapPos]);
 }
-document.getElementById('recap-scrim').addEventListener('click', closeRecapSheet);
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeRecapSheet(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && document.getElementById('recap-sheet').style.display==='flex') closeRecapSheet(); });
 function closeRecapModal(){
   document.getElementById('recap-modal-overlay').classList.remove('active');
 }
@@ -62539,7 +62540,7 @@ function ovItemHtml(i, tone){
   const shift = i.shift ? '<span class="ov-item-shift">' + escapeHtml(i.shift) + ' SHIFT</span>' : '';
   const body = ovStripLabel(i.text);
   return '<div class="ov-item ' + tone + '" onclick="openRecapModal(' + i.recordIndex + ')">'
-    + '<div class="ov-item-head"><span class="ov-item-shop">' + escapeHtml(i.shop) + '</span>' + shift + '</div>'
+    + '<div class="ov-item-head"><span class="ov-item-shop" data-shop-name>' + escapeHtml(i.shop) + '</span>' + shift + '</div>'
     + '<div class="ov-item-meta">' + meta + '</div>'
     + (body ? '<div class="ov-item-text">' + escapeHtml(body) + '</div>' : '')
   + '</div>';
@@ -62589,7 +62590,7 @@ function renderOverview(rangeKey){
             + (items.length>15 ? `<div class="ov-empty">+${items.length-15} more — narrow the range to see all</div>` : '')
           : `<div class="ov-empty">None in this range.</div>`;
         return `<details class="ov-cat${cat==='Safety hazard'?' hazard':''}"${items.length?' open':''}>
-          <summary class="ov-cat-head"><span class="ov-cat-title">${escapeHtml(cat)}</span><span class="ov-cat-count${items.length?'':' zero'}">${items.length}</span><span class="ov-cat-caret"></span></summary>
+          <summary class="ov-cat-head"><span class="ov-cat-title" data-group-title>${escapeHtml(cat)}</span><span class="ov-cat-count${items.length?'':' zero'}">${items.length}</span><span class="ov-cat-caret"></span></summary>
           ${body}</details>`;
       }).join('');
 
@@ -62599,7 +62600,7 @@ function renderOverview(rangeKey){
       + (worthKnowing.length>10 ? `<div class="ov-empty">+${worthKnowing.length-10} more — narrow the range to see all</div>` : '');
   document.getElementById('ov-worth-knowing').innerHTML =
     `<details class="ov-cat"${worthKnowing.length?' open':''}>
-      <summary class="ov-cat-head"><span class="ov-cat-title">Worth knowing</span><span class="ov-cat-count${worthKnowing.length?'':' zero'}">${worthKnowing.length}</span><span class="ov-cat-caret"></span></summary>
+      <summary class="ov-cat-head"><span class="ov-cat-title" data-group-title>Worth knowing</span><span class="ov-cat-count${worthKnowing.length?'':' zero'}">${worthKnowing.length}</span><span class="ov-cat-caret"></span></summary>
       ${wkBody}</details>`;
 
   document.getElementById('ov-routine').innerHTML =
