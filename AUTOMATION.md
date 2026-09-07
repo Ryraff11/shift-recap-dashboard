@@ -2,12 +2,13 @@
 
 This repo publishes a self-contained HTML dashboard to GitHub Pages
 (`index.html` at the repo root → https://ryraff11.github.io/shift-recap-dashboard/).
-The `pipeline/` folder holds the scripts that rebuild it from 7 Google Sheets.
+The `pipeline/` folder holds the scripts that rebuild it from 11 Google Sheets
+(9 recap sheets + the Deputy schedule + the Expired Product Log).
 
 ## How a refresh works
 
-1. Export the 7 "recap (Responses)" Google Sheets to CSV into `pipeline/`.
-2. Run `python3 refresh_dashboard.py` from `pipeline/` — rebuilds all 7 shops and
+1. Export the 9 "recap (Responses)" Google Sheets to CSV into `pipeline/`.
+2. Run `python3 refresh_dashboard.py` from `pipeline/` — rebuilds all 9 shops and
    injects fresh data into `pipeline/shift-recap-dashboard.html`.
 3. Copy that file to `index.html` at the repo root, restore the committed template
    so only `index.html` changes, then commit + push to `main`.
@@ -41,11 +42,11 @@ interim one, it spawns a **fresh session each run** and is independent of any ch
 ### Task prompt to paste into the Routine
 
 ```
-Automated refresh + publish of the Shift Recap Dashboard for the Ryraff11/shift-recap-dashboard repo. This is a fresh unattended session — run the whole task end to end, then stop. The pipeline scripts are ALREADY committed in the repo's pipeline/ folder — do NOT re-download them from Google Drive. Only the 10 Google Sheets change between runs.
+Automated refresh + publish of the Shift Recap Dashboard for the Ryraff11/shift-recap-dashboard repo. This is a fresh unattended session — run the whole task end to end, then stop. The pipeline scripts are ALREADY committed in the repo's pipeline/ folder — do NOT re-download them from Google Drive. Only the 11 Google Sheets change between runs.
 
 STEP 1 — Repo on main, up to date. Locate the shift-recap-dashboard git repo in this session's workspace and cd into it. Run: git checkout main && git pull origin main. GitHub Pages serves main/root. The pipeline lives in pipeline/.
 
-STEP 2 — Export the 9 CSV Google Sheets to CSV into pipeline/, writing straight to disk. Do NOT load the full 1-1.6 MB exports into your context. Use the Google Drive tool mcp__Google_Drive__download_file_content with exportMimeType="text/csv". It returns JSON {content, id, mimeType, title} where content is base64; large results are auto-saved by the harness to a file path instead of inline — in EITHER case, decode the base64 to the target file with python3 (json.load the JSON, base64.b64decode the content field, write the bytes). Use these EXACT fileId -> filename mappings:
+STEP 2 — Export the 10 CSV Google Sheets to CSV into pipeline/, writing straight to disk. Do NOT load the full 1-1.6 MB exports into your context. Use the Google Drive tool mcp__Google_Drive__download_file_content with exportMimeType="text/csv". It returns JSON {content, id, mimeType, title} where content is base64; large results are auto-saved by the harness to a file path instead of inline — in EITHER case, decode the base64 to the target file with python3 (json.load the JSON, base64.b64decode the content field, write the bytes). Use these EXACT fileId -> filename mappings:
   1alTCXd3nBJe7GhhqBG2Uc5bhoRE7MfjWT5fkdbHZ9D0 -> pipeline/antelope_recap_raw.csv
   1DgYsLXsy0ClizmPON-H3wkrXkvS8Yoma0j85WfWMdkM -> pipeline/fairoaks_recap_raw.csv
   17SExtyyoc_a04-q9DAMvdmFLkMsnmBuy6f0jupW7ybo -> pipeline/auburn_recap_raw.csv
@@ -54,12 +55,13 @@ STEP 2 — Export the 9 CSV Google Sheets to CSV into pipeline/, writing straigh
   17cNKLcoUb8m00jsy53hJK9IKZQ8qSvq8onuBRNHG2rg -> pipeline/fireside_recap_raw.csv
   1KimjOrEDPa_eBawE-4ngZALlwIxdvVAtJubelCSNkhw -> pipeline/manz_recap_raw.csv
   1baOxs9v8nQg8GKXYFOUqGTmD0Z_ViRToaTBqYbkFTXs -> pipeline/ov_recap_raw.csv
+  1_Ejnib3XcegWXtfX4wRZ9QiFeTaWQEBdBya5mSTd00A -> pipeline/winding_recap_raw.csv
   1UOubHMxyAfnUy30C7sqAOCW_GY-NaviWYqvdWPw7Xv0 -> pipeline/deputy_schedule_raw.csv
-For the 8 *_recap_raw.csv files, verify each is non-empty and its first line is a Timestamp header row. For deputy_schedule_raw.csv (the Deputy shift-lead schedule — a different sheet shape), verify it is non-empty and its first line is a Date header row (Date,Shop,ShiftLabel,EmployeeName,EmployeeId,IsEmptySlot,ScheduledStart,ScheduledEnd). If any export fails or a file is empty, STOP and report (see STEP 6).
+For the 9 *_recap_raw.csv files, verify each is non-empty and its first line is a Timestamp header row. For deputy_schedule_raw.csv (the Deputy shift-lead schedule — a different sheet shape), verify it is non-empty and its first line is a Date header row (Date,Shop,ShiftLabel,EmployeeName,EmployeeId,IsEmptySlot,ScheduledStart,ScheduledEnd). If any export fails or a file is empty, STOP and report (see STEP 6).
 
 STEP 2b — Export the Waste log (Expired Product Log). Source sheet: "New Expired Product Log 2026", fileId 1m0gtY3hoo95W8uerqAAu0M5vOrNufRVUO8N_6PAXKBI. This is a MULTI-TAB sheet (New Entry / Log / Shop View / Summary / Sheet1); a plain CSV export returns the DEFAULT "New Entry" form tab, NOT the data. So DO NOT use download_file_content here. Instead call mcp__Google_Drive__read_file_content on that fileId (it returns every tab as markdown tables) and write the returned fileContent field VERBATIM to pipeline/expired_product_raw.md. refresh_dashboard.py extracts the "Log" tab from it — the markdown table whose header row is "Date discarded | Shop | Item | Quantity | Unit | Logged by | Est. cost | Notes". BEST-EFFORT: if read_file_content fails or the Log header is absent, flag it in the report and continue — waste is optional and the build injects an empty waste log rather than failing. Quick sanity check after writing: `grep -c "Date discarded | Shop | Item | Quantity | Unit" pipeline/expired_product_raw.md` should print 1.
 
-STEP 3 — Build. From the pipeline/ folder run: python3 refresh_dashboard.py. Confirm the output ends with "=== Done ===" and that all 8 shops built: Antelope, Fair Oaks, Auburn, Madhouse, Lichen, Fireside, Manz, OV. Capture each shop's "<N> <Shop> records built" count. The build also merges deputy_schedule_raw.csv into the persistent pipeline/deputy_schedule_history.json (accumulate, never shrink) and injects REAL_DEPUTY_SCHEDULE — confirm it prints a "merged deputy schedule ..." line and an "injected REAL_DEPUTY_SCHEDULE ..." line. If the run does not end with "=== Done ===" or any shop is missing/errors, STOP and report (see STEP 6).
+STEP 3 — Build. From the pipeline/ folder run: python3 refresh_dashboard.py. Confirm the output ends with "=== Done ===" and that all 9 shops built: Antelope, Fair Oaks, Auburn, Madhouse, Lichen, Fireside, Manz, OV, Winding. Capture each shop's "<N> <Shop> records built" count. The build also merges deputy_schedule_raw.csv into the persistent pipeline/deputy_schedule_history.json (accumulate, never shrink) and injects REAL_DEPUTY_SCHEDULE — confirm it prints a "merged deputy schedule ..." line and an "injected REAL_DEPUTY_SCHEDULE ..." line. If the run does not end with "=== Done ===" or any shop is missing/errors, STOP and report (see STEP 6).
 
 STEP 4 — Publish to Pages. The build overwrote pipeline/shift-recap-dashboard.html with fresh data. Copy it to index.html at the repo root: cp pipeline/shift-recap-dashboard.html index.html. Then restore the committed template so only index.html changes in the diff: git checkout -- pipeline/shift-recap-dashboard.html. The *_recap_raw.csv, deputy_schedule_raw.csv, and *_records_full_window.json files are gitignored — do NOT commit them. Stage index.html AND the persistent pipeline/deputy_schedule_history.json (the accumulated Deputy schedule; it MUST be committed so it survives to the next run — otherwise the schedule history resets every run). Set identity if unset: git config user.email noreply@anthropic.com && git config user.name Claude. Then: git add index.html pipeline/deputy_schedule_history.json && git commit -m "Automated dashboard refresh" && git push origin main (retry a failed push up to 4x with 2/4/8/16s backoff on NETWORK errors only). Confirm the push succeeded and note the commit SHA. If the push fails for a non-network reason (e.g. 403 permission), STOP and report (see STEP 6).
 

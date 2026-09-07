@@ -846,12 +846,15 @@ function pick(arr){return arr[Math.floor(rand()*arr.length)];}
 function chance(p){return rand()<p;}
 
 const SHOPS = ["Mad","Fair Oaks","Auburn","Manz","Lichen","Antelope","Fireside","OV","Winding"];
-// Winding isn't a live recap stand yet — it stays visible but renders as an inactive "not tracked" placeholder.
-const INACTIVE_SHOPS = new Set(["Winding"]);
+// No inactive shops right now (Winding's recaps went live 2026-09-04); the set stays for future launches.
+const INACTIVE_SHOPS = new Set([]);
 const ACTIVE_SHOPS = SHOPS.filter(s=>!INACTIVE_SHOPS.has(s));
 const SHIFTS = ["Open","Mid","Close"];
 // Shops with two drive-thru windows (they report a 2nd-window time); everyone else is single-window.
 const TWO_WINDOW_SHOPS = new Set(["Mad","Fair Oaks"]);
+// Shops with NO HME timer hardware installed yet — their Times views say "not installed"
+// instead of "no uploads". Remove a shop here when its HME system lands.
+const NO_TIMER_SHOPS = new Set(["Winding"]);
 // Per-shop submission-window cutoffs [hour, minute] in store-local (Pacific) time, used only to
 // mark TODAY's not-yet-due shifts as 'pending' instead of missing/late. Open varies by weekday;
 // Mid/Close are fixed per shop (except Manz's Mid, which varies by weekday). Close times of
@@ -887,6 +890,8 @@ const SHIFT_CUTOFFS = {
     Mid:  { Mon:[18,15], Tue:[19,15], Wed:[18,15], Thu:[19,15], Fri:[19,15], Sat:[18,15], Sun:[19,15] },
     Close:[23,20]
   },
+  // Winding (live 9/4): standard cutoffs assumed until its Deputy schedule confirms shift shapes.
+  'Winding':   { Open:[12,15], Mid:[18,15], Close:[0,15] },
 };
 function shiftCutoffFor(shop, shift){
   const conf = SHIFT_CUTOFFS[shop];
@@ -60635,6 +60640,7 @@ const REAL_OV_RECORDS = [
     "namedMentions": []
   }
 ]
+const REAL_WINDING_RECORDS = [];
 const records = [];
 for(let d=recapDayStart; d<=TODAY_INDEX; d++){
   SHOPS.forEach(shop=>{
@@ -60675,6 +60681,7 @@ const REAL_SHOP_DATA = {
   'Fireside': REAL_FIRESIDE_RECORDS,
   'Manz': REAL_MANZ_RECORDS,
   'OV': REAL_OV_RECORDS,
+  'Winding': REAL_WINDING_RECORDS,
 };
 Object.entries(REAL_SHOP_DATA).forEach(([shopName, realRecords]) => {
   for (let i = records.length - 1; i >= 0; i--) {
@@ -60691,6 +60698,15 @@ Object.entries(REAL_SHOP_DATA).forEach(([shopName, realRecords]) => {
     });
   }
   records.push(...realRecords);
+});
+
+// Shops that came online mid-window: slots before their first tracked day read 'untracked',
+// not 'missing' — the stand existed but recaps weren't expected yet.
+const SHOP_TRACKING_START = { 'Winding': '2026-09-04' };
+Object.entries(SHOP_TRACKING_START).forEach(([shop, startIso]) => {
+  for (let d = 0; d <= TODAY_INDEX; d++) {
+    if (isoForIndex(d) < startIso) SHIFTS.forEach(sh => { submissionStatus[`${d}|${shop}|${sh}`] = 'untracked'; });
+  }
 });
 
 // TODAY's shifts whose submission window hasn't closed yet (per the viewer's real clock)
@@ -62409,7 +62425,8 @@ function standView(){
   const wasteLatest = waste.find(r => r.date);
   const summ = s.onTime + '/' + shifts + ' ON TIME &middot; ' + s.late + ' LATE &middot; <span style="color:#F2506A">' + s.missing + ' MISSING</span>';
   const lateWho = s.lateWho ? s.lateWho.toUpperCase() : 'ALL FILED ON TIME';
-  const timesSub = t ? 'LANE TOTAL ' + mmss(t.sec) + ' &middot; ' + t.cars + ' CARS &middot; ' + esc(t.day) : 'NONE IN RANGE';
+  const timesSub = t ? 'LANE TOTAL ' + mmss(t.sec) + ' &middot; ' + t.cars + ' CARS &middot; ' + esc(t.day)
+    : (NO_TIMER_SHOPS.has(CODE_TO_SHOP[ohCode]) ? 'TIMER NOT INSTALLED YET' : 'NONE IN RANGE');
   const hazSub = haz.length ? haz.length + ' REPORTED &middot; LATEST ' + esc((haz[0].meta.split(' · ')[1] || '')) : 'NONE IN RANGE';
   const peopleSub = ppl.length ? ppl.length + ' MENTIONED' + (flagged ? ' &middot; <span style="color:#F5E31F">' + flagged + ' FLAGGED</span>' : '') : 'NONE IN RANGE';
   const wasteSub = waste.length ? waste.length + ' ITEM' + (waste.length===1?'':'S') + ' LOGGED' + (wasteLatest ? ' &middot; LATEST ' + esc(wasteFmtDate(wasteLatest.date)) : '') : 'NONE IN RANGE';
@@ -62458,6 +62475,7 @@ function recapsView(){
 
 function timesView(){
   const rows = getTimes(ohCode, ohRange), lead = rows[0];
+  const noTimer = NO_TIMER_SHOPS.has(CODE_TO_SHOP[ohCode]);
   var body;
   if(rows.length){
     body = '<div data-table>'
@@ -62477,12 +62495,15 @@ function timesView(){
             + '<span style="font:400 13px/1 ' + MONO + ';color:#93A9BC;text-align:right">' + d.cars + '</span></div>';
         }).join('') + '</div>';
   } else {
-    body = '<div style="padding:20px;font:400 11px/1.4 ' + MONO + ';letter-spacing:.12em;color:#5C7286">NOTHING IN THIS RANGE</div>';
+    body = '<div style="padding:20px;font:400 11px/1.4 ' + MONO + ';letter-spacing:.12em;color:#5C7286">'
+      + (noTimer ? 'TIMER SYSTEM NOT INSTALLED YET' : 'NOTHING IN THIS RANGE') + '</div>';
   }
   return lxHeader(ohCode, LX_RANGE_SHORT[ohRange] || '7 DAYS', 'Window Times')
-    + lxCount('HME UPLOADS' + (lead ? ' &middot; LATEST ' + mmss(lead.sec) + ' LANE TOTAL' : ''), true)
+    + lxCount(noTimer ? 'NO HME TIMER AT THIS STAND' : 'HME UPLOADS' + (lead ? ' &middot; LATEST ' + mmss(lead.sec) + ' LANE TOTAL' : ''), true)
     + body
-    + lxFoot('Lane total is the HME average for the whole business day &mdash; under 1:30 neutral, 1:30&ndash;2:00 yellow, over 2:00 coral. Uploaded days only.');
+    + lxFoot(noTimer
+      ? 'This stand has no HME timer hardware yet. Window times start appearing here automatically once the timer system is installed.'
+      : 'Lane total is the HME average for the whole business day &mdash; under 1:30 neutral, 1:30&ndash;2:00 yellow, over 2:00 coral. Uploaded days only.');
 }
 
 function hazView(){
@@ -62608,7 +62629,8 @@ function boardView(){
     return '<div class="lxr" data-code="' + esc(d.code) + '" role="button" tabindex="0" style="display:grid;grid-template-columns:26px 1fr auto;align-items:center;gap:14px;padding:14px 20px;border-bottom:1px solid rgba(147,169,188,.14)">'
       + '<div style="font:400 12px/1 ' + MONO + ';color:#5C7286">\u2014</div>'
       + '<div style="display:flex;flex-direction:column;gap:7px;min-width:0"><div style="font:800 26px/0.9 \'Big Shoulders Display\',sans-serif;letter-spacing:.02em;color:#fff;text-transform:uppercase">' + esc(d.code) + '</div>'
-      + '<div data-sub style="font:400 9.5px/1 ' + MONO + ';letter-spacing:.06em;color:#5C7286">NO HME DATA</div></div>'
+      + '<div data-sub style="font:400 9.5px/1 ' + MONO + ';letter-spacing:.06em;color:#5C7286">'
+      + (NO_TIMER_SHOPS.has(CODE_TO_SHOP[d.code]) ? 'TIMER NOT INSTALLED YET' : 'NO HME DATA') + '</div></div>'
       + '<div style="font:700 26px/1 ' + MONO + ';color:#5C7286">\u2014</div></div>';
   }).join('');
   const toggle = '<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 20px;border-bottom:1px solid rgba(147,169,188,.16)">'

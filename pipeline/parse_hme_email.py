@@ -35,6 +35,9 @@ HME_SHOPS = [
     {'store': '4341', 'shop': 'Antelope',  'source': 'pdf',  'locator': 'title contains "4341"'},
     {'store': '2011', 'shop': 'OV',        'source': 'pdf',  'locator': 'title contains "2011"'},
     {'store': '2015', 'shop': 'Fireside',  'source': 'pdf',  'locator': 'title contains "2015"'},
+    # Winding is DELIBERATELY absent: its HME timer hardware is not installed yet, so no
+    # report exists to fetch — listing it here would make the coverage check flag a false
+    # GAP every run. Add its entry (store #, source, locator) only when HME installs there.
 ]
 
 # Derived downstream — do NOT hand-maintain a second copy.
