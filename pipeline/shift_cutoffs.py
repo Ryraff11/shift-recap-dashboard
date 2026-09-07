@@ -42,6 +42,10 @@ SHIFT_CUTOFFS = {
         'Mid': {'Mon': (18, 15), 'Tue': (19, 15), 'Wed': (18, 15), 'Thu': (19, 15), 'Fri': (19, 15), 'Sat': (18, 15), 'Sun': (19, 15)},
         'Close': (23, 20),
     },
+    # Winding (recaps live 2026-09-04): standard cutoffs assumed — its Deputy schedule
+    # export doesn't yet carry ScheduledStart/End times to confirm different shift shapes.
+    # Observed so far: Open ~4:45a-12p, Close ends ~11p. Adjust if Deputy shows otherwise.
+    'Winding': {'Open': (12, 15), 'Mid': (18, 15), 'Close': (0, 15)},
 }
 
 def cutoff_for(shop, shift, dt):

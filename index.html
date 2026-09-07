@@ -846,12 +846,15 @@ function pick(arr){return arr[Math.floor(rand()*arr.length)];}
 function chance(p){return rand()<p;}
 
 const SHOPS = ["Mad","Fair Oaks","Auburn","Manz","Lichen","Antelope","Fireside","OV","Winding"];
-// Winding isn't a live recap stand yet — it stays visible but renders as an inactive "not tracked" placeholder.
-const INACTIVE_SHOPS = new Set(["Winding"]);
+// No inactive shops right now (Winding's recaps went live 2026-09-04); the set stays for future launches.
+const INACTIVE_SHOPS = new Set([]);
 const ACTIVE_SHOPS = SHOPS.filter(s=>!INACTIVE_SHOPS.has(s));
 const SHIFTS = ["Open","Mid","Close"];
 // Shops with two drive-thru windows (they report a 2nd-window time); everyone else is single-window.
 const TWO_WINDOW_SHOPS = new Set(["Mad","Fair Oaks"]);
+// Shops with NO HME timer hardware installed yet — their Times views say "not installed"
+// instead of "no uploads". Remove a shop here when its HME system lands.
+const NO_TIMER_SHOPS = new Set(["Winding"]);
 // Per-shop submission-window cutoffs [hour, minute] in store-local (Pacific) time, used only to
 // mark TODAY's not-yet-due shifts as 'pending' instead of missing/late. Open varies by weekday;
 // Mid/Close are fixed per shop (except Manz's Mid, which varies by weekday). Close times of
@@ -887,6 +890,8 @@ const SHIFT_CUTOFFS = {
     Mid:  { Mon:[18,15], Tue:[19,15], Wed:[18,15], Thu:[19,15], Fri:[19,15], Sat:[18,15], Sun:[19,15] },
     Close:[23,20]
   },
+  // Winding (live 9/4): standard cutoffs assumed until its Deputy schedule confirms shift shapes.
+  'Winding':   { Open:[12,15], Mid:[18,15], Close:[0,15] },
 };
 function shiftCutoffFor(shop, shift){
   const conf = SHIFT_CUTOFFS[shop];
@@ -69735,6 +69740,315 @@ const REAL_OV_RECORDS = [
     ]
   }
 ]
+const REAL_WINDING_RECORDS = [
+  {
+    "shop": "Winding",
+    "shift": "Open",
+    "dayIndex": 57,
+    "timestamp": "9/4/2026 17:45:01",
+    "employee": "Pauly",
+    "isLate": true,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "lol no idea! but probably first place knowing us",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "EVERYONE WOOOOHOOOO w shift all managers!"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Tardy/early-out note: nauurrr no tardies! i almost sent cass home early, but im glad i didn\u2019t because we had rushes pick up here and there"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Recap submitted late \u2014 arrived 5:45 PM, after the 12:15 grace-period cutoff for Open."
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "Good staffing but rushes kept us on our toes!",
+      "Line times / leaderboard": "lol no idea! but probably first place knowing us ",
+      "Team player / needed to step up": "EVERYONE WOOOOHOOOO w shift all managers! ",
+      "Tardy / early out": "nauurrr no tardies! i almost sent cass home early, but im glad i didn\u2019t because we had rushes pick up here and there ",
+      "Safety hazards": "",
+      "Xbro / non-negotiables": "definitely still learning to xbro with this layout! also interesting set up with it being go day & also having 3 xbros at one point. but that little table on the side is a good xbro spot",
+      "Closing: Verifone WiFi": "N/A // Not on the night shift",
+      "Expired product": "nothing!!! yay "
+    },
+    "namedMentions": [
+      {
+        "name": "Cass",
+        "kind": "bad",
+        "source": "nauurrr no tardies! i almost sent cass home early, but im glad i didn\u2019t because we had rushes pick up here and there"
+      }
+    ]
+  },
+  {
+    "shop": "Winding",
+    "shift": "Mid",
+    "dayIndex": 57,
+    "timestamp": "9/4/2026 18:11:35",
+    "employee": "Katelyn L.",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "We can\u2019t see them yet!!",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Everyone was such a team player today!! Natasha and Moriah did such a good job holding it down on runner making those connections with our new custies!!"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Hazard reported: No safety concerns!! We had water in the light but will fixed it"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Xbro went super well!! No struggles at all!"
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "Overstaffed (trying to find things to do, sent people home)",
+      "Line times / leaderboard": "We can\u2019t see them yet!! ",
+      "Team player / needed to step up": "Everyone was such a team player today!! Natasha and Moriah did such a good job holding it down on runner making those connections with our new custies!! ",
+      "Tardy / early out": "No tardies! I did send Ethan and Noelle home early because we were doing a good job holding it down ",
+      "Safety hazards": "No safety concerns!! We had water in the light but will fixed it",
+      "Xbro / non-negotiables": "Xbro went super well!! No struggles at all! ",
+      "Closing: Verifone WiFi": "N/A // Not on the night shift",
+      "Expired product": "No expirations!! "
+    },
+    "namedMentions": []
+  },
+  {
+    "shop": "Winding",
+    "shift": "Close",
+    "dayIndex": 57,
+    "timestamp": "9/5/2026 2:27:53",
+    "employee": "Sophia D.",
+    "isLate": true,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "I personally think line times were great, we didn\u2019t have a way of seeing how they actually were though",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Honestly everyone did amazing today, Kaylee and Amari did really great"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Tardy/early-out note: we sent amari home a little before 10"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Recap submitted late \u2014 arrived 2:27 AM, after the 00:15 grace-period cutoff for Close."
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+      "Line times / leaderboard": "I personally think line times were great, we didn\u2019t have a way of seeing how they actually were though ",
+      "Team player / needed to step up": "Honestly everyone did amazing today, Kaylee and Amari did really great",
+      "Tardy / early out": "we sent amari home a little before 10 ",
+      "Safety hazards": "no!",
+      "Xbro / non-negotiables": "no everyone did great ",
+      "Closing: Verifone WiFi": "Yes",
+      "Expired product": ""
+    },
+    "namedMentions": [
+      {
+        "name": "Amari",
+        "kind": "bad",
+        "source": "we sent amari home a little before 10"
+      }
+    ]
+  },
+  {
+    "shop": "Winding",
+    "shift": "Open",
+    "dayIndex": 58,
+    "timestamp": "9/5/2026 12:26:45",
+    "employee": "Carsen T.",
+    "isLate": true,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "no timer yet",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Kale is my goat ! slower in the am until the market got started, then we were steady af ! Mia was also a vet i was leaning on"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Hazard reported: some leaks and things manifesting, but nothing hazardous yet. just keeping tabs of what needs fixing"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Recap submitted late \u2014 arrived 12:26 PM, after the 12:15 grace-period cutoff for Open."
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+      "Line times / leaderboard": "no timer yet",
+      "Team player / needed to step up": "Kale is my goat ! slower in the am until the market got started, then we were steady af ! Mia was also a vet i was leaning on ",
+      "Tardy / early out": "no one tardy or home early ! ",
+      "Safety hazards": "some leaks and things manifesting, but nothing hazardous yet. just keeping tabs of what needs fixing ",
+      "Xbro / non-negotiables": "xbro was great ! smaller shop makes for a more fun and productive xbro time i think, just gotta start remind folks early that they just need to call for what they need and i\u2019ll grab it. will say we were heavy on the walk ups today !! ",
+      "Closing: Verifone WiFi": "N/A // Not on the night shift",
+      "Expired product": "no expirations that i saw ! "
+    },
+    "namedMentions": [
+      {
+        "name": "Kale",
+        "kind": "good",
+        "source": "Kale is my goat ! slower in the am until the market got started, then we were steady af ! Mia was also a vet i was leaning on"
+      }
+    ]
+  },
+  {
+    "shop": "Winding",
+    "shift": "Close",
+    "dayIndex": 58,
+    "timestamp": "9/5/2026 23:52:38",
+    "employee": "Pauly",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "tbd! we had a decent amount of cars 6-8 is, but dieeeddd down hard after that",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "ella & paris were chatting it up with all the customers!!\n\nalex is just a peach at closing my goat"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Tardy/early-out note: i sent home ava, paris, and ella early ! so dead"
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "Overstaffed (trying to find things to do, sent people home)",
+      "Line times / leaderboard": "tbd! we had a decent amount of cars 6-8 is, but dieeeddd down hard after that ",
+      "Team player / needed to step up": "ella & paris were chatting it up with all the customers!!\n\nalex is just a peach at closing my goat ",
+      "Tardy / early out": "i sent home ava, paris, and ella early ! so dead ",
+      "Safety hazards": "",
+      "Xbro / non-negotiables": "n/a. not enough people to xbro, but i put the stock away ! there was still some left out ",
+      "Closing: Verifone WiFi": "Yes",
+      "Expired product": "no!"
+    },
+    "namedMentions": [
+      {
+        "name": "Ella",
+        "kind": "good",
+        "source": "ella & paris were chatting it up with all the customers!!\n\nalex is just a peach at closing my goat"
+      },
+      {
+        "name": "Paris",
+        "kind": "good",
+        "source": "ella & paris were chatting it up with all the customers!!\n\nalex is just a peach at closing my goat"
+      }
+    ]
+  },
+  {
+    "shop": "Winding",
+    "shift": "Open",
+    "dayIndex": 59,
+    "timestamp": "9/6/2026 12:18:48",
+    "employee": "Katelyn L.",
+    "isLate": true,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "Can\u2019t tell because we don\u2019t have the leaderboard!! But from keeping track on my phone we are averaging about 1:48-2:00 minute window times due to connecting with the custies!!",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Kaylee and Bailey were such a big help today with keeping everything afloat! No one was struggling with their hats at all either"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Tardy/early-out note: Didn\u2019t send anyone home early but I accidentally forgot to clock back into my shift from my 10 but swear on my cats life I was back on time lol"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Hazard reported: No major safety hazards but i did notice that our tap machine is dispensing the wrong amount of liquid with the rebel and lemonade machine, a full size too large \ud83e\udeea also I do t know if this is a possibility but I know a few baristas have brought up the idea of getting sliders at stands that have oven\u2019s discounted because we don\u2019t have one\u2026maybe a good idea for the stand that don\u2019t have an oven?"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Xbro went well!! I did have to coach Abby and Simone our runners about reading drinks back when taking orders as well as walking and talking to the cars which both were extremely perceptive to the feedback and we had no issues afterwards!!"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Recap submitted late \u2014 arrived 12:18 PM, after the 12:15 grace-period cutoff for Open."
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+      "Line times / leaderboard": "Can\u2019t tell because we don\u2019t have the leaderboard!! But from keeping track on my phone we are averaging about 1:48-2:00 minute window times due to connecting with the custies!!",
+      "Team player / needed to step up": "Kaylee and Bailey were such a big help today with keeping everything afloat! No one was struggling with their hats at all either ",
+      "Tardy / early out": "Didn\u2019t send anyone home early but I accidentally forgot to clock back into my shift from my 10 but swear on my cats life I was back on time lol ",
+      "Safety hazards": "No major safety hazards but i did notice that our tap machine is dispensing the wrong amount of liquid with the rebel and lemonade machine, a full size too large \ud83e\udeea also I do t know if this is a possibility but I know a few baristas have brought up the idea of getting sliders at stands that have oven\u2019s discounted because we don\u2019t have one\u2026maybe a good idea for the stand that don\u2019t have an oven? ",
+      "Xbro / non-negotiables": "Xbro went well!! I did have to coach Abby and Simone our runners about reading drinks back when taking orders as well as walking and talking to the cars which both were extremely perceptive to the feedback and we had no issues afterwards!!",
+      "Closing: Verifone WiFi": "N/A // Not on the night shift",
+      "Expired product": "No expires!! "
+    },
+    "namedMentions": [
+      {
+        "name": "Kaylee",
+        "kind": "good",
+        "source": "Kaylee and Bailey were such a big help today with keeping everything afloat! No one was struggling with their hats at all either"
+      },
+      {
+        "name": "Bailey",
+        "kind": "good",
+        "source": "Kaylee and Bailey were such a big help today with keeping everything afloat! No one was struggling with their hats at all either"
+      },
+      {
+        "name": "Abby",
+        "kind": "bad",
+        "source": "Xbro went well!! I did have to coach Abby and Simone our runners about reading drinks back when taking orders as well as walking and talking to the cars which b"
+      },
+      {
+        "name": "Simone",
+        "kind": "bad",
+        "source": "Xbro went well!! I did have to coach Abby and Simone our runners about reading drinks back when taking orders as well as walking and talking to the cars which b"
+      }
+    ]
+  }
+];
 const records = [];
 for(let d=recapDayStart; d<=TODAY_INDEX; d++){
   SHOPS.forEach(shop=>{
@@ -69775,6 +70089,7 @@ const REAL_SHOP_DATA = {
   'Fireside': REAL_FIRESIDE_RECORDS,
   'Manz': REAL_MANZ_RECORDS,
   'OV': REAL_OV_RECORDS,
+  'Winding': REAL_WINDING_RECORDS,
 };
 Object.entries(REAL_SHOP_DATA).forEach(([shopName, realRecords]) => {
   for (let i = records.length - 1; i >= 0; i--) {
@@ -69791,6 +70106,15 @@ Object.entries(REAL_SHOP_DATA).forEach(([shopName, realRecords]) => {
     });
   }
   records.push(...realRecords);
+});
+
+// Shops that came online mid-window: slots before their first tracked day read 'untracked',
+// not 'missing' — the stand existed but recaps weren't expected yet.
+const SHOP_TRACKING_START = { 'Winding': '2026-09-04' };
+Object.entries(SHOP_TRACKING_START).forEach(([shop, startIso]) => {
+  for (let d = 0; d <= TODAY_INDEX; d++) {
+    if (isoForIndex(d) < startIso) SHIFTS.forEach(sh => { submissionStatus[`${d}|${shop}|${sh}`] = 'untracked'; });
+  }
 });
 
 // TODAY's shifts whose submission window hasn't closed yet (per the viewer's real clock)
@@ -71509,7 +71833,8 @@ function standView(){
   const wasteLatest = waste.find(r => r.date);
   const summ = s.onTime + '/' + shifts + ' ON TIME &middot; ' + s.late + ' LATE &middot; <span style="color:#F2506A">' + s.missing + ' MISSING</span>';
   const lateWho = s.lateWho ? s.lateWho.toUpperCase() : 'ALL FILED ON TIME';
-  const timesSub = t ? 'LANE TOTAL ' + mmss(t.sec) + ' &middot; ' + t.cars + ' CARS &middot; ' + esc(t.day) : 'NONE IN RANGE';
+  const timesSub = t ? 'LANE TOTAL ' + mmss(t.sec) + ' &middot; ' + t.cars + ' CARS &middot; ' + esc(t.day)
+    : (NO_TIMER_SHOPS.has(CODE_TO_SHOP[ohCode]) ? 'TIMER NOT INSTALLED YET' : 'NONE IN RANGE');
   const hazSub = haz.length ? haz.length + ' REPORTED &middot; LATEST ' + esc((haz[0].meta.split(' · ')[1] || '')) : 'NONE IN RANGE';
   const peopleSub = ppl.length ? ppl.length + ' MENTIONED' + (flagged ? ' &middot; <span style="color:#F5E31F">' + flagged + ' FLAGGED</span>' : '') : 'NONE IN RANGE';
   const wasteSub = waste.length ? waste.length + ' ITEM' + (waste.length===1?'':'S') + ' LOGGED' + (wasteLatest ? ' &middot; LATEST ' + esc(wasteFmtDate(wasteLatest.date)) : '') : 'NONE IN RANGE';
@@ -71558,6 +71883,7 @@ function recapsView(){
 
 function timesView(){
   const rows = getTimes(ohCode, ohRange), lead = rows[0];
+  const noTimer = NO_TIMER_SHOPS.has(CODE_TO_SHOP[ohCode]);
   var body;
   if(rows.length){
     body = '<div data-table>'
@@ -71577,12 +71903,15 @@ function timesView(){
             + '<span style="font:400 13px/1 ' + MONO + ';color:#93A9BC;text-align:right">' + d.cars + '</span></div>';
         }).join('') + '</div>';
   } else {
-    body = '<div style="padding:20px;font:400 11px/1.4 ' + MONO + ';letter-spacing:.12em;color:#5C7286">NOTHING IN THIS RANGE</div>';
+    body = '<div style="padding:20px;font:400 11px/1.4 ' + MONO + ';letter-spacing:.12em;color:#5C7286">'
+      + (noTimer ? 'TIMER SYSTEM NOT INSTALLED YET' : 'NOTHING IN THIS RANGE') + '</div>';
   }
   return lxHeader(ohCode, LX_RANGE_SHORT[ohRange] || '7 DAYS', 'Window Times')
-    + lxCount('HME UPLOADS' + (lead ? ' &middot; LATEST ' + mmss(lead.sec) + ' LANE TOTAL' : ''), true)
+    + lxCount(noTimer ? 'NO HME TIMER AT THIS STAND' : 'HME UPLOADS' + (lead ? ' &middot; LATEST ' + mmss(lead.sec) + ' LANE TOTAL' : ''), true)
     + body
-    + lxFoot('Lane total is the HME average for the whole business day &mdash; under 1:30 neutral, 1:30&ndash;2:00 yellow, over 2:00 coral. Uploaded days only.');
+    + lxFoot(noTimer
+      ? 'This stand has no HME timer hardware yet. Window times start appearing here automatically once the timer system is installed.'
+      : 'Lane total is the HME average for the whole business day &mdash; under 1:30 neutral, 1:30&ndash;2:00 yellow, over 2:00 coral. Uploaded days only.');
 }
 
 function hazView(){
@@ -71708,7 +72037,8 @@ function boardView(){
     return '<div class="lxr" data-code="' + esc(d.code) + '" role="button" tabindex="0" style="display:grid;grid-template-columns:26px 1fr auto;align-items:center;gap:14px;padding:14px 20px;border-bottom:1px solid rgba(147,169,188,.14)">'
       + '<div style="font:400 12px/1 ' + MONO + ';color:#5C7286">\u2014</div>'
       + '<div style="display:flex;flex-direction:column;gap:7px;min-width:0"><div style="font:800 26px/0.9 \'Big Shoulders Display\',sans-serif;letter-spacing:.02em;color:#fff;text-transform:uppercase">' + esc(d.code) + '</div>'
-      + '<div data-sub style="font:400 9.5px/1 ' + MONO + ';letter-spacing:.06em;color:#5C7286">NO HME DATA</div></div>'
+      + '<div data-sub style="font:400 9.5px/1 ' + MONO + ';letter-spacing:.06em;color:#5C7286">'
+      + (NO_TIMER_SHOPS.has(CODE_TO_SHOP[d.code]) ? 'TIMER NOT INSTALLED YET' : 'NO HME DATA') + '</div></div>'
       + '<div style="font:700 26px/1 ' + MONO + ';color:#5C7286">\u2014</div></div>';
   }).join('');
   const toggle = '<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 20px;border-bottom:1px solid rgba(147,169,188,.16)">'

@@ -1,10 +1,10 @@
 """
-Master orchestrator: pulls the 7 per-shop build scripts together, re-keys
+Master orchestrator: pulls the 9 per-shop build scripts together, re-keys
 Antelope/Fair Oaks labels, resolves nicknames, and injects fresh data into
 the dashboard HTML template -- all in one command.
 
 USAGE:
-  Place these 7 CSVs in the same folder as this script (exact filenames matter):
+  Place these 9 CSVs in the same folder as this script (exact filenames matter):
     antelope_recap_raw.csv
     fairoaks_recap_raw.csv
     auburn_recap_raw.csv
@@ -12,12 +12,14 @@ USAGE:
     lichen_recap_raw.csv
     fireside_recap_raw.csv
     manz_recap_raw.csv
+    ov_recap_raw.csv
+    winding_recap_raw.csv
   Also place shift-recap-dashboard.html (the current dashboard file) in this folder.
   Optionally place deputy_schedule_raw.csv (exported from the Deputy shift-lead sheet)
   to refresh the scheduled-lead names shown on missing/late recaps; if it's absent the
   existing schedule already baked into the dashboard is left untouched.
   Then run:  python3 refresh_dashboard.py
-  It overwrites shift-recap-dashboard.html with fresh data for all 7 shops.
+  It overwrites shift-recap-dashboard.html with fresh data for all 9 shops.
 """
 import csv, json, subprocess, sys
 from datetime import datetime, timedelta
@@ -32,12 +34,13 @@ BUILD_SCRIPTS = [
     'build_fireside.py',
     'build_manz.py',
     'build_ov.py',
+    'build_winding.py',
 ]
 
 REQUIRED_CSVS = [
     'antelope_recap_raw.csv', 'fairoaks_recap_raw.csv', 'auburn_recap_raw.csv',
     'madhouse_recap_raw.csv', 'lichen_recap_raw.csv', 'fireside_recap_raw.csv',
-    'manz_recap_raw.csv', 'ov_recap_raw.csv',
+    'manz_recap_raw.csv', 'ov_recap_raw.csv', 'winding_recap_raw.csv',
 ]
 
 DASHBOARD_FILE = 'shift-recap-dashboard.html'
@@ -102,6 +105,7 @@ def main():
         'auburn_records_full_window.json', 'madhouse_records_full_window.json',
         'lichen_records_full_window.json', 'fireside_records_full_window.json',
         'manz_records_full_window.json', 'ov_records_full_window.json',
+        'winding_records_full_window.json',
     ]
     rolled = 0
     for jf in shop_json_files:
@@ -287,6 +291,10 @@ def main():
         'REAL_FIRESIDE_RECORDS': 'fireside_records_full_window.json',
         'REAL_MANZ_RECORDS': 'manz_records_full_window.json',
         'REAL_OV_RECORDS': 'ov_records_full_window.json',
+        # Winding stays LAST: the injection loop's end marker for the final entry is
+        # "\nconst records = [];", and the template places REAL_WINDING_RECORDS
+        # immediately before that line.
+        'REAL_WINDING_RECORDS': 'winding_records_full_window.json',
     }
     # load all shops, harvest the name roster, scrub names, then inject.
     # Roster = every filer name (reliable: comes from the form's name field) plus
@@ -530,6 +538,7 @@ def main():
         'AUBURN': 'Auburn', 'LICHEN': 'Lichen', 'ANTELOPE': 'Antelope',
         'FIRESIDE': 'Fireside', 'ORANGEVALE': 'OV', 'OV': 'OV',
         'MANZANITA': 'Manz', 'MANZ': 'Manz',
+        'WINDING': 'Winding', 'WINDING WAY': 'Winding',
     }
     _date_pat = _re.compile(r'(\d{1,2})/(\d{1,2})/(\d{2,4})')
 
@@ -635,7 +644,7 @@ def main():
         f.write(html)
 
     step('Done')
-    print(f'{DASHBOARD_FILE} has been refreshed with current data for all 7 shops.')
+    print(f'{DASHBOARD_FILE} has been refreshed with current data for all 9 shops.')
 
 if __name__ == '__main__':
     main()
