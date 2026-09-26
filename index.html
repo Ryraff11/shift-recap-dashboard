@@ -908,7 +908,7 @@ function getPacificNow(){
 const days = 60; // 60-day data window powers the Late Submissions tally; the recaps day-strip below stays a fixed trailing 7 days so the grid is unchanged
 const TODAY_INDEX = days - 1;
 const TODAY_DATE = new Date(2026, 8, 26); // auto-updated by refresh_dashboard.py;
-const BUILD_STAMP = "Sat · Sep 26 · updated 5:17 AM PT"; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
+const BUILD_STAMP = "Sat · Sep 26 · updated 1:11 PM PT"; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
 
 function dateForIndex(i){
   const dt = new Date(TODAY_DATE);
@@ -6635,6 +6635,51 @@ const REAL_ANTELOPE_RECORDS = [
         "name": "W",
         "kind": "bad",
         "source": "No w was late"
+      }
+    ]
+  },
+  {
+    "shop": "Antelope",
+    "shift": "Open",
+    "dayIndex": 59,
+    "timestamp": "9/26/2026 11:44:06",
+    "employee": "NICO",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "No comments, standard shift.",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "AT was flowing everywhere in the best way"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Hazard reported: swapped the walk card reader again"
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+      "Line times / leaderboard": "Times were great, pretty busy ",
+      "Team player / needed to step up": "AT was flowing everywhere in the best way ",
+      "Tardy / early out": "No",
+      "Food inventory sheet": "Blank",
+      "Safety hazards": "swapped the walk card reader again ",
+      "Xbro / non-negotiables": "I spent most of my time covering breaks/ gsd, not an issue, bars were doing well. We picked up a little earlier than I\u2019m used to, closer to 7:30 compared to 8:15ish. I asked the runners to make sure they are telling the customers which car to follow.",
+      "Additional comments": "",
+      "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
+      "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?"
+    },
+    "namedMentions": [
+      {
+        "name": "AT",
+        "kind": "good",
+        "source": "AT was flowing everywhere in the best way"
       }
     ]
   }
@@ -23682,6 +23727,68 @@ const REAL_AUBURN_RECORDS = [
       "Culture competition": ""
     },
     "namedMentions": []
+  },
+  {
+    "shop": "Auburn",
+    "shift": "Open",
+    "dayIndex": 59,
+    "timestamp": "9/26/2026 12:38:38",
+    "employee": "Grace",
+    "isLate": true,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "Na",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "The whole crew killed it this morning, it was a bit of a struggle getting in a flow but once we did we were moving like a well oiled machine it was awesome:))"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "It was good everyone communicated well, I had cadence as my xbro 2 because I didn\u2019t have another SL and she did awesome! Jill also covered for me as xbro 1 while I was on my break and killed it. I really think we should consider starting to let experienced baristas be on xbro. They work super hard and are always so excited to do it!"
+      },
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Na"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Recap submitted late \u2014 arrived 12:38 PM, after the 12:15 grace-period cutoff for Open."
+      }
+    ],
+    "fullRecap": {
+      "Shift time": "",
+      "Staffing": "Well staffed! It was PERFECT!",
+      "Rush timing": "",
+      "Cleanest on bar": "",
+      "Line times / leaderboard": "In the morning it took us a little bit to get in our feet, but majority of the morning we were either first or top three",
+      "Safety hazards": "Na",
+      "Xbro / non-negotiables": "It was good everyone communicated well, I had cadence as my xbro 2 because I didn\u2019t have another SL and she did awesome! Jill also covered for me as xbro 1 while I was on my break and killed it. I really think we should consider starting to let experienced baristas be on xbro. They work super hard and are always so excited to do it!",
+      "Coaching notes": "",
+      "Xbro effectiveness (1-5)": "",
+      "Team player (system buy-in)": "",
+      "Needs replacing / broken": "",
+      "Quarterly comp tallies (OAs not ready)": "",
+      "Closing: Verifone WiFi": "Not the night SL",
+      "Tardy / early-out": "Na",
+      "Fridge seals check": "",
+      "XBRO staffing struggles": "",
+      "Clamps": "",
+      "Closing: positionless helper": "",
+      "Closing: efficiency reflection": "",
+      "Expired milk check": "DONE! It all looked good!",
+      "Additional comments": "Na",
+      "Best team player / wear more hats": "The whole crew killed it this morning, it was a bit of a struggle getting in a flow but once we did we were moving like a well oiled machine it was awesome:))",
+      "Culture competition": "Na"
+    },
+    "namedMentions": []
   }
 ]
 const REAL_MADHOUSE_RECORDS = [
@@ -32208,6 +32315,47 @@ const REAL_MADHOUSE_RECORDS = [
         "name": "Alex H.",
         "kind": "good",
         "source": "Alex H. was definitely the star. It was a more chill shift and she was doing everything she could around the shop."
+      }
+    ]
+  },
+  {
+    "shop": "Mad",
+    "shift": "Open",
+    "dayIndex": 59,
+    "timestamp": "9/26/2026 12:05:19",
+    "employee": "Devon",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "No comments, standard shift.",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Karis did a great job as runner. Everyone did a great job today"
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "\u200b\u200bPerfect (sometimes struggling, sometimes ahead - evened out)",
+      "Line times / leaderboard": "4 minutes we were usually in the middle of the board ",
+      "Best team player / wear more hats": "Karis did a great job as runner. Everyone did a great job today ",
+      "Tardy / early out": "No ",
+      "Morning SL: gravers feedback": "The grave was good ",
+      "Safety hazards": "No ",
+      "Additional comments": "",
+      "Xbro non-negotiables struggle": "No ",
+      "Shift chore completed": "Yes ",
+      "Closing: Verifone WiFi": "N/A // Not on the night shift",
+      "Closing: bakery item inventory": "No"
+    },
+    "namedMentions": [
+      {
+        "name": "Karis",
+        "kind": "good",
+        "source": "Karis did a great job as runner. Everyone did a great job today"
       }
     ]
   }
@@ -42800,6 +42948,57 @@ const REAL_LICHEN_RECORDS = [
         "source": "Best team player was Tessa. She did a good job at being able to get drinks out while also doing closing task."
       }
     ]
+  },
+  {
+    "shop": "Lichen",
+    "shift": "Open",
+    "dayIndex": 59,
+    "timestamp": "9/26/2026 12:11:34",
+    "employee": "Ash A.",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "pretty busy and consistent saturday!",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "kristina! she just immediately locked in and was such a solid body and was bouncing around being helpful where ever she could be!!\n\nhonestly i felt like i had to repeat myself a lot to daphne and megan especially with having to label their cars when we were super deep in the trenches and also to focus and prioritize and help us get through the rush not changing the music, eating, or standing in the back :/"
+      },
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "pretty busy and consistent saturday!"
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "Good staffing but rushes kept us on our toes!",
+      "Line times / leaderboard": "times: 1:17 // leaderboard: 2nd-4th",
+      "Times throughout shift": "",
+      "Best team player / wear more hats": "kristina! she just immediately locked in and was such a solid body and was bouncing around being helpful where ever she could be!!\n\nhonestly i felt like i had to repeat myself a lot to daphne and megan especially with having to label their cars when we were super deep in the trenches and also to focus and prioritize and help us get through the rush not changing the music, eating, or standing in the back :/",
+      "Tardy / early out": "no :)",
+      "Coaching notes": "",
+      "What could have gone smoother": "",
+      "Safety hazards": "no :)",
+      "Additional comments": "pretty busy and consistent saturday!",
+      "Fridge seals cleaned": "",
+      "New staffing/XBRO: went well / challenging": "",
+      "XBRO effectiveness": "",
+      "Bought into new system": "",
+      "Struggled with new staffing/XBRO": "",
+      "Clamps": "",
+      "Closing checklist": "not the night lead",
+      "Quarterly contest tallies": "",
+      "Xbro non-negotiables struggle": "",
+      "Chef position feedback": "",
+      "Closing: Verifone WiFi": "N/A // Not on the night shift",
+      "Aug contest: OA runner": "",
+      "Aug contest: why": ""
+    },
+    "namedMentions": []
   }
 ]
 const REAL_FIRESIDE_RECORDS = [
@@ -51973,6 +52172,67 @@ const REAL_FIRESIDE_RECORDS = [
         "name": "Moments",
         "kind": "bad",
         "source": "Xbro. Ran well no one struggled with the nonnegotiable. There is no coaching moment needed today."
+      }
+    ]
+  },
+  {
+    "shop": "Fireside",
+    "shift": "Open",
+    "dayIndex": 59,
+    "timestamp": "9/26/2026 11:52:15",
+    "employee": "Furton",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "Today was SLOW in the early am. We did all the chores and then it was poppin from 8-11am. 2nd runner is necessary \n\nIm so glad we did the chores early! It was so busy!",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Maddy and Nico killed it today"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Drink numbering was a struggle. PSA to entire crew. Bar cleanliness also announced to entire crew. Coached Vi on alternating cars and moving up the line."
+      },
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Today was SLOW in the early am. We did all the chores and then it was poppin from 8-11am. 2nd runner is necessary \n\nIm so glad we did the chores early! It was so busy!"
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+      "Line times / leaderboard": "About 1:30 bottom half to mid board",
+      "Best team player / wear more hats": "Maddy and Nico killed it today",
+      "Tardy / early out": "Nope",
+      "Xbro / non-negotiables": "Drink numbering was a struggle. PSA to entire crew. Bar cleanliness also announced to entire crew. Coached Vi on alternating cars and moving up the line.",
+      "Safety hazards": "Nothing broke",
+      "Additional comments": "Today was SLOW in the early am. We did all the chores and then it was poppin from 8-11am. 2nd runner is necessary \n\nIm so glad we did the chores early! It was so busy!",
+      "Fridge seals cleaned": "Done!",
+      "Closing: Verifone WiFi": "Not the night SL",
+      "Closing: food inventory texted to managers": "",
+      "Closing: safe/tills/iPads/doors checklist": "not the night SL"
+    },
+    "namedMentions": [
+      {
+        "name": "Maddy",
+        "kind": "good",
+        "source": "Maddy and Nico killed it today"
+      },
+      {
+        "name": "Nico",
+        "kind": "good",
+        "source": "Maddy and Nico killed it today"
+      },
+      {
+        "name": "Vita",
+        "kind": "bad",
+        "source": "Drink numbering was a struggle. PSA to entire crew. Bar cleanliness also announced to entire crew. Coached Vi on alternating cars and moving up the line."
       }
     ]
   }
@@ -62815,6 +63075,57 @@ const REAL_MANZ_RECORDS = [
       "Closing: Verifone WiFi": "Yes"
     },
     "namedMentions": []
+  },
+  {
+    "shop": "Manz",
+    "shift": "Open",
+    "dayIndex": 59,
+    "timestamp": "9/26/2026 10:40:52",
+    "employee": "Alyssa G.",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "No comments, standard shift.",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "I opened with Desi and she was amazing as always."
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+      "Line times / leaderboard": "Good times with average of yellow and green !",
+      "Best percentage / leaderboard hour": "",
+      "What could have gone smoother": "",
+      "Best team player / wear more hats": "I opened with Desi and she was amazing as always.",
+      "Tardy / early out": "No one was tardy.",
+      "Tips split confirmed": "",
+      "Safety hazards": "No safety hazards.",
+      "Fridge gaskets wiped": "",
+      "Xbro / non-negotiables": "Xbro was so good ! ",
+      "Additional comments": "",
+      "Bought into new system": "",
+      "Struggled with new staffing": "",
+      "Biggest clamp": "",
+      "XBRO feedback": "",
+      "Forgot single-drink-claim comp": "",
+      "Perfect pour comp": "",
+      "Remake comp": "",
+      "Caught fraud apps / bday drinks w/o ID": "",
+      "Got shift change": "",
+      "Best hourly window average": "",
+      "Cleanest person on shift": "",
+      "Window contest winner": "",
+      "Window contest: why": "",
+      "Cleanliness contest winner": "",
+      "Cleanliness contest: why": "",
+      "Closing: Verifone WiFi": "N/A // Not on the night shift"
+    },
+    "namedMentions": []
   }
 ]
 const REAL_OV_RECORDS = [
@@ -70821,6 +71132,61 @@ const REAL_OV_RECORDS = [
         "name": "Audrey",
         "kind": "good",
         "source": "audrey is so good! on top of it all night"
+      }
+    ]
+  },
+  {
+    "shop": "OV",
+    "shift": "Open",
+    "dayIndex": 59,
+    "timestamp": "9/26/2026 11:56:37",
+    "employee": "Matthew W.",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "No comments great shift :)",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "I would say the best team player was Sydney, she was killing it the entire shift and being so helpful. Everyone was doing super good but she stood out the most!"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Hazard reported: No hazards :)"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "No one struggled:)"
+      },
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "No comments great shift :)"
+      }
+    ],
+    "fullRecap": {
+      "staffing": "Perfect (sometimes struggling, sometimes ahead- evened out",
+      "lineTimes": "50-1:00",
+      "teamPlayer": "I would say the best team player was Sydney, she was killing it the entire shift and being so helpful. Everyone was doing super good but she stood out the most!",
+      "tardy": "No :)",
+      "foodInventory": "No / In progress",
+      "safety": "No hazards :)",
+      "xbro": "No one struggled:)",
+      "comments": "No comments great shift :)",
+      "closingVerifone": "N/A ; Not closing shift lead",
+      "closingChecklist": ""
+    },
+    "namedMentions": [
+      {
+        "name": "Sydney",
+        "kind": "good",
+        "source": "I would say the best team player was Sydney, she was killing it the entire shift and being so helpful. Everyone was doing super good but she stood out the most!"
       }
     ]
   }
