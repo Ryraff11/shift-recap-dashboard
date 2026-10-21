@@ -652,147 +652,12 @@ body.home-active main{ padding:0; }
 </head>
 <body>
 
-<header>
-  <div class="row-between">
-    <div>
-      <div class="eyebrow">Dutch Bros · DB Sac</div>
-      <h1 class="anton">Ops Hub</h1>
-    </div>
-    <div style="display:flex; gap:8px;">
-      <button class="ghost-btn" id="btn-leaderboard">Leaderboard →</button>
-    </div>
-  </div>
-  <p class="header-sub" id="header-sub">Tap a stand to dig into recaps, times, sales, and payroll — example data below.</p>
-</header>
-
 <main>
   <!-- ============ HOME ============ -->
   <div class="view active" id="view-home">
     <section class="oh" id="oh-app"></section>
   </div>
 
-  <!-- ============ SHOP DETAIL ============ -->
-  <div class="view" id="view-shop-detail">
-    <button class="back-btn" id="btn-back-home">← Home</button>
-    <h2 class="shop-detail-title anton" id="shop-detail-title"></h2>
-
-    <div class="subtabs" id="shop-subtabs">
-      <button class="subtab active" data-cat="recaps">Recaps</button>
-      <button class="subtab" data-cat="times">Times</button>
-      <button class="subtab" data-cat="netsales">Net Sales</button>
-      <button class="subtab" data-cat="dph">Drinks/Hr</button>
-      <button class="subtab" data-cat="peak">Peak Hours</button>
-      <button class="subtab" data-cat="payroll">Payroll</button>
-    </div>
-
-    <!-- RECAPS -->
-    <div class="category active" id="cat-recaps">
-      <div class="range-picker" data-range-group="recaps">
-        <button class="range-btn" data-range="today">Today</button>
-        <button class="range-btn" data-range="yesterday">Yesterday</button>
-        <button class="range-btn" data-range="3d">3 Days</button>
-        <button class="range-btn active" data-range="7d">7 Days</button>
-      </div>
-      <div class="stat-row" id="recap-stats"></div>
-      <div class="alert-banner-stack" id="shop-missing-banner"></div>
-      <div class="day-strip" id="day-strip"></div>
-
-      <div class="section-sub">Standouts</div>
-      <div class="standout-scroll" id="standout-good-grid"></div>
-
-      <div class="section-sub">Needs a look</div>
-      <div class="standout-scroll" id="standout-bad-grid"></div>
-
-      <div class="section-sub">Search crew</div>
-      <input type="text" id="crew-search-input" class="crew-search" placeholder="Search a name…">
-      <div id="crew-search-results"></div>
-
-      <div class="section-sub">Flagged feedback</div>
-      <div id="feed-list"></div>
-
-      <div class="section-sub">Late Submission Tally · last 60 days</div>
-      <div id="shop-latesubs"></div>
-    </div>
-
-    <!-- TIMES -->
-    <div class="category" id="cat-times">
-      <div class="range-picker" data-range-group="times">
-        <button class="range-btn" data-range="today">Today</button>
-        <button class="range-btn" data-range="yesterday">Yesterday</button>
-        <button class="range-btn" data-range="3d">3 Days</button>
-        <button class="range-btn active" data-range="7d">7 Days</button>
-      </div>
-      <div class="stat-row" id="times-stats"></div>
-      <div id="times-source" style="font-size:12px;color:var(--text-dim);margin:-2px 0 10px;"></div>
-      <div class="section-sub">Window time by day · newest first · real HME data only</div>
-      <div id="times-bars"></div>
-    </div>
-
-    <!-- NET SALES -->
-    <div class="category" id="cat-netsales">
-      <div class="range-picker" data-range-group="netsales">
-        <button class="range-btn" data-range="today">Today</button>
-        <button class="range-btn" data-range="yesterday">Yesterday</button>
-        <button class="range-btn" data-range="3d">3 Days</button>
-        <button class="range-btn active" data-range="7d">7 Days</button>
-      </div>
-      <div class="stat-row" id="netsales-stats"></div>
-      <div class="section-sub">Net sales by day</div>
-      <div class="bar-scroll" id="netsales-bars"></div>
-    </div>
-
-    <!-- DRINKS PER HOUR -->
-    <div class="category" id="cat-dph">
-      <div class="range-picker" data-range-group="dph">
-        <button class="range-btn" data-range="today">Today</button>
-        <button class="range-btn" data-range="yesterday">Yesterday</button>
-        <button class="range-btn" data-range="3d">3 Days</button>
-        <button class="range-btn active" data-range="7d">7 Days</button>
-      </div>
-      <div class="stat-row" id="dph-stats"></div>
-      <div class="section-sub">Drinks per hour by day</div>
-      <div class="bar-scroll" id="dph-bars"></div>
-    </div>
-
-    <!-- PEAK HOURS -->
-    <div class="category" id="cat-peak">
-      <div class="range-picker" data-range-group="peak">
-        <button class="range-btn" data-range="today">Today</button>
-        <button class="range-btn" data-range="yesterday">Yesterday</button>
-        <button class="range-btn" data-range="3d">3 Days</button>
-        <button class="range-btn active" data-range="7d">7 Days</button>
-      </div>
-      <div class="peak-badge" id="peak-badge"></div>
-      <div class="peak-scroll" id="peak-bars"></div>
-    </div>
-
-    <!-- PAYROLL -->
-    <div class="category" id="cat-payroll">
-      <div class="range-picker" data-range-group="payroll">
-        <button class="range-btn" data-range="today">Today</button>
-        <button class="range-btn" data-range="yesterday">Yesterday</button>
-        <button class="range-btn" data-range="3d">3 Days</button>
-        <button class="range-btn active" data-range="7d">7 Days</button>
-      </div>
-      <div class="stat-row" id="payroll-stats"></div>
-      <div class="section-sub">Labor hours by day</div>
-      <div class="bar-scroll" id="payroll-bars"></div>
-    </div>
-  </div>
-
-  <!-- ============ LEADERBOARD ============ -->
-  <div class="view" id="view-leaderboard">
-    <button class="back-btn" id="btn-back-home-2">← Home</button>
-    <div class="row-between">
-      <div class="section-title">Leaderboard · last 7 days</div>
-      <select id="lb-rank-by">
-        <option value="laneTotal">Rank by: Lane Total (speed)</option>
-        <option value="netSales">Rank by: Net Sales</option>
-        <option value="dph">Rank by: Drinks Per Hour</option>
-      </select>
-    </div>
-    <div id="leaderboard-list"></div>
-  </div>
   <!-- ============ OVERVIEW ============ -->
   <div class="view" id="view-overview">
     <div class="ovh-top">
@@ -839,12 +704,6 @@ body.home-active main{ padding:0; }
 </div>
 
 <script>
-// ---------- RNG ----------
-function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
-const rand = mulberry32(20260722);
-function pick(arr){return arr[Math.floor(rand()*arr.length)];}
-function chance(p){return rand()<p;}
-
 const SHOPS = ["Mad","Fair Oaks","Auburn","Manz","Lichen","Antelope","Fireside","OV","Winding"];
 // No inactive shops right now (Winding's recaps went live 2026-09-04); the set stays for future launches.
 const INACTIVE_SHOPS = new Set([]);
@@ -924,12 +783,6 @@ function fmtDate(dt){ return `${dt.getMonth()+1}/${dt.getDate()}`; }
 const DAY_DATES = Array.from({length:days}, (_,i)=>dateForIndex(i));
 const DAY_LABELS = DAY_DATES.map(fmtDate);
 
-function secsToClock(sec){
-  const s = Math.round(sec);
-  const m = Math.floor(s/60), r = s%60;
-  return `${m}:${String(r).padStart(2,'0')}`;
-}
-function fmtMoney(n){ return '$'+Math.round(n).toLocaleString(); }
 
 // ---------- range presets ----------
 function indicesForRange(preset){
@@ -946,57 +799,16 @@ function indicesForRange(preset){
   return [TODAY_INDEX];
 }
 // previous equal-length period, for trend comparisons
-function prevIndicesFor(indices){
-  const n = indices.length;
-  const start = Math.min(...indices) - n;
-  return Array.from({length:n},(_,k)=>start+k).filter(i=>i>=0);
-}
 
-// ---------- roster ----------
-const FIRST = ["Matthew","Jordan","Casey","Riley","Morgan","Taylor","Alex","Sydney","Bailey","Jamie","Cameron","Drew","Hayden","Reese","Skyler","Peyton","Quinn","Avery","Rowan","Emerson","Dakota","Sawyer","Kendall","Marley","Shay"];
-const LAST = ["Warner","Reyes","Chen","Patel","Nguyen","Brooks","Diaz","Foster","Hale","Kessler","Ortiz","Sanders","Vance","Whitfield","Torres"];
-const roster = {};
-SHOPS.forEach(shop=>{
-  const n = 5 + Math.floor(rand()*2);
-  const names = new Set();
-  while(names.size < n){ names.add(pick(FIRST)+" "+pick(LAST).charAt(0)+"."); }
-  roster[shop] = [...names];
-});
-
-// ---------- submissions + recaps (last 7 days shown, same logic as before) ----------
-const SIM_NOW_HOUR = 22.5;
-const CUTOFF_HOUR = { Open: 11, Mid: 17 };
-const SUBMIT_RATE = { Open: 0.93, Mid: 0.91, Close: 0.88 };
-const RECAP_WINDOW = 7; // recap tab always shows the trailing 7 days, like the recap form cadence
-const recapDayStart = TODAY_INDEX - RECAP_WINDOW + 1;
-
+// ---------- submissions ----------
+// submissionStatus[`${dayIndex}|${shop}|${shift}`] = submitted | late | missing | pending | untracked,
+// filled from the real recap records below.
 const submissionStatus = {};
-for(let d=recapDayStart; d<=TODAY_INDEX; d++){
-  SHOPS.forEach(shop=>{
-    SHIFTS.forEach(shift=>{
-      const wasSubmitted = chance(SUBMIT_RATE[shift]);
-      let status;
-      if(d < TODAY_INDEX){
-        status = wasSubmitted ? 'submitted' : 'missing';
-      } else if(shift === 'Close'){
-        status = (SIM_NOW_HOUR < 23) ? 'pending' : (wasSubmitted ? 'submitted' : 'pending');
-      } else {
-        const cutoff = CUTOFF_HOUR[shift];
-        status = (SIM_NOW_HOUR < cutoff) ? (wasSubmitted ? 'submitted' : 'pending') : (wasSubmitted ? 'submitted' : 'missing');
-      }
-      submissionStatus[`${d}|${shop}|${shift}`] = status;
-    });
-  });
-}
-submissionStatus[`${TODAY_INDEX-2}|Auburn|Close`] = 'missing';
 // Inactive shops aren't tracked yet: mark every slot 'untracked' so nothing fabricated renders for them.
 INACTIVE_SHOPS.forEach(shop=>{
   for(let d=0; d<=TODAY_INDEX; d++){ SHIFTS.forEach(shift=>{ submissionStatus[`${d}|${shop}|${shift}`] = 'untracked'; }); }
 });
 
-const HAZARDS = ["Broken blender on line 2","Wet floor near walk-in, no sign out","Ice machine leaking","Torn mat by drive-thru window"];
-const GOOD_COMMENTS = ["Great shift, crushed our line time goal!","Whole crew was locked in today, no notes.","Best shift of the week, everyone hustled.","Smooth all day, really proud of this team."];
-const BAD_COMMENTS = ["Rough one, slammed and short staffed most of shift.","Customer got heated at the window, crew handled it okay.","Felt disorganized in the first hour, evened out later.","Struggled to keep up during the rush, need another body on bar."];
 
 const REAL_ANTELOPE_RECORDS = [
   {
@@ -60642,34 +60454,6 @@ const REAL_OV_RECORDS = [
 ]
 const REAL_WINDING_RECORDS = [];
 const records = [];
-for(let d=recapDayStart; d<=TODAY_INDEX; d++){
-  SHOPS.forEach(shop=>{
-    SHIFTS.forEach(shift=>{
-      if(submissionStatus[`${d}|${shop}|${shift}`] !== 'submitted') return;
-      const people = roster[shop];
-      const bestPlayer = pick(people);
-      const needsHats = chance(0.22) ? pick(people.filter(p=>p!==bestPlayer)) : null;
-      const tardy = chance(0.13) ? pick(people) : null;
-      const hazard = chance(0.07) ? pick(HAZARDS) : null;
-      const xbroStruggle = chance(0.10) ? pick(people) : null;
-      const commentIsGood = chance(0.35);
-      const commentIsBad = !commentIsGood && chance(0.25);
-      const comment = commentIsGood ? pick(GOOD_COMMENTS) : (commentIsBad ? pick(BAD_COMMENTS) : "No comments, standard shift.");
-      const standoutGood = chance(0.4);
-
-      const flags = [];
-      if(standoutGood) flags.push({kind:'good', employee:bestPlayer, text:`${bestPlayer} called out as best team player.`});
-      if(commentIsGood) flags.push({kind:'good', employee:null, text:comment});
-      if(needsHats) flags.push({kind:'bad', employee:needsHats, text:`${needsHats} needed to "wear more hats" this shift.`});
-      if(tardy) flags.push({kind:'bad', employee:tardy, text:`${tardy} was tardy to start of shift.`});
-      if(hazard) flags.push({kind:'bad', employee:null, text:`Hazard reported: ${hazard}.`});
-      if(xbroStruggle) flags.push({kind:'bad', employee:xbroStruggle, text:`${xbroStruggle} struggled with Xbro non-negotiables.`});
-      if(commentIsBad) flags.push({kind:'bad', employee:null, text:comment});
-
-      records.push({shop, shift, dayIndex:d, bestPlayer, needsHats, tardy, hazard, xbroStruggle, comment, flags});
-    });
-  });
-}
 
 // ---------- swap in real recap data across the full 30-day window, for every shop we've wired up ----------
 const REAL_SHOP_DATA = {
@@ -60731,33 +60515,8 @@ Object.entries(SHOP_TRACKING_START).forEach(([shop, startIso]) => {
   });
 })();
 
-const shopAgg = {};
-SHOPS.forEach(s=>shopAgg[s]={recaps:0, good:0, bad:0});
-records.forEach(r=>{
-  const a = shopAgg[r.shop];
-  a.recaps++;
-  r.flags.forEach(f=>a[f.kind]++);
-});
 
-// ---------- timer system (Lane Total / Lane Total 2 / goal bands / cars) ----------
-const GOAL_LABELS = { A:'Under 1:00', B:'1:00-3:00', C:'3:00-4:00', D:'4:00-5:00', over:'5:00+' };
-const GOAL_COLORS = { A:'#3FB6A8', B:'#156299', C:'#F8E316', D:'#e0862f', over:'#DA262E' };
-function makeGoalSplit(fastBias){
-  let a = Math.min(Math.round(fastBias*55 + rand()*25), 96);
-  let remA = 100-a;
-  let b = Math.round(remA*(0.55+rand()*0.3));
-  let remB = remA-b;
-  let c = Math.round(remB*(0.5+rand()*0.3));
-  let remC = remB-c;
-  let d = Math.round(remC*(0.5+rand()*0.3));
-  let over = remC-d;
-  return {A:a,B:b,C:c,D:Math.max(d,0),over:Math.max(over,0)};
-}
-
-// hourly shape for a coffee-stand day: 6am-11pm, double peak (morning + afternoon)
-const HOURS = ['6a','7a','8a','9a','10a','11a','12p','1p','2p','3p','4p','5p','6p','7p','8p','9p','10p','11p'];
-const HOUR_WEIGHTS = [0.015,0.045,0.085,0.095,0.065,0.05,0.045,0.05,0.07,0.09,0.085,0.06,0.05,0.045,0.04,0.035,0.03,0.02];
-
+// ---------- timer system (real HME lane totals / cars only) ----------
 // Real drive-thru timer data from HME (injected by refresh_dashboard.py from timer_history.json).
 // Shape: { "<Shop>": { "YYYY-MM-DD": {laneTotalSec, laneTotal2Sec, totalCars} } }. Empty until injected.
 const REAL_TIMER_DATA = {"Lichen": {"2026-07-27": {"laneTotalSec": 81, "laneTotal2Sec": null, "totalCars": 561}}, "Mad": {"2026-07-27": {"laneTotalSec": 124, "laneTotal2Sec": 126, "totalCars": 717}}, "Manz": {"2026-07-27": {"laneTotalSec": 72, "laneTotal2Sec": null, "totalCars": 514}}};
@@ -60766,73 +60525,17 @@ const REAL_DEPUTY_SCHEDULE = {};
 
 function isoForIndex(i){ const dt=dateForIndex(i); return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0'); }
 
-const dailyOps = {}; // dailyOps[shop][d] = {totalCars, laneTotalSec, laneTotal2Sec, isRealTimer, goalLaneTotal, goalLaneTotal2, netSales, dph, hourly[], sched, actualHrs, otHrs, laborCost}
+const dailyOps = {}; // dailyOps[shop][d] = {totalCars, laneTotalSec, laneTotal2Sec, isRealTimer} — only days with an HME upload are real
 SHOPS.forEach(shop=>{
   dailyOps[shop] = [];
-  const ticketBias = 6.2 + rand()*1.6; // this shop's typical avg ticket
   for(let d=0; d<days; d++){
-    let totalCars = 560 + Math.floor(rand()*220);
-    let laneTotalSec = 62 + Math.floor(rand()*45);
-    let laneTotal2Sec = 16 + Math.floor(rand()*26);
-    // overlay real HME timer data on days we have it (mock values computed above keep the
-    // RNG sequence identical, so days without HME data are unchanged)
     const realT = REAL_TIMER_DATA[shop] && REAL_TIMER_DATA[shop][isoForIndex(d)];
-    if(realT){
-      totalCars = realT.totalCars;
-      laneTotalSec = realT.laneTotalSec;
-      laneTotal2Sec = (realT.laneTotal2Sec != null) ? realT.laneTotal2Sec : realT.laneTotalSec;
-    }
-    const netSales = totalCars * (ticketBias + (rand()*1.2-0.6));
-    const drinksTotal = totalCars * (1.05 + rand()*0.35);
-    const dph = drinksTotal / 17; // 17 operating hours
-    const hourly = HOUR_WEIGHTS.map(w => Math.round(totalCars * w * (0.85+rand()*0.3)));
-    const scheduledHours = 130 + rand()*40;
-    const actualHours = scheduledHours + (rand()*10-4);
-    const overtimeHours = chance(0.3) ? rand()*8 : 0;
-    const wage = 17 + rand()*3;
-    const laborCost = actualHours*wage + overtimeHours*wage*0.5;
-    dailyOps[shop].push({
-      totalCars, laneTotalSec, laneTotal2Sec, isRealTimer: !!realT,
-      goalLaneTotal: makeGoalSplit(0.35), goalLaneTotal2: makeGoalSplit(0.85),
-      netSales, dph, hourly,
-      scheduledHours, actualHours, overtimeHours, laborCost
-    });
+    dailyOps[shop].push(realT
+      ? { totalCars: realT.totalCars, laneTotalSec: realT.laneTotalSec,
+          laneTotal2Sec: (realT.laneTotal2Sec != null) ? realT.laneTotal2Sec : realT.laneTotalSec, isRealTimer: true }
+      : { totalCars: 0, laneTotalSec: 0, laneTotal2Sec: 0, isRealTimer: false });
   }
 });
-
-function aggregate(shop, indices, key){
-  return indices.reduce((s,i)=>s+dailyOps[shop][i][key],0);
-}
-function average(shop, indices, key){
-  return aggregate(shop, indices, key)/indices.length;
-}
-function trendArrow(current, prev){
-  if(prev===0 || !isFinite(prev)) return {dir:'up', pct:0};
-  const pct = ((current-prev)/prev)*100;
-  return {dir: pct>=0 ? 'up':'down', pct: Math.abs(pct)};
-}
-
-// ================= HOME =================
-let activeShop = null;
-function renderHome(){
-  // shop-grid removed; home screen is now just the franchise daily recap
-}
-
-function openShop(shop){
-  if(INACTIVE_SHOPS.has(shop)) return; // inactive shops aren't actively tracked — no detail view
-  activeShop = shop;
-  document.getElementById('shop-detail-title').textContent = shop;
-  showView('shop-detail');
-  const _hr = window.ohHomeRange || 'today';
-  rangeState.recaps = _hr;
-  document.querySelectorAll('.range-picker[data-range-group="recaps"] .range-btn').forEach(b=>b.classList.toggle('active', b.dataset.range===_hr));
-  renderRecaps();
-  renderTimes();
-  renderNetSales();
-  renderDPH();
-  renderPeak();
-  renderPayroll();
-}
 
 // ================= VIEW SWITCHING =================
 function showView(name){
@@ -60843,70 +60546,9 @@ function showView(name){
   // overview-active zeroes main's horizontal padding so the Overview rows run edge to edge.
   document.body.classList.toggle('overview-active', name === 'overview');
 }
-document.getElementById('btn-back-home').addEventListener('click', ()=>showView('home'));
-document.getElementById('btn-back-home-2').addEventListener('click', ()=>showView('home'));
-document.getElementById('btn-leaderboard').addEventListener('click', ()=>{ showView('leaderboard'); renderLeaderboard(); });
-
-document.querySelectorAll('#shop-subtabs .subtab').forEach(tab=>{
-  tab.addEventListener('click', ()=>{
-    document.querySelectorAll('#shop-subtabs .subtab').forEach(t=>t.classList.remove('active'));
-    document.querySelectorAll('#view-shop-detail .category').forEach(c=>c.classList.remove('active'));
-    tab.classList.add('active');
-    document.getElementById('cat-'+tab.dataset.cat).classList.add('active');
-  });
-});
-
-// range picker wiring, per group. Groups sharing the same data-range-group (like
-// the 5 "cmp" pickers, one per compare category) stay in sync with each other.
-const rangeState = { recaps:'7d', times:'7d', netsales:'7d', dph:'7d', peak:'7d', payroll:'7d', cmp:'7d' };
-document.querySelectorAll('.range-picker').forEach(group=>{
-  const key = group.dataset.rangeGroup;
-  group.querySelectorAll('.range-btn').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      rangeState[key] = btn.dataset.range;
-      document.querySelectorAll(`.range-picker[data-range-group="${key}"]`).forEach(g=>{
-        g.querySelectorAll('.range-btn').forEach(b=>b.classList.toggle('active', b.dataset.range===rangeState[key]));
-      });
-      if(key==='recaps') renderRecaps();
-      if(key==='times') renderTimes();
-      if(key==='netsales') renderNetSales();
-      if(key==='dph') renderDPH();
-      if(key==='peak') renderPeak();
-      if(key==='payroll') renderPayroll();
-      if(key==='cmp') renderCompareAll();
-    });
-  });
-});
-
-// ================= RECAPS =================
-function getMentionsInRange(shop, indices){
-  const idxSet = new Set(indices);
-  const out = [];
-  records.forEach(r=>{
-    if(r.shop!==shop || !idxSet.has(r.dayIndex)) return;
-    if(r.namedMentions){
-      r.namedMentions.forEach(m=> out.push({name:m.name, kind:m.kind, text:m.source, dayIndex:r.dayIndex, shift:r.shift}));
-    } else {
-      r.flags.forEach(f=>{ if(f.employee) out.push({name:f.employee, kind:f.kind, text:f.text, dayIndex:r.dayIndex, shift:r.shift}); });
-    }
-  });
-  return out;
-}
-function aggregateMentions(mentions){
-  const map = new Map();
-  mentions.forEach(m=>{
-    const key = m.name.toLowerCase();
-    if(!map.has(key)) map.set(key, {name:m.name, good:0, bad:0, items:[]});
-    const e = map.get(key);
-    e[m.kind]++;
-    e.items.push(m);
-  });
-  return [...map.values()];
-}
-
-let currentSearchQuery = '';
+// ================= RECAP HELPERS =================
+let currentSearchQuery = ''; // read by the recap sheet's highlightText (search is gone, stays empty)
 function escapeRegex(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
-// wraps every occurrence of currentSearchQuery (or an explicit query) in <mark>, on top of HTML-escaping
 function highlightText(text, query){
   const q = query !== undefined ? query : currentSearchQuery;
   const escaped = escapeHtml(text);
@@ -60914,291 +60556,12 @@ function highlightText(text, query){
   const re = new RegExp(`(${escapeRegex(escapeHtml(q))})`, 'ig');
   return escaped.replace(re, '<mark class="hl">$1</mark>');
 }
-
-const FIELD_LABELS = {
-  staffing:'Staffing', lineTimes:'Line times / leaderboard', teamPlayer:'Team player',
-  tardy:'Tardy / early out', foodInventory:'Food inventory', safety:'Safety hazards',
-  xbro:'Xbro / non-negotiables', comments:'Additional comments',
-  closingVerifone:'Closing: Verifone WiFi', closingChecklist:'Closing checklist'
-};
-// full keyword search: matches a crew name OR any word inside any recap field
-function searchRecaps(shop, indices, query){
-  if(!query) return [];
-  const idxSet = new Set(indices);
-  const q = query.toLowerCase();
-  const results = [];
-  records.forEach((r, recordIndex)=>{
-    if(r.shop!==shop || !idxSet.has(r.dayIndex)) return;
-    if(r.namedMentions){
-      r.namedMentions.forEach(m=>{
-        if(m.name.toLowerCase().includes(q) || m.source.toLowerCase().includes(q)){
-          results.push({label:`Mentioned: ${m.name}`, text:m.source, dayIndex:r.dayIndex, shift:r.shift, kind:m.kind, recordIndex});
-        }
-      });
-    } else {
-      r.flags.forEach(f=>{
-        if((f.employee && f.employee.toLowerCase().includes(q)) || f.text.toLowerCase().includes(q)){
-          results.push({label: f.employee ? `Mentioned: ${f.employee}` : (f.kind==='good'?'Good flag':'Needs attention'), text:f.text, dayIndex:r.dayIndex, shift:r.shift, kind:f.kind, recordIndex});
-        }
-      });
-    }
-    if(r.fullRecap){
-      Object.entries(r.fullRecap).forEach(([key,val])=>{
-        const v = (val||'').toString();
-        if(v.toLowerCase().includes(q)){
-          results.push({label:FIELD_LABELS[key]||key, text:v, dayIndex:r.dayIndex, shift:r.shift, kind:null, recordIndex});
-        }
-      });
-    } else if(r.comment && r.comment.toLowerCase().includes(q)){
-      results.push({label:'Comment', text:r.comment, dayIndex:r.dayIndex, shift:r.shift, kind:null, recordIndex});
-    }
-  });
-  const seen = new Set();
-  return results.filter(r=>{
-    const key = r.label+'|'+r.dayIndex+'|'+r.shift+'|'+r.text;
-    if(seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
-}
-
-function renderStandoutCard(entry, kind){
-  const count = kind==='good' ? entry.good : entry.bad;
-  const items = entry.items.filter(i=>i.kind===kind);
-  const quote = items[0] ? items[0].text : '';
-  return `<div class="standout-card ${kind}" data-name="${escapeHtml(entry.name)}">
-    <div class="standout-name">${highlightText(entry.name)}</div>
-    <div class="standout-count">${count} mention${count!==1?'s':''}</div>
-    <div class="standout-quote">${highlightText(quote)}</div>
-  </div>`;
-}
-function renderCrewSearch(){
-  const q = document.getElementById('crew-search-input').value.trim();
-  currentSearchQuery = q;
-  const resultsEl = document.getElementById('crew-search-results');
-  if(!q){ resultsEl.innerHTML=''; return; }
-  const indices = indicesForRange(rangeState.recaps);
-  const results = searchRecaps(activeShop, indices, q);
-  resultsEl.innerHTML = results.length===0 ? `<div class="empty">No matches found.</div>` : results.map(r=>`
-    <div class="crew-search-result ${r.kind||''}" onclick="openRecapModal(${r.recordIndex})">
-      <div class="crew-search-meta">${highlightText(r.label)} · ${fmtDate(dateForIndex(r.dayIndex))} · ${r.shift}</div>
-      <div class="feed-quote">${highlightText(r.text)}</div>
-      <div class="feed-more">Tap to view full recap →</div>
-    </div>`).join('');
-}
-function onSearchInput(){
-  currentSearchQuery = document.getElementById('crew-search-input').value.trim();
-  renderRecaps(); // full refresh so standouts + feed highlight in place too, not just the search panel
-}
-document.getElementById('crew-search-input').addEventListener('input', onSearchInput);
-
-function openFlagBreakdown(kind){
-  const items = kind==='good' ? lastGoodFlagItems : lastBadFlagItems;
-  const byCategory = new Map();
-  items.forEach(it=>{
-    if(!byCategory.has(it.category)) byCategory.set(it.category, []);
-    byCategory.get(it.category).push(it);
-  });
-  let html = '';
-  [...byCategory.entries()].sort((a,b)=>b[1].length-a[1].length).forEach(([cat, list])=>{
-    html += `<div class="modal-field">
-      <div class="modal-field-label">${escapeHtml(cat)} (${list.length})</div>
-      ${list.map(it=>`<div class="modal-field-value" style="margin-bottom:8px;">
-        <span style="color:var(--text-faint); font-family:'JetBrains Mono'; font-size:11px;">${fmtDate(dateForIndex(it.dayIndex))} · ${it.shift}${it.employee?` · ${escapeHtml(it.employee)}`:''}</span><br>
-        ${highlightText(it.text)}
-      </div>`).join('')}
-    </div>`;
-  });
-  document.getElementById('recap-modal-card').innerHTML = `
-    <button class="modal-close" onclick="closeRecapModal()">✕</button>
-    <div class="modal-title">${kind==='good'?'Good':'Bad'} flags — ${items.length} total</div>
-    <div class="modal-sub">${activeShop} · excludes late-submission flags (tracked separately above)</div>
-    ${html || '<div class="empty">Nothing here.</div>'}
-  `;
-  document.getElementById('recap-modal-overlay').classList.add('active');
-}
-
-function openPersonModal(name){
-  const indices = indicesForRange(rangeState.recaps);
-  const mentions = getMentionsInRange(activeShop, indices).filter(m=>m.name.toLowerCase()===name.toLowerCase());
-  const goodCount = mentions.filter(m=>m.kind==='good').length;
-  const badCount = mentions.filter(m=>m.kind==='bad').length;
-  const itemsHtml = mentions.map(m=>`
-    <div class="modal-field">
-      <div class="modal-field-label">${fmtDate(dateForIndex(m.dayIndex))} · ${m.shift} · ${m.kind==='good'?'Good':'Needs attention'}</div>
-      <div class="modal-field-value">${highlightText(m.text)}</div>
-    </div>`).join('');
-  document.getElementById('recap-modal-card').innerHTML = `
-    <button class="modal-close" onclick="closeRecapModal()">✕</button>
-    <div class="modal-title">${highlightText(name)}</div>
-    <div class="modal-sub">${goodCount} good · ${badCount} needs attention · ${activeShop}</div>
-    ${itemsHtml || '<div class="empty">No mentions in this range.</div>'}
-  `;
-  document.getElementById('recap-modal-overlay').classList.add('active');
-}
-
-function recordMatchesQuery(r, query){
-  if(!query) return true;
-  const q = query.toLowerCase();
-  if(r.employee && r.employee.toLowerCase().includes(q)) return true;
-  if(r.namedMentions && r.namedMentions.some(m=>m.name.toLowerCase().includes(q) || m.source.toLowerCase().includes(q))) return true;
-  if(r.flags.some(f=>(f.employee && f.employee.toLowerCase().includes(q)) || f.text.toLowerCase().includes(q))) return true;
-  if(r.fullRecap && Object.values(r.fullRecap).some(v=>(v||'').toString().toLowerCase().includes(q))) return true;
-  if(r.comment && r.comment.toLowerCase().includes(q)) return true;
-  return false;
-}
-
 function flagCategory(text){
   if(text.startsWith('Recap submitted late')) return 'Late submission';
   if(text.startsWith('Hazard reported')) return 'Safety hazard';
   if(text.startsWith('Tardy/early-out')) return 'Tardy / early-out';
   if(text.startsWith('Shift reported understaffed')) return 'Understaffed';
   return 'Crew feedback';
-}
-
-let lastGoodFlagItems = [];
-let lastBadFlagItems = [];
-
-// per-shop late-submission tally (60-day window), shown inside each shop's recaps tab
-function renderShopLateSubs(shop){
-  const recs = records.filter(r=>r.shop===shop && r.employee);
-  const lateRecs = recs.filter(r=>r.isLate);
-  if(recs.length===0) return `<div class="empty">No recap data for this stand.</div>`;
-  const rate = Math.round(((recs.length - lateRecs.length)/recs.length)*100);
-  const leads = new Map();
-  recs.forEach(r=>{
-    if(!leads.has(r.employee)) leads.set(r.employee, {name:r.employee, total:0, late:0, lateItems:[]});
-    const e = leads.get(r.employee); e.total++; if(r.isLate){ e.late++; e.lateItems.push(r); }
-  });
-  const offenders = [...leads.values()].filter(e=>e.late>0)
-    .sort((a,b)=> (b.late-a.late) || (((a.total-a.late)/a.total) - ((b.total-b.late)/b.total)));
-  let html = `<div class="alert-banner ${lateRecs.length?'warn':'ok'}">
-      <div class="title">${lateRecs.length} of ${recs.length} recap${recs.length!==1?'s':''} late · ${rate}% on-time</div>
-    </div>`;
-  html += offenders.length
-    ? offenders.map((e,i)=>{
-        const r = Math.round(((e.total-e.late)/e.total)*100);
-        const rc = r>=90?'var(--good)':(r>=75?'var(--amber)':'var(--bad)');
-        return `<div class="lb-row">
-          <div class="lb-rank">${i+1}</div>
-          <div class="lb-shop">
-            <div class="lb-shop-name">${escapeHtml(e.name)}</div>
-            <div class="lb-sub">${e.total} recap${e.total!==1?'s':''} · <span style="color:${rc}">${r}% on-time</span></div>
-            <div class="lb-sub" style="color:var(--text-faint);margin-top:3px;">Late: ${e.lateItems.slice().sort((a,b)=>b.dayIndex-a.dayIndex).map(x=>`${x.shift} ${fmtDate(dateForIndex(x.dayIndex))}`).join(' · ')}</div>
-          </div>
-          <div class="lb-metric"><div class="v mono" style="color:var(--bad)">${e.late}</div><div class="l">late</div></div>
-        </div>`;
-      }).join('')
-    : `<div class="empty">No late submissions at this stand in the last 60 days. 🎉</div>`;
-  return html;
-}
-
-function renderRecaps(){
-  const indices = indicesForRange(rangeState.recaps);
-  const idxSet = new Set(indices);
-  const inRange = records.filter(r=>r.shop===activeShop && idxSet.has(r.dayIndex));
-  const statsRecords = currentSearchQuery ? inRange.filter(r=>recordMatchesQuery(r, currentSearchQuery)) : inRange;
-
-  // "Late submission" is a compliance metric (already shown in the missing/late banner above),
-  // not a crew-performance flag, so it's excluded here to avoid double-counting the same issue twice.
-  const goodItems = [];
-  const badItems = [];
-  statsRecords.forEach(r=>{
-    r.flags.forEach(f=>{
-      const cat = flagCategory(f.text);
-      if(cat === 'Late submission') return;
-      const item = {category:cat, text:f.text, dayIndex:r.dayIndex, shift:r.shift, employee:r.employee};
-      if(f.kind==='good') goodItems.push(item); else badItems.push(item);
-    });
-  });
-  lastGoodFlagItems = goodItems;
-  lastBadFlagItems = badItems;
-
-  const recapsLabel = currentSearchQuery ? `Recaps matching "${escapeHtml(currentSearchQuery)}"` : 'Recaps in range';
-  document.getElementById('recap-stats').innerHTML = `
-    <div class="stat-card"><div class="v mono">${statsRecords.length}</div><div class="l">${recapsLabel}</div></div>
-    <div class="stat-card good" style="cursor:pointer;" onclick="openFlagBreakdown('good')"><div class="v">${goodItems.length}</div><div class="l">Good flags</div></div>
-    <div class="stat-card bad" style="cursor:pointer;" onclick="openFlagBreakdown('bad')"><div class="v">${badItems.length}</div><div class="l">Bad flags</div></div>
-  `;
-
-  // submission compliance (missing/late) honors the recaps range picker (Today / 7d / 30d / MTD)
-  const missing = [];
-  const late = [];
-  indices.forEach(d=>{
-    SHIFTS.forEach(shift=>{
-      const st = submissionStatus[`${d}|${activeShop}|${shift}`];
-      if(st==='missing') missing.push({d, shift});
-      if(st==='late'){
-        const lateRec = records.find(r=>r.shop===activeShop && r.dayIndex===d && r.shift===shift && r.isLate);
-        late.push({d, shift, who: lateRec ? lateRec.employee : null});
-      }
-    });
-  });
-  const bannerStack = document.getElementById('shop-missing-banner');
-  if(missing.length===0 && late.length===0){
-    bannerStack.innerHTML = `<div class="alert-banner ok"><div class="title">All caught up</div></div>`;
-  } else {
-    let html = '';
-    if(missing.length>0){
-      html += `<div class="alert-banner">
-        <div class="title">${missing.length} recap${missing.length>1?'s':''} missing</div>
-        <div style="font-size:13px;color:var(--text-dim);margin-top:4px;">${missing.map(m=>`${m.shift} · ${m.d===TODAY_INDEX?'Today':fmtDate(dateForIndex(m.d))}`).join(', ')}</div>
-      </div>`;
-    }
-    if(late.length>0){
-      html += `<div class="alert-banner warn">
-        <div class="title">${late.length} recap${late.length>1?'s':''} submitted late</div>
-        <div style="font-size:13px;color:var(--text-dim);margin-top:4px;">${late.map(m=>`${m.shift} · ${m.d===TODAY_INDEX?'Today':fmtDate(dateForIndex(m.d))}${m.who?` · <span style="color:var(--text);font-weight:600;">${escapeHtml(m.who)}</span>`:''}`).join(', ')}</div>
-      </div>`;
-    }
-    bannerStack.innerHTML = html;
-  }
-
-  const iconFor = {submitted:'✓', late:'~', missing:'!', pending:'·'};
-  let stripHtml = '';
-  indices.forEach(d=>{
-    stripHtml += `<div class="day-cell"><div class="day-lbl">${d===TODAY_INDEX?'Today':fmtDate(dateForIndex(d))}</div><div class="dot-row">`;
-    SHIFTS.forEach(shift=>{
-      const status = submissionStatus[`${d}|${activeShop}|${shift}`];
-      stripHtml += `<span class="dot ${status}" title="${shift}: ${status}">${shift[0]}<br>${iconFor[status]}</span>`;
-    });
-    stripHtml += '</div></div>';
-  });
-  document.getElementById('day-strip').innerHTML = stripHtml;
-
-  document.getElementById('shop-latesubs').innerHTML = renderShopLateSubs(activeShop);
-
-  // standouts + needs-a-look, built from named mentions within the selected range
-  const mentions = getMentionsInRange(activeShop, indices);
-  const aggregated = aggregateMentions(mentions);
-  const topGood = aggregated.filter(e=>e.good>0).sort((a,b)=>b.good-a.good).slice(0,6);
-  const topBad = aggregated.filter(e=>e.bad>0).sort((a,b)=>b.bad-a.bad).slice(0,6);
-  document.getElementById('standout-good-grid').innerHTML = topGood.length
-    ? topGood.map(e=>renderStandoutCard(e,'good')).join('')
-    : `<div class="empty">No standouts in this range.</div>`;
-  document.getElementById('standout-bad-grid').innerHTML = topBad.length
-    ? topBad.map(e=>renderStandoutCard(e,'bad')).join('')
-    : `<div class="empty">Nothing flagged in this range.</div>`;
-  document.querySelectorAll('#standout-good-grid .standout-card, #standout-bad-grid .standout-card').forEach(card=>{
-    card.addEventListener('click', ()=> openPersonSheet(card.dataset.name));
-  });
-
-  renderCrewSearch();
-
-  const flagged = records.filter(r=>r.shop===activeShop && r.flags.length && idxSet.has(r.dayIndex)).slice(-8).reverse();
-  const feedEl = document.getElementById('feed-list');
-  feedEl.innerHTML = flagged.length===0 ? `<div class="empty">No flagged recaps yet.</div>` : flagged.map(r=>{
-    const idx = records.indexOf(r);
-    return `
-    <div class="feed-item ${r.flags[0].kind}" onclick="openRecapModal(${idx})">
-      <div class="feed-top">
-        <span class="feed-kind ${r.flags[0].kind}">${r.flags[0].kind==='good'?'Good':'Needs attention'}</span>
-        <span class="feed-date">${fmtDate(dateForIndex(r.dayIndex))} · ${r.shift}${r.employee ? ` · <span class="feed-author">${highlightText(r.employee)}</span>` : ''}</span>
-      </div>
-      <div class="feed-quote">${highlightText(r.flags[0].text)}</div>
-      <div class="feed-more">Tap to view full recap →</div>
-    </div>`;
-  }).join('');
 }
 
 // ================= RECAP DETAIL MODAL =================
@@ -61366,54 +60729,6 @@ function openFlagSheet(scrollToHazard){
   if(scrollToHazard){ const anc = document.getElementById('flag-haz-anchor'); if(anc) list.scrollTop = anc.offsetTop; }
 }
 // ===== Person-mentions sheet (cross-shop, last 7 days) — reuses the recap-sheet shell =====
-function openPersonSheet(name){
-  const idxSet = new Set(indicesForRange('7d'));
-  const nm = String(name).toLowerCase();
-  const out = [];
-  records.forEach((r,idx)=>{
-    if(!idxSet.has(r.dayIndex)) return;
-    if(r.namedMentions && r.namedMentions.length){
-      r.namedMentions.forEach(m=>{ if(String(m.name).toLowerCase()===nm)
-        out.push({ shop:r.shop, author:r.employee, dayIndex:r.dayIndex, quote:m.source, fieldLabel:'Crew feedback', flagged:m.kind==='bad', recordIndex:idx }); });
-    } else if(r.flags){
-      r.flags.forEach(f=>{ if(f.employee && String(f.employee).toLowerCase()===nm){ const cat = flagCategory(f.text); if(cat==='Late submission') return;
-        out.push({ shop:r.shop, author:r.employee, dayIndex:r.dayIndex, quote:f.text, fieldLabel:cat, flagged:f.kind==='bad', recordIndex:idx }); } });
-    }
-  });
-  out.sort((a,b)=> b.dayIndex - a.dayIndex);
-  const flaggedCount = out.filter(m=>m.flagged).length;
-  const shopCount = new Set(out.map(m=>m.shop)).size;
-  const tally = (flaggedCount>0 ? `<span style="color:#F2506A">${flaggedCount} FLAGGED</span>` : '') + `<span style="color:#5C7286">${out.length} TOTAL</span>`;
-  document.getElementById('recap-sheet-header').innerHTML =
-      `<div style="display:flex;align-items:center;justify-content:space-between;font:500 9px/1 'JetBrains Mono',monospace;letter-spacing:.18em;color:#93A9BC">`
-    + `<span>MENTIONS · LAST 7 DAYS</span><span onclick="closeRecapSheet()" style="color:#5C7286;cursor:pointer">✕ CLOSE</span></div>`
-    + `<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:10px">`
-    + `<div style="font:800 32px/0.88 'Big Shoulders Display',sans-serif;letter-spacing:.02em;color:#fff;text-transform:uppercase">${escapeHtml(name)}</div>`
-    + `<div style="display:flex;align-items:center;gap:10px;font:400 9px/1 'JetBrains Mono',monospace;letter-spacing:.12em;padding-bottom:3px">${tally}</div></div>`;
-  const list = document.getElementById('recap-sheet-entries');
-  list.innerHTML = out.length ? out.map((m,k)=>{
-    const idxColor = m.flagged ? '#F2506A' : '#5C7286';
-    const labelColor = m.flagged ? '#F2506A' : '#F5E31F';
-    const flagCss = m.flagged ? ';border-left:3px solid #F2506A;background:rgba(242,80,106,.06)' : '';
-    const meta = (m.author ? escapeHtml(String(m.author).toUpperCase()) + ' · ' : '') + fmtDate(dateForIndex(m.dayIndex));
-    return `<div class="ls-row${m.flagged?' flagged':''}" onclick="openRecapModal(${m.recordIndex})" style="display:grid;grid-template-columns:26px 1fr;gap:12px;padding:12px 20px;border-top:1px solid rgba(147,169,188,.1)${flagCss}">`
-      + `<div style="font:400 9.5px/1.7 'JetBrains Mono',monospace;color:${idxColor}">${ohPad2(k+1)}</div>`
-      + `<div style="display:flex;flex-direction:column;gap:4px;min-width:0">`
-      + `<div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">`
-      + `<span style="font:700 12px/1 'JetBrains Mono',monospace;letter-spacing:.16em;color:#fff">${escapeHtml(m.shop)}</span>`
-      + `<span style="font:400 9.5px/1 'JetBrains Mono',monospace;letter-spacing:.1em;color:#5C7286">${meta}</span></div>`
-      + `<div style="font:500 9px/1.5 'JetBrains Mono',monospace;letter-spacing:.16em;color:${labelColor}">${escapeHtml(String(m.fieldLabel).toUpperCase())}</div>`
-      + `<div style="font:400 13.5px/1.45 Barlow,sans-serif;color:#E6EDF3">${highlightText(m.quote)}</div>`
-      + `</div></div>`;
-  }).join('') : `<div class="ov-empty-line">NO MENTIONS IN THIS RANGE</div>`;
-  list.scrollTop = 0;
-  document.getElementById('recap-sheet-footer').innerHTML =
-      `<span>${out.length} MENTION${out.length===1?'':'S'} · ${shopCount} SHOP${shopCount===1?'':'S'}</span>`
-    + `<span style="color:#93A9BC">TAP TO OPEN RECAP</span>`;
-  document.getElementById('recap-sheet').setAttribute('aria-label', name + ' mentions');
-  document.getElementById('recap-sheet').style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
 document.addEventListener('keydown', e=>{ if(e.key==='Escape' && document.getElementById('recap-sheet').style.display==='flex') closeRecapSheet(); });
 function closeRecapModal(){
   document.getElementById('recap-modal-overlay').classList.remove('active');
@@ -61421,442 +60736,6 @@ function closeRecapModal(){
 document.getElementById('recap-modal-overlay').addEventListener('click', (e)=>{
   if(e.target.id==='recap-modal-overlay') closeRecapModal();
 });
-
-// ================= TIMES =================
-function renderGoalBar(barId, legendId, split){
-  document.getElementById(barId).innerHTML = ['A','B','C','D','over'].map(b=>
-    `<div class="goal-seg" style="width:${split[b]}%; background:${GOAL_COLORS[b]};" title="${GOAL_LABELS[b]}: ${split[b]}%"></div>`).join('');
-  document.getElementById(legendId).innerHTML = ['A','B','C','D','over'].map(b=>
-    `<div class="goal-legend-item"><span class="goal-swatch" style="background:${GOAL_COLORS[b]};"></span>${GOAL_LABELS[b]} · ${split[b]}%</div>`).join('');
-}
-function renderBarScroll(containerId, indices, key, formatFn, maxOverride){
-  const values = indices.map(i=>dailyOps[activeShop][i][key]);
-  const max = maxOverride || Math.max(...values, 1);
-  document.getElementById(containerId).innerHTML = indices.map((i,k)=>{
-    const v = values[k];
-    const pct = Math.max(4, (v/max)*100);
-    return `<div class="bar-col">
-      <div class="bar-track"><div class="bar-fill" style="height:${pct}%;"></div></div>
-      <div class="bar-lbl">${i===TODAY_INDEX?'Today':fmtDate(dateForIndex(i))}</div>
-    </div>`;
-  }).join('');
-}
-
-function renderTimes(){
-  const indices = indicesForRange(rangeState.times);
-  const real = indices.filter(i => dailyOps[activeShop][i].isRealTimer);
-  const statsEl = document.getElementById('times-stats');
-  const srcEl = document.getElementById('times-source');
-  if(real.length === 0){
-    statsEl.innerHTML = `<div class="stat-card" style="flex:1 1 100%;"><div class="v mono">—</div><div class="l">No HME timer data</div></div>`;
-    srcEl.innerHTML = `⏱ No real drive-thru timer data for this stand in this range yet (HME reports fill in daily).`;
-    document.getElementById('times-bars').innerHTML = `<div class="empty">No HME timer days in this range.</div>`;
-    return;
-  }
-  const twoWin = TWO_WINDOW_SHOPS.has(activeShop);
-  const avgWindow = real.reduce((s,i)=>s+dailyOps[activeShop][i].laneTotalSec,0)/real.length;
-  const totalCars = real.reduce((s,i)=>s+dailyOps[activeShop][i].totalCars,0);
-  let cards = `<div class="stat-card"><div class="v mono">${secsToClock(avgWindow)}</div><div class="l">Avg window time</div></div>
-    <div class="stat-card"><div class="v mono">${totalCars.toLocaleString()}</div><div class="l">Total cars</div></div>`;
-  if(twoWin){
-    const avg2 = real.reduce((s,i)=>s+dailyOps[activeShop][i].laneTotal2Sec,0)/real.length;
-    cards += `<div class="stat-card"><div class="v mono">${secsToClock(avg2)}</div><div class="l">Avg 2nd window</div></div>`;
-  }
-  statsEl.innerHTML = cards;
-  srcEl.innerHTML = `⏱ ${real.length} day${real.length>1?'s':''} of real HME timer data · newest first`;
-
-  // Per-day breakdown: the actual lane average + car count for each day, newest first,
-  // so days are directly comparable instead of just a shape on a chart.
-  const rows = real.slice().sort((a,b)=>b-a).map(i=>{
-    const d = dailyOps[activeShop][i];
-    return `<tr>
-      <td class="times-day">${fmtDate(dateForIndex(i))}</td>
-      <td class="times-val">${secsToClock(d.laneTotalSec)}</td>
-      ${twoWin?`<td class="times-val">${secsToClock(d.laneTotal2Sec)}</td>`:''}
-      <td class="times-val times-cars">${d.totalCars.toLocaleString()}</td>
-    </tr>`;
-  }).join('');
-  document.getElementById('times-bars').innerHTML = `<table class="times-table">
-    <thead><tr><th>Day</th><th>Lane avg</th>${twoWin?'<th>2nd</th>':''}<th>Cars</th></tr></thead>
-    <tbody>${rows}</tbody></table>`;
-}
-
-// ================= NET SALES =================
-function renderNetSales(){
-  const indices = indicesForRange(rangeState.netsales);
-  const prev = prevIndicesFor(indices);
-  const total = aggregate(activeShop, indices, 'netSales');
-  const avgDay = total/indices.length;
-  const prevTotal = prev.length ? aggregate(activeShop, prev, 'netSales') : 0;
-  const t = trendArrow(total, prevTotal);
-  document.getElementById('netsales-stats').innerHTML = `
-    <div class="stat-card"><div class="v mono">${fmtMoney(total)}</div><div class="l">Net sales</div><div class="trend ${t.dir}">${t.dir==='up'?'▲':'▼'} ${t.pct.toFixed(1)}% vs prior period</div></div>
-    <div class="stat-card"><div class="v mono">${fmtMoney(avgDay)}</div><div class="l">Avg per day</div></div>
-  `;
-  renderBarScroll('netsales-bars', indices, 'netSales');
-}
-
-// ================= DRINKS PER HOUR =================
-function renderDPH(){
-  const indices = indicesForRange(rangeState.dph);
-  const prev = prevIndicesFor(indices);
-  const avg = average(activeShop, indices, 'dph');
-  const prevAvg = prev.length ? average(activeShop, prev, 'dph') : 0;
-  const t = trendArrow(avg, prevAvg);
-  document.getElementById('dph-stats').innerHTML = `
-    <div class="stat-card"><div class="v mono">${avg.toFixed(1)}</div><div class="l">Avg drinks/hr</div><div class="trend ${t.dir}">${t.dir==='up'?'▲':'▼'} ${t.pct.toFixed(1)}% vs prior period</div></div>
-  `;
-  renderBarScroll('dph-bars', indices, 'dph');
-}
-
-// ================= PEAK HOURS =================
-function renderPeak(){
-  const indices = indicesForRange(rangeState.peak);
-  const avgByHour = HOURS.map((_,h)=> indices.reduce((s,i)=>s+dailyOps[activeShop][i].hourly[h],0)/indices.length );
-  const max = Math.max(...avgByHour, 1);
-  const peakIdx = avgByHour.indexOf(Math.max(...avgByHour));
-  document.getElementById('peak-badge').textContent = `Peak window: ${HOURS[peakIdx]}`;
-  document.getElementById('peak-bars').innerHTML = HOURS.map((h,i)=>{
-    const v = avgByHour[i];
-    const pct = Math.max(4, (v/max)*100);
-    const isPeak = i===peakIdx;
-    return `<div class="peak-col">
-      <div class="peak-track"><div class="peak-fill" style="height:${pct}%; background:${isPeak?'var(--amber)':'var(--good)'};"></div></div>
-      <div class="peak-lbl">${h}</div>
-    </div>`;
-  }).join('');
-}
-
-// ================= PAYROLL =================
-function renderPayroll(){
-  const indices = indicesForRange(rangeState.payroll);
-  const prev = prevIndicesFor(indices);
-  const actualHrs = aggregate(activeShop, indices, 'actualHours');
-  const otHrs = aggregate(activeShop, indices, 'overtimeHours');
-  const laborCost = aggregate(activeShop, indices, 'laborCost');
-  const netSales = aggregate(activeShop, indices, 'netSales');
-  const laborPct = netSales ? (laborCost/netSales*100) : 0;
-  const prevLaborCost = prev.length ? aggregate(activeShop, prev, 'laborCost') : 0;
-  const t = trendArrow(laborCost, prevLaborCost);
-  document.getElementById('payroll-stats').innerHTML = `
-    <div class="stat-card"><div class="v mono">${fmtMoney(laborCost)}</div><div class="l">Labor cost</div><div class="trend ${t.dir==='up'?'down':'up'}">${t.dir==='up'?'▲':'▼'} ${t.pct.toFixed(1)}% vs prior period</div></div>
-    <div class="stat-card"><div class="v mono">${laborPct.toFixed(1)}%</div><div class="l">Labor % of sales</div></div>
-    <div class="stat-card"><div class="v mono">${Math.round(actualHrs)}</div><div class="l">Total hours</div></div>
-    <div class="stat-card ${otHrs>15?'bad':''}"><div class="v mono">${otHrs.toFixed(1)}</div><div class="l">Overtime hours</div></div>
-  `;
-  renderBarScroll('payroll-bars', indices, 'actualHours');
-}
-
-// ================= COMPARE =================
-let compareShops = new Set(SHOPS.slice(0,3)); // default: first 3 stands selected
-
-function renderCompareChips(){
-  const container = document.getElementById('compare-chips');
-  container.innerHTML = ACTIVE_SHOPS.map(shop=>`
-    <button class="cmp-chip ${compareShops.has(shop)?'on':''}" data-shop="${shop}">
-      <span class="check"></span>${shop}
-    </button>`).join('');
-  container.querySelectorAll('.cmp-chip').forEach(chip=>{
-    chip.addEventListener('click', ()=>{
-      const shop = chip.dataset.shop;
-      if(compareShops.has(shop)){
-        if(compareShops.size>1) compareShops.delete(shop); // keep at least one selected
-      } else {
-        compareShops.add(shop);
-      }
-      renderCompareChips();
-      renderCompareAll();
-    });
-  });
-}
-
-function renderRankedList(containerId, shops, getValue, formatValue, ascending, subtitleFn){
-  const rows = shops.map(shop=>({shop, val:getValue(shop)}));
-  rows.sort((a,b)=> ascending ? a.val-b.val : b.val-a.val);
-  document.getElementById(containerId).innerHTML = rows.map((r,i)=>`
-    <div class="lb-row">
-      <div class="lb-rank">${i+1}</div>
-      <div class="lb-shop">
-        <div class="lb-shop-name">${r.shop}</div>
-        ${subtitleFn ? `<div class="lb-sub">${subtitleFn(r.shop)}</div>` : ''}
-      </div>
-      <div class="lb-metric"><div class="v mono">${formatValue(r.val)}</div></div>
-    </div>`).join('');
-}
-
-function renderCompareRecaps(){
-  const shops = [...compareShops];
-  renderRankedList('cmp-recaps-list', shops,
-    shop => shopAgg[shop].bad,
-    val => val,
-    false,
-    shop => `${shopAgg[shop].recaps} recaps · ${shopAgg[shop].good} good flags`
-  );
-}
-
-function renderCompareTimes(){
-  const shops = [...compareShops];
-  const indices = indicesForRange(rangeState.cmp);
-  renderRankedList('cmp-times-list', shops,
-    shop => average(shop, indices, 'laneTotalSec'),
-    val => secsToClock(val),
-    true,
-    shop => `Lane Total 2 avg ${secsToClock(average(shop, indices, 'laneTotal2Sec'))}`
-  );
-}
-
-function renderCompareNetSales(){
-  const shops = [...compareShops];
-  const indices = indicesForRange(rangeState.cmp);
-  renderRankedList('cmp-netsales-list', shops,
-    shop => aggregate(shop, indices, 'netSales'),
-    val => fmtMoney(val),
-    false,
-    shop => `${aggregate(shop, indices, 'totalCars').toLocaleString()} cars`
-  );
-}
-
-function renderCompareDPH(){
-  const shops = [...compareShops];
-  const indices = indicesForRange(rangeState.cmp);
-  renderRankedList('cmp-dph-list', shops,
-    shop => average(shop, indices, 'dph'),
-    val => val.toFixed(1)+' drinks/hr',
-    false
-  );
-}
-
-function renderComparePeak(){
-  const shops = [...compareShops];
-  const indices = indicesForRange(rangeState.cmp);
-  const container = document.getElementById('cmp-peak-list');
-  container.innerHTML = shops.map(shop=>{
-    const avgByHour = HOURS.map((_,h)=> indices.reduce((s,i)=>s+dailyOps[shop][i].hourly[h],0)/indices.length );
-    const max = Math.max(...avgByHour, 1);
-    const peakIdx = avgByHour.indexOf(Math.max(...avgByHour));
-    const bars = HOURS.map((h,i)=>{
-      const pct = Math.max(4, (avgByHour[i]/max)*100);
-      return `<div class="peak-col" style="width:20px;">
-        <div class="peak-track" style="height:60px;"><div class="peak-fill" style="height:${pct}%; background:${i===peakIdx?'var(--amber)':'var(--good)'};"></div></div>
-      </div>`;
-    }).join('');
-    return `<div class="section-sub" style="margin:18px 0 8px;">${shop} · peak ${HOURS[peakIdx]}</div>
-      <div class="peak-scroll" style="min-height:70px;">${bars}</div>`;
-  }).join('');
-}
-
-function renderComparePayroll(){
-  const shops = [...compareShops];
-  const indices = indicesForRange(rangeState.cmp);
-  renderRankedList('cmp-payroll-list', shops,
-    shop => {
-      const laborCost = aggregate(shop, indices, 'laborCost');
-      const netSales = aggregate(shop, indices, 'netSales');
-      return netSales ? (laborCost/netSales*100) : 0;
-    },
-    val => val.toFixed(1)+'%',
-    true,
-    shop => `${fmtMoney(aggregate(shop, indices, 'laborCost'))} labor cost`
-  );
-}
-
-function renderCompareAll(){
-  renderCompareRecaps();
-  renderCompareTimes();
-  renderCompareNetSales();
-  renderCompareDPH();
-  renderComparePeak();
-  renderComparePayroll();
-}
-
-// ================= LEADERBOARD =================
-function renderLeaderboard(){
-  const rankBy = document.getElementById('lb-rank-by').value;
-  const last7 = indicesForRange('7d');
-  const rows = ACTIVE_SHOPS.map(shop=>{
-    const laneTotal = average(shop, last7, 'laneTotalSec');
-    const netSales = aggregate(shop, last7, 'netSales');
-    const dph = average(shop, last7, 'dph');
-    return {shop, laneTotal, netSales, dph};
-  });
-  let sorted;
-  if(rankBy==='laneTotal') sorted = [...rows].sort((a,b)=>a.laneTotal-b.laneTotal);
-  else if(rankBy==='netSales') sorted = [...rows].sort((a,b)=>b.netSales-a.netSales);
-  else sorted = [...rows].sort((a,b)=>b.dph-a.dph);
-
-  const metricLabel = rankBy==='laneTotal' ? 'Lane Total avg' : rankBy==='netSales' ? 'Net sales (7d)' : 'Avg drinks/hr';
-  document.getElementById('leaderboard-list').innerHTML = sorted.map((r,i)=>{
-    const metricVal = rankBy==='laneTotal' ? secsToClock(r.laneTotal) : rankBy==='netSales' ? fmtMoney(r.netSales) : r.dph.toFixed(1);
-    return `<div class="lb-row">
-      <div class="lb-rank">${i+1}</div>
-      <div class="lb-shop">
-        <div class="lb-shop-name">${r.shop}</div>
-        <div class="lb-sub">Lane Total ${secsToClock(r.laneTotal)} · Net sales ${fmtMoney(r.netSales)} · ${r.dph.toFixed(1)} drinks/hr</div>
-      </div>
-      <div class="lb-metric"><div class="v mono">${metricVal}</div><div class="l">${metricLabel}</div></div>
-    </div>`;
-  }).join('');
-}
-document.getElementById('lb-rank-by').addEventListener('change', renderLeaderboard);
-
-
-
-renderHome();
-
-/* ===== OPS HUB HOME — 2a triage feed, wired to real records ===== */
-(function(){
-  const OH_RANGES = [
-    { key:'today', label:'Today' },
-    { key:'7d',    label:'7 Days' },
-    { key:'30d',   label:'30 Days' },
-    { key:'mtd',   label:'MTD' }
-  ];
-  let ohRange = 'today'; window.ohHomeRange = ohRange;
-  const ohEsc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  function ohShort(full){
-    if(!full) return '';
-    const p = String(full).trim().split(/\s+/);
-    return p.length===1 ? p[0] : p[0][0] + '. ' + p.slice(1).join(' ');
-  }
-  // Open hazards: "Hazard reported" safety answers within the SELECTED range per shop,
-  // excluding one-word negatives ("no"/"none"/"n/a"…) so the chip actually means something.
-  const OH_NEG = new Set(['no','none','na','nope','nah','naur','nada','nadda','nan','non','bo','x','nothing','allgood','allclear','fine','good','ok','okay','negative','nul','null','nohazards','nohazard','nonetoday','noneseen','nonenoted','nonefound','nothingtoreport','nothingunsafe','notreally','allgoodhere','noissues','noconcerns','nothingofnote']);
-  // Negation-aware: a benign sentence answer ('I didn't notice any safety hazards') is NOT a hazard,
-  // but a real issue tucked after a contrast ('no hazards BUT the right rebel isn't blinking') still counts.
-  const OH_NEG_LEAD = /^\s*(no\b|none\b|nope\b|nah\b|naur\b|nada\b|n\/?a\b|not\b|nothing\b|there (was|were|are|is) (no|not)\b|i (did ?n.?t|do ?n.?t|have ?n.?t|did not|do not)\s+(notice|see|have|find|think)\b|no (safety|additional|new|other|major|real)\b)/i;
-  const OH_ADVERS = /\b(but|however|though|although|except|besides|aside from|other than|otherwise)\b/i;
-  const OH_ISSUE = /\b(broke|broken|break|leak|clog|crack|slip|fell|fall|hurt|injur|shak|shook|freez|frozen|froze|not work|doesn.?t work|isn.?t work|sketch|mold|rat|roach|passed out|missing|damag|stuck|jam|overflow|spill|fight|cop|drunk|exposed|falling|last leg|sticky|weird|dropped|hit by|charger|cord|machine|drain|seal|wheel|tap|mop|rinser|toilet|sink|ice bin|ice pit|grinder|blender|arrest|homeless|accident|smok|fire|light|not blink|screws)/i;
-  function ohIsHazard(txt){
-    const body = String(txt||'').replace(/^Hazard reported:\s*/i,'').trim();
-    if(!body) return false;
-    const letters = body.toLowerCase().replace(/[^a-z]/g,'');
-    if(OH_NEG.has(letters)) return false;
-    if(letters.length <= 2) return false;            // 'x', 'bo', one-char filler
-    const low = body.toLowerCase();
-    if(OH_NEG_LEAD.test(low)){
-      let tail='', kind=null;
-      const am = low.match(OH_ADVERS);
-      if(am){ tail = low.slice(am.index + am[0].length); kind='adv'; }
-      else { const sm = low.match(/[.!?;]\s+\S/); if(sm){ tail = low.slice(sm.index); kind='sent'; } }
-      if(kind==='adv' && (OH_ISSUE.test(tail) || tail.replace(/[^a-z ]/g,'').split(/\s+/).filter(Boolean).length >= 4)) return true;
-      if(kind==='sent' && OH_ISSUE.test(tail)) return true;
-      return false;
-    }
-    return true;
-  }
-  function ohHazards(shop, idxSet){
-    let n = 0;
-    records.forEach(r=>{
-      if(r.shop!==shop || !idxSet.has(r.dayIndex)) return;
-      r.flags.forEach(f=>{ if(f.text && f.text.startsWith('Hazard reported') && ohIsHazard(f.text)) n++; });
-    });
-    return n;
-  }
-  function ohStands(rangeKey){
-    const idxSet = new Set(indicesForRange(rangeKey));
-    const isToday = rangeKey==='today';
-    // A shift counts as "expected today" only once at least one stand has filed it,
-    // so stands aren't flagged for shifts whose window hasn't closed yet (no start-of-day false alarms).
-    const expectedToday = new Set();
-    if(isToday){ records.forEach(r=>{ if(r.dayIndex===TODAY_INDEX && ACTIVE_SHOPS.includes(r.shop)) expectedToday.add(r.shift); }); }
-    return ACTIVE_SHOPS.map(shop=>{
-      const recs = records.filter(r=> r.shop===shop && idxSet.has(r.dayIndex));
-      let good=0, bad=0;
-      recs.forEach(r=> r.flags.forEach(f=>{
-        if(flagCategory(f.text)==='Late submission') return;
-        if(f.kind==='good') good++; else bad++;
-      }));
-      const lateRecs = recs.filter(r=> r.isLate);
-      const late = lateRecs.length;
-      const byWho = {};
-      lateRecs.forEach(r=>{ const nm = ohShort(r.employee) || 'Unknown'; byWho[nm] = (byWho[nm]||0)+1; });
-      let lateWho = Object.keys(byWho).map(nm=> byWho[nm]>1 ? nm+' ×'+byWho[nm]+' late' : nm+' late').slice(0,3).join(' · ');
-      const filedShifts = new Set(recs.map(r=>r.shift));
-      let missing = 0;
-      if(isToday){
-        missing = [...expectedToday].filter(sh=> !filedShifts.has(sh)).length;
-        if(missing>0){
-          const missTxt = missing+' shift'+(missing>1?'s':'')+' overdue';
-          lateWho = lateWho ? lateWho+' · '+missTxt : missTxt;
-        }
-      }
-      let timeDetail;
-      if(isToday){
-        timeDetail = filedShifts.size+'/'+SHIFTS.length+' filed'
-          + (missing? ', '+missing+' overdue':'')
-          + (late? ', '+late+' late':'');
-      } else {
-        timeDetail = late? late+' late' : 'on track';
-      }
-      return { shop, code: shop.toUpperCase(), recaps: recs.length, good, bad, late, missing, lateWho, hazards: ohHazards(shop, idxSet), timeDetail };
-    });
-  }
-  function ohKpis(rangeKey){
-    const s = ohStands(rangeKey);
-    const sum = k => s.reduce((n,x)=>n+x[k],0);
-    return {
-      recaps: sum('recaps'), good: sum('good'), bad: sum('bad'),
-      detail: s.length+' stands · '+sum('late')+' late' + (rangeKey==='today' && sum('missing')>0 ? ' · '+sum('missing')+' overdue' : '')
-    };
-  }
-  function ohClass(s){
-    if(s.missing>0) return 'bad';
-    if(s.late>0 || s.bad>0) return 'watch';
-    return 'ok';
-  }
-  const ohHazLabel = n => n===0?'':(n===1?'1 hazard':n+' hazards');
-  const ohRecapLabel = n => n===1?'1 recap':n+' recaps';
-  function ohCard(s){
-    const tone = ohClass(s);
-    const chips = [
-      s.lateWho ? '<span class="oh-chip">'+ohEsc(s.lateWho)+'</span>' : '',
-      s.hazards ? '<span class="oh-chip haz">'+ohEsc(ohHazLabel(s.hazards))+'</span>' : ''
-    ].join('');
-    return '<button class="oh-card '+tone+'" data-shop="'+ohEsc(s.shop)+'">'
-      + '<span class="oh-card-top"><span class="oh-card-name">'+ohEsc(s.code)+'</span>'
-      + '<span class="oh-card-recaps">'+ohEsc(ohRecapLabel(s.recaps))+'</span></span>'
-      + '<span class="oh-metrics"><span class="g">+'+s.good+'</span><span class="b">−'+s.bad+'</span>'
-      + '<span class="t">'+ohEsc(s.timeDetail)+'</span></span>'
-      + (chips ? '<span class="oh-chips">'+chips+'</span>' : '')
-      + '</button>';
-  }
-  function ohRow(s){
-    return '<button class="oh-row" data-shop="'+ohEsc(s.shop)+'">'
-      + '<span class="oh-row-left"><span class="oh-dot"></span><span class="oh-row-name">'+ohEsc(s.code)+'</span></span>'
-      + '<span class="oh-row-right"><span style="color:var(--good)">+'+s.good+'</span>'
-      + '<span style="color:var(--bad)">−'+s.bad+'</span><span>'+ohEsc(s.timeDetail)+'</span>'
-      + (s.hazards ? '<span class="oh-chip haz">'+ohEsc(ohHazLabel(s.hazards))+'</span>' : '')
-      + '<span class="oh-caret">›</span></span></button>';
-  }
-  function renderOpsHome(){
-    const host = document.getElementById('oh-home');
-    if(!host) return;
-    const stands = ohStands(ohRange);
-    const kpi = ohKpis(ohRange);
-    const act = stands.filter(s=> ohClass(s)!=='ok')
-      .sort((a,b)=> ((ohClass(a)==='bad'?0:1)-(ohClass(b)==='bad'?0:1)) || (b.bad-a.bad) || (b.late-a.late));
-    const clean = stands.filter(s=> ohClass(s)==='ok').sort((a,b)=> a.code.localeCompare(b.code));
-    host.innerHTML =
-      '<div class="oh-ranges">'
-      + OH_RANGES.map(r=>'<button class="oh-range" data-range="'+r.key+'" aria-pressed="'+(r.key===ohRange)+'">'+ohEsc(r.label)+'</button>').join('')
-      + '</div>'
-      + '<div class="oh-kpis">'
-      + '<div class="oh-kpi"><div class="oh-kpi-n">'+kpi.recaps+'</div><div class="oh-kpi-l">Recaps</div></div>'
-      + '<div class="oh-kpi"><div class="oh-kpi-n good">'+kpi.good+'</div><div class="oh-kpi-l">Good flags</div></div>'
-      + '<div class="oh-kpi"><div class="oh-kpi-n bad">'+kpi.bad+'</div><div class="oh-kpi-l">Bad flags</div></div></div>'
-      + '<div class="oh-subline">'+ohEsc(kpi.detail)+'</div>'
-      + ((ohRange==='today' && stands.every(s=>s.recaps===0))
-          ? '<div class="oh-empty">No recaps filed yet today — the latest recaps are from earlier. Tap <b>7 Days</b> above for the recent picture.</div>'
-          : '<div class="oh-section act">Act now · '+act.length+'</div>'
-            + '<div class="oh-cards">'+ (act.length? act.map(ohCard).join('') : '<div class="oh-empty">Nothing needs attention in this range.</div>') +'</div>'
-            + '<div class="oh-section clean">Clean · '+clean.length+'</div>'
-            + '<div class="oh-rows">'+ (clean.length? clean.map(ohRow).join('') : '<div class="oh-empty">No stands in this group.</div>') +'</div>');
-    host.querySelectorAll('[data-range]').forEach(b=> b.addEventListener('click', ()=>{ ohRange=b.dataset.range; window.ohHomeRange=ohRange; renderOpsHome(); }));
-    host.querySelectorAll('[data-shop]').forEach(b=> b.addEventListener('click', ()=> openShop(b.dataset.shop)));
-  }
-  window.renderOpsHome = renderOpsHome;
-})();
-renderOpsHome();
 
 /* ═══ OPS HUB MOBILE v3 — home + shop + compare + leaderboard (wired) ═══ */
 (function(){
@@ -61870,40 +60749,6 @@ const RANGES = [
 
 // Window Times (the ranked board, see boardView below) reads the same adapters
 // as every other screen. These three metrics are its tabs.
-const BOARD_METRICS = ['recaps','times','sales'];
-// Net sales is not wired yet — shown as a pending state until the Xenial upload
-// lands. Replace this string with your exact wording.
-const SALES_PENDING = 'Net sales come from the Xenial daily upload — not connected yet.';
-
-const METRICS = [
-  { key:'recaps',  label:'Recaps' },
-  { key:'times',   label:'Times' },
-  { key:'sales',   label:'Net sales' },
-  { key:'dph',     label:'Drinks/hr' },
-  { key:'peak',    label:'Peak hours' },
-  { key:'payroll', label:'Payroll' }
-];
-
-/* ── CLASSIFICATION ─────────────────────────────────────────────────────────
-   Rates, NOT raw totals. Over 90 shifts almost nothing is ever zero, so
-   absolute counts would drop every stand into ACT NOW on the longer ranges.
-   Tune these three numbers if the split feels wrong in production.
-──────────────────────────────────────────────────────────────────────────── */
-const MISS_BAD = 0.10, MISS_WATCH = 0.05, LATE_WATCH = 0.05, BADFLAG_WATCH = 0.15;
-
-function classify(s, shifts){
-  const missRate = s.missing / shifts;
-  const lateRate = s.late / shifts;
-  const badRate  = s.recaps ? s.badN / s.recaps : 1;
-  if (missRate > MISS_BAD) return 'bad';
-  if (missRate > MISS_WATCH || lateRate > LATE_WATCH || badRate > BADFLAG_WATCH) return 'watch';
-  return 'ok';
-}
-
-/* ── ADAPTERS — WIRED TO REAL DATA (records / dailyOps / submissionStatus) ──
-   Every count scoped to `range` via indicesForRange(); PERF is a live getter so
-   Compare/Leaderboard figures track the selected range too. Net sales stays
-   behind SALES_PENDING on the board (Xenial not connected). ── */
 const RANGE_PRESET = { today:'today', yesterday:'yesterday', '3d':'3d', '7d':'7d' };
 const CODES = ACTIVE_SHOPS.map(s => s.toUpperCase());
 const CODE_TO_SHOP = {}; ACTIVE_SHOPS.forEach(s => { CODE_TO_SHOP[s.toUpperCase()] = s; });
@@ -62065,26 +60910,12 @@ function getPeople(code, range){
 function perfFor(code, range){
   const shop = CODE_TO_SHOP[code];
   if(!shop) return null;
-  const idxs = idxListFor(range), S = new Set(idxs);
-  const recs = records.filter(r => r.shop===shop && S.has(r.dayIndex) && r.employee);
-  let goodN=0; recs.forEach(r => (r.flags||[]).forEach(f=>{ if(isRealFlag(f) && f.kind==='good') goodN++; }));
-  const recapsN = recs.length;
-  const oi = idxs.filter(i => dailyOps[shop] && dailyOps[shop][i]);
-  const realDays = oi.filter(i => dailyOps[shop][i].isRealTimer);
+  const idxs = idxListFor(range);
+  const realDays = idxs.filter(i => dailyOps[shop] && dailyOps[shop][i] && dailyOps[shop][i].isRealTimer);
   const lane = realDays.length ? Math.round(realDays.reduce((s,i)=>s+dailyOps[shop][i].laneTotalSec,0)/realDays.length) : 999;
   const carsTotal = realDays.reduce((s,i)=>s+(dailyOps[shop][i].totalCars||0),0);
   const carsPerDay = realDays.length ? Math.round(carsTotal/realDays.length) : 0;
-  const sales = oi.reduce((s,i)=> s + (dailyOps[shop][i].netSales||0), 0);
-  const dph = oi.length ? +(oi.reduce((s,i)=>s+(dailyOps[shop][i].dph||0),0)/oi.length).toFixed(1) : 0;
-  const laborCost = oi.reduce((s,i)=> s + (dailyOps[shop][i].laborCost||0), 0);
-  const payroll = sales ? +((laborCost/sales)*100).toFixed(1) : 0;
-  let peak = '—';
-  if(oi.length && typeof HOURS !== 'undefined'){
-    const byHour = HOURS.map((_,h)=> oi.reduce((s,i)=> s + (((dailyOps[shop][i].hourly)||[])[h]||0), 0));
-    let pk=0; for(let h=1;h<byHour.length;h++){ if(byHour[h]>byHour[pk]) pk=h; }
-    peak = HOURS[pk] + '–' + (HOURS[pk+2] || HOURS[HOURS.length-1]);
-  }
-  return { lane, sales, dph, peak, payroll, recapsN, goodN, carsTotal, carsPerDay, hasTimer: realDays.length > 0 };
+  return { lane, carsTotal, carsPerDay, hasTimer: realDays.length > 0 };
 }
 const PERF = {};
 CODES.forEach(code => Object.defineProperty(PERF, code, { get(){ return perfFor(code, ohRange); }, enumerable:true, configurable:true }));
@@ -62092,19 +60923,13 @@ CODES.forEach(code => Object.defineProperty(PERF, code, { get(){ return perfFor(
 /* ── RENDER (no edits needed) ─────────────────────────────────────────────── */
 
 let ohScreen = 'home', ohRange = '7d', ohCode = null, ohPerson = null, ohRan = false, ohQ = '', ohRangeOpen = false, ohStandFrom = 'missed';
-let ohCmpPicked = ['MAD','FAIR OAKS','AUBURN'], ohCmpMetric = 'recaps', ohMetric = 'times', ohTimesSort = 'lane';
+let ohMetric = 'times', ohTimesSort = 'lane';
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const mmss = s => Math.floor(s/60) + ':' + String(s%60).padStart(2,'0');
 const rangeMeta = () => RANGES.find(r => r.key === ohRange) || RANGES[3];
 const shiftsInRange = () => rangeMeta().shifts || RANGES[3].shifts;
 
-function onTimeText(s){
-  return s.onTime + '/' + shiftsInRange() + ' on time'
-    + (s.late ? ', ' + s.late + ' late' : '')
-    + (s.missing ? ', ' + s.missing + ' missing' : '');
-}
-function hazText(n){ return n === 0 ? 'none reported in range' : n === 1 ? '1 reported' : n + ' reported'; }
 function matches(p, q){
   const t = q.trim().toLowerCase();
   if (!t) return true;
@@ -62112,19 +60937,6 @@ function matches(p, q){
 }
 // The range label IS the control inside a stand: tap it and the picker drops in
 // place, so no screen below home carries a permanent control band.
-function rangePill(){
-  return '<button class="oh-pill" id="oh-rangepill">' + esc(rangeMeta().word)
-    + '<i>' + (ohRangeOpen ? '\u25B4' : '\u25BE') + '</i></button>';
-}
-function rangeDrawer(scopeWord){
-  if (!ohRangeOpen) return '';
-  return '<div class="oh-standranges"><div class="oh-ranges" style="margin-top:0">'
-    + RANGES.filter(r => r.key !== 'custom').map(r =>
-        '<button class="oh-range" data-standrange="' + r.key + '" aria-pressed="'
-        + (r.key === ohRange) + '">' + esc(r.label) + '</button>').join('')
-    + '</div><div class="oh-foot" style="padding-top:9px">Changes every number on this '
-    + scopeWord + ' and follows you back to home.</div></div>';
-}
 
 function head(title, context, eyebrow, brand){
   return (eyebrow ? '<div class="oh-eyebrow' + (brand ? ' brand' : '') + '">' + esc(eyebrow) + '</div>' : '')
@@ -62133,13 +60945,6 @@ function head(title, context, eyebrow, brand){
 }
 
 // sub-screen header: stand code, tappable range pill, then title + context
-function subHead(title, context){
-  return '<div style="display:flex;align-items:center;flex-wrap:wrap;gap:9px">'
-      + '<span class="oh-eyebrow">' + esc(ohCode) + '</span>' + rangePill() + '</div>'
-    + '<h2 class="oh-h2" style="padding-top:8px">' + esc(title) + '</h2>'
-    + (context ? '<div class="oh-context">' + esc(context) + '</div>' : '')
-    + rangeDrawer('screen');
-}
 
 // One scoring rule per metric, shared by Compare and Leaderboard so a stand can
 // never rank differently in the two places. v = sort key (higher wins; negate
@@ -62169,32 +60974,6 @@ function score(code, metric){
 const money = n => '$' + n.toLocaleString('en-US');
 
 // shared ranked row — compare and leaderboard render identically
-function rankRows(codes, metric){
-  const rows = codes.map(c => Object.assign({ code:c }, score(c, metric))).sort((a,b) => b.v - a.v);
-  // rows[0] is the leader; bars are drawn relative to it, and for lower-is-better
-  // metrics the ratio inverts so a worse value still draws a SHORTER bar
-  const top = rows.length ? Math.abs(rows[0].v) || 1 : 1;
-  const width = r => {
-    const m = Math.abs(r.v) || 1;
-    const pct = r.better === 'low' ? top / m * 100 : m / top * 100;
-    return Math.max(4, Math.min(100, Math.round(pct)));
-  };
-  return rows.map((r,i) => '<button class="oh-row" style="flex-direction:column;align-items:stretch;gap:10px" data-code="' + esc(r.code) + '">'
-    + '<span style="display:flex;align-items:center;gap:13px">'
-    + '<span class="oh-rank" style="color:' + (i === 0 ? 'var(--amber)' : 'var(--text-faint)') + '">' + (i+1) + '</span>'
-    + '<span style="flex:1;min-width:0"><span class="oh-rowname" style="font-size:20px">' + esc(r.code) + '</span>'
-    + '<span class="oh-meta" style="display:block;padding-top:5px">' + esc(r.sub) + '</span></span>'
-    + '<span class="oh-meta" style="font-size:15px;color:var(--text)">' + esc(r.txt) + '</span></span>'
-    + '<span class="oh-bar"><span style="width:' + width(r) + '%;background:'
-      + (i === 0 ? 'var(--amber)' : i < 3 ? 'var(--good)' : 'var(--hairline)') + '"></span></span></button>').join('');
-}
-function metricTabs(active, attr, only){
-  const list = only ? METRICS.filter(m => only.indexOf(m.key) !== -1) : METRICS;
-  return '<div style="margin-top:18px;overflow-x:auto"><div class="oh-tabs">'
-    + list.map(m => '<button class="oh-tab" ' + attr + '="' + m.key + '" aria-pressed="'
-        + (m.key === active) + '">' + esc(m.label) + '</button>').join('')
-    + '</div></div>';
-}
 
 /* ---- home ---- */
 // cross-shop lane-total average from each stand's most recent real HME day
@@ -62213,46 +60992,8 @@ function ohTimesSummary(){
 /* ---- home (masthead + tile grid) ---- */
 // Each home excerpt returns {text, tone} so the tile can carry state at a glance:
 //   good = nothing needs you · watch = heads-up · bad = go look · neutral = informational
-function ohMissedStatus(){
-  let miss = 0, late = 0;
-  getStands('today').forEach(s => { miss += s.missing; late += s.late; });
-  if(!miss && !late) return { text:'All recaps in today', tone:'good' };
-  const parts = [];
-  if(miss) parts.push(miss + ' not filed');
-  if(late) parts.push(late + ' late');
-  return { text: parts.join(' · ') + ' today', tone: miss > 0 ? 'bad' : 'watch' };
-}
-function ohTimesStatus(){
-  const t = ohTimesSummary(), total = ACTIVE_SHOPS.length;
-  if(!t) return { text:'No timer data yet', tone:'watch' };
-  if(t.shops < total) return { text: mmss(t.avg) + ' avg · ' + t.shops + ' of ' + total + ' in', tone:'watch' };
-  return { text: mmss(t.avg) + ' avg · ' + t.shops + ' stands in', tone:'neutral' };
-}
 // Freshness line: the pipeline stamps BUILD_STAMP at publish; fall back to TODAY_DATE's date if unset.
-function ohFreshLine(){
-  if(typeof BUILD_STAMP !== 'undefined' && BUILD_STAMP) return BUILD_STAMP;
-  try { return TODAY_DATE.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' }); }
-  catch(e){ return ''; }
-}
 // Subtle "as of" note for detail screens — reuses the publish stamp, trimmed to date + time.
-function ohAsOf(){
-  if(typeof BUILD_STAMP === 'undefined' || !BUILD_STAMP) return '';
-  return 'Data as of ' + BUILD_STAMP.replace(/^[A-Za-z]+ · /, '').replace('updated ', '');
-}
-// small monochrome tile glyphs (inherit currentColor → the yellow accent)
-const OH_ICO_OVERVIEW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/></svg>';
-const OH_ICO_MISSED = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><path d="M9 10h6M9 14h4"/></svg>';
-const OH_ICO_TIMES = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="7"/><path d="M12 14V10.2"/><path d="M9.5 2.5h5"/><path d="M18.6 8.1l1.1-1.1"/></svg>';
-function ohTileExcerpt(st){
-  return '<span class="oh-tile-preview ' + st.tone + '"><span class="oh-dot ' + st.tone + '"></span>' + esc(st.text) + '</span>';
-}
-// One home poster card: icon + arrow across the top, label + excerpt anchored at the bottom.
-function ohHomeTile(dest, ico, label, excerptHtml){
-  return '<button class="oh-htile" data-home="' + dest + '">'
-    + '<span class="oh-htile-top"><span class="oh-htile-ico" aria-hidden="true">' + ico + '</span><span class="oh-htile-arrow" aria-hidden="true">&rarr;</span></span>'
-    + '<span class="oh-htile-main"><span class="oh-htile-label">' + label + '</span>' + excerptHtml + '</span>'
-  + '</button>';
-}
 // ===== Ops Hub home — "Ledger" layout =====
 // Header date, e.g. "TUE · AUG 18".
 function ohLedgerDate(){
@@ -62342,7 +61083,6 @@ function lxStatStrip(cells, size){
 // lane-total threshold color (seconds): <90 good, 90–120 watch, >120 bad
 function lxLaneColor(sec){ return sec > 120 ? '#F2506A' : sec >= 90 ? '#F5E31F' : '#E6EDF3'; }
 // mono metric line under a stand name (shop-name style)
-function lxDim(txt){ return '<span style="color:#5C7286">' + esc(txt) + '</span>'; }
 
 /* ---- missed & late recaps (home tile) ---- */
 function missedDetail(code, range){
@@ -62669,12 +61409,6 @@ function wasteFmtDate(iso){
   const p = iso.split('-');
   return (+p[1]) + '/' + (+p[2]);
 }
-function wastePreview(code){
-  const rows = getWaste(code);
-  if(!rows.length) return 'Nothing logged yet';
-  const latest = rows.find(r=>r.date);
-  return rows.length + ' item' + (rows.length===1?'':'s') + ' logged' + (latest ? ' · latest ' + wasteFmtDate(latest.date) : '');
-}
 function wasteView(){
   const rows = getWaste(ohCode);
   const flagged = rows.filter(function(r){ return r.flag; }).length;
@@ -62785,8 +61519,6 @@ function render(){
 
 render();
 
-// the new app owns the whole screen; retire the old global header + views
-(function(){ const h=document.querySelector('header'); if(h) h.style.display='none'; })();
 })();
 
 /* ===== Overview screen logic (top-level; deps confirmed present) ===== */

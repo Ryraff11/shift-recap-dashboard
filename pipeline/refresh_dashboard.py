@@ -342,6 +342,71 @@ def main():
                 cand = _mention_name_prefix((m.get('name') or '').strip())
                 if cand:
                     _roster.add(cand)
+
+    # COMPLETENESS: each build script keeps only a hand-picked subset of its form's
+    # columns in fullRecap, so whole questions (expired product, daily chore, comp
+    # line times, ...) never reached the dashboard or the data feed. Backfill every
+    # non-empty answer the builder skipped, keyed by the form's own question text,
+    # by matching each record back to its CSV row on the timestamp. Columns 0/1 are
+    # the timestamp and the name/date/shift field, never answers.
+    _csv_for = {
+        'REAL_ANTELOPE_RECORDS': 'antelope_recap_raw.csv', 'REAL_FAIROAKS_RECORDS': 'fairoaks_recap_raw.csv',
+        'REAL_AUBURN_RECORDS': 'auburn_recap_raw.csv', 'REAL_MADHOUSE_RECORDS': 'madhouse_recap_raw.csv',
+        'REAL_LICHEN_RECORDS': 'lichen_recap_raw.csv', 'REAL_FIRESIDE_RECORDS': 'fireside_recap_raw.csv',
+        'REAL_MANZ_RECORDS': 'manz_recap_raw.csv', 'REAL_OV_RECORDS': 'ov_recap_raw.csv',
+        'REAL_WINDING_RECORDS': 'winding_recap_raw.csv',
+    }
+    def _norm_answer(s):
+        return _re.sub(r'\s+', ' ', str(s).replace('’', "'")).strip().lower()
+    def _question_key(h):
+        return _re.sub(r'\s+', ' ', h).strip().rstrip(':').strip()
+    csv.field_size_limit(10**8)
+    _backfilled, _backfill_recs = 0, 0
+    for var_name, csv_name in _csv_for.items():
+        if not os.path.exists(csv_name):
+            continue
+        with open(csv_name, newline='', encoding='utf-8-sig') as f:
+            _rows = list(csv.reader(f))
+        if not _rows:
+            continue
+        _hdr = [_question_key(h) for h in _rows[0]]
+        _by_ts = {}
+        for row in _rows[1:]:
+            if row and row[0].strip():
+                _by_ts.setdefault(row[0].strip(), row)
+        for r in shop_records[var_name]:
+            row = _by_ts.get((r.get('timestamp') or '').strip())
+            if not row:
+                continue
+            fr = r.get('fullRecap')
+            if not isinstance(fr, dict):
+                fr = {}
+                r['fullRecap'] = fr
+            have = {_norm_answer(v) for v in fr.values() if isinstance(v, str) and v.strip()}
+            added = 0
+            for ci in range(2, min(len(row), len(_hdr))):
+                cell = row[ci].strip()
+                if not cell or not _hdr[ci] or _norm_answer(cell) in have:
+                    continue
+                key = _hdr[ci]
+                if key in fr and (fr[key] or '').strip():
+                    continue
+                fr[key] = cell
+                have.add(_norm_answer(cell))
+                added += 1
+            if added:
+                _backfilled += added
+                _backfill_recs += 1
+    print(f'  completeness: backfilled {_backfilled} skipped answer(s) across {_backfill_recs} recap(s) from the raw CSVs')
+
+    # The Deputy export carries every scheduled lead's full name — they are the
+    # same people who get named inside recap prose, so they join the scrub roster.
+    if os.path.exists('deputy_schedule_raw.csv'):
+        with open('deputy_schedule_raw.csv', newline='', encoding='utf-8-sig') as f:
+            for _dr in csv.DictReader(f):
+                _nm = (_dr.get('EmployeeName') or '').strip()
+                if len(_nm.split()) >= 2:
+                    _roster.add(_nm)
     # SHIFT RE-ATTRIBUTION AGAINST THE DEPUTY SCHEDULE. parse_shift falls back to
     # filing-time inference when the recap's name field names no shift, so a Mid
     # lead filing late (6:32pm) lands under Close — and scores as ON TIME for the
@@ -423,11 +488,34 @@ def main():
 
     _patterns = [(_re.compile(r'\b' + _re.escape(n) + r'\b', _re.IGNORECASE), _privacy_name(n))
                  for n in sorted(_roster, key=len, reverse=True)]
+    # Crew who never file a recap still get named in prose ("Kaylee Richardson did
+    # great"). A "First Last" pair is shortened when the first token is a first name
+    # we already know (filers, scheduled leads, person-shaped mentions) OR when
+    # neither token ever appears lowercase anywhere in this run's recap prose — a
+    # real surname never does, while "Cash Pull" / "Chore Completed" / "Sent Danny"
+    # style phrases always do. Known form phrases are excluded outright.
+    _first_names = {n.split()[0].lower() for n in _roster}
+    _corpus_words = set()
+    for recs in shop_records.values():
+        for r in recs:
+            for v in (r.get('fullRecap') or {}).values():
+                if isinstance(v, str):
+                    _corpus_words.update(_re.findall(r'\b[a-z]{3,}\b', v))
+    _PHRASES = {'fair oaks', 'dutch bros', 'kick me', 'order ahead', 'shift lead', 'cash pull', 'split tips',
+                'chore completed', 'google maps', 'red veriphone', 'wear more', 'the vera'}
+    _pair_pat = _re.compile(r"\b([A-Z][a-z]{2,})\s+([A-Z][a-z]{2,})\b")
+    def _pair_sub(m):
+        first, last = m.group(1), m.group(2)
+        if f'{first} {last}'.lower() in _PHRASES or _norm_tok(last) in _STOP or not _looks_like_person(f'{first} {last}'):
+            return m.group(0)
+        if first.lower() in _first_names or (first.lower() not in _corpus_words and last.lower() not in _corpus_words):
+            return f'{first} {last[0]}.'
+        return m.group(0)
 
     def _scrub_text(s):
         for pat, short in _patterns:
             s = pat.sub(short, s)
-        return s
+        return _pair_pat.sub(_pair_sub, s)
 
     _n_names, _n_prose = 0, 0
     for recs in shop_records.values():
@@ -466,6 +554,83 @@ def main():
     print(f'  privacy: shortened {_n_names} structured name(s), scrubbed {_n_prose} free-text field(s) '
           f'(roster of {len(_roster)} full name(s))')
 
+    # DATA FEED for other consumers (e.g. the Daily Shop Pulse repo): the same scrubbed
+    # records, reshaped as one object per shop per day with all three shifts, written
+    # to ../data/daily/YYYY-MM-DD.json plus ../data/latest.json (the whole window).
+    # Status mirrors the dashboard: filed / late / missing / pending (today, window
+    # still open) / untracked (before a shop's go-live) / no-shift (Deputy slot empty).
+    step('Writing data feed (data/)')
+    _VAR_SHOP = {
+        'REAL_ANTELOPE_RECORDS': 'Antelope', 'REAL_FAIROAKS_RECORDS': 'Fair Oaks', 'REAL_AUBURN_RECORDS': 'Auburn',
+        'REAL_MADHOUSE_RECORDS': 'Mad', 'REAL_LICHEN_RECORDS': 'Lichen', 'REAL_FIRESIDE_RECORDS': 'Fireside',
+        'REAL_MANZ_RECORDS': 'Manz', 'REAL_OV_RECORDS': 'OV', 'REAL_WINDING_RECORDS': 'Winding',
+    }
+    _TRACKING_START = {'Winding': '2026-09-04'}  # mirrors SHOP_TRACKING_START in the dashboard
+    _now_la = datetime.now(ZoneInfo('America/Los_Angeles'))
+    _now_min = _now_la.hour * 60 + _now_la.minute
+    _by_slot = {}
+    for var_name, recs in shop_records.items():
+        for r in recs:
+            di = r.get('dayIndex')
+            if di is None or not (0 <= di < _DAYS_WINDOW):
+                continue
+            _by_slot.setdefault((_idx_date(di), r.get('shop') or _VAR_SHOP[var_name], r.get('shift')), []).append(r)
+
+    def _slot_recap(r):
+        try:
+            _ts = datetime.strptime(r.get('timestamp') or '', '%m/%d/%Y %H:%M:%S').isoformat()
+        except ValueError:
+            _ts = r.get('timestamp')
+        return {
+            'submittedBy': r.get('employee'),
+            'submittedAt': _ts,
+            'late': bool(r.get('isLate')),
+            'shiftFromSchedule': bool(r.get('shiftFromSchedule')),
+            'flags': [{'kind': f.get('kind'), 'text': f.get('text')} for f in (r.get('flags') or [])],
+            'answers': {k: v for k, v in (r.get('fullRecap') or {}).items() if isinstance(v, str) and v.strip()},
+        }
+
+    def _slot(date_iso, shop, shift):
+        recs = sorted(_by_slot.get((date_iso, shop, shift), []), key=lambda x: x.get('timestamp') or '')
+        dep = deputy_hist.get(f'{date_iso}|{shop}|{shift}') or {}
+        lead, empty = dep.get('lead'), bool(dep.get('empty'))
+        if recs:
+            status = 'filed' if any(not x.get('isLate') for x in recs) else 'late'
+        elif shop in _TRACKING_START and date_iso < _TRACKING_START[shop]:
+            status = 'untracked'
+        elif empty:
+            status = 'no-shift'
+        else:
+            status = 'missing'
+            if date_iso == _TODAY_LA.isoformat():
+                c = cutoff_for(shop, shift, _now_la)
+                if c is not None:
+                    cut = c[0] * 60 + c[1]
+                    if c[0] < 6:
+                        cut += 24 * 60  # after-midnight cutoff still belongs to this shift-day
+                    if _now_min < cut:
+                        status = 'pending'
+        return {'status': status, 'scheduledLead': lead, 'recaps': [_slot_recap(x) for x in recs]}
+
+    _data_dir = os.path.join('..', 'data')
+    os.makedirs(os.path.join(_data_dir, 'daily'), exist_ok=True)
+    _gen = _now_la.isoformat(timespec='seconds')
+    _days = []
+    for di in range(_DAYS_WINDOW - 1, -1, -1):
+        date_iso = _idx_date(di)
+        day = {'date': date_iso, 'shops': {}}
+        for shop in _VAR_SHOP.values():
+            day['shops'][shop] = {sh: _slot(date_iso, shop, sh) for sh in ('Open', 'Mid', 'Close')}
+        _days.append(day)
+        with open(os.path.join(_data_dir, 'daily', f'{date_iso}.json'), 'w') as f:
+            json.dump({'generatedAt': _gen, **day}, f, indent=1, ensure_ascii=False)
+    with open(os.path.join(_data_dir, 'latest.json'), 'w') as f:
+        json.dump({'generatedAt': _gen, 'windowDays': _DAYS_WINDOW, 'shops': list(_VAR_SHOP.values()),
+                   'shifts': ['Open', 'Mid', 'Close'], 'days': _days}, f, indent=1, ensure_ascii=False)
+    _n_filed = sum(1 for d in _days for s in d['shops'].values() for sl in s.values() if sl['recaps'])
+    print(f'  wrote data/latest.json + {len(_days)} daily file(s): {_n_filed} filed shift(s) across {len(_VAR_SHOP)} shops')
+
+    step('Injecting into dashboard HTML')
     var_names = list(shop_files.keys())
     for i, var_name in enumerate(var_names):
         payload = json.dumps(shop_records[var_name], indent=2)

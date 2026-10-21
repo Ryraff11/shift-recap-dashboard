@@ -8,10 +8,11 @@ The `pipeline/` folder holds the scripts that rebuild it from 11 Google Sheets
 ## How a refresh works
 
 1. Export the 9 "recap (Responses)" Google Sheets to CSV into `pipeline/`.
-2. Run `python3 refresh_dashboard.py` from `pipeline/` — rebuilds all 9 shops and
-   injects fresh data into `pipeline/shift-recap-dashboard.html`.
-3. Copy that file to `index.html` at the repo root, restore the committed template
-   so only `index.html` changes, then commit + push to `main`.
+2. Run `python3 refresh_dashboard.py` from `pipeline/` — rebuilds all 9 shops,
+   injects fresh data into `pipeline/shift-recap-dashboard.html`, and writes the
+   machine-readable feed to `data/` (see README.md).
+3. Copy that file to `index.html` at the repo root, restore the committed template,
+   then commit `index.html`, `data/` and the two history JSON files and push to `main`.
 
 Raw CSV exports (`*_recap_raw.csv`) and intermediate JSON
 (`*_records_full_window.json`) are git-ignored — they are regenerated every run
@@ -63,7 +64,7 @@ STEP 2b — Export the Waste log (Expired Product Log). Source sheet: "New Expir
 
 STEP 3 — Build. From the pipeline/ folder run: python3 refresh_dashboard.py. Confirm the output ends with "=== Done ===" and that all 9 shops built: Antelope, Fair Oaks, Auburn, Madhouse, Lichen, Fireside, Manz, OV, Winding. Capture each shop's "<N> <Shop> records built" count. The build also merges deputy_schedule_raw.csv into the persistent pipeline/deputy_schedule_history.json (accumulate, never shrink) and injects REAL_DEPUTY_SCHEDULE — confirm it prints a "merged deputy schedule ..." line and an "injected REAL_DEPUTY_SCHEDULE ..." line. If the run does not end with "=== Done ===" or any shop is missing/errors, STOP and report (see STEP 6).
 
-STEP 4 — Publish to Pages. The build overwrote pipeline/shift-recap-dashboard.html with fresh data. Copy it to index.html at the repo root: cp pipeline/shift-recap-dashboard.html index.html. Then restore the committed template so only index.html changes in the diff: git checkout -- pipeline/shift-recap-dashboard.html. The *_recap_raw.csv, deputy_schedule_raw.csv, and *_records_full_window.json files are gitignored — do NOT commit them. Stage index.html AND the persistent pipeline/deputy_schedule_history.json (the accumulated Deputy schedule; it MUST be committed so it survives to the next run — otherwise the schedule history resets every run). Set identity if unset: git config user.email noreply@anthropic.com && git config user.name Claude. Then: git add index.html pipeline/deputy_schedule_history.json && git commit -m "Automated dashboard refresh" && git push origin main (retry a failed push up to 4x with 2/4/8/16s backoff on NETWORK errors only). Confirm the push succeeded and note the commit SHA. If the push fails for a non-network reason (e.g. 403 permission), STOP and report (see STEP 6).
+STEP 4 — Publish to Pages. The build overwrote pipeline/shift-recap-dashboard.html with fresh data. Copy it to index.html at the repo root: cp pipeline/shift-recap-dashboard.html index.html. Then restore the committed template so only index.html changes in the diff: git checkout -- pipeline/shift-recap-dashboard.html. The *_recap_raw.csv, deputy_schedule_raw.csv, and *_records_full_window.json files are gitignored — do NOT commit them. Stage index.html, the data/ feed folder, AND the persistent pipeline/deputy_schedule_history.json (the accumulated Deputy schedule; it MUST be committed so it survives to the next run — otherwise the schedule history resets every run). Set identity if unset: git config user.email noreply@anthropic.com && git config user.name Claude. Then: git add index.html data pipeline/deputy_schedule_history.json && git commit -m "Automated dashboard refresh" && git push origin main (retry a failed push up to 4x with 2/4/8/16s backoff on NETWORK errors only). Confirm the push succeeded and note the commit SHA. If the push fails for a non-network reason (e.g. 403 permission), STOP and report (see STEP 6).
 
 STEP 5 — Confirm live. Try to load https://ryraff11.github.io/shift-recap-dashboard/ (Pages may take a minute). Note: a sandbox's egress may block *.github.io with a 403 tunnel error — if you cannot reach it, say so and treat the successful push as the source of truth rather than retrying the fetch.
 
