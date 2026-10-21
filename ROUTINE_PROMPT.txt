@@ -1,0 +1,57 @@
+SCHEDULED RUN — refresh and publish the Shift Recap Dashboard (Ops Hub) for the GitHub repo Ryraff11/shift-recap-dashboard. Run the whole task end to end, then stop. You have the Google Drive and Gmail connectors attached and GitHub access through this account. The pipeline scripts are ALREADY committed in the repo's pipeline/ folder — never re-download them from Drive; only the sheets/emails/PDFs change between runs.
+
+STEP 1 — Repo on main, up to date. If /home/user/shift-recap-dashboard (or a clone of Ryraff11/shift-recap-dashboard anywhere in the workspace) exists, cd into it and run: git checkout main && git pull origin main. If no clone exists, run: git clone https://github.com/Ryraff11/shift-recap-dashboard.git && cd shift-recap-dashboard. GitHub Pages serves main/root; the pipeline lives in pipeline/. Everything below runs from the repo root unless it says pipeline/.
+
+STEP 2 — Export the 10 CSV Google Sheets to CSV into pipeline/, straight to disk (do NOT load full exports into your context). Use mcp__Google_Drive__download_file_content with exportMimeType="text/csv". It returns JSON {content, id, mimeType, title} where content is base64; large results are auto-saved by the harness to a file path instead of inline — in EITHER case decode the base64 to the target file with python3 (json.load the JSON, base64.b64decode the content field, write the bytes). EXACT fileId -> filename:
+  1alTCXd3nBJe7GhhqBG2Uc5bhoRE7MfjWT5fkdbHZ9D0 -> pipeline/antelope_recap_raw.csv
+  1DgYsLXsy0ClizmPON-H3wkrXkvS8Yoma0j85WfWMdkM -> pipeline/fairoaks_recap_raw.csv
+  17SExtyyoc_a04-q9DAMvdmFLkMsnmBuy6f0jupW7ybo -> pipeline/auburn_recap_raw.csv
+  1wUByNuv6QgeRkeeTReg15pmSMi6WyR32Rx-evHQ85LQ -> pipeline/madhouse_recap_raw.csv
+  1r_lNJ89WAN82ilqD6IXd3iv4JvPIiOaJIquBcEJ5kMs -> pipeline/lichen_recap_raw.csv
+  17cNKLcoUb8m00jsy53hJK9IKZQ8qSvq8onuBRNHG2rg -> pipeline/fireside_recap_raw.csv
+  1KimjOrEDPa_eBawE-4ngZALlwIxdvVAtJubelCSNkhw -> pipeline/manz_recap_raw.csv
+  1baOxs9v8nQg8GKXYFOUqGTmD0Z_ViRToaTBqYbkFTXs -> pipeline/ov_recap_raw.csv
+  1_Ejnib3XcegWXtfX4wRZ9QiFeTaWQEBdBya5mSTd00A -> pipeline/winding_recap_raw.csv
+  1UOubHMxyAfnUy30C7sqAOCW_GY-NaviWYqvdWPw7Xv0 -> pipeline/deputy_schedule_raw.csv
+Verify each of the 9 *_recap_raw.csv files is non-empty with a Timestamp header row. Verify deputy_schedule_raw.csv is non-empty with a Date header (Date,Shop,ShiftLabel,EmployeeName,EmployeeId,IsEmptySlot,ScheduledStart,ScheduledEnd). If any recap or deputy export fails or is empty, STOP and report (STEP 7).
+
+STEP 2b — Waste log (Expired Product Log), BEST-EFFORT (never blocks the publish). Source: the "New Expired Product Log 2026" sheet, fileId 1m0gtY3hoo95W8uerqAAu0M5vOrNufRVUO8N_6PAXKBI. It is MULTI-TAB (New Entry / Log / Shop View / Summary / ...) and a plain CSV export returns the wrong default "New Entry" form tab — so do NOT use download_file_content here. Instead call mcp__Google_Drive__read_file_content on that fileId (it returns every tab as markdown) and write the returned fileContent field VERBATIM to pipeline/expired_product_raw.md. refresh_dashboard.py extracts the "Log" tab from it (header row: Date discarded | Shop | Item | Quantity | Unit | Logged by | Est. cost | Notes). Sanity check after writing: `grep -c "Date discarded | Shop | Item | Quantity | Unit" pipeline/expired_product_raw.md` should print 1. If read_file_content fails or the Log header is absent, delete the file, FLAG it in the final report, and continue — waste is optional and refresh_dashboard.py injects an empty waste log when the file is absent.
+
+STEP 3 — Build the recap pipeline. From pipeline/ run: python3 refresh_dashboard.py. Confirm the output ends with "=== Done ===" and all 9 shops built (Antelope, Fair Oaks, Auburn, Madhouse, Lichen, Fireside, Manz, OV, Winding); it also prints a "completeness: backfilled ..." line, "injected REAL_TIMER_DATA", "injected REAL_DEPUTY_SCHEDULE", "wrote data/latest.json + 60 daily file(s)", and (when expired_product_raw.md is present) "injected REAL_WASTE_DATA". Capture each shop's "<N> <Shop> records built" count. If it doesn't end with "=== Done ===" or any shop errors/missing, STOP and report (STEP 7).
+
+STEP 4 — HME drive-thru timers, all 9 shops (best-effort; a missing or unreadable report NEVER fails the run and NEVER blocks the publish — flag it and move on). This runs AFTER the recap build on purpose: update_timer_history.py re-injects fresh timer data into the just-built dashboard.
+
+  The authoritative list of the 9 expected HME shops lives in pipeline/parse_hme_email.py (the HME_SHOPS registry) and is enforced by update_timer_history.py's coverage check. The subjects/stores below MUST match it. Every expected shop must end this run with EITHER a saved report file OR an explicit "no report" marker — never neither, because a shop that was silently never fetched is indistinguishable from a shop that genuinely had no data.
+
+  4-pre — Clear stale raw inputs so coverage reflects THIS run only (they are gitignored):  cd pipeline && rm -f hme_*.txt hme_*.none
+
+  4a — Plain-text shops (Gmail). For each subject below, find the MOST RECENT message from zoom@hmeqsr.com with that exact subject (mcp__Gmail__search_threads, then get the message in PLAIN_TEXT) and write its plaintext body verbatim to the file:
+    "HME ZOOM: Other #175 - Day Report"  -> pipeline/hme_175.txt   (Mad)
+    "HME ZOOM: Other #2008 - Day Report" -> pipeline/hme_2008.txt  (Lichen)
+    "HME ZOOM: Other #280 - Day Report"  -> pipeline/hme_280.txt   (Manz)
+    "HME ZOOM: Other #207 - Day Report"  -> pipeline/hme_207.txt   (Fair Oaks)
+
+  4b — PDF shops (Drive). A Google Apps Script auto-saves these hourly (only mail from zoom@hmeqsr.com) as PDFs into the Drive folder "HME Reports" (folderId 1g_cD83fQH1nY6ZnJbIQfWqW1le9p0GYV). For each store, search that folder — mcp__Google_Drive__search_files with query parentId = '1g_cD83fQH1nY6ZnJbIQfWqW1le9p0GYV' and title contains the store number — pick the MOST RECENT PDF by modifiedTime, pull its extracted text with mcp__Google_Drive__read_file_content, and write the returned fileContent verbatim to the file:
+    store #000181 Auburn   (title contains "000181") -> pipeline/hme_pdf_181.txt
+    store #4341   Antelope (title contains "4341")   -> pipeline/hme_pdf_4341.txt
+    store #2011   OV        (title contains "2011")   -> pipeline/hme_pdf_2011.txt
+    store #2015   Fireside  (title contains "2015")   -> pipeline/hme_pdf_2015.txt
+    store #2014   Winding   (title contains "2014")   -> pipeline/hme_pdf_2014.txt   (HME live since Oct 2026 — if no PDF exists yet, write the .none marker per 4b-none)
+
+  4b-none — For any expected shop that, AFTER you actually searched, genuinely has NO report for its window, record it as checked-and-quiet so it is not flagged as a silent gap: create an empty marker — plain-text shops: touch pipeline/hme_<store>.none (e.g. hme_280.none); PDF shops: touch pipeline/hme_pdf_<store>.none. Only create a marker when you truly searched and found nothing — never as a shortcut to skip a shop.
+
+  4c — From pipeline/ run: python3 update_timer_history.py. It parses every hme_*.txt, ADDS newly-seen shop/day entries to pipeline/hme_timer_history.json (never overwriting prior days), re-injects the 60-day timer window into the dashboard, then prints an "HME COVERAGE" report cross-checked against HME_SHOPS.
+
+  4d — READ the HME COVERAGE report. It classifies each expected shop as OK (reported), quiet (a .none marker you wrote), GAP (no file AND no marker), STALE (a leftover file older than 3 days), or ERROR (present but unparseable). HME timer data is BEST-EFFORT and NEVER gates the publish. If it prints a "HME COVERAGE ALERT": make ONE reasonable attempt to clear each flagged shop — fetch the missing report, or write its .none marker if the shop genuinely has no report — then re-run update_timer_history.py. If a shop still cannot be resolved, do NOT stall: PUBLISH anyway (STEP 5) and call out the unresolved HME shop(s) verbatim in the final report. Always surface the final coverage line in the run report.
+
+STEP 5 — Publish. From the repo root: cp pipeline/shift-recap-dashboard.html index.html. Restore the committed template so only generated content changes: git checkout -- pipeline/shift-recap-dashboard.html. Stage ONLY the generated outputs — index.html, the data/ feed folder, and the two committed history files. The raw inputs (*_recap_raw.csv, *_recap_prepped.csv, *_records_full_window.json, expired_product_raw.md, pipeline/hme_*.txt, pipeline/hme_*.none) are gitignored and must never be committed. Set identity if unset: git config user.email noreply@anthropic.com && git config user.name Claude. Then:
+    git add index.html data pipeline/hme_timer_history.json pipeline/deputy_schedule_history.json
+    git commit -m "Automated dashboard refresh"
+    git push origin main   (retry a failed push up to 4x with 2/4/8/16s backoff, NETWORK errors only)
+Note the commit SHA. If the push fails for a non-network reason (e.g. 403), STOP and report (STEP 7).
+
+STEP 6 — Confirm. Try https://ryraff11.github.io/shift-recap-dashboard/ (Pages may lag a minute). Sandbox egress may 403 *.github.io — if unreachable, say so and treat the successful push as the source of truth rather than retrying the fetch.
+
+STEP 7 — Failure handling. On the FIRST hard failure of a required step (sheet export, build, or push) do NOT retry endlessly: stop and clearly report which step failed with the full error, and leave main untouched unless the build fully succeeded (only push a fully successful build). Missing/unreadable HME reports and a failed waste export are NOT failures and never block the publish — flag them (HME misses via a .none marker) and continue.
+
+FINAL REPORT (always, concise): per-shop record counts, the HME COVERAGE verdict verbatim (the "coverage: N/9 ..." line plus any quiet/gap/stale shops), how many waste rows were parsed/flagged/skipped (or that the waste export was flagged), the pushed commit SHA (or "no push — failed at step X"), and whether Pages was confirmed or unreachable-from-sandbox.
