@@ -4,7 +4,7 @@ Two source formats are auto-detected:
   - PLAIN-TEXT email body  ("HME ZOOM: Other #<num> - Day Report"): Mad #175,
     Lichen #2008, Manz #280, Fair Oaks #207 (sent under the old nickname "K Town").
   - PDF-EXTRACTED text      ("Day Summary Report", header "Restaurant #<num> <Name>"):
-    Auburn #000181, Antelope #4341, OV/Orangevale #2011, Fireside #2015. These are
+    Auburn #000181, Antelope #4341, OV/Orangevale #2011, Fireside #2015, Winding #2014. These are
     auto-saved to the "HME Reports" Drive folder; the scheduled run pulls the extracted
     text via Drive's read_file_content and saves it as hme_pdf_<num>.txt.
 
@@ -35,9 +35,7 @@ HME_SHOPS = [
     {'store': '4341', 'shop': 'Antelope',  'source': 'pdf',  'locator': 'title contains "4341"'},
     {'store': '2011', 'shop': 'OV',        'source': 'pdf',  'locator': 'title contains "2011"'},
     {'store': '2015', 'shop': 'Fireside',  'source': 'pdf',  'locator': 'title contains "2015"'},
-    # Winding is DELIBERATELY absent: its HME timer hardware is not installed yet, so no
-    # report exists to fetch — listing it here would make the coverage check flag a false
-    # GAP every run. Add its entry (store #, source, locator) only when HME installs there.
+    {'store': '2014', 'shop': 'Winding',   'source': 'pdf',  'locator': 'title contains "2014"'},  # HME live Oct 2026
 ]
 
 # Derived downstream — do NOT hand-maintain a second copy.

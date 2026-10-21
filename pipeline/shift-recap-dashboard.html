@@ -853,8 +853,8 @@ const SHIFTS = ["Open","Mid","Close"];
 // Shops with two drive-thru windows (they report a 2nd-window time); everyone else is single-window.
 const TWO_WINDOW_SHOPS = new Set(["Mad","Fair Oaks"]);
 // Shops with NO HME timer hardware installed yet — their Times views say "not installed"
-// instead of "no uploads". Remove a shop here when its HME system lands.
-const NO_TIMER_SHOPS = new Set(["Winding"]);
+// instead of "no uploads". Empty now that Winding's HME (#2014) reports; kept for future launches.
+const NO_TIMER_SHOPS = new Set([]);
 // Per-shop submission-window cutoffs [hour, minute] in store-local (Pacific) time, used only to
 // mark TODAY's not-yet-due shifts as 'pending' instead of missing/late. Open varies by weekday;
 // Mid/Close are fixed per shop (except Manz's Mid, which varies by weekday). Close times of
