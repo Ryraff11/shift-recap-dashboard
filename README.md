@@ -27,6 +27,7 @@ https://raw.githubusercontent.com/Ryraff11/shift-recap-dashboard/main/data/daily
 
 - `data/latest.json` — the whole 60-day window: `{generatedAt, windowDays, shops, shifts, days:[…]}`,
   newest day first.
+- `data/pulse.json` — the last 7 days only, same shape as latest.json (~0.5 MB; what the Daily Shop Pulse reads).
 - `data/daily/YYYY-MM-DD.json` — one day: `{generatedAt, date, shops: {<shop>: {Open, Mid, Close}}}`.
   Daily files are rewritten on every refresh for the days inside the window and left in
   place after they fall out of it.

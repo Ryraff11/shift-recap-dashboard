@@ -627,8 +627,12 @@ def main():
     with open(os.path.join(_data_dir, 'latest.json'), 'w') as f:
         json.dump({'generatedAt': _gen, 'windowDays': _DAYS_WINDOW, 'shops': list(_VAR_SHOP.values()),
                    'shifts': ['Open', 'Mid', 'Close'], 'days': _days}, f, indent=1, ensure_ascii=False)
+    # pulse.json: the last 7 days only (~0.5 MB) — small enough for a dashboard to read in one call.
+    with open(os.path.join(_data_dir, 'pulse.json'), 'w') as f:
+        json.dump({'generatedAt': _gen, 'windowDays': 7, 'shops': list(_VAR_SHOP.values()),
+                   'shifts': ['Open', 'Mid', 'Close'], 'days': _days[:7]}, f, indent=1, ensure_ascii=False)
     _n_filed = sum(1 for d in _days for s in d['shops'].values() for sl in s.values() if sl['recaps'])
-    print(f'  wrote data/latest.json + {len(_days)} daily file(s): {_n_filed} filed shift(s) across {len(_VAR_SHOP)} shops')
+    print(f'  wrote data/latest.json + data/pulse.json + {len(_days)} daily file(s): {_n_filed} filed shift(s) across {len(_VAR_SHOP)} shops')
 
     step('Injecting into dashboard HTML')
     var_names = list(shop_files.keys())
