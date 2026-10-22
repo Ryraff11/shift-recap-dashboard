@@ -33,20 +33,26 @@
 
   .rail { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; display: grid; gap: 8px; }
   .rail-head { display: flex; justify-content: space-between; gap: 10px; font: 500 10.5px/1 var(--mono); letter-spacing: .16em; color: var(--muted); text-transform: uppercase; }
-  .chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; }
-  .chip { flex: 0 0 auto; border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; display: grid; gap: 3px; min-width: 9rem; max-width: 15rem; }
+  .chips { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 8px; }
+  .chip { border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; display: grid; gap: 3px; align-content: start; }
+  .chip details { margin-top: 2px; }
+  .chip summary { cursor: pointer; font: 500 11px/1.4 var(--mono); letter-spacing: .06em; color: var(--faint); text-transform: uppercase; list-style: none; }
+  .chip summary::-webkit-details-marker { display: none; }
+  .chip summary::before { content: '+ '; }
+  .chip details[open] summary::before { content: '– '; }
+  .chip ul { margin: 4px 0 0; padding-left: 16px; font: 400 12.5px/1.4 var(--body); display: grid; gap: 3px; }
+  .chip li::marker { color: var(--faint); }
   .chip .d { font: 700 11px/1 var(--mono); letter-spacing: .06em; color: var(--accent); }
   .chip .d.soon { color: var(--bad); }
   .chip .t { font: 500 13px/1.3 var(--body); }
   .chip .k { font: 400 10px/1 var(--mono); letter-spacing: .1em; color: var(--faint); text-transform: uppercase; }
-  .rail .empty { color: var(--faint); font-size: 13px; }
 
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 14px; align-items: start; }
   .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; display: grid; gap: 10px; }
   .card.attn { border-left: 4px solid var(--bad); }
   .card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
   .card h2 { margin: 0; font: 800 26px/0.9 var(--display); letter-spacing: .02em; text-transform: uppercase; flex: 0 0 auto; }
-  .pills { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; margin-left: auto; }
+  .pills { display: flex; gap: 6px; flex-wrap: wrap; }
   .pill { font: 500 10.5px/1 var(--mono); letter-spacing: .06em; padding: 5px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
   .pill.filed { border-color: var(--ok); color: var(--ok); }
   .pill.late { border-color: var(--warn); color: var(--warn); }
@@ -147,17 +153,24 @@
       el('span', {}, el('i', { class: haz ? 'bad' : '', text: String(haz) }), ' hazard' + (haz === 1 ? '' : 's')),
       el('span', {}, el('i', { text: reported + '/' + shops.length }), ' timers in'));
 
-    // upcoming rail (today .. +21 days)
+    // upcoming rail (today .. +28 days, matching the Brew's 4-week lookout)
     const chips = $('chips');
     if (brew && Array.isArray(brew.items)) {
-      const horizon = shiftIso(today, 21);
-      const items = brew.items.filter(i => i.date && i.date >= today && i.date <= horizon).sort((a,b) => a.date < b.date ? -1 : 1);
+      const horizon = shiftIso(today, 28);
+      const items = brew.items.filter(i => i.date && (i.end || i.date) >= today && i.date <= horizon).sort((a,b) => a.date < b.date ? -1 : 1);
       $('brew-src').textContent = brew.source ? 'from Brew ' + brew.source : '';
       chips.replaceChildren(...(items.length ? items.map(i => {
         const soon = i.date <= shiftIso(today, 2);
         const when = i.date === today ? 'Today' : i.date === shiftIso(today, 1) ? 'Tomorrow' : fmtShort(i.date);
-        return el('div', { class:'chip' }, el('span', { class:'d' + (soon ? ' soon' : ''), text: when + (i.end ? ' – ' + fmtShort(i.end) : '') }), el('span', { class:'t', text: i.title }), i.kind ? el('span', { class:'k', text: i.kind }) : null);
-      }) : [el('div', { class:'empty', text:'Nothing in the next three weeks.' })]));
+        const live = i.end && i.date < today;
+        const chip = el('div', { class:'chip' }, el('span', { class:'d' + (soon ? ' soon' : ''), text: (live ? 'Now – ' + fmtShort(i.end) : when + (i.end ? ' – ' + fmtShort(i.end) : '')) }), el('span', { class:'t', text: i.title }), i.kind ? el('span', { class:'k', text: i.kind }) : null);
+        if (Array.isArray(i.details) && i.details.length) {
+          const d = el('details', {}, el('summary', { text: 'Details' }), el('ul', {}, i.details.map(x => el('li', { text: x }))));
+          if (i.date <= shiftIso(today, 7)) d.setAttribute('open', '');
+          chip.append(d);
+        }
+        return chip;
+      }) : [el('div', { class:'empty', text:'Nothing in the next four weeks.' })]));
     } else {
       chips.replaceChildren(el('div', { class:'empty', text:'No Weekly Brew items loaded yet.' }));
     }
