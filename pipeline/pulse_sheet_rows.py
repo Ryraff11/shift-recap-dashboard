@@ -1,22 +1,21 @@
 """Rows for the "Daily Shop Pulse feed" Google Sheet, from data/pulse.json.
 
 One row per shop per shift per day (newest day first). Statuses cover all 7 days;
-the free-text payloads (flags, answers) are kept only for the newest FULL_TEXT_DAYS
-days so the sheet refresh stays small. Prints a JSON 2-D array (header row first)
+flags are kept for the newest FLAG_DAYS days and full answers for the newest
+ANSWER_DAYS days, so the sheet refresh stays small enough to send in one call. Prints a JSON 2-D array (header row first)
 ready for the Google Sheets update_values tool.
 
 Usage (from the repo root):  python3 pipeline/pulse_sheet_rows.py > /tmp/rows.json
 """
 import json, sys, os
 
-FULL_TEXT_DAYS = 2
-COLS = ['date', 'shop', 'shift', 'status', 'lead', 'by', 'at', 'late', 'recapCount',
+FLAG_DAYS, ANSWER_DAYS = 2, 1
+COLS = ['date', 'shop', 'shift', 'status', 'lead', 'by', 'at', 'late',
         'good', 'bad', 'hazards', 'flags', 'answers', 'generatedAt']
 
 def rows_from_pulse(pulse):
     rows = [COLS]
     for di, day in enumerate(pulse['days']):
-        full = di < FULL_TEXT_DAYS
         for shop, slots in day['shops'].items():
             for sh in ('Open', 'Mid', 'Close'):
                 s = slots.get(sh) or {}
@@ -26,12 +25,11 @@ def rows_from_pulse(pulse):
                 rows.append([
                     day['date'], shop, sh, s.get('status') or 'missing', s.get('scheduledLead') or '',
                     r0.get('submittedBy') or '', r0.get('submittedAt') or '', 'TRUE' if r0.get('late') else 'FALSE',
-                    len(recs),
                     sum(1 for f in flags if f.get('kind') == 'good'),
                     sum(1 for f in flags if f.get('kind') == 'bad'),
                     sum(1 for f in flags if (f.get('text') or '').startswith('Hazard reported')),
-                    json.dumps(flags, ensure_ascii=False) if full else '',
-                    json.dumps(r0.get('answers') or {}, ensure_ascii=False) if full else '',
+                    json.dumps(flags, ensure_ascii=False) if di < FLAG_DAYS else '',
+                    json.dumps(r0.get('answers') or {}, ensure_ascii=False) if di < ANSWER_DAYS else '',
                     pulse.get('generatedAt') or '',
                 ])
     return rows
