@@ -5,6 +5,7 @@ shop's shift-lead recap form, the Deputy shift-lead schedule, the HME drive-thru
 reports and the Expired Product Log.
 
 - Live site (GitHub Pages, public): https://ryraff11.github.io/shift-recap-dashboard/
+- Daily Shop Pulse (yesterday per shop + upcoming Brew items): https://ryraff11.github.io/shift-recap-dashboard/pulse/
 - Refresh: a Claude Routine runs `pipeline/refresh_dashboard.py` three times a day
   (1 AM / 1 PM / 7 PM Pacific), then pushes `index.html` and the data files to `main`.
   See `AUTOMATION.md`.
@@ -28,6 +29,7 @@ https://raw.githubusercontent.com/Ryraff11/shift-recap-dashboard/main/data/daily
 - `data/latest.json` — the whole 60-day window: `{generatedAt, windowDays, shops, shifts, days:[…]}`,
   newest day first.
 - `data/pulse.json` — the last 7 days only, same shape as latest.json (~0.5 MB; what the Daily Shop Pulse reads).
+- `data/brew.json` — upcoming dated items from the latest Weekly Brew, summarized (source M.D.YY, items with date/end/title/kind); written by the refresh routine, read by the Pulse page.
 - `data/daily/YYYY-MM-DD.json` — one day: `{generatedAt, date, shops: {<shop>: {Open, Mid, Close}}}`.
   Daily files are rewritten on every refresh for the days inside the window and left in
   place after they fall out of it.
@@ -76,6 +78,7 @@ operational notes about real people — don't republish it anywhere less private
 
 ```
 index.html                          published dashboard (generated — do not edit)
+pulse/index.html                    Daily Shop Pulse page (static; reads data/pulse.json, data/brew.json, pipeline/hme_timer_history.json)
 data/                               machine-readable feed (generated each refresh)
 pipeline/shift-recap-dashboard.html the dashboard template the pipeline fills in
 pipeline/refresh_dashboard.py       orchestrator: builds all 9 shops, scrubs names, writes data/, injects index.html

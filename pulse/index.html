@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Daily Shop Pulse</title>
+<meta name="description" content="Yesterday at a glance for the nine DB Sac shops: recap status, flagged hazards and drive-thru timer numbers, plus what's coming up from the Weekly Brew.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Big+Shoulders+Display:wght@700;800&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  /* Layout: one column of shop cards under a compact header and an "upcoming" rail; two columns from ~760px. */
+  :root {
+    --bg: #0B1D2E; --panel: #102639; --line: rgba(147,169,188,.18); --fg: #E6EDF3; --muted: #93A9BC; --faint: #5C7286;
+    --accent: #F5E31F; --ok: #5FD3A0; --warn: #F5E31F; --bad: #F2506A;
+    --display: 'Big Shoulders Display', 'Arial Narrow', Impact, sans-serif; --body: Barlow, 'Helvetica Neue', Arial, sans-serif; --mono: 'JetBrains Mono', Menlo, Consolas, monospace;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) { --bg: #F3F5F7; --panel: #FFFFFF; --line: rgba(17,38,60,.14); --fg: #11263C; --muted: #4E6578; --faint: #7B8FA1; --accent: #B8A400; --ok: #1E8E5A; --warn: #B8A400; --bad: #D1294A; color-scheme: light; } }
+  :root[data-theme="light"] { --bg: #F3F5F7; --panel: #FFFFFF; --line: rgba(17,38,60,.14); --fg: #11263C; --muted: #4E6578; --faint: #7B8FA1; --accent: #B8A400; --ok: #1E8E5A; --warn: #B8A400; --bad: #D1294A; color-scheme: light; }
+  * { box-sizing: border-box; min-width: 0; }
+  html, body { margin: 0; background: var(--bg); color: var(--fg); }
+  body { font: 400 15px/1.45 var(--body); padding-block: env(safe-area-inset-top, 0px) max(24px, env(safe-area-inset-bottom, 0px)); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .wrap { max-width: 68rem; margin-inline: auto; display: grid; gap: 18px; }
+  header { padding-top: 18px; display: grid; gap: 4px; }
+  .eyebrow { font: 500 10.5px/1 var(--mono); letter-spacing: .18em; color: var(--muted); text-transform: uppercase; display: flex; gap: 10px; flex-wrap: wrap; justify-content: space-between; }
+  .eyebrow a { color: var(--accent); text-decoration: none; }
+  h1 { margin: 0; font: 800 42px/0.9 var(--display); letter-spacing: .02em; text-transform: uppercase; text-wrap: balance; }
+  .sub { font: 400 13px/1.4 var(--body); color: var(--muted); }
+  .sub b { color: var(--fg); font-weight: 600; }
+  .totals { display: flex; gap: 14px; flex-wrap: wrap; font: 500 11px/1 var(--mono); letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
+  .totals i { font-style: normal; color: var(--fg); font-weight: 700; }
+  .totals i.bad { color: var(--bad); } .totals i.warn { color: var(--warn); } .totals i.ok { color: var(--ok); }
+
+  .rail { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; display: grid; gap: 8px; }
+  .rail-head { display: flex; justify-content: space-between; gap: 10px; font: 500 10.5px/1 var(--mono); letter-spacing: .16em; color: var(--muted); text-transform: uppercase; }
+  .chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; }
+  .chip { flex: 0 0 auto; border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; display: grid; gap: 3px; min-width: 9rem; max-width: 15rem; }
+  .chip .d { font: 700 11px/1 var(--mono); letter-spacing: .06em; color: var(--accent); }
+  .chip .d.soon { color: var(--bad); }
+  .chip .t { font: 500 13px/1.3 var(--body); }
+  .chip .k { font: 400 10px/1 var(--mono); letter-spacing: .1em; color: var(--faint); text-transform: uppercase; }
+  .rail .empty { color: var(--faint); font-size: 13px; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 14px; align-items: start; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; display: grid; gap: 10px; }
+  .card.attn { border-left: 4px solid var(--bad); }
+  .card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+  .card h2 { margin: 0; font: 800 26px/0.9 var(--display); letter-spacing: .02em; text-transform: uppercase; flex: 0 0 auto; }
+  .pills { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; margin-left: auto; }
+  .pill { font: 500 10.5px/1 var(--mono); letter-spacing: .06em; padding: 5px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+  .pill.filed { border-color: var(--ok); color: var(--ok); }
+  .pill.late { border-color: var(--warn); color: var(--warn); }
+  .pill.missing { border-color: var(--bad); color: var(--bad); }
+  .pill.no-shift, .pill.untracked, .pill.pending { border-style: dashed; }
+  .sec { display: grid; gap: 5px; padding-top: 8px; border-top: 1px solid var(--line); }
+  .sec-h { font: 500 10px/1 var(--mono); letter-spacing: .16em; color: var(--faint); text-transform: uppercase; }
+  .haz { position: relative; padding-left: 14px; font-size: 14px; line-height: 1.4; }
+  .haz::before { content: ""; position: absolute; left: 0; top: .5em; width: 7px; height: 7px; border-radius: 50%; background: var(--bad); }
+  .haz .who { font: 400 10.5px/1 var(--mono); letter-spacing: .06em; color: var(--faint); display: block; margin-top: 2px; }
+  .none { color: var(--faint); font-size: 13px; }
+  .timer { display: grid; grid-template-columns: auto auto 1fr; gap: 14px; align-items: baseline; }
+  .timer b { font: 700 24px/1 var(--mono); font-variant-numeric: tabular-nums; }
+  .timer b.ok { color: var(--ok); } .timer b.warn { color: var(--warn); } .timer b.bad { color: var(--bad); }
+  .timer span { font: 400 10px/1.4 var(--mono); letter-spacing: .08em; color: var(--faint); text-transform: uppercase; display: block; }
+  .timer .cars { font: 700 18px/1 var(--mono); font-variant-numeric: tabular-nums; }
+  .timer .win { font: 400 11px/1.3 var(--mono); color: var(--muted); }
+  .missing-lead { font: 400 11px/1.4 var(--mono); letter-spacing: .04em; color: var(--muted); }
+  .state { padding: 28px 16px; text-align: center; color: var(--muted); font-size: 14px; }
+  footer { font: 400 11px/1.5 var(--mono); color: var(--faint); letter-spacing: .04em; padding-top: 6px; }
+  footer a { color: var(--muted); }
+  @media (prefers-reduced-motion: no-preference) { .card { animation: in .35s ease-out both; } @keyframes in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow"><span>DB SAC · DAILY SHOP PULSE</span><a href="../">Ops Hub →</a></div>
+    <h1>Daily Shop Pulse</h1>
+    <div class="sub" id="sub">Loading yesterday…</div>
+    <div class="totals" id="totals"></div>
+  </header>
+
+  <section class="rail" aria-label="Upcoming">
+    <div class="rail-head"><span>Upcoming · Weekly Brew</span><span id="brew-src"></span></div>
+    <div class="chips" id="chips"></div>
+  </section>
+
+  <main class="grid" id="cards"><div class="state">Loading…</div></main>
+
+  <footer id="foot"></footer>
+</div>
+
+<script>
+(function(){
+  const SHIFTS = ['Open','Mid','Close'];
+  const STATUS_WORD = { filed:'filed', late:'late', missing:'not filed', pending:'still open', untracked:'not tracked', 'no-shift':'no shift' };
+  const $ = (id) => document.getElementById(id);
+  const el = (tag, attrs, ...kids) => { const n = document.createElement(tag); for (const [k,v] of Object.entries(attrs||{})) { if (k==='class') n.className = v; else if (k==='text') n.textContent = v; else n.setAttribute(k, v); } for (const c of kids.flat()) if (c != null) n.append(c); return n; };
+
+  // Dates are store-local (Pacific). "Yesterday" is the last full shift-day.
+  function pacificToday(){
+    const p = new Intl.DateTimeFormat('en-US', { timeZone:'America/Los_Angeles', year:'numeric', month:'2-digit', day:'2-digit' }).formatToParts(new Date());
+    const g = t => p.find(x => x.type === t).value; return g('year') + '-' + g('month') + '-' + g('day');
+  }
+  const shiftIso = (iso, days) => { const d = new Date(iso + 'T12:00:00Z'); d.setUTCDate(d.getUTCDate() + days); return d.toISOString().slice(0, 10); };
+  const fmtLong = (iso) => new Date(iso + 'T12:00:00').toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' });
+  const fmtShort = (iso) => new Date(iso + 'T12:00:00').toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' });
+  const mmss = (s) => Math.floor(s/60) + ':' + String(Math.round(s)%60).padStart(2,'0');
+  const laneClass = (s) => s > 120 ? 'bad' : s >= 90 ? 'warn' : 'ok';
+
+  // Pick the day to show: yesterday if the feed has it, else the newest day before today.
+  function pickDay(days, today){
+    const want = shiftIso(today, -1);
+    return days.find(d => d.date === want) || days.filter(d => d.date < today).sort((a,b) => a.date < b.date ? 1 : -1)[0] || days[0];
+  }
+  function hazardsOf(slot){
+    const out = [];
+    for (const r of (slot.recaps || [])) for (const f of (r.flags || [])) {
+      if (/^Hazard reported/i.test(f.text || '')) out.push({ text: f.text.replace(/^Hazard reported:\s*/i, '').trim(), by: r.submittedBy || '' });
+    }
+    return out;
+  }
+
+  async function load(path){ const r = await fetch(path, { cache: 'no-store' }); if (!r.ok) throw new Error(path + ' ' + r.status); return r.json(); }
+
+  async function main(){
+    const today = pacificToday();
+    let pulse, timers = {}, brew = null;
+    try { pulse = await load('../data/pulse.json'); }
+    catch (e) { $('cards').replaceChildren(el('div', { class:'state', text:'The recap feed could not be loaded (' + e.message + ').' })); return; }
+    try { timers = await load('../pipeline/hme_timer_history.json'); } catch (e) { timers = {}; }
+    try { brew = await load('../data/brew.json'); } catch (e) { brew = null; }
+
+    const day = pickDay(pulse.days || [], today);
+    if (!day) { $('cards').replaceChildren(el('div', { class:'state', text:'No days in the feed yet.' })); return; }
+    const shops = pulse.shops || Object.keys(day.shops);
+
+    // header + totals
+    let filed=0, late=0, missing=0, haz=0, reported=0;
+    shops.forEach(shop => SHIFTS.forEach(sh => { const s = (day.shops[shop]||{})[sh]; if (!s) return; if (s.status==='filed') filed++; else if (s.status==='late') late++; else if (s.status==='missing') missing++; haz += hazardsOf(s).length; }));
+    shops.forEach(shop => { if (timers[shop] && timers[shop][day.date]) reported++; });
+    $('sub').replaceChildren('Yesterday · ', el('b', { text: fmtLong(day.date) }), day.date !== shiftIso(today, -1) ? ' (latest full day in the feed)' : '');
+    $('totals').replaceChildren(
+      el('span', {}, el('i', { class:'ok', text: String(filed) }), ' filed'),
+      el('span', {}, el('i', { class: late ? 'warn' : '', text: String(late) }), ' late'),
+      el('span', {}, el('i', { class: missing ? 'bad' : '', text: String(missing) }), ' not filed'),
+      el('span', {}, el('i', { class: haz ? 'bad' : '', text: String(haz) }), ' hazard' + (haz === 1 ? '' : 's')),
+      el('span', {}, el('i', { text: reported + '/' + shops.length }), ' timers in'));
+
+    // upcoming rail (today .. +21 days)
+    const chips = $('chips');
+    if (brew && Array.isArray(brew.items)) {
+      const horizon = shiftIso(today, 21);
+      const items = brew.items.filter(i => i.date && i.date >= today && i.date <= horizon).sort((a,b) => a.date < b.date ? -1 : 1);
+      $('brew-src').textContent = brew.source ? 'from Brew ' + brew.source : '';
+      chips.replaceChildren(...(items.length ? items.map(i => {
+        const soon = i.date <= shiftIso(today, 2);
+        const when = i.date === today ? 'Today' : i.date === shiftIso(today, 1) ? 'Tomorrow' : fmtShort(i.date);
+        return el('div', { class:'chip' }, el('span', { class:'d' + (soon ? ' soon' : ''), text: when + (i.end ? ' – ' + fmtShort(i.end) : '') }), el('span', { class:'t', text: i.title }), i.kind ? el('span', { class:'k', text: i.kind }) : null);
+      }) : [el('div', { class:'empty', text:'Nothing in the next three weeks.' })]));
+    } else {
+      chips.replaceChildren(el('div', { class:'empty', text:'No Weekly Brew items loaded yet.' }));
+    }
+
+    // cards
+    $('cards').replaceChildren(...shops.map(shop => {
+      const slots = SHIFTS.map(sh => ({ shift: sh, ...((day.shops[shop]||{})[sh] || { status:'missing', recaps:[] }) }));
+      const hz = slots.flatMap(s => hazardsOf(s).map(h => ({ ...h, shift: s.shift })));
+      const miss = slots.filter(s => s.status === 'missing');
+      const t = timers[shop] && timers[shop][day.date];
+      const card = el('article', { class:'card' + ((hz.length || miss.length) ? ' attn' : ''), id: 'shop-' + shop.replace(/\W+/g,'-').toLowerCase() },
+        el('div', { class:'card-head' }, el('h2', { text: shop }),
+          el('div', { class:'pills' }, slots.map(s => el('span', { class:'pill ' + s.status, text: s.shift + ' · ' + (STATUS_WORD[s.status] || s.status) })))));
+      if (miss.length) card.append(el('div', { class:'missing-lead', text: 'Not filed: ' + miss.map(s => s.shift + (s.scheduledLead ? ' (' + s.scheduledLead + ')' : '')).join(' · ') }));
+      const hzSec = el('div', { class:'sec' }, el('div', { class:'sec-h', text:'Hazards' }));
+      if (hz.length) hz.forEach(h => hzSec.append(el('div', { class:'haz' }, h.text, el('span', { class:'who', text: (h.shift + ' · ' + (h.by || '—')).toUpperCase() }))));
+      else hzSec.append(el('div', { class:'none', text:'None reported' }));
+      card.append(hzSec);
+      const tSec = el('div', { class:'sec' }, el('div', { class:'sec-h', text:'Drive-thru timer' }));
+      if (t && t.laneTotalSec != null) {
+        tSec.append(el('div', { class:'timer' },
+          el('div', {}, el('b', { class: laneClass(t.laneTotalSec), text: mmss(t.laneTotalSec) }), el('span', { text:'lane total' })),
+          el('div', {}, el('div', { class:'cars', text: Number(t.totalCars || 0).toLocaleString() }), el('span', { text:'cars' })),
+          el('div', { class:'win', text: t.window ? t.window : '' })));
+      } else {
+        tSec.append(el('div', { class:'none', text: timers[shop] ? 'No timer report for this day' : 'No timer reports yet' }));
+      }
+      card.append(tSec);
+      return card;
+    }));
+
+    $('foot').replaceChildren('Feed generated ' + String(pulse.generatedAt || '').replace('T', ' ').slice(0, 16) + ' PT · names shortened to first name and initial · lane total under 1:30 green, 1:30–2:00 yellow, over 2:00 red · ', el('a', { href:'../data/pulse.json', text:'data' }));
+  }
+  main().catch(err => { $('cards').replaceChildren(el('div', { class:'state', text:'Something went wrong: ' + err.message })); });
+})();
+</script>
+</body>
+</html>
