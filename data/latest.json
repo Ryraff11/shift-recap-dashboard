@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-21T16:14:49-07:00",
+ "generatedAt": "2026-10-21T17:34:39-07:00",
  "windowDays": 60,
  "shops": [
   "Antelope",
@@ -193,9 +193,42 @@
       ]
      },
      "Mid": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": "Kylie H.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Kylie,",
+        "submittedAt": "2026-10-21T17:06:08",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "everyone was great. gavin & karis were the best. they are always great i never have to ask them for anything or correct them"
+         },
+         {
+          "kind": "bad",
+          "text": "Tardy/early-out note: no. i sent phenix home like 45 minutes early & i sent izzy home like an hour & a half early"
+         },
+         {
+          "kind": "good",
+          "text": "gavin is awesome. he wanted to go outside to take the orders even when it was just 1 car & it was raining even though i told him he can just take it at the window since we were so dead lol. he’s very chivalrous or something like that"
+         }
+        ],
+        "answers": {
+         "Staffing": "​​Perfect (sometimes struggling, sometimes ahead - evened out)",
+         "Best team player / wear more hats": "everyone was great. gavin & karis were the best. they are always great i never have to ask them for anything or correct them",
+         "Tardy / early out": "no. i sent phenix home like 45 minutes early & i sent izzy home like an hour & a half early ",
+         "Morning SL: gravers feedback": "n/a",
+         "Safety hazards": "no",
+         "Additional comments": "gavin is awesome. he wanted to go outside to take the orders even when it was just 1 car & it was raining even though i told him he can just take it at the window since we were so dead lol. he’s very chivalrous or something like that ",
+         "Xbro non-negotiables struggle": "no",
+         "Shift chore completed": "yes",
+         "Closing: Verifone WiFi": "N/A // Not on the night shift",
+         "! QUARTERLY COMP ! Down below, state the line times & leaderboard position for each hour! Also include who you think contributed the most to keeping window times down!": "12-1: (1:26) (2:06) 1st\n1-2: (2:19) (1:23) 5th\n2-3: (2:01) (1:51) 3rd\n3-4: (1:32) (1:48) 2nd\n4-5: (2:22) (1:40) 4th"
+        }
+       }
+      ]
      },
      "Close": {
       "status": "pending",
