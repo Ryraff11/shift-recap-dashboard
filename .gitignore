@@ -25,3 +25,7 @@ pipeline/hme_*.none
 # Python cache
 __pycache__/
 *.pyc
+
+# Full Weekly Brew details for the PRIVATE Pulse artifact — the Brew is confidential; never commit these
+pipeline/brew_full.json
+pipeline/brew_rows.json

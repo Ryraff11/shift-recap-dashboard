@@ -5,7 +5,8 @@ shop's shift-lead recap form, the Deputy shift-lead schedule, the HME drive-thru
 reports and the Expired Product Log.
 
 - Live site (GitHub Pages, public): https://ryraff11.github.io/shift-recap-dashboard/
-- Daily Shop Pulse (yesterday per shop + upcoming Brew items): https://ryraff11.github.io/shift-recap-dashboard/pulse/
+- Daily Shop Pulse, public page (yesterday per shop + Brew dates): https://ryraff11.github.io/shift-recap-dashboard/pulse/
+- Daily Shop Pulse, private full version (Claude dashboard: cards, full Brew, school/local calendar, managers, discipline pathway): https://claude.ai/artifact/CEGQwReKoC6gTYbBkufN1v — signed-in only; its pulse/timers/brew files are refreshed by the routine (STEP 5b), the rest is read live from Google Sheets.
 - Refresh: a Claude Routine runs `pipeline/refresh_dashboard.py` three times a day
   (1 AM / 1 PM / 7 PM Pacific), then pushes `index.html` and the data files to `main`.
   See `AUTOMATION.md`.
@@ -79,6 +80,7 @@ operational notes about real people — don't republish it anywhere less private
 ```
 index.html                          published dashboard (generated — do not edit)
 pulse/index.html                    Daily Shop Pulse page (static; reads data/pulse.json, data/brew.json, pipeline/hme_timer_history.json)
+pipeline/pulse_rows.py              writes data/pulse_rows.json, data/timer_rows.json (+ pipeline/brew_rows.json) for the private Pulse artifact
 data/                               machine-readable feed (generated each refresh)
 pipeline/shift-recap-dashboard.html the dashboard template the pipeline fills in
 pipeline/refresh_dashboard.py       orchestrator: builds all 9 shops, scrubs names, writes data/, injects index.html
