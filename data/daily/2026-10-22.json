@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-23T01:10:19-07:00",
+ "generatedAt": "2026-10-23T05:27:24-07:00",
  "date": "2026-10-22",
  "shops": {
   "Antelope": {
@@ -545,9 +545,43 @@
     ]
    },
    "Close": {
-    "status": "missing",
+    "status": "late",
     "scheduledLead": "Kaylee C.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Kaylee",
+      "submittedAt": "2026-10-23T01:40:12",
+      "late": true,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Cooper did pretty good"
+       },
+       {
+        "kind": "bad",
+        "text": "Hazard reported: Yes the dumpster door wasn’t closing"
+       },
+       {
+        "kind": "good",
+        "text": "N/a"
+       }
+      ],
+      "answers": {
+       "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+       "Line times / leaderboard": "About 3 mins we were middle to top",
+       "Best team player / wear more hats": "Cooper did pretty good",
+       "Tardy / early out": "Nope",
+       "Xbro / non-negotiables": "Kira came through the drive through and cooper discounted her drink so I just informed them both for next time that we could only give her the discount if she came to walk. There was no one in line so I just gave her the drink.",
+       "Safety hazards": "Yes the dumpster door wasn’t closing",
+       "Additional comments": "N/a",
+       "Fridge seals cleaned": "Done!",
+       "Closing: Verifone WiFi": "Yes",
+       "Closing: food inventory texted to managers": "Yes",
+       "Closing: safe/tills/iPads/doors checklist": "All good !"
+      }
+     }
+    ]
    }
   },
   "Manz": {
