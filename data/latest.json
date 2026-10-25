@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-25T01:09:10-07:00",
+ "generatedAt": "2026-10-25T05:18:02-07:00",
  "windowDays": 60,
  "shops": [
   "Antelope",
@@ -687,9 +687,40 @@
       ]
      },
      "Close": {
-      "status": "missing",
+      "status": "late",
       "scheduledLead": "Taylor R.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Taylor R.",
+        "submittedAt": "2026-10-25T03:21:35",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Maaliyah killed it tonight! She was so helpful with knocking out all of the closing chores!"
+         },
+         {
+          "kind": "good",
+          "text": "Overall a very smooth Saturday night close!\n\nIt was honestly pretty slow tonight! \n\n- we were able to knock out everything we needed to do and had an awesome night!"
+         }
+        ],
+        "answers": {
+         "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+         "Line times / leaderboard": "An average of 1 min 30 to 2 mins! We fluctuated around middle of leader board / towards bottom! ",
+         "Best team player / wear more hats": "Maaliyah killed it tonight! She was so helpful with knocking out all of the closing chores! ",
+         "Tardy / early out": "No",
+         "Xbro / non-negotiables": "No XBRO, closing shift!",
+         "Safety hazards": "No",
+         "Additional comments": "Overall a very smooth Saturday night close!\n\nIt was honestly pretty slow tonight! \n\n- we were able to knock out everything we needed to do and had an awesome night!",
+         "Fridge seals cleaned": "Done!",
+         "Closing: Verifone WiFi": "Yes",
+         "Closing: food inventory texted to managers": "Yes",
+         "Closing: safe/tills/iPads/doors checklist": "All good !",
+         "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing that I noticed on the closing shift!"
+        }
+       }
+      ]
      }
     },
     "Manz": {
