@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-28T01:08:18-07:00",
+ "generatedAt": "2026-10-28T05:34:14-07:00",
  "date": "2026-10-28",
  "shops": {
   "Antelope": {
@@ -14,9 +14,39 @@
     "recaps": []
    },
    "Close": {
-    "status": "pending",
+    "status": "filed",
     "scheduledLead": "Delayah M.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Isabelle",
+      "submittedAt": "2026-10-28T05:23:14",
+      "late": false,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Best team players had to be both kaycie and Lauryn they both were ready to helps close whenever we got slow and would always check soemthing off my little closing check list."
+       },
+       {
+        "kind": "good",
+        "text": "Today’s shift was really good! It was a slower one but definitely one we all needed. I feel everyone used their time wisely and we got out at a really good time. We had a cover Bri and it was really nice to get to know her. The overall shift was great vibes and a good shift!"
+       }
+      ],
+      "answers": {
+       "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+       "Line times / leaderboard": "Line times were 1:00-1:10 and we placed 3-4th.",
+       "Team player / needed to step up": "Best team players had to be both kaycie and Lauryn they both were ready to helps close whenever we got slow and would always check soemthing off my little closing check list. ",
+       "Tardy / early out": "No and no",
+       "Food inventory sheet": "Yes",
+       "Safety hazards": "No",
+       "Xbro / non-negotiables": "Xbro was not needed on this shift we never we’re busy we’re I needed to hop on so I got the crew ready to close and just helped stock some things up and talking to customers while they wait.",
+       "Additional comments": "Today’s shift was really good! It was a slower one but definitely one we all needed. I feel everyone used their time wisely and we got out at a really good time. We had a cover Bri and it was really nice to get to know her. The overall shift was great vibes and a good shift!",
+       "Closing: Verifone WiFi": "Yes",
+       "Closing checklist": "Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
+       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!"
+      }
+     }
+    ]
    }
   },
   "Fair Oaks": {

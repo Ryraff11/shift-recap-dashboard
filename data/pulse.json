@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-28T01:08:18-07:00",
+ "generatedAt": "2026-10-28T05:34:14-07:00",
  "windowDays": 7,
  "shops": [
   "Antelope",
@@ -33,9 +33,39 @@
       "recaps": []
      },
      "Close": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": "Delayah M.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Isabelle",
+        "submittedAt": "2026-10-28T05:23:14",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Best team players had to be both kaycie and Lauryn they both were ready to helps close whenever we got slow and would always check soemthing off my little closing check list."
+         },
+         {
+          "kind": "good",
+          "text": "Today’s shift was really good! It was a slower one but definitely one we all needed. I feel everyone used their time wisely and we got out at a really good time. We had a cover Bri and it was really nice to get to know her. The overall shift was great vibes and a good shift!"
+         }
+        ],
+        "answers": {
+         "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+         "Line times / leaderboard": "Line times were 1:00-1:10 and we placed 3-4th.",
+         "Team player / needed to step up": "Best team players had to be both kaycie and Lauryn they both were ready to helps close whenever we got slow and would always check soemthing off my little closing check list. ",
+         "Tardy / early out": "No and no",
+         "Food inventory sheet": "Yes",
+         "Safety hazards": "No",
+         "Xbro / non-negotiables": "Xbro was not needed on this shift we never we’re busy we’re I needed to hop on so I got the crew ready to close and just helped stock some things up and talking to customers while they wait.",
+         "Additional comments": "Today’s shift was really good! It was a slower one but definitely one we all needed. I feel everyone used their time wisely and we got out at a really good time. We had a cover Bri and it was really nice to get to know her. The overall shift was great vibes and a good shift!",
+         "Closing: Verifone WiFi": "Yes",
+         "Closing checklist": "Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
+         "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!"
+        }
+       }
+      ]
      }
     },
     "Fair Oaks": {
@@ -569,9 +599,42 @@
       ]
      },
      "Close": {
-      "status": "missing",
+      "status": "late",
       "scheduledLead": "Kaylee R.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Kaylee R.",
+        "submittedAt": "2026-10-28T02:02:08",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "NOELLE she was so good about cleaning everything up and down, she was the one to make sure things were getting done"
+         },
+         {
+          "kind": "good",
+          "text": "Nope"
+         },
+         {
+          "kind": "bad",
+          "text": "Recap submitted late — arrived 2:02 AM, after the 00:15 grace-period cutoff for Close."
+         }
+        ],
+        "answers": {
+         "Staffing": "Well staffed! It was PERFECT!",
+         "Line times / leaderboard": "We averaged 1-2 mins stayed in first half ",
+         "Times throughout shift": "NOELLE",
+         "Best team player / wear more hats": "NOELLE she was so good about cleaning everything up and down, she was the one to make sure things were getting done ",
+         "Tardy / early out": "No and no",
+         "Safety hazards": "Nope",
+         "Additional comments": "Nope",
+         "Closing checklist": "iPads plugged in, locked, and turned off of low power mode, verifones are covered by a rag, iPad locker is locked up, all doors & windows are locked, ALL keys are locked and put away, all money is locked up in the bottom safe + text has been sent, nightly food inventory is done + text has been sent, Alarm is about to be set and turned on",
+         "Closing: Verifone WiFi": "Yes",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log if nothing went bad, let us know :)": "3 bacon and 2 sausage"
+        }
+       }
+      ]
      }
     },
     "Fireside": {
