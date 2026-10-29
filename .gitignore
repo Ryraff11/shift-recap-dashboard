@@ -29,3 +29,6 @@ __pycache__/
 # Full Weekly Brew details for the PRIVATE Pulse artifact — the Brew is confidential; never commit these
 pipeline/brew_full.json
 pipeline/brew_rows.json
+
+# Daily Shop Pulse artifact feed files, rebuilt each run from committed data; raw inputs, never committed
+pipeline/artifact_feeds/
