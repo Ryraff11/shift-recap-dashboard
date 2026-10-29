@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-29T01:14:39-07:00",
+ "generatedAt": "2026-10-29T05:21:41-07:00",
  "windowDays": 60,
  "shops": [
   "Antelope",
@@ -411,9 +411,36 @@
       ]
      },
      "Close": {
-      "status": "missing",
+      "status": "late",
       "scheduledLead": "Ashlee S.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Ashlee S.",
+        "submittedAt": "2026-10-29T01:39:00",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Shout-out both sofia and justin tonight :)) \nSofia D. was just speedy quick on getting those order and communicating well the whole night and justin was on top of it with getting things done."
+         },
+         {
+          "kind": "bad",
+          "text": "Recap submitted late — arrived 1:39 AM, after the 00:20 grace-period cutoff for Close."
+         }
+        ],
+        "answers": {
+         "Staffing": "Well staffed! It was PERFECT!",
+         "Line times / leaderboard": "They were good tonight for the three of us & we kept it around 1:40 and under",
+         "Safety hazards": "Nope!",
+         "Xbro / non-negotiables": "It was chill tonight. Nothing crazy happened on this close but just consistent the first half then slowed down towards the last half. But overall was chill and productive ",
+         "Closing: Verifone WiFi": "Yes",
+         "Tardy / early-out": "Nope!",
+         "Expired milk check": "DONE! It all looked good!",
+         "Best team player / wear more hats": "Shout-out both sofia and justin tonight :)) \nSofia D. was just speedy quick on getting those order and communicating well the whole night and justin was on top of it with getting things done. "
+        }
+       }
+      ]
      }
     },
     "Mad": {
@@ -1031,9 +1058,44 @@
       ]
      },
      "Close": {
-      "status": "missing",
+      "status": "late",
       "scheduledLead": "Emma O.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Emma O.",
+        "submittedAt": "2026-10-29T02:09:36",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "only worked with Paris but she’s amazing as always, so nice working with her!"
+         },
+         {
+          "kind": "bad",
+          "text": "Tardy/early-out note: Kei finished maintenance at 7pm and left early"
+         },
+         {
+          "kind": "bad",
+          "text": "Coached kei on building drinks flav shot milk, she’s also made it very apparent she does NOT like order taking, as she asked to be inside on multiple shifts and this one asked me to take every order so she could be on bar"
+         },
+         {
+          "kind": "bad",
+          "text": "Recap submitted late — arrived 2:09 AM, after the 00:15 grace-period cutoff for Close."
+         }
+        ],
+        "answers": {
+         "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+         "Line times / leaderboard": "Good times, low on boards ",
+         "Team player / needed to step up": "only worked with Paris but she’s amazing as always, so nice working with her!",
+         "Tardy / early out": "Kei finished maintenance at 7pm and left early",
+         "Safety hazards": "No",
+         "Xbro / non-negotiables": "Coached kei on building drinks flav shot milk, she’s also made it very apparent she does NOT like order taking, as she asked to be inside on multiple shifts and this one asked me to take every order so she could be on bar",
+         "Closing: Verifone WiFi": "Yes",
+         "Expired product": "Nothing"
+        }
+       }
+      ]
      }
     }
    }
