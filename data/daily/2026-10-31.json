@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-01T01:08:31-07:00",
+ "generatedAt": "2026-11-01T04:18:14-08:00",
  "date": "2026-10-31",
  "shops": {
   "Antelope": {
@@ -184,9 +184,41 @@
     ]
    },
    "Close": {
-    "status": "missing",
+    "status": "late",
     "scheduledLead": "Ashlee S.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Ashlee s.",
+      "submittedAt": "2026-11-01T01:30:47",
+      "late": true,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Aiden!!! Woohoo! He was so amazing tonight with just his vibes, his work ethic & just was super helpful with so much! Everyone did amazing though tonight!"
+       },
+       {
+        "kind": "good",
+        "text": "Happy Halloween 🎃"
+       },
+       {
+        "kind": "bad",
+        "text": "Recap submitted late — arrived 1:30 AM, after the 00:20 grace-period cutoff for Close."
+       }
+      ],
+      "answers": {
+       "Staffing": "Overstaffed! We didn't need the xtra bodies/sent bodies home!",
+       "Line times / leaderboard": "Kept it at 1:05 and under for most of the shift besides the last hour but we were I think 2nd or 3rd on the leaderboard! ",
+       "Safety hazards": "None!",
+       "Xbro / non-negotiables": "Xbro was chill tonight for the most part with the crew! I had to step away to get lead stuff done and they held the fort down which I was super greatful! Loved this crew tonight & they made it such a fun Halloween night close!",
+       "Closing: Verifone WiFi": "Yes",
+       "Tardy / early-out": "No one was late! Did send tanya home a bit early cause it was a wee bit slow around that time!",
+       "Expired milk check": "DONE! It all looked good!",
+       "Additional comments": "Happy Halloween 🎃 ",
+       "Best team player / wear more hats": "Aiden!!! Woohoo! He was so amazing tonight with just his vibes, his work ethic & just was super helpful with so much! Everyone did amazing though tonight!"
+      }
+     }
+    ]
    }
   },
   "Mad": {
