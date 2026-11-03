@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-03T00:08:03-08:00",
+ "generatedAt": "2026-11-03T04:18:21-08:00",
  "windowDays": 60,
  "shops": [
   "Antelope",
@@ -468,9 +468,40 @@
       ]
      },
      "Close": {
-      "status": "missing",
+      "status": "late",
       "scheduledLead": "Greta G.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Greta G.",
+        "submittedAt": "2026-11-03T00:16:38",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Alyssa was actually a huge team player tonight! Huge help with the close and did a great job keeping the stand nice and tidy.\n\n\nDezi really needed to wear More H. tonight.  She seemed to be dragging her feet a bit when shutting down M2.  She had plenty of extra time on top of her maintenance time as I let her start early and she still forgot to do the rapid rinser and drain.  She also didn’t leave time to let me check her bar as she waited until she was going to hit OT to let me know she couldn’t stay any longer.   I feel like she was sort of waiting the clock out on shift today instead of trying to shut the bar down efficiently."
+         },
+         {
+          "kind": "bad",
+          "text": "Tardy/early-out note: X"
+         },
+         {
+          "kind": "bad",
+          "text": "Hazard reported: Upset customer at walkup spoke to both soph and i.  I think soph sent voice memo to regionals."
+         }
+        ],
+        "answers": {
+         "Staffing": "Well staffed! It was PERFECT!",
+         "Line times / leaderboard": "Well staffed other then needing that extra body from 8-9 (soph came in to cover) line times were good.  ",
+         "Safety hazards": "Upset customer at walkup spoke to both soph and i.  I think soph sent voice memo to regionals.",
+         "Xbro / non-negotiables": "X",
+         "Closing: Verifone WiFi": "Yes",
+         "Tardy / early-out": "X",
+         "Expired milk check": "DONE! It all looked good!",
+         "Best team player / wear more hats": "Alyssa was actually a huge team player tonight! Huge help with the close and did a great job keeping the stand nice and tidy.\n\n\nDezi really needed to wear More H. tonight.  She seemed to be dragging her feet a bit when shutting down M2.  She had plenty of extra time on top of her maintenance time as I let her start early and she still forgot to do the rapid rinser and drain.  She also didn’t leave time to let me check her bar as she waited until she was going to hit OT to let me know she couldn’t stay any longer.   I feel like she was sort of waiting the clock out on shift today instead of trying to shut the bar down efficiently.  "
+        }
+       }
+      ]
      }
     },
     "Mad": {
@@ -653,9 +684,47 @@
       ]
      },
      "Close": {
-      "status": "missing",
+      "status": "late",
       "scheduledLead": "Gabriel Z.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Kyler G.",
+        "submittedAt": "2026-11-03T01:37:22",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "it was just a close with me and neve she was great always finding something to do during down time and helped us balance helping the customers while also getting all the closing tasks done optimally"
+         },
+         {
+          "kind": "bad",
+          "text": "xbro was good nobody struggled, shift flowed very well"
+         },
+         {
+          "kind": "good",
+          "text": "close went about as good as it can get got out at a amazing time and had plenty of time to get everything done and make sure the shop looked great for the morning crew"
+         },
+         {
+          "kind": "bad",
+          "text": "Recap submitted late — arrived 1:37 AM, after the 00:15 grace-period cutoff for Close."
+         }
+        ],
+        "answers": {
+         "Staffing": "Well staffed! It was PERFECT!",
+         "Line times / leaderboard": "line times were avg 1:34 and we were between second and third on the leaderboard ",
+         "Best team player / wear more hats": "it was just a close with me and neve she was great always finding something to do during down time and helped us balance helping the customers while also getting all the closing tasks done optimally ",
+         "Tardy / early out": "no and didn’t send anyone home early ",
+         "Safety hazards": "no",
+         "Additional comments": "close went about as good as it can get got out at a amazing time and had plenty of time to get everything done and make sure the shop looked great for the morning crew ",
+         "Closing checklist": "iPads plugged in, locked, and turned off of low power mode, verifones are covered by a rag, iPad locker is locked up, all doors & windows are locked, ALL keys are locked and put away, all money is locked up in the bottom safe + text has been sent, nightly food inventory is done + text has been sent, Alarm is about to be set and turned on",
+         "Xbro non-negotiables struggle": "xbro was good nobody struggled, shift flowed very well",
+         "Chef position feedback": "chef went good nothing hindered us ",
+         "Closing: Verifone WiFi": "Yes",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log if nothing went bad, let us know :)": "nothing went bad"
+        }
+       }
+      ]
      }
     },
     "Fireside": {
@@ -7788,7 +7857,7 @@
          "Staffing": "Well staffed! It was PERFECT!",
          "Line times / leaderboard": "line times were good we avg 1:23 throughout the shift and we were jumping from 3rd and 4th place on the leaderboard all day ",
          "Best team player / wear more hats": "jayden definitely was the best team player was on top of making drinks during our rushes and during down time was consistently making sure the stand got restocked/cleaned to be prepared. It was a really good crew everyone was a team player including landen, olivia, and joey all crushed it as well nobody hindered us at all or brought the team down ",
-         "Tardy / early out": "no one was tardy, and I sent Sidney b. home early ",
+         "Tardy / early out": "no one was tardy, and I sent Sidney B. home early ",
          "Safety hazards": "no",
          "Additional comments": "everyone was amazing help today, team player, and hardworking no complaints at all",
          "Closing checklist": "not the night lead",
@@ -43233,7 +43302,7 @@
          },
          {
           "kind": "bad",
-          "text": "Tardy/early-out note: Nobody tardy, Kyler went home a little early and so did Sidney b."
+          "text": "Tardy/early-out note: Nobody tardy, Kyler went home a little early and so did Sidney B."
          },
          {
           "kind": "bad",
@@ -43248,7 +43317,7 @@
          "Staffing": "Well staffed! It was PERFECT!",
          "Line times / leaderboard": "We averaged 1 and a half mins and stayed around 2-5",
          "Best team player / wear more hats": "LANDEN!! Made me a proud trainer today he came in and got straight to work, was on every position without question and always wanting and trying to help his crew ",
-         "Tardy / early out": "Nobody tardy, Kyler went home a little early and so did Sidney b. ",
+         "Tardy / early out": "Nobody tardy, Kyler went home a little early and so did Sidney B. ",
          "Safety hazards": "Nope",
          "Additional comments": "Nope ",
          "Closing checklist": "not the night lead",
