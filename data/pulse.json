@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-03T04:18:21-08:00",
+ "generatedAt": "2026-11-03T12:08:01-08:00",
  "windowDays": 7,
  "shops": [
   "Antelope",
@@ -23,7 +23,7 @@
    "shops": {
     "Antelope": {
      "Open": {
-      "status": "pending",
+      "status": "missing",
       "scheduledLead": "Daniel G.",
       "recaps": []
      },
@@ -57,9 +57,31 @@
     },
     "Auburn": {
      "Open": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": "Haleigh S.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Haleigh",
+        "submittedAt": "2026-11-03T12:01:49",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "kaelei was a huge team player. alyssa was a bit distracting to the rest of the crew"
+         }
+        ],
+        "answers": {
+         "Staffing": "Well staffed! It was PERFECT!",
+         "Line times / leaderboard": "in the green all morning",
+         "Safety hazards": "no",
+         "Xbro / non-negotiables": "xbro worked alright. hard to help set up drinks with most of them being hot drinks",
+         "Closing: Verifone WiFi": "Not the night SL",
+         "Expired milk check": "Needed some rearranging/stuff was off!",
+         "Best team player / wear more hats": "kaelei was a huge team player. alyssa was a bit distracting to the rest of the crew"
+        }
+       }
+      ]
      },
      "Mid": {
       "status": "pending",
@@ -91,9 +113,42 @@
     },
     "Lichen": {
      "Open": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": "Sidney B.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Sidney B.",
+        "submittedAt": "2026-11-03T12:06:30",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Joey and Courtney were great team players. Courtney knocked out a really tedious chore and Joey was helping run and also being on window at the same time."
+         },
+         {
+          "kind": "bad",
+          "text": "Good"
+         },
+         {
+          "kind": "good",
+          "text": "N/a"
+         }
+        ],
+        "answers": {
+         "Staffing": "Good staffing but rushes kept us on our toes!",
+         "Line times / leaderboard": "The times and our shift on the leaderboard were all over the place because we were very slow at times and super busy at others ",
+         "Best team player / wear more hats": "Joey and Courtney were great team players. Courtney knocked out a really tedious chore and Joey was helping run and also being on window at the same time.",
+         "Tardy / early out": "No ",
+         "Safety hazards": "No",
+         "Additional comments": "N/a",
+         "Closing checklist": "not the night lead",
+         "Xbro non-negotiables struggle": "Good",
+         "Chef position feedback": "Good",
+         "Closing: Verifone WiFi": "N/A // Not on the night shift"
+        }
+       }
+      ]
      },
      "Mid": {
       "status": "pending",
@@ -108,9 +163,50 @@
     },
     "Fireside": {
      "Open": {
-      "status": "pending",
+      "status": "late",
       "scheduledLead": "Jacob M.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Jacob M.",
+        "submittedAt": "2026-11-03T12:01:36",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Destiny best team player filling up ice bins n keeping everything stocked did a really good job on bar"
+         },
+         {
+          "kind": "bad",
+          "text": "Tardy/early-out note: nope although Jilian and I were a minute late to clock in couldn’t find the ipad in time lol"
+         },
+         {
+          "kind": "bad",
+          "text": "nope only small coaching things on bar with jil"
+         },
+         {
+          "kind": "good",
+          "text": "Fun Fact: Honey never really expires! Archaeologists have found pots of honey in ancient Egyptian tombs that were thousands of years old and still preserved."
+         },
+         {
+          "kind": "bad",
+          "text": "Recap submitted late — arrived 12:01 PM, after the 11:30 grace-period cutoff for Open."
+         }
+        ],
+        "answers": {
+         "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+         "Line times / leaderboard": "The average time was 1:27 average place 6th",
+         "Best team player / wear more hats": "Destiny best team player filling up ice bins n keeping everything stocked did a really good job on bar ",
+         "Tardy / early out": "nope although Jilian and I were a minute late to clock in couldn’t find the ipad in time lol ",
+         "Xbro / non-negotiables": "nope only small coaching things on bar with jil",
+         "Safety hazards": "nope ",
+         "Additional comments": "Fun Fact: Honey never really expires! Archaeologists have found pots of honey in ancient Egyptian tombs that were thousands of years old and still preserved.",
+         "Fridge seals cleaned": "Done!",
+         "Closing: Verifone WiFi": "Not the night SL",
+         "Closing: safe/tills/iPads/doors checklist": "not the night SL"
+        }
+       }
+      ]
      },
      "Mid": {
       "status": "pending",
@@ -142,9 +238,34 @@
     },
     "OV": {
      "Open": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": "Heidi J.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Heidi",
+        "submittedAt": "2026-11-03T12:03:25",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Kelli! She’s so great always asking to help!"
+         }
+        ],
+        "answers": {
+         "staffing": "Good staffing but rushes kept us on our toes",
+         "lineTimes": "FIRST (I swear) from 8-8:40 then last 20 min we were third",
+         "teamPlayer": "Kelli! She’s so great always asking to help!",
+         "tardy": "No",
+         "foodInventory": "No / In progress",
+         "safety": "No",
+         "xbro": "I was chef most of the morning! But it worked just fine. Everyone was pulling their own weight! ",
+         "closingVerifone": "N/A ; Not closing shift lead",
+         "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
+         "Did anything expire today? If so, what and how much? (food,milk,other)": "No but nonfat expires tn!!"
+        }
+       }
+      ]
      },
      "Mid": {
       "status": "pending",
@@ -925,7 +1046,7 @@
          "Xbro / non-negotiables": "Xbro was good ! ",
          "Closing: Verifone WiFi": "Yes",
          "*MID & NIGHT SL ONLY* text managers the number of food & bakery items thawing in the fridge, and ready to go for tomorrow! Do this for each type of bakery & food item!": "oops, I'll go count and do that right now!",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing expired."
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing expired."
         }
        }
       ]
@@ -1348,7 +1469,7 @@
          "Safety hazards": "No",
          "Xbro / non-negotiables": "Good",
          "Closing: Verifone WiFi": "Yes",
-         "Did anything expire today? If so, what and how much? (food,milk,other). Make sure to add to the food waste log!": "Cake pops",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Cake pops",
          "Quarterly contest: choose 1 barista who stood out on shift (had a great sense of urgency, very fast on bar, knocked out chores for the crew etc.)": "Jose did pretty good"
         }
        }
@@ -1503,7 +1624,7 @@
          "Xbro non-negotiables struggle": "N/A",
          "Shift chore completed": "Yes. Clean speed rails ",
          "Closing: Verifone WiFi": "N/A // Not on the night shift",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "Yes. Holiday cake pops"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Yes. Holiday cake pops"
         }
        }
       ]
@@ -1810,7 +1931,7 @@
          "Safety hazards": "No maam",
          "Xbro / non-negotiables": "Xbro was good I was mostly helping on bar to get drinks out faster and then also doing food orders",
          "Closing: Verifone WiFi": "N/A // Not on the night shift",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "No"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
         }
        }
       ]
@@ -2271,7 +2392,7 @@
          "Shift chore completed": "yes",
          "Closing: Verifone WiFi": "N/A // Not on the night shift",
          "Closing: bakery item inventory": "No",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "i dumped a think 9 nonfat, i’ll submit the sheet thing rn also",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "i dumped a think 9 nonfat, i’ll submit the sheet thing rn also",
          "! QUARTERLY COMP ! Down below, state the line times & leaderboard position for each hour! Also include who you think contributed the most to keeping window times down!": "4-5: (2:40) 1st\n5-6: (3:31) 2nd\n6-7: (2:03) 1st\n7-8: (1:15) (1:21) 1st\n8-9: (1:46) (1:50) 7th\n9-10: (1:23) (1:18) 3rd\n10-11: (1:49) (1:13) 7th\n11-12: (1:37) (1:41) 4th"
         }
        }
@@ -2342,7 +2463,7 @@
          "Shift chore completed": "Yes",
          "Closing: Verifone WiFi": "Yes",
          "Closing: bakery item inventory": "Yes",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "None",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "None",
          "! QUARTERLY COMP ! Down below, state the line times & leaderboard position for each hour! Also include who you think contributed the most to keeping window times down!": "5-6: 9th: (4:32)(3:54)\n6-7: 4th (1:55)(1:43)\n7-8: 1st (1:56)(1:45)\n8-9: 1st (1:40)(1:46)\n9-10: 2nd (2:25)(1:47)\n10-11:1st (1:43)(1:47)\n11-12:1st (2:16)(1:47)"
         }
        }
@@ -3121,7 +3242,7 @@
          "Xbro / non-negotiables": "Good today ",
          "Closing: Verifone WiFi": "Not the night SL",
          "Did the daily chore get done on your shift today? (If not, please explain why). (Pit is responsible for PM chore!)": "Yes",
-         "Did anything expire today? If so, what and how much? (food,milk,other). Make sure to add to the food waste log!": "2 gallons of protein milk were bad on the 28th and had to be dumped",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "2 gallons of protein milk were bad on the 28th and had to be dumped",
          "Quarterly contest: choose 1 barista who stood out on shift (had a great sense of urgency, very fast on bar, knocked out chores for the crew etc.)": "Dillon"
         }
        }
@@ -3267,7 +3388,7 @@
          "Shift chore completed": "Yes ",
          "Closing: Verifone WiFi": "N/A // Not on the night shift",
          "Closing: bakery item inventory": "No",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "7 Protein Milk",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "7 Protein Milk",
          "! QUARTERLY COMP ! Down below, state the line times & leaderboard position for each hour! Also include who you think contributed the most to keeping window times down!": "4-5am 1st (1:58)\n5-6am 2nd (2:33) \n6-7am  1st(1:26)(1:50)\n7-8am 1st (0:55)(1:35) \n8-9am 4th (1:08)(1:18) \n9-10am 2nd (2:30)(1:52)\n10-11am 2nd (1:57)(1:27) \n11-12pm 6th (2:06)(1:57) \n\nEveryone did a great job contributing to the windows! Our times were great and proud of how the shift went! During the last hour we got busy and it was just 3 of us but times flowed."
         }
        }
@@ -3630,7 +3751,7 @@
          "Additional comments": "Definitely could have used an extra body during our morning rush, it was busy.",
          "Closing: Verifone WiFi": "N/A // Not on the night shift",
          "*MID & NIGHT SL ONLY* text managers the number of food & bakery items thawing in the fridge, and ready to go for tomorrow! Do this for each type of bakery & food item!": "done! just texted you guys!",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing expired."
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing expired."
         }
        }
       ]
@@ -4155,7 +4276,7 @@
          "Xbro non-negotiables struggle": "no",
          "Shift chore completed": "yes",
          "Closing: Verifone WiFi": "N/A // Not on the night shift",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "no. there is coffee cake expiring at midnight though. i did let zack know since he’s the night lead",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "no. there is coffee cake expiring at midnight though. i did let zack know since he’s the night lead",
          "! QUARTERLY COMP ! Down below, state the line times & leaderboard position for each hour! Also include who you think contributed the most to keeping window times down!": "12-1: (1:48) (1:44) 1st\n1-2: (2:16) (2:11) 6th\n2-3: (1:36) (1:38) 1st\n3-4: (2:23) (1:37) 4th\n4-5: (1:39) (1:43) 2nd"
         }
        }
@@ -4198,7 +4319,7 @@
          "Shift chore completed": "Yes",
          "Closing: Verifone WiFi": "Yes",
          "Closing: bakery item inventory": "Yes",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "Yes 17 coffee cake",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Yes 17 coffee cake",
          "! QUARTERLY COMP ! Down below, state the line times & leaderboard position for each hour! Also include who you think contributed the most to keeping window times down!": "5-6: 3rd(1:51)(2:01)\n6-7: 5th (1:44)(2:04)\n7-8: 1st(1:27)(2:02)\n8-9: 1st (1:45)(2:02)\n9-10: 1st (1:15)(2:02)\n10-11:1st (2:01)(2:01)\n11-12:1st (2:45)(2:01)"
         }
        }
@@ -4496,7 +4617,7 @@
          "Safety hazards": "Machine 3 keeps turning off and has to be reset ",
          "Xbro / non-negotiables": "xbro was good and was used a lot to finish preclose, daily chores and the drop!!",
          "Closing: Verifone WiFi": "N/A // Not on the night shift",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "N/A"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "N/A"
         }
        }
       ]
@@ -4534,7 +4655,7 @@
          "Additional comments": "NA",
          "Closing: Verifone WiFi": "Yes",
          "*MID & NIGHT SL ONLY* text managers the number of food & bakery items thawing in the fridge, and ready to go for tomorrow! Do this for each type of bakery & food item!": "done! just texted you guys!",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing tonight"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing tonight"
         }
        }
       ]
@@ -5008,7 +5129,7 @@
          "Shift chore completed": "Yes ",
          "Closing: Verifone WiFi": "N/A // Not on the night shift",
          "Closing: bakery item inventory": "No",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "2 Non Fat milks",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "2 Non Fat milks",
          "! QUARTERLY COMP ! Down below, state the line times & leaderboard position for each hour! Also include who you think contributed the most to keeping window times down!": "4-5am 2nd (2:06) \n5-6am 1st (2:20)\n6-7am 1st (1:34)(1:38) \n7-8am 1st (1:34)(1:42) \n8-9am 8th (2:05)(1:58) \n9-10am 5th (2:13)(1:34)\n10-11am 5th (2:54)(1:53)\n11-12pm 4th (2:12)(2:47) \n\nThe morning we did great! At 8 we lost a body and at 11 so I think that’s what the times reflected. But customers were in a good mood and no issues with the flow."
         }
        }
@@ -5359,7 +5480,7 @@
          "Additional comments": "Definitely could have used an extra body around 11-12, we had so many random rushes.",
          "Closing: Verifone WiFi": "N/A // Not on the night shift",
          "*MID & NIGHT SL ONLY* text managers the number of food & bakery items thawing in the fridge, and ready to go for tomorrow! Do this for each type of bakery & food item!": "done! just texted you guys!",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "1 chorizo wrap."
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "1 chorizo wrap."
         }
        }
       ]

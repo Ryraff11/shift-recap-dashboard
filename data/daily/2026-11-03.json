@@ -1,10 +1,10 @@
 {
- "generatedAt": "2026-11-03T04:18:21-08:00",
+ "generatedAt": "2026-11-03T12:08:01-08:00",
  "date": "2026-11-03",
  "shops": {
   "Antelope": {
    "Open": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": "Daniel G.",
     "recaps": []
    },
@@ -38,9 +38,31 @@
   },
   "Auburn": {
    "Open": {
-    "status": "pending",
+    "status": "filed",
     "scheduledLead": "Haleigh S.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Haleigh",
+      "submittedAt": "2026-11-03T12:01:49",
+      "late": false,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "kaelei was a huge team player. alyssa was a bit distracting to the rest of the crew"
+       }
+      ],
+      "answers": {
+       "Staffing": "Well staffed! It was PERFECT!",
+       "Line times / leaderboard": "in the green all morning",
+       "Safety hazards": "no",
+       "Xbro / non-negotiables": "xbro worked alright. hard to help set up drinks with most of them being hot drinks",
+       "Closing: Verifone WiFi": "Not the night SL",
+       "Expired milk check": "Needed some rearranging/stuff was off!",
+       "Best team player / wear more hats": "kaelei was a huge team player. alyssa was a bit distracting to the rest of the crew"
+      }
+     }
+    ]
    },
    "Mid": {
     "status": "pending",
@@ -72,9 +94,42 @@
   },
   "Lichen": {
    "Open": {
-    "status": "pending",
+    "status": "filed",
     "scheduledLead": "Sidney B.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Sidney B.",
+      "submittedAt": "2026-11-03T12:06:30",
+      "late": false,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Joey and Courtney were great team players. Courtney knocked out a really tedious chore and Joey was helping run and also being on window at the same time."
+       },
+       {
+        "kind": "bad",
+        "text": "Good"
+       },
+       {
+        "kind": "good",
+        "text": "N/a"
+       }
+      ],
+      "answers": {
+       "Staffing": "Good staffing but rushes kept us on our toes!",
+       "Line times / leaderboard": "The times and our shift on the leaderboard were all over the place because we were very slow at times and super busy at others ",
+       "Best team player / wear more hats": "Joey and Courtney were great team players. Courtney knocked out a really tedious chore and Joey was helping run and also being on window at the same time.",
+       "Tardy / early out": "No ",
+       "Safety hazards": "No",
+       "Additional comments": "N/a",
+       "Closing checklist": "not the night lead",
+       "Xbro non-negotiables struggle": "Good",
+       "Chef position feedback": "Good",
+       "Closing: Verifone WiFi": "N/A // Not on the night shift"
+      }
+     }
+    ]
    },
    "Mid": {
     "status": "pending",
@@ -89,9 +144,50 @@
   },
   "Fireside": {
    "Open": {
-    "status": "pending",
+    "status": "late",
     "scheduledLead": "Jacob M.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Jacob M.",
+      "submittedAt": "2026-11-03T12:01:36",
+      "late": true,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Destiny best team player filling up ice bins n keeping everything stocked did a really good job on bar"
+       },
+       {
+        "kind": "bad",
+        "text": "Tardy/early-out note: nope although Jilian and I were a minute late to clock in couldn’t find the ipad in time lol"
+       },
+       {
+        "kind": "bad",
+        "text": "nope only small coaching things on bar with jil"
+       },
+       {
+        "kind": "good",
+        "text": "Fun Fact: Honey never really expires! Archaeologists have found pots of honey in ancient Egyptian tombs that were thousands of years old and still preserved."
+       },
+       {
+        "kind": "bad",
+        "text": "Recap submitted late — arrived 12:01 PM, after the 11:30 grace-period cutoff for Open."
+       }
+      ],
+      "answers": {
+       "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+       "Line times / leaderboard": "The average time was 1:27 average place 6th",
+       "Best team player / wear more hats": "Destiny best team player filling up ice bins n keeping everything stocked did a really good job on bar ",
+       "Tardy / early out": "nope although Jilian and I were a minute late to clock in couldn’t find the ipad in time lol ",
+       "Xbro / non-negotiables": "nope only small coaching things on bar with jil",
+       "Safety hazards": "nope ",
+       "Additional comments": "Fun Fact: Honey never really expires! Archaeologists have found pots of honey in ancient Egyptian tombs that were thousands of years old and still preserved.",
+       "Fridge seals cleaned": "Done!",
+       "Closing: Verifone WiFi": "Not the night SL",
+       "Closing: safe/tills/iPads/doors checklist": "not the night SL"
+      }
+     }
+    ]
    },
    "Mid": {
     "status": "pending",
@@ -123,9 +219,34 @@
   },
   "OV": {
    "Open": {
-    "status": "pending",
+    "status": "filed",
     "scheduledLead": "Heidi J.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Heidi",
+      "submittedAt": "2026-11-03T12:03:25",
+      "late": false,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Kelli! She’s so great always asking to help!"
+       }
+      ],
+      "answers": {
+       "staffing": "Good staffing but rushes kept us on our toes",
+       "lineTimes": "FIRST (I swear) from 8-8:40 then last 20 min we were third",
+       "teamPlayer": "Kelli! She’s so great always asking to help!",
+       "tardy": "No",
+       "foodInventory": "No / In progress",
+       "safety": "No",
+       "xbro": "I was chef most of the morning! But it worked just fine. Everyone was pulling their own weight! ",
+       "closingVerifone": "N/A ; Not closing shift lead",
+       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
+       "Did anything expire today? If so, what and how much? (food,milk,other)": "No but nonfat expires tn!!"
+      }
+     }
+    ]
    },
    "Mid": {
     "status": "pending",
