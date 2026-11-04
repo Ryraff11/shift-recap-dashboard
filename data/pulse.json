@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-03T12:08:01-08:00",
+ "generatedAt": "2026-11-03T18:07:52-08:00",
  "windowDays": 7,
  "shops": [
   "Antelope",
@@ -40,12 +40,12 @@
     },
     "Fair Oaks": {
      "Open": {
-      "status": "pending",
+      "status": "missing",
       "scheduledLead": "Joel L.",
       "recaps": []
      },
      "Mid": {
-      "status": "pending",
+      "status": "missing",
       "scheduledLead": "Graci H.",
       "recaps": []
      },
@@ -84,9 +84,38 @@
       ]
      },
      "Mid": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": "Grace H.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Grace",
+        "submittedAt": "2026-11-03T17:56:42",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "The whole crew killed it today, everyone had a Greta attitude. During down times they stayed productive"
+         },
+         {
+          "kind": "good",
+          "text": "Na"
+         }
+        ],
+        "answers": {
+         "Staffing": "Well staffed! It was PERFECT!",
+         "Line times / leaderboard": "Overall pretty solid, we stayed on top three majority of shift. We were down bad from 3-3:30 because we accidentally sent someone on a break late. Other than that perfectly staffed",
+         "Safety hazards": "Na",
+         "Xbro / non-negotiables": "Really good, crew listened well and still did great even when I was flexing",
+         "Closing: Verifone WiFi": "Not the night SL",
+         "Tardy / early-out": "Na",
+         "Expired milk check": "DONE! It all looked good!",
+         "Additional comments": "Na",
+         "Best team player / wear more hats": "The whole crew killed it today, everyone had a Greta attitude. During down times they stayed productive ",
+         "Culture competition": "Na"
+        }
+       }
+      ]
      },
      "Close": {
       "status": "pending",
@@ -96,14 +125,70 @@
     },
     "Mad": {
      "Open": {
-      "status": "pending",
+      "status": "late",
       "scheduledLead": "Kylie H.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Kylie,",
+        "submittedAt": "2026-11-03T13:56:30",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "everyone did awesome as always. i never had any issues with anyone slacking, or goofing off, or not pulling their weight. it was also a vet shift, so everyone was pretty locked in knowing what to do anyways"
+         },
+         {
+          "kind": "good",
+          "text": "everyone was great. i love everyone lol. side note we did run out of banana bread & holiday cake pops. but managers know"
+         },
+         {
+          "kind": "bad",
+          "text": "Recap submitted late — arrived 1:56 PM, after the 12:15 grace-period cutoff for Open."
+         }
+        ],
+        "answers": {
+         "Staffing": "​​Perfect (sometimes struggling, sometimes ahead - evened out)",
+         "Line times / leaderboard": "super duper good. we were at some points the only stand in the green. everyone was super fast & productive with getting drinks out ",
+         "Best team player / wear more hats": "everyone did awesome as always. i never had any issues with anyone slacking, or goofing off, or not pulling their weight. it was also a vet shift, so everyone was pretty locked in knowing what to do anyways ",
+         "Tardy / early out": "no & no",
+         "Morning SL: gravers feedback": "the gravers did awesome. i haven’t opened & seen the stand look as good as it has this morning before. edgar & tyler did an AMAZING job. everything was fully stocked, cleaned, organized, etc. i literally did not have to do anything at all",
+         "Safety hazards": "no",
+         "Additional comments": "everyone was great. i love everyone lol. side note we did run out of banana bread & holiday cake pops. but managers know ",
+         "Xbro non-negotiables struggle": "no",
+         "Shift chore completed": "yes",
+         "Closing: Verifone WiFi": "N/A // Not on the night shift"
+        }
+       }
+      ]
      },
      "Mid": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": "Diego A.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Diego A.",
+        "submittedAt": "2026-11-03T16:53:44",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Alex was awesome"
+         }
+        ],
+        "answers": {
+         "Staffing": "​​Perfect (sometimes struggling, sometimes ahead - evened out)",
+         "Line times / leaderboard": "Top 3",
+         "Best team player / wear more hats": "Alex was awesome ",
+         "Tardy / early out": "No ",
+         "Safety hazards": "No",
+         "Xbro non-negotiables struggle": "N",
+         "Shift chore completed": "Yes ",
+         "Closing: Verifone WiFi": "N/A // Not on the night shift"
+        }
+       }
+      ]
      },
      "Close": {
       "status": "pending",
@@ -221,9 +306,34 @@
     },
     "Manz": {
      "Open": {
-      "status": "pending",
+      "status": "late",
       "scheduledLead": "Amari M.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Amari N.",
+        "submittedAt": "2026-11-03T17:36:48",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "liv such a team player and brings the energy i need"
+         },
+         {
+          "kind": "bad",
+          "text": "Recap submitted late — arrived 5:36 PM, after the 12:30 grace-period cutoff for Open (Tue/Thu/Fri/Sun schedule)."
+         }
+        ],
+        "answers": {
+         "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+         "Line times / leaderboard": "we were 2nd!",
+         "Best team player / wear more hats": "liv such a team player and brings the energy i need ",
+         "Tardy / early out": "no ",
+         "Xbro / non-negotiables": "no ",
+         "Closing: Verifone WiFi": "N/A // Not on the night shift"
+        }
+       }
+      ]
      },
      "Mid": {
       "status": "pending",
@@ -262,15 +372,48 @@
          "xbro": "I was chef most of the morning! But it worked just fine. Everyone was pulling their own weight! ",
          "closingVerifone": "N/A ; Not closing shift lead",
          "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "No but nonfat expires tn!!"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No but nonfat expires tn!!"
         }
        }
       ]
      },
      "Mid": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": "Matthew W.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Matthew W.",
+        "submittedAt": "2026-11-03T17:25:57",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "I would say Lex was she was so helpful the entire shift and got everything we needed done!"
+         },
+         {
+          "kind": "bad",
+          "text": "Hazard reported: No hazards ;)"
+         },
+         {
+          "kind": "good",
+          "text": "No comments great shift :)"
+         }
+        ],
+        "answers": {
+         "staffing": "Good staffing but rushes kept us on our toes",
+         "lineTimes": "7, we were very slow in our peak",
+         "teamPlayer": "I would say Lex was she was so helpful the entire shift and got everything we needed done!",
+         "tardy": "No :)",
+         "foodInventory": "Yes",
+         "safety": "No hazards ;)",
+         "xbro": "No xbro :(",
+         "comments": "No comments great shift :)",
+         "closingVerifone": "N/A ; Not closing shift lead",
+         "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!"
+        }
+       }
+      ]
      },
      "Close": {
       "status": "pending",
@@ -280,14 +423,68 @@
     },
     "Winding": {
      "Open": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": "Emma O.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Emma O.",
+        "submittedAt": "2026-11-03T12:07:56",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Paris! She’s such a team player. Always makes a point to talk to her custies, and has definitely gotten quick. Great attitude!"
+         },
+         {
+          "kind": "bad",
+          "text": "Tardy/early-out note: Simone finished her machine early"
+         },
+         {
+          "kind": "bad",
+          "text": "Xbro went well coached Paris on the ice bin spoon."
+         }
+        ],
+        "answers": {
+         "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+         "Line times / leaderboard": "Great! We had almost as many cars as the rest of the shops up until 10, and our line times were great! ",
+         "Team player / needed to step up": "Paris! She’s such a team player. Always makes a point to talk to her custies, and has definitely gotten quick. Great attitude! ",
+         "Tardy / early out": "Simone finished her machine early ",
+         "Safety hazards": "No ",
+         "Xbro / non-negotiables": "Xbro went well coached Paris on the ice bin spoon. ",
+         "Closing: Verifone WiFi": "N/A // Not on the night shift",
+         "Expired product": "No "
+        }
+       }
+      ]
      },
      "Mid": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": "Carsen T.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Carsen T.",
+        "submittedAt": "2026-11-03T16:22:02",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "bad",
+          "text": "Hazard reported: small leak in the ceiling but was taken care of !"
+         }
+        ],
+        "answers": {
+         "Staffing": "Overstaffed (trying to find things to do, sent people home)",
+         "Line times / leaderboard": "middle to bottom of the leaderboard, lots of time to chat with custies but we were getting them out quick when they came by ! 1:30 window average ",
+         "Team player / needed to step up": "Nat :) it was just me and her she was a slayer ! ",
+         "Tardy / early out": "n/a ",
+         "Safety hazards": "small leak in the ceiling but was taken care of ! ",
+         "Xbro / non-negotiables": "no xbro today, but we did a good job of sending a runner out when a car would stack up ",
+         "Closing: Verifone WiFi": "N/A // Not on the night shift",
+         "Expired product": "ice cream and some chocolate coming close, but we’ll go through it in time yaaaay "
+        }
+       }
+      ]
      },
      "Close": {
       "status": "pending",
@@ -413,7 +610,7 @@
          "Closing: Verifone WiFi": "Yes",
          "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
          "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "No",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No",
          "Who killed it on window/service today?": "I didn’t really see anyone necessarily kill it on window, but everyone was greeted upon them arriving at the window"
         }
        }
@@ -925,7 +1122,7 @@
          "Fridge seals cleaned": "Done!",
          "Closing: Verifone WiFi": "Not the night SL",
          "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "nothing expired today!"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nothing expired today!"
         }
        }
       ]
@@ -973,7 +1170,7 @@
          "Closing: Verifone WiFi": "Yes",
          "Closing: food inventory texted to managers": "Sent it :)",
          "Closing: safe/tills/iPads/doors checklist": "All good !",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "No food or milk expired today"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No food or milk expired today"
         }
        }
       ]
@@ -1124,7 +1321,7 @@
          "comments": "When I got here the food fridge was pretty much empty as well as the cart. So we didn’t have a lot of food the whole day today. I slacked a bunch of everything when I got here but I think morning leads should make slacking more of a priority on shift so we can sell the rest of the day! ",
          "closingVerifone": "N/A ; Not closing shift lead",
          "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope!"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope!"
         }
        }
       ]
@@ -1297,7 +1494,7 @@
          "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
          "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
          "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "nooope"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nooope"
         }
        }
       ]
@@ -1866,7 +2063,7 @@
          "Fridge seals cleaned": "Done!",
          "Closing: Verifone WiFi": "Not the night SL",
          "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "No food or milk expired today"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No food or milk expired today"
         }
        }
       ]
@@ -2186,7 +2383,7 @@
          "Additional comments": "We were understaffed from 4-6! It was popping ",
          "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
          "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "Nag"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nag"
         }
        }
       ]
@@ -2627,7 +2824,7 @@
          "Fridge seals cleaned": "Done!",
          "Closing: Verifone WiFi": "Not the night SL",
          "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "No food or milk expired today"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No food or milk expired today"
         }
        }
       ]
@@ -2725,7 +2922,7 @@
          "Fridge seals cleaned": "Done!",
          "Closing: Verifone WiFi": "Yes",
          "Closing: safe/tills/iPads/doors checklist": "All good !",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope!"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope!"
         }
        }
       ]
@@ -2881,7 +3078,7 @@
          "xbro": "Good but challenging, very busy Halloween morninggggg",
          "closingVerifone": "N/A ; Not closing shift lead",
          "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "Didn’t see anything"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Didn’t see anything"
         }
        },
        {
@@ -3138,7 +3335,7 @@
          "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
          "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
          "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
         }
        }
       ]
@@ -3625,7 +3822,7 @@
          "Closing: Verifone WiFi": "Not the night SL",
          "Closing: food inventory texted to managers": "Not the Night Shift lead",
          "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing that I noticed on the morning shift"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing that I noticed on the morning shift"
         }
        }
       ]
@@ -3676,7 +3873,7 @@
          "Fridge seals cleaned": "Done!",
          "Closing: Verifone WiFi": "Not the night SL",
          "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
         }
        }
       ]
@@ -3903,7 +4100,7 @@
          "xbro": "Na",
          "closingVerifone": "Yes",
          "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope!"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope!"
         }
        }
       ]
@@ -4026,7 +4223,7 @@
          "Closing: Verifone WiFi": "Yes",
          "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
          "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "No"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
         }
        }
       ]
@@ -4504,7 +4701,7 @@
          "Fridge seals cleaned": "Done!",
          "Closing: Verifone WiFi": "Not the night SL",
          "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "nope"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nope"
         }
        }
       ]
@@ -4749,7 +4946,7 @@
          "xbro": "no",
          "closingVerifone": "Yes",
          "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "2 frost mix"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "2 frost mix"
         }
        }
       ]
@@ -4869,7 +5066,7 @@
          "Additional comments": "Just a rough day with call outs, I felt like we started behind, then thing after thing kept happening to set us back, like I would start fixing the iPads, then health inspector came, then start stocking then we had a rush, then we start slowing down, someone asks for a 10. It was just a uphill battle the whole shift, but I got a ton done the last hour to prep for night as much as I could ",
          "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
          "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "N/A"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "N/A"
         }
        }
       ]
@@ -4899,7 +5096,7 @@
          "Xbro / non-negotiables": "Great!",
          "Closing: Verifone WiFi": "Yes",
          "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Chore Completed",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
         }
        },
        {
@@ -5383,7 +5580,7 @@
          "Fridge seals cleaned": "Done!",
          "Closing: Verifone WiFi": "Not the night SL",
          "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "nope!"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nope!"
         }
        }
       ]
@@ -5431,7 +5628,7 @@
          "Closing: Verifone WiFi": "Yes",
          "Closing: food inventory texted to managers": "Sent it :)",
          "Closing: safe/tills/iPads/doors checklist": "All good !",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "No food or milk expired today. Yay!"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No food or milk expired today. Yay!"
         }
        }
       ]
@@ -5547,7 +5744,7 @@
          "comments": "I feel like I’m constantly reminding people to plug in iPads expo, drive, walk, etc. ",
          "closingVerifone": "N/A ; Not closing shift lead",
          "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "2 expired frost from 10/22😵‍💫"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "2 expired frost from 10/22😵‍💫"
         }
        }
       ]
@@ -5586,7 +5783,7 @@
          "comments": "no",
          "closingVerifone": "N/A ; Not closing shift lead",
          "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "narrr"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "narrr"
         }
        }
       ]
@@ -5616,7 +5813,7 @@
          "xbro": "no xbro! ",
          "closingVerifone": "Yes",
          "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-         "Did anything expire today? If so, what and how much? (food,milk,other)": "yes protein milk expired tn! we dumped about 3 of em!!"
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "yes protein milk expired tn! we dumped about 3 of em!!"
         }
        }
       ]

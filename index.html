@@ -772,7 +772,7 @@ function getPacificNow(){
 const days = 60; // 60-day data window powers the Late Submissions tally; the recaps day-strip below stays a fixed trailing 7 days so the grid is unchanged
 const TODAY_INDEX = days - 1;
 const TODAY_DATE = new Date(2026, 10, 3); // auto-updated by refresh_dashboard.py;
-const BUILD_STAMP = "Tue · Nov 3 · updated 12:08 PM PT"; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
+const BUILD_STAMP = "Tue · Nov 3 · updated 6:07 PM PT"; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
 
 function dateForIndex(i){
   const dt = new Date(TODAY_DATE);
@@ -868,7 +868,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing expired today, wahooo!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing expired today, wahooo!"
     },
     "namedMentions": [
       {
@@ -935,7 +935,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "None"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "None"
     },
     "namedMentions": [
       {
@@ -1033,7 +1033,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No food or milk expired today!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No food or milk expired today!"
     },
     "namedMentions": [
       {
@@ -1144,7 +1144,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing"
     },
     "namedMentions": [
       {
@@ -1241,7 +1241,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing"
     },
     "namedMentions": []
   },
@@ -1297,7 +1297,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No milk or food expired today!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No milk or food expired today!"
     },
     "namedMentions": [
       {
@@ -1455,7 +1455,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Chocolate milk and like 8 crates of it"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Chocolate milk and like 8 crates of it"
     },
     "namedMentions": [
       {
@@ -1502,7 +1502,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
     },
     "namedMentions": [
       {
@@ -1554,7 +1554,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
     },
     "namedMentions": []
   },
@@ -1650,7 +1650,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Additional comments": "",
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc)",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Bacon expire tomorrow"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Bacon expire tomorrow"
     },
     "namedMentions": [],
     "shiftFromSchedule": true
@@ -1697,7 +1697,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "bacon sliders expired"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "bacon sliders expired"
     },
     "namedMentions": [
       {
@@ -1759,7 +1759,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Nope, on it right now!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
     },
     "namedMentions": []
   },
@@ -1800,7 +1800,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "The was around 12 bacon slider that expired"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "The was around 12 bacon slider that expired"
     },
     "namedMentions": [
       {
@@ -1852,7 +1852,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
     },
     "namedMentions": [
       {
@@ -1904,7 +1904,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Norpe"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Norpe"
     },
     "namedMentions": [
       {
@@ -1960,7 +1960,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Additional comments": "Is a great shift good to see both managers today",
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
     },
     "namedMentions": [
       {
@@ -2007,7 +2007,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "None"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "None"
     },
     "namedMentions": [
       {
@@ -2099,7 +2099,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Additional comments": "Calila got some bad news on shift while running and it kind of sent her in a bad mood for the whole shift and she got kinda snappy with me. Shift was rad, I think for future having the crew who is working the drop getting in at 5:45 would have been super helpful to help crowd control ",
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "None!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "None!"
     },
     "namedMentions": []
   },
@@ -2256,7 +2256,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "NA"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "NA"
     },
     "namedMentions": [
       {
@@ -2359,7 +2359,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
     },
     "namedMentions": [
       {
@@ -2415,7 +2415,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Additional comments": "Solid shift, I think one more body and we would have been a1 sauce for that school rush! ",
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "N/A"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "N/A"
     },
     "namedMentions": []
   },
@@ -2496,7 +2496,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Additional comments": "",
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "NA"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "NA"
     },
     "namedMentions": [
       {
@@ -2719,7 +2719,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Additional comments": "This shift was insane. I came in and basically Johnny had told me that it has been rough and good luck and left me with a lot and then I felt like just everyone after that getting off except for the people I mentioned we\u2019re just trying to run out of there, which I do understand but it\u2019s hard when things just get left to the closers and we basically were all hands on deck all night. We got it done but huge shout out to ATT and Kyla for being able to hold it down while I was in the back getting everything back to our standard! I got left a really nice puddle from Dima, which honestly was kind of the cherry on top for the night but nonetheless, we figured it out we survived and we adapted so I\u2019d say the night ended on a positive note in that case!",
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
     },
     "namedMentions": [
       {
@@ -2988,7 +2988,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Additional comments": "Today\u2019s shift was great! Started off slowish but we all used that time to set the stand up for the rush we knew was coming. Come 3 pm we were super busy for the entire time but I truly believe we did amazing. Anytime a problem was had everyone did their part to problem solve and help the customer out. I truly belive everybody did amazing today with drink making, customer service, and efficiency! Good vibes and everybody was locked in \ud83d\ude0a!",
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Bacon sliders did expire and 10 of them."
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Bacon sliders did expire and 10 of them."
     },
     "namedMentions": []
   },
@@ -3080,7 +3080,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope!"
     },
     "namedMentions": []
   },
@@ -3280,7 +3280,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Additional comments": "I didn\u2019t have anyone scheduled at 9 to be the breaker but everyone adjusted well",
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "I believe a tray of sliders expires at 4pm"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "I believe a tray of sliders expires at 4pm"
     },
     "namedMentions": []
   },
@@ -3331,7 +3331,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
     },
     "namedMentions": []
   },
@@ -3446,7 +3446,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Additional comments": "Solid shift, did as much shift change and stocking as I could to help set up Lily ",
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "1 box of soft top"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "1 box of soft top"
     },
     "namedMentions": []
   },
@@ -3502,7 +3502,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Chore Completed",
       "Food prepper, did you fill out the food inventory sheet?": "Nope, on it right now!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing expired"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing expired"
     },
     "namedMentions": [
       {
@@ -3558,7 +3558,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Additional comments": "Overstaffed 12-4ish ",
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
     },
     "namedMentions": [
       {
@@ -3770,7 +3770,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
     },
     "namedMentions": [
       {
@@ -3918,7 +3918,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "N/A"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "N/A"
     },
     "namedMentions": []
   },
@@ -4024,7 +4024,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
     },
     "namedMentions": [
       {
@@ -4187,7 +4187,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
     },
     "namedMentions": [
       {
@@ -4283,7 +4283,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope!"
     },
     "namedMentions": []
   },
@@ -4375,7 +4375,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "n/a"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "n/a"
     },
     "namedMentions": [
       {
@@ -4572,7 +4572,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
     },
     "namedMentions": []
   },
@@ -4612,7 +4612,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Additional comments": "good open! definitely busy, especially for it being so early we were slammed for most of my shift, but great staffing for those hours that we were slammed! good job everyone\ud83d\ude0a",
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "naw"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "naw"
     },
     "namedMentions": []
   },
@@ -4767,7 +4767,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
     },
     "namedMentions": [
       {
@@ -4829,7 +4829,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "nawww"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nawww"
     },
     "namedMentions": [
       {
@@ -4990,7 +4990,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Additional comments": "Def needed one more I think for the school rush from 7-9 but around 8:45 we died and were chilling again",
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
     },
     "namedMentions": [
       {
@@ -5041,7 +5041,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Additional comments": "Today\u2019s shift was good everyone came in with high spirits and even though we were slow today it was so fun to just chat and clean up and do the little things around the stand. ",
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
     },
     "namedMentions": []
   },
@@ -5142,7 +5142,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Additional comments": "",
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
     },
     "namedMentions": [
       {
@@ -5353,7 +5353,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Additional comments": "We were poppin in the begging, died in the middle then when everyone started hopping off at 4:30 we got busy busy from 4:45-5",
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Had to toss some milk from being too warm"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Had to toss some milk from being too warm"
     },
     "namedMentions": [
       {
@@ -5415,7 +5415,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
     },
     "namedMentions": []
   },
@@ -5594,7 +5594,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
     },
     "namedMentions": [
       {
@@ -5773,7 +5773,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Additional comments": "Just a rough day with call outs, I felt like we started behind, then thing after thing kept happening to set us back, like I would start fixing the iPads, then health inspector came, then start stocking then we had a rush, then we start slowing down, someone asks for a 10. It was just a uphill battle the whole shift, but I got a ton done the last hour to prep for night as much as I could ",
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "N/A"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "N/A"
     },
     "namedMentions": []
   },
@@ -5808,7 +5808,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Additional comments": "",
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Chore Completed",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
     },
     "namedMentions": [
       {
@@ -5934,7 +5934,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
     },
     "namedMentions": []
   },
@@ -6025,7 +6025,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
     },
     "namedMentions": [
       {
@@ -6132,7 +6132,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Additional comments": "We were understaffed from 4-6! It was popping ",
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nag"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nag"
     },
     "namedMentions": [
       {
@@ -6244,7 +6244,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "nooope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nooope"
     },
     "namedMentions": [
       {
@@ -6437,7 +6437,7 @@ const REAL_ANTELOPE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No",
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No",
       "Who killed it on window/service today?": "I didn\u2019t really see anyone necessarily kill it on window, but everyone was greeted upon them arriving at the window"
     },
     "namedMentions": []
@@ -22807,6 +22807,58 @@ const REAL_AUBURN_RECORDS = [
         "source": "kaelei was a huge team player. alyssa was a bit distracting to the rest of the crew"
       }
     ]
+  },
+  {
+    "shop": "Auburn",
+    "shift": "Mid",
+    "dayIndex": 59,
+    "timestamp": "11/3/2026 17:56:42",
+    "employee": "Grace",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "Na",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "The whole crew killed it today, everyone had a Greta attitude. During down times they stayed productive"
+      },
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Na"
+      }
+    ],
+    "fullRecap": {
+      "Shift time": "",
+      "Staffing": "Well staffed! It was PERFECT!",
+      "Rush timing": "",
+      "Cleanest on bar": "",
+      "Line times / leaderboard": "Overall pretty solid, we stayed on top three majority of shift. We were down bad from 3-3:30 because we accidentally sent someone on a break late. Other than that perfectly staffed",
+      "Safety hazards": "Na",
+      "Xbro / non-negotiables": "Really good, crew listened well and still did great even when I was flexing",
+      "Coaching notes": "",
+      "Xbro effectiveness (1-5)": "",
+      "Team player (system buy-in)": "",
+      "Needs replacing / broken": "",
+      "Quarterly comp tallies (OAs not ready)": "",
+      "Closing: Verifone WiFi": "Not the night SL",
+      "Tardy / early-out": "Na",
+      "Fridge seals check": "",
+      "XBRO staffing struggles": "",
+      "Clamps": "",
+      "Closing: positionless helper": "",
+      "Closing: efficiency reflection": "",
+      "Expired milk check": "DONE! It all looked good!",
+      "Additional comments": "Na",
+      "Best team player / wear more hats": "The whole crew killed it today, everyone had a Greta attitude. During down times they stayed productive ",
+      "Culture competition": "Na"
+    },
+    "namedMentions": []
   }
 ]
 const REAL_MADHOUSE_RECORDS = [
@@ -31427,6 +31479,92 @@ const REAL_MADHOUSE_RECORDS = [
       "Closing: bakery item inventory": "Yes"
     },
     "namedMentions": []
+  },
+  {
+    "shop": "Mad",
+    "shift": "Open",
+    "dayIndex": 59,
+    "timestamp": "11/3/2026 13:56:30",
+    "employee": "Kylie,",
+    "isLate": true,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "everyone was great. i love everyone lol. side note we did run out of banana bread & holiday cake pops. but managers know",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "everyone did awesome as always. i never had any issues with anyone slacking, or goofing off, or not pulling their weight. it was also a vet shift, so everyone was pretty locked in knowing what to do anyways"
+      },
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "everyone was great. i love everyone lol. side note we did run out of banana bread & holiday cake pops. but managers know"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Recap submitted late \u2014 arrived 1:56 PM, after the 12:15 grace-period cutoff for Open."
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "\u200b\u200bPerfect (sometimes struggling, sometimes ahead - evened out)",
+      "Line times / leaderboard": "super duper good. we were at some points the only stand in the green. everyone was super fast & productive with getting drinks out ",
+      "Best team player / wear more hats": "everyone did awesome as always. i never had any issues with anyone slacking, or goofing off, or not pulling their weight. it was also a vet shift, so everyone was pretty locked in knowing what to do anyways ",
+      "Tardy / early out": "no & no",
+      "Morning SL: gravers feedback": "the gravers did awesome. i haven\u2019t opened & seen the stand look as good as it has this morning before. edgar & tyler did an AMAZING job. everything was fully stocked, cleaned, organized, etc. i literally did not have to do anything at all",
+      "Safety hazards": "no",
+      "Additional comments": "everyone was great. i love everyone lol. side note we did run out of banana bread & holiday cake pops. but managers know ",
+      "Xbro non-negotiables struggle": "no",
+      "Shift chore completed": "yes",
+      "Closing: Verifone WiFi": "N/A // Not on the night shift",
+      "Closing: bakery item inventory": ""
+    },
+    "namedMentions": []
+  },
+  {
+    "shop": "Mad",
+    "shift": "Mid",
+    "dayIndex": 59,
+    "timestamp": "11/3/2026 16:53:44",
+    "employee": "Diego A.",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "No comments, standard shift.",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Alex was awesome"
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "\u200b\u200bPerfect (sometimes struggling, sometimes ahead - evened out)",
+      "Line times / leaderboard": "Top 3",
+      "Best team player / wear more hats": "Alex was awesome ",
+      "Tardy / early out": "No ",
+      "Morning SL: gravers feedback": "",
+      "Safety hazards": "No",
+      "Additional comments": "",
+      "Xbro non-negotiables struggle": "N",
+      "Shift chore completed": "Yes ",
+      "Closing: Verifone WiFi": "N/A // Not on the night shift",
+      "Closing: bakery item inventory": ""
+    },
+    "namedMentions": [
+      {
+        "name": "Alex",
+        "kind": "good",
+        "source": "Alex was awesome"
+      }
+    ]
   }
 ]
 const REAL_LICHEN_RECORDS = [
@@ -42528,7 +42666,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
     },
     "namedMentions": [
       {
@@ -42595,7 +42733,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing expired"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing expired"
     },
     "namedMentions": [
       {
@@ -42652,7 +42790,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Yes",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing I noticed on the close shift!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing I noticed on the close shift!"
     },
     "namedMentions": [
       {
@@ -42714,7 +42852,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "nothing expired!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nothing expired!"
     },
     "namedMentions": [
       {
@@ -42771,7 +42909,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "Not the night lead ",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing I noticed on the Sunday Mid shift!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing I noticed on the Sunday Mid shift!"
     },
     "namedMentions": [
       {
@@ -42874,7 +43012,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "5 chocolate milks"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "5 chocolate milks"
     },
     "namedMentions": [
       {
@@ -43301,7 +43439,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Yes",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Yes two cartons of Ice cream mix that expired on September 4th! I dumped both out! One was in the pit fridge and one was in the walk bar fridge! I also logged it in the waste log!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Yes two cartons of Ice cream mix that expired on September 4th! I dumped both out! One was in the pit fridge and one was in the walk bar fridge! I also logged it in the waste log!"
     },
     "namedMentions": [
       {
@@ -43408,7 +43546,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "Not the night lead ",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing I noticed on the Mid shift today !!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing I noticed on the Mid shift today !!"
     },
     "namedMentions": [
       {
@@ -43510,7 +43648,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
     },
     "namedMentions": [
       {
@@ -43572,7 +43710,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope!!!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope!!!"
     },
     "namedMentions": []
   },
@@ -43765,7 +43903,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Yes",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "4 non fat and logged"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "4 non fat and logged"
     },
     "namedMentions": [
       {
@@ -43822,7 +43960,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
     },
     "namedMentions": []
   },
@@ -43908,7 +44046,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "not",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "there are chorizo wraps that expire later today but i\u2019m sure they will get used before they expire!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "there are chorizo wraps that expire later today but i\u2019m sure they will get used before they expire!"
     },
     "namedMentions": [
       {
@@ -43970,7 +44108,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "2 chorizo wraps and 3 bacon sliders."
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "2 chorizo wraps and 3 bacon sliders."
     },
     "namedMentions": []
   },
@@ -44021,7 +44159,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Yes",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Some food but Izzy put it in her recap sliders and wraps"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Some food but Izzy put it in her recap sliders and wraps"
     },
     "namedMentions": [
       {
@@ -44078,7 +44216,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
     },
     "namedMentions": [
       {
@@ -44140,7 +44278,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "Not the night lead!",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing I noticed on the Mid shift today!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing I noticed on the Mid shift today!"
     },
     "namedMentions": [
       {
@@ -44354,7 +44492,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Yes",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "4 straw rf"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "4 straw rf"
     },
     "namedMentions": []
   },
@@ -44400,7 +44538,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "Not the night lead!",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Some sausage and bacon sliders expire this PM!!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Some sausage and bacon sliders expire this PM!!"
     },
     "namedMentions": [
       {
@@ -44587,7 +44725,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "Na",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
     },
     "namedMentions": [
       {
@@ -44664,7 +44802,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "No I will do that right now! ",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "One chorizo wrap expired today. Otherwise nothing else expired!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "One chorizo wrap expired today. Otherwise nothing else expired!"
     },
     "namedMentions": [
       {
@@ -44782,7 +44920,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "nope!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nope!"
     },
     "namedMentions": [
       {
@@ -44849,7 +44987,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Yes I did :)",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No food or milk expired today!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No food or milk expired today!"
     },
     "namedMentions": [
       {
@@ -44911,7 +45049,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "Not the night lead!",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing I noticed on the morning shift this AM!!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing I noticed on the morning shift this AM!!"
     },
     "namedMentions": [
       {
@@ -44978,7 +45116,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No food or milk expired today. Yay!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No food or milk expired today. Yay!"
     },
     "namedMentions": [
       {
@@ -45035,7 +45173,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Yeth",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "2 chorizo wraps"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "2 chorizo wraps"
     },
     "namedMentions": []
   },
@@ -45152,7 +45290,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "yes 10 sausage and 4 bacon sliders"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "yes 10 sausage and 4 bacon sliders"
     },
     "namedMentions": [
       {
@@ -45224,7 +45362,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Yes I sent it! ",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Some sausage sliders expired today. Approximately seven."
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Some sausage sliders expired today. Approximately seven."
     },
     "namedMentions": [
       {
@@ -45291,7 +45429,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "Not the night shift lead ",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing that I noticed on the morning shift today!!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing that I noticed on the morning shift today!!"
     },
     "namedMentions": [
       {
@@ -45394,7 +45532,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "yes!",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "nothing expired today!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nothing expired today!"
     },
     "namedMentions": []
   },
@@ -45435,7 +45573,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "4 nonfat, 2 bacon sliders, 1 chorizo"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "4 nonfat, 2 bacon sliders, 1 chorizo"
     },
     "namedMentions": [
       {
@@ -45497,7 +45635,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "nothing expired today!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nothing expired today!"
     },
     "namedMentions": [
       {
@@ -45564,7 +45702,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "\u2026. Omg I will get it to them right now!",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing expired today."
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing expired today."
     },
     "namedMentions": [
       {
@@ -45636,7 +45774,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "Not the night lead ",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing that I noticed on the morning!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing that I noticed on the morning!"
     },
     "namedMentions": [
       {
@@ -45698,7 +45836,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nooope!!!\ud83e\udd73\ud83e\udd73"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nooope!!!\ud83e\udd73\ud83e\udd73"
     },
     "namedMentions": []
   },
@@ -45744,7 +45882,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Yeth",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
     },
     "namedMentions": [
       {
@@ -45796,7 +45934,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "Na",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
     },
     "namedMentions": []
   },
@@ -45852,7 +45990,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
     },
     "namedMentions": [
       {
@@ -45924,7 +46062,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Yes I sent it! \ud83d\ude01",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No food, milk or other product expired today! Yay"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No food, milk or other product expired today! Yay"
     },
     "namedMentions": [
       {
@@ -45981,7 +46119,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope, non fat will expire after today though"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope, non fat will expire after today though"
     },
     "namedMentions": [
       {
@@ -46058,7 +46196,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Sent it :)",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No food or milk expired today. Yay!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No food or milk expired today. Yay!"
     },
     "namedMentions": [
       {
@@ -46125,7 +46263,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "Not the night shift lead! ",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing that I noticed on the morning shift!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing that I noticed on the morning shift!"
     },
     "namedMentions": [
       {
@@ -46182,7 +46320,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "7 non fat"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "7 non fat"
     },
     "namedMentions": []
   },
@@ -46228,7 +46366,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Sent it in a scheduled text:)",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nada!!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nada!!"
     },
     "namedMentions": []
   },
@@ -46340,7 +46478,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "nope \ud83e\udd73\ud83e\udd73"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nope \ud83e\udd73\ud83e\udd73"
     },
     "namedMentions": [
       {
@@ -46417,7 +46555,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Yes I sent it!",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No food expired or milk expired on today shift. Yay!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No food expired or milk expired on today shift. Yay!"
     },
     "namedMentions": [
       {
@@ -46595,7 +46733,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Yes I sent it :)",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No food or milk expired today. \ud83d\ude01"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No food or milk expired today. \ud83d\ude01"
     },
     "namedMentions": [
       {
@@ -46657,7 +46795,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope!"
     },
     "namedMentions": []
   },
@@ -46754,7 +46892,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "nothing expired!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nothing expired!"
     },
     "namedMentions": [
       {
@@ -46806,7 +46944,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "oh shoot no that\u2019s my bad yall i\u2019ll remember that next time ",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "nothing expired but we were running low on quite a few things but we get stock tmr so i don\u2019t think it should be a problem"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nothing expired but we were running low on quite a few things but we get stock tmr so i don\u2019t think it should be a problem"
     },
     "namedMentions": []
   },
@@ -46857,7 +46995,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
     },
     "namedMentions": []
   },
@@ -46908,7 +47046,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "Not the night lead",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "I dumped out a carton of freeze mix that had expired several days ago that was sitting in the pit fridge! I logged it in the expired log."
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "I dumped out a carton of freeze mix that had expired several days ago that was sitting in the pit fridge! I logged it in the expired log."
     },
     "namedMentions": [
       {
@@ -46960,7 +47098,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "yes",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "nothing today!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nothing today!"
     },
     "namedMentions": []
   },
@@ -47061,7 +47199,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "yes 3 bacon sliders"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "yes 3 bacon sliders"
     },
     "namedMentions": [
       {
@@ -47123,7 +47261,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "I sent it \ud83d\ude01",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No milk or other food products expired today."
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No milk or other food products expired today."
     },
     "namedMentions": [
       {
@@ -47180,7 +47318,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "nothing expired"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nothing expired"
     },
     "namedMentions": [
       {
@@ -47237,7 +47375,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "nothing today!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nothing today!"
     },
     "namedMentions": []
   },
@@ -47298,7 +47436,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Sent it! \ud83d\ude01",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No food expired and no milk expired. I did have to throw away a bottle of cane sugar from ants getting into it."
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No food expired and no milk expired. I did have to throw away a bottle of cane sugar from ants getting into it."
     },
     "namedMentions": [
       {
@@ -47360,7 +47498,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "Not the night lead ",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "The chorizo wraps in the small fridge expire tonight! There are 10 of them expiring this evening dated October 5th"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "The chorizo wraps in the small fridge expire tonight! There are 10 of them expiring this evening dated October 5th"
     },
     "namedMentions": [
       {
@@ -47422,7 +47560,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "N/a",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No milk or food expired today."
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No milk or food expired today."
     },
     "namedMentions": [
       {
@@ -47480,7 +47618,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Sent in scheduled text",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope!! \ud83e\udd73\ud83e\udd73"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope!! \ud83e\udd73\ud83e\udd73"
     },
     "namedMentions": [
       {
@@ -47598,7 +47736,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "yes 5 chorizo wraps"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "yes 5 chorizo wraps"
     },
     "namedMentions": [
       {
@@ -47660,7 +47798,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Sent it! ",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Two chorizo wraps expired, but nothing else expiredz"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Two chorizo wraps expired, but nothing else expiredz"
     },
     "namedMentions": [
       {
@@ -47717,7 +47855,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing!!!\ud83c\udf8a\ud83c\udf89"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing!!!\ud83c\udf8a\ud83c\udf89"
     },
     "namedMentions": []
   },
@@ -47768,7 +47906,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "No I\u2019m sorry",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
     },
     "namedMentions": []
   },
@@ -47870,7 +48008,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "Not the night lead ",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing I noticed on the mid shift!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing I noticed on the mid shift!"
     },
     "namedMentions": [
       {
@@ -47922,7 +48060,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "yes",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "yes 5 chorizo wraps"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "yes 5 chorizo wraps"
     },
     "namedMentions": []
   },
@@ -47973,7 +48111,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "2 non fat exp 10/6 dumped first thing in the am"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "2 non fat exp 10/6 dumped first thing in the am"
     },
     "namedMentions": [
       {
@@ -48040,7 +48178,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "I sent it",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No food or milk expired today"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No food or milk expired today"
     },
     "namedMentions": [
       {
@@ -48102,7 +48240,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "Not the night lead ",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing I noticed in the AM this morning!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing I noticed in the AM this morning!"
     },
     "namedMentions": [
       {
@@ -48159,7 +48297,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope!!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope!!"
     },
     "namedMentions": [
       {
@@ -48216,7 +48354,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
     },
     "namedMentions": [
       {
@@ -48283,7 +48421,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Sent it :)",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No food or milk expired today."
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No food or milk expired today."
     },
     "namedMentions": [
       {
@@ -48340,7 +48478,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "N/a",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
     },
     "namedMentions": []
   },
@@ -48396,7 +48534,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "Not the night lead ",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing I noticed on the Saturday mid!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing I noticed on the Saturday mid!"
     },
     "namedMentions": [
       {
@@ -48443,7 +48581,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "yep!",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "not today!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "not today!"
     },
     "namedMentions": []
   },
@@ -48535,7 +48673,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Noooope\ud83e\udd73\ud83c\udf89\ud83c\udf8a"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Noooope\ud83e\udd73\ud83c\udf89\ud83c\udf8a"
     },
     "namedMentions": []
   },
@@ -48581,7 +48719,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Yes",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope!"
     },
     "namedMentions": []
   },
@@ -48627,7 +48765,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nope"
     },
     "namedMentions": [
       {
@@ -48739,7 +48877,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Sent it! \ud83d\ude0a",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No milk or food expired today."
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No milk or food expired today."
     },
     "namedMentions": [
       {
@@ -48806,7 +48944,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "Not The Night Shift lead",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "There were some sausage and bacon sliders that were dated to expire this evening, but they were not yet expired on the a.m.!! \n\n( i\u2019m sure by this evening we will have gone through all of them)"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "There were some sausage and bacon sliders that were dated to expire this evening, but they were not yet expired on the a.m.!! \n\n( i\u2019m sure by this evening we will have gone through all of them)"
     },
     "namedMentions": [
       {
@@ -48899,7 +49037,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "Nq",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "3 chorizo wraps"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "3 chorizo wraps"
     },
     "namedMentions": []
   },
@@ -48950,7 +49088,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Sent that boi! ",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No milk or food expired today. (Maddy said she noted the chorizo in her recap)"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No milk or food expired today. (Maddy said she noted the chorizo in her recap)"
     },
     "namedMentions": [
       {
@@ -49017,7 +49155,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "None!!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "None!!"
     },
     "namedMentions": [
       {
@@ -49079,7 +49217,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Yes",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
     },
     "namedMentions": []
   },
@@ -49130,7 +49268,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "nope! the food that expires tonight already got sold"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nope! the food that expires tonight already got sold"
     },
     "namedMentions": [
       {
@@ -49248,7 +49386,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Sent it :)",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No food or milk expired today."
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No food or milk expired today."
     },
     "namedMentions": [
       {
@@ -49376,7 +49514,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "Ma",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "One bacon slider"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "One bacon slider"
     },
     "namedMentions": [
       {
@@ -49438,7 +49576,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "yep",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "I found a single carton of frost mix that was being used for blended chais in the fridge that was expired but other than that nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "I found a single carton of frost mix that was being used for blended chais in the fridge that was expired but other than that nope"
     },
     "namedMentions": []
   },
@@ -49494,7 +49632,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
     },
     "namedMentions": [
       {
@@ -49556,7 +49694,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "N/a",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No food or milk expired today! Yay"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No food or milk expired today! Yay"
     },
     "namedMentions": [
       {
@@ -49664,7 +49802,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "not today!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "not today!"
     },
     "namedMentions": [
       {
@@ -49721,7 +49859,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope!!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope!!"
     },
     "namedMentions": []
   },
@@ -49925,7 +50063,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "not today!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "not today!"
     },
     "namedMentions": [
       {
@@ -49982,7 +50120,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "Na",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nonfat will expire tonight so Cory will input"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nonfat will expire tonight so Cory will input"
     },
     "namedMentions": [
       {
@@ -50049,7 +50187,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Sent it :)",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "5 non-fat milk expired today. :("
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "5 non-fat milk expired today. :("
     },
     "namedMentions": [
       {
@@ -50162,7 +50300,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
     },
     "namedMentions": [
       {
@@ -50270,7 +50408,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "Not the night lead",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing that I noticed in the am!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing that I noticed in the am!"
     },
     "namedMentions": [
       {
@@ -50322,7 +50460,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "not today!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "not today!"
     },
     "namedMentions": [
       {
@@ -50374,7 +50512,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "I super forgot",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "1 bacon slider"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "1 bacon slider"
     },
     "namedMentions": [
       {
@@ -50507,7 +50645,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No food or milk expired today"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No food or milk expired today"
     },
     "namedMentions": [
       {
@@ -50564,7 +50702,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Yes",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing that I noticed on the closing shift!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing that I noticed on the closing shift!"
     },
     "namedMentions": [
       {
@@ -50626,7 +50764,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "Not the night shift lead ",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "There was 1 carton of whipped cream in the pit fridge that was expired."
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "There was 1 carton of whipped cream in the pit fridge that was expired."
     },
     "namedMentions": [
       {
@@ -50688,7 +50826,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope!!!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope!!!"
     },
     "namedMentions": [
       {
@@ -50755,7 +50893,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Sent it :)",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No food or milk expired today."
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No food or milk expired today."
     },
     "namedMentions": [
       {
@@ -50817,7 +50955,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "nope!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nope!"
     },
     "namedMentions": [
       {
@@ -50874,7 +51012,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "I threw out 6 nonfat that expired yesterday"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "I threw out 6 nonfat that expired yesterday"
     },
     "namedMentions": []
   },
@@ -50925,7 +51063,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Yes",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Yes I found expired freeze mix at the bottom of our fridge\u2019s just 2 quarts"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Yes I found expired freeze mix at the bottom of our fridge\u2019s just 2 quarts"
     },
     "namedMentions": [
       {
@@ -50982,7 +51120,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "None but I did toss a chorizo and slider from SEPTEMBER! They were stuck in the back of fridge drawer probably from it getting stuck from overstocking the plastic tubs."
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "None but I did toss a chorizo and slider from SEPTEMBER! They were stuck in the back of fridge drawer probably from it getting stuck from overstocking the plastic tubs."
     },
     "namedMentions": [
       {
@@ -51125,7 +51263,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "nope!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nope!"
     },
     "namedMentions": [
       {
@@ -51187,7 +51325,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Sent it :)",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No food or milk expired today. Yay!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No food or milk expired today. Yay!"
     },
     "namedMentions": [
       {
@@ -51259,7 +51397,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nope"
     },
     "namedMentions": [
       {
@@ -51377,7 +51515,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "Not the Night Shift lead",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing that I noticed on the morning shift"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing that I noticed on the morning shift"
     },
     "namedMentions": [
       {
@@ -51444,7 +51582,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
     },
     "namedMentions": [
       {
@@ -51557,7 +51695,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No food or milk expired today"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No food or milk expired today"
     },
     "namedMentions": [
       {
@@ -51700,7 +51838,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope!"
     },
     "namedMentions": [
       {
@@ -51818,7 +51956,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No food or milk expired today"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No food or milk expired today"
     },
     "namedMentions": [
       {
@@ -51982,7 +52120,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Not the night SL",
       "Closing: food inventory texted to managers": "",
       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "nothing expired today!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nothing expired today!"
     },
     "namedMentions": [
       {
@@ -52054,7 +52192,7 @@ const REAL_FIRESIDE_RECORDS = [
       "Closing: Verifone WiFi": "Yes",
       "Closing: food inventory texted to managers": "Sent it :)",
       "Closing: safe/tills/iPads/doors checklist": "All good !",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No food or milk expired today"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No food or milk expired today"
     },
     "namedMentions": [
       {
@@ -62384,6 +62522,62 @@ const REAL_MANZ_RECORDS = [
         "source": "Vita was amazing to close with."
       }
     ]
+  },
+  {
+    "shop": "Manz",
+    "shift": "Open",
+    "dayIndex": 59,
+    "timestamp": "11/3/2026 17:36:48",
+    "employee": "Amari N.",
+    "isLate": true,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "No comments, standard shift.",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "liv such a team player and brings the energy i need"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Recap submitted late \u2014 arrived 5:36 PM, after the 12:30 grace-period cutoff for Open (Tue/Thu/Fri/Sun schedule)."
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+      "Line times / leaderboard": "we were 2nd!",
+      "Best percentage / leaderboard hour": "",
+      "What could have gone smoother": "",
+      "Best team player / wear more hats": "liv such a team player and brings the energy i need ",
+      "Tardy / early out": "no ",
+      "Tips split confirmed": "",
+      "Safety hazards": "",
+      "Fridge gaskets wiped": "",
+      "Xbro / non-negotiables": "no ",
+      "Additional comments": "",
+      "Bought into new system": "",
+      "Struggled with new staffing": "",
+      "Biggest clamp": "",
+      "XBRO feedback": "",
+      "Forgot single-drink-claim comp": "",
+      "Perfect pour comp": "",
+      "Remake comp": "",
+      "Caught fraud apps / bday drinks w/o ID": "",
+      "Got shift change": "",
+      "Best hourly window average": "",
+      "Cleanest person on shift": "",
+      "Window contest winner": "",
+      "Window contest: why": "",
+      "Cleanliness contest winner": "",
+      "Cleanliness contest: why": "",
+      "Closing: Verifone WiFi": "N/A // Not on the night shift"
+    },
+    "namedMentions": []
   }
 ]
 const REAL_OV_RECORDS = [
@@ -62434,7 +62628,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Didn\u2019t see anything expiring today"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Didn\u2019t see anything expiring today"
     },
     "namedMentions": [
       {
@@ -62613,7 +62807,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "choc milk expires tonight"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "choc milk expires tonight"
     },
     "namedMentions": [
       {
@@ -62670,7 +62864,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Chocolate milk expired :("
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Chocolate milk expired :("
     },
     "namedMentions": [
       {
@@ -62717,7 +62911,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "Yes",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "we had 17 chocolate milks expire tonight and aria and i dumped them, I also had 9 cake pop packages expire today at 5pm"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "we had 17 chocolate milks expire tonight and aria and i dumped them, I also had 9 cake pop packages expire today at 5pm"
     },
     "namedMentions": [
       {
@@ -62942,7 +63136,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "nope, breve expired tomorrow the 8th, so does nonfat"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nope, breve expired tomorrow the 8th, so does nonfat"
     },
     "namedMentions": [
       {
@@ -63004,7 +63198,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing expired :)"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing expired :)"
     },
     "namedMentions": [
       {
@@ -63351,7 +63545,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "none"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "none"
     },
     "namedMentions": [
       {
@@ -63662,7 +63856,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing expired :)"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing expired :)"
     },
     "namedMentions": [
       {
@@ -63876,7 +64070,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "Yes",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing expired :)"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing expired :)"
     },
     "namedMentions": [
       {
@@ -63973,7 +64167,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing expired :)"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing expired :)"
     },
     "namedMentions": []
   },
@@ -64014,7 +64208,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "Yes",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "yes there was 6 expired nonfat"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "yes there was 6 expired nonfat"
     },
     "namedMentions": []
   },
@@ -64455,7 +64649,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "Yes",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "one of our ice cream mixes that had about a quarter left expired at midnight and i dumped it woohoo"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "one of our ice cream mixes that had about a quarter left expired at midnight and i dumped it woohoo"
     },
     "namedMentions": [
       {
@@ -64689,7 +64883,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "nopeeee"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nopeeee"
     },
     "namedMentions": [
       {
@@ -64983,7 +65177,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "Yes",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "One jug of protein milk"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "One jug of protein milk"
     },
     "namedMentions": [
       {
@@ -65085,7 +65279,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Not that I saw!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Not that I saw!"
     },
     "namedMentions": [
       {
@@ -65234,7 +65428,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "none"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "none"
     },
     "namedMentions": [
       {
@@ -65372,7 +65566,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "noooo"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "noooo"
     },
     "namedMentions": [
       {
@@ -65444,7 +65638,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "Yes",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "About 15-20 milks expired but we poured them out :)"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "About 15-20 milks expired but we poured them out :)"
     },
     "namedMentions": []
   },
@@ -65485,7 +65679,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "noooo"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "noooo"
     },
     "namedMentions": []
   },
@@ -65571,7 +65765,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "Yes",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Not that we saw!!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Not that we saw!!"
     },
     "namedMentions": []
   },
@@ -65617,7 +65811,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "we found 1 jug of choc milk that expired a few days ago that was like tucked under the fridge"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "we found 1 jug of choc milk that expired a few days ago that was like tucked under the fridge"
     },
     "namedMentions": [
       {
@@ -65674,7 +65868,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing expired :)"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing expired :)"
     },
     "namedMentions": [
       {
@@ -65766,7 +65960,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "3 nonfat"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "3 nonfat"
     },
     "namedMentions": []
   },
@@ -65822,7 +66016,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope!"
     },
     "namedMentions": [
       {
@@ -65884,7 +66078,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "Yes",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "no sir thank u for ur time"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "no sir thank u for ur time"
     },
     "namedMentions": [
       {
@@ -65931,7 +66125,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "no sir"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "no sir"
     },
     "namedMentions": [
       {
@@ -66599,7 +66793,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "Yes",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "A jug of protein milk and some sausage sliders"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "A jug of protein milk and some sausage sliders"
     },
     "namedMentions": [
       {
@@ -66686,7 +66880,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "not on my shift"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "not on my shift"
     },
     "namedMentions": []
   },
@@ -66727,7 +66921,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "Yes",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "3 choc milk \n1 chorizo\n6 sausage slider"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "3 choc milk \n1 chorizo\n6 sausage slider"
     },
     "namedMentions": []
   },
@@ -66773,7 +66967,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Not on my shift"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Not on my shift"
     },
     "namedMentions": []
   },
@@ -66819,7 +67013,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope!"
     },
     "namedMentions": [
       {
@@ -66917,7 +67111,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "4 waffles"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "4 waffles"
     },
     "namedMentions": [
       {
@@ -67086,7 +67280,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "Yes",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nothing expired :)"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing expired :)"
     },
     "namedMentions": [
       {
@@ -67219,7 +67413,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "choc milk expires tonight at midnight 10/11"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "choc milk expires tonight at midnight 10/11"
     },
     "namedMentions": [
       {
@@ -67276,7 +67470,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope! Some choc milk will tonight tho!!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope! Some choc milk will tonight tho!!"
     },
     "namedMentions": []
   },
@@ -67322,7 +67516,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "Yes",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "6 chocolate milks expired :("
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "6 chocolate milks expired :("
     },
     "namedMentions": [
       {
@@ -67409,7 +67603,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "naur"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "naur"
     },
     "namedMentions": [
       {
@@ -67466,7 +67660,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "Yes",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
     },
     "namedMentions": []
   },
@@ -67507,7 +67701,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No."
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No."
     },
     "namedMentions": []
   },
@@ -67659,7 +67853,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Didn\u2019t see anything!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Didn\u2019t see anything!"
     },
     "namedMentions": []
   },
@@ -67796,7 +67990,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "no expiration"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "no expiration"
     },
     "namedMentions": [
       {
@@ -67960,7 +68154,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "dumped a half gallon of protein milk from the machine 3 fridge. expired the 14th so people aren\u2019t checking everything very well \ud83e\udd27"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "dumped a half gallon of protein milk from the machine 3 fridge. expired the 14th so people aren\u2019t checking everything very well \ud83e\udd27"
     },
     "namedMentions": [
       {
@@ -68129,7 +68323,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
     },
     "namedMentions": []
   },
@@ -68221,7 +68415,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "2 bacon\n1 blueberry muffin"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "2 bacon\n1 blueberry muffin"
     },
     "namedMentions": []
   },
@@ -68632,7 +68826,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Non fat expires tonight I wrote a note for closer!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Non fat expires tonight I wrote a note for closer!"
     },
     "namedMentions": []
   },
@@ -68678,7 +68872,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope!"
     },
     "namedMentions": []
   },
@@ -68714,7 +68908,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "Yes",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Yea two cartons of non fat milk"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Yea two cartons of non fat milk"
     },
     "namedMentions": [
       {
@@ -68761,7 +68955,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope!"
     },
     "namedMentions": []
   },
@@ -68913,7 +69107,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "Yes",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "naur"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "naur"
     },
     "namedMentions": []
   },
@@ -69015,7 +69209,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Not that I saw!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Not that I saw!"
     },
     "namedMentions": [
       {
@@ -69067,7 +69261,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "Yes",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "no!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "no!"
     },
     "namedMentions": []
   },
@@ -69220,7 +69414,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "Yes",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope!"
     },
     "namedMentions": []
   },
@@ -69402,7 +69596,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nonfat expires tonight!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nonfat expires tonight!"
     },
     "namedMentions": []
   },
@@ -69473,7 +69667,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "Yes",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "6 jugs of nonfat"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "6 jugs of nonfat"
     },
     "namedMentions": []
   },
@@ -69519,7 +69713,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "2 expired frost from 10/22\ud83d\ude35\u200d\ud83d\udcab"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "2 expired frost from 10/22\ud83d\ude35\u200d\ud83d\udcab"
     },
     "namedMentions": []
   },
@@ -69565,7 +69759,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "narrr"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "narrr"
     },
     "namedMentions": []
   },
@@ -69601,7 +69795,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "Yes",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "yes protein milk expired tn! we dumped about 3 of em!!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "yes protein milk expired tn! we dumped about 3 of em!!"
     },
     "namedMentions": [
       {
@@ -69724,7 +69918,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "Yes",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "2 frost mix"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "2 frost mix"
     },
     "namedMentions": [
       {
@@ -69872,7 +70066,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "Yes",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope!"
     },
     "namedMentions": [
       {
@@ -69929,7 +70123,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Didn\u2019t see anything"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Didn\u2019t see anything"
     },
     "namedMentions": [
       {
@@ -70246,7 +70440,7 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "Nope!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope!"
     },
     "namedMentions": [
       {
@@ -70328,9 +70522,60 @@ const REAL_OV_RECORDS = [
       "closingVerifone": "N/A ; Not closing shift lead",
       "closingChecklist": "",
       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-      "Did anything expire today? If so, what and how much? (food,milk,other)": "No but nonfat expires tn!!"
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No but nonfat expires tn!!"
     },
     "namedMentions": []
+  },
+  {
+    "shop": "OV",
+    "shift": "Mid",
+    "dayIndex": 59,
+    "timestamp": "11/3/2026 17:25:57",
+    "employee": "Matthew W.",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "No comments great shift :)",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "I would say Lex was she was so helpful the entire shift and got everything we needed done!"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Hazard reported: No hazards ;)"
+      },
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "No comments great shift :)"
+      }
+    ],
+    "fullRecap": {
+      "staffing": "Good staffing but rushes kept us on our toes",
+      "lineTimes": "7, we were very slow in our peak",
+      "teamPlayer": "I would say Lex was she was so helpful the entire shift and got everything we needed done!",
+      "tardy": "No :)",
+      "foodInventory": "Yes",
+      "safety": "No hazards ;)",
+      "xbro": "No xbro :(",
+      "comments": "No comments great shift :)",
+      "closingVerifone": "N/A ; Not closing shift lead",
+      "closingChecklist": "",
+      "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!"
+    },
+    "namedMentions": [
+      {
+        "name": "Would L.",
+        "kind": "good",
+        "source": "I would say Lex was she was so helpful the entire shift and got everything we needed done!"
+      }
+    ]
   }
 ]
 const REAL_WINDING_RECORDS = [
@@ -76803,6 +77048,86 @@ const REAL_WINDING_RECORDS = [
         "source": "I sent Khamari home 15 mins early"
       }
     ]
+  },
+  {
+    "shop": "Winding",
+    "shift": "Open",
+    "dayIndex": 59,
+    "timestamp": "11/3/2026 12:07:56",
+    "employee": "Emma O.",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "Great! We had almost as many cars as the rest of the shops up until 10, and our line times were great!",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Paris! She\u2019s such a team player. Always makes a point to talk to her custies, and has definitely gotten quick. Great attitude!"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Tardy/early-out note: Simone finished her machine early"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Xbro went well coached Paris on the ice bin spoon."
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+      "Line times / leaderboard": "Great! We had almost as many cars as the rest of the shops up until 10, and our line times were great! ",
+      "Team player / needed to step up": "Paris! She\u2019s such a team player. Always makes a point to talk to her custies, and has definitely gotten quick. Great attitude! ",
+      "Tardy / early out": "Simone finished her machine early ",
+      "Safety hazards": "No ",
+      "Xbro / non-negotiables": "Xbro went well coached Paris on the ice bin spoon. ",
+      "Closing: Verifone WiFi": "N/A // Not on the night shift",
+      "Expired product": "No "
+    },
+    "namedMentions": [
+      {
+        "name": "Paris",
+        "kind": "bad",
+        "source": "Xbro went well coached Paris on the ice bin spoon."
+      }
+    ]
+  },
+  {
+    "shop": "Winding",
+    "shift": "Mid",
+    "dayIndex": 59,
+    "timestamp": "11/3/2026 16:22:02",
+    "employee": "Carsen T.",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "middle to bottom of the leaderboard, lots of time to chat with custies but we were getting them out quick when they came by ! 1:30 window average",
+    "flags": [
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Hazard reported: small leak in the ceiling but was taken care of !"
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "Overstaffed (trying to find things to do, sent people home)",
+      "Line times / leaderboard": "middle to bottom of the leaderboard, lots of time to chat with custies but we were getting them out quick when they came by ! 1:30 window average ",
+      "Team player / needed to step up": "Nat :) it was just me and her she was a slayer ! ",
+      "Tardy / early out": "n/a ",
+      "Safety hazards": "small leak in the ceiling but was taken care of ! ",
+      "Xbro / non-negotiables": "no xbro today, but we did a good job of sending a runner out when a car would stack up ",
+      "Closing: Verifone WiFi": "N/A // Not on the night shift",
+      "Expired product": "ice cream and some chocolate coming close, but we\u2019ll go through it in time yaaaay "
+    },
+    "namedMentions": []
   }
 ]
 const records = [];
