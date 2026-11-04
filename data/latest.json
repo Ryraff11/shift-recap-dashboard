@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-04T00:10:26-08:00",
+ "generatedAt": "2026-11-04T04:19:53-08:00",
  "windowDays": 60,
  "shops": [
   "Antelope",
@@ -373,9 +373,42 @@
       ]
      },
      "Close": {
-      "status": "missing",
+      "status": "late",
       "scheduledLead": "Will M.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Will M.",
+        "submittedAt": "2026-11-04T00:21:06",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Closing with another lead was great, Greta carried this close ngl. Sky was super helpful in getting a ton of chores done and shutting down her bars timely. Lucy held it down outside while we were able to get drinks out and stock the stand for tomorrow. Great crew on tonight"
+         },
+         {
+          "kind": "good",
+          "text": "I fixed the xbro iPad mount, so we can use it like normal again instead of taking off the whole housing to get the iPad off"
+         },
+         {
+          "kind": "bad",
+          "text": "Recap submitted late — arrived 12:21 AM, after the 00:20 grace-period cutoff for Close."
+         }
+        ],
+        "answers": {
+         "Staffing": "Well staffed! It was PERFECT!",
+         "Line times / leaderboard": "Window times were good until 9 when we had just two bodies, lots of walk up and drive thru at the same time had us stretched pretty thin and tough to balance both with a good flow. Maintained good customer service and tended to orders as they came in, but was a lil rough",
+         "Safety hazards": "Nothing! ",
+         "Xbro / non-negotiables": "Not much xbro tonight ",
+         "Closing: Verifone WiFi": "Yes",
+         "Tardy / early-out": "Nope! ",
+         "Expired milk check": "DONE! It all looked good!",
+         "Additional comments": "I fixed the xbro iPad mount, so we can use it like normal again instead of taking off the whole housing to get the iPad off",
+         "Best team player / wear more hats": "Closing with another lead was great, Greta carried this close ngl. Sky was super helpful in getting a ton of chores done and shutting down her bars timely. Lucy held it down outside while we were able to get drinks out and stock the stand for tomorrow. Great crew on tonight ",
+         "Culture competition": "Nothing ! "
+        }
+       }
+      ]
      }
     },
     "Mad": {
@@ -535,9 +568,42 @@
       ]
      },
      "Close": {
-      "status": "missing",
+      "status": "late",
       "scheduledLead": "Ash A.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Ash A.",
+        "submittedAt": "2026-11-04T00:08:40",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "tessa was so helpful! she helped a lot with detail cleaning and pre close tasks and was a killer window"
+         },
+         {
+          "kind": "bad",
+          "text": "Hazard reported: alarm still weird"
+         },
+         {
+          "kind": "good",
+          "text": "meow"
+         }
+        ],
+        "answers": {
+         "Staffing": "Well staffed! It was PERFECT!",
+         "Line times / leaderboard": "times: 2:06 (hella slow and taking orders at window) // leaderboard: 6th or 7th",
+         "Times throughout shift": "tessa! :)",
+         "Best team player / wear more hats": "tessa was so helpful! she helped a lot with detail cleaning and pre close tasks and was a killer window",
+         "Tardy / early out": "no :)",
+         "Safety hazards": "alarm still weird",
+         "Additional comments": "meow",
+         "Closing checklist": "iPads plugged in, locked, and turned off of low power mode, verifones are covered by a rag, iPad locker is locked up, all doors & windows are locked, ALL keys are locked and put away, all money is locked up in the bottom safe + text has been sent, nightly food inventory is done + text has been sent, Alarm is about to be set and turned on",
+         "Closing: Verifone WiFi": "Yes",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log if nothing went bad, let us know :)": "nothing :)"
+        }
+       }
+      ]
      }
     },
     "Fireside": {
@@ -8619,7 +8685,7 @@
          "Staffing": "Well staffed! It was PERFECT!",
          "Line times / leaderboard": "line times were good we avg 1:23 throughout the shift and we were jumping from 3rd and 4th place on the leaderboard all day ",
          "Best team player / wear more hats": "jayden definitely was the best team player was on top of making drinks during our rushes and during down time was consistently making sure the stand got restocked/cleaned to be prepared. It was a really good crew everyone was a team player including landen, olivia, and joey all crushed it as well nobody hindered us at all or brought the team down ",
-         "Tardy / early out": "no one was tardy, and I sent Sidney b. home early ",
+         "Tardy / early out": "no one was tardy, and I sent Sidney B. home early ",
          "Safety hazards": "no",
          "Additional comments": "everyone was amazing help today, team player, and hardworking no complaints at all",
          "Closing checklist": "not the night lead",
@@ -44064,7 +44130,7 @@
          },
          {
           "kind": "bad",
-          "text": "Tardy/early-out note: Nobody tardy, Kyler went home a little early and so did Sidney b."
+          "text": "Tardy/early-out note: Nobody tardy, Kyler went home a little early and so did Sidney B."
          },
          {
           "kind": "bad",
@@ -44079,7 +44145,7 @@
          "Staffing": "Well staffed! It was PERFECT!",
          "Line times / leaderboard": "We averaged 1 and a half mins and stayed around 2-5",
          "Best team player / wear more hats": "LANDEN!! Made me a proud trainer today he came in and got straight to work, was on every position without question and always wanting and trying to help his crew ",
-         "Tardy / early out": "Nobody tardy, Kyler went home a little early and so did Sidney b. ",
+         "Tardy / early out": "Nobody tardy, Kyler went home a little early and so did Sidney B. ",
          "Safety hazards": "Nope",
          "Additional comments": "Nope ",
          "Closing checklist": "not the night lead",
