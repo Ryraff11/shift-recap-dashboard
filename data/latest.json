@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-06T00:08:08-08:00",
+ "generatedAt": "2026-11-06T04:19:51-08:00",
  "windowDays": 60,
  "shops": [
   "Antelope",
@@ -544,9 +544,37 @@
       ]
      },
      "Close": {
-      "status": "missing",
+      "status": "late",
       "scheduledLead": "Lillie M.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Lillie.",
+        "submittedAt": "2026-11-06T00:12:04",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Gavin team player"
+         },
+         {
+          "kind": "bad",
+          "text": "Hazard reported: Pipes underneath m1 broke."
+         }
+        ],
+        "answers": {
+         "Staffing": "​​Perfect (sometimes struggling, sometimes ahead - evened out)",
+         "Line times / leaderboard": "Line times 2-4 mins \nLeaderboard 2-7th ",
+         "Best team player / wear more hats": "Gavin team player",
+         "Tardy / early out": "N/A",
+         "Safety hazards": "Pipes underneath m1 broke. ",
+         "Xbro non-negotiables struggle": "N/A",
+         "Shift chore completed": "No ",
+         "Closing: Verifone WiFi": "Yes",
+         "Closing: bakery item inventory": "Yes"
+        }
+       }
+      ]
      }
     },
     "Lichen": {
@@ -916,6 +944,29 @@
          "safety": "No hazards :)",
          "xbro": "No xbro :(",
          "comments": "The large lids, and soft top are close to running out, but there’s stock today and I assumed that was enough to last the morning!",
+         "closingVerifone": "Yes",
+         "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A"
+        }
+       },
+       {
+        "submittedBy": "Isabelle",
+        "submittedAt": "2026-11-06T00:15:38",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Audreyy. She’s just so helpful and always good with the custies"
+         }
+        ],
+        "answers": {
+         "staffing": "Perfect (sometimes struggling, sometimes ahead- evened out",
+         "lineTimes": "During 6-7pm on we’re on the lower side of the leaderboard :/ around 6-7 ",
+         "teamPlayer": "Audreyy. She’s just so helpful and always good with the custies ",
+         "tardy": "Na ",
+         "foodInventory": "No / In progress",
+         "safety": "Na ",
+         "xbro": "Na ",
          "closingVerifone": "Yes",
          "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A"
         }
