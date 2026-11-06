@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-05T18:07:42-08:00",
+ "generatedAt": "2026-11-06T00:08:08-08:00",
  "windowDays": 7,
  "shops": [
   "Antelope",
@@ -18,6 +18,164 @@
   "Close"
  ],
  "days": [
+  {
+   "date": "2026-11-06",
+   "shops": {
+    "Antelope": {
+     "Open": {
+      "status": "pending",
+      "scheduledLead": "Isabelle M.",
+      "recaps": []
+     },
+     "Mid": {
+      "status": "pending",
+      "scheduledLead": "Darius W.",
+      "recaps": []
+     },
+     "Close": {
+      "status": "pending",
+      "scheduledLead": "Johnathan G.",
+      "recaps": []
+     }
+    },
+    "Fair Oaks": {
+     "Open": {
+      "status": "pending",
+      "scheduledLead": "Laura C.",
+      "recaps": []
+     },
+     "Mid": {
+      "status": "pending",
+      "scheduledLead": "Rebecca E.",
+      "recaps": []
+     },
+     "Close": {
+      "status": "pending",
+      "scheduledLead": "Graci H.",
+      "recaps": []
+     }
+    },
+    "Auburn": {
+     "Open": {
+      "status": "pending",
+      "scheduledLead": "Sophia D.",
+      "recaps": []
+     },
+     "Mid": {
+      "status": "pending",
+      "scheduledLead": "Greta G.",
+      "recaps": []
+     },
+     "Close": {
+      "status": "pending",
+      "scheduledLead": "Grace H.",
+      "recaps": []
+     }
+    },
+    "Mad": {
+     "Open": {
+      "status": "pending",
+      "scheduledLead": "Taylor M.",
+      "recaps": []
+     },
+     "Mid": {
+      "status": "pending",
+      "scheduledLead": "Kylie H.",
+      "recaps": []
+     },
+     "Close": {
+      "status": "pending",
+      "scheduledLead": "Diego A.",
+      "recaps": []
+     }
+    },
+    "Lichen": {
+     "Open": {
+      "status": "pending",
+      "scheduledLead": "Madysun C.",
+      "recaps": []
+     },
+     "Mid": {
+      "status": "pending",
+      "scheduledLead": "Ash A.",
+      "recaps": []
+     },
+     "Close": {
+      "status": "pending",
+      "scheduledLead": "Gabriel Z.",
+      "recaps": []
+     }
+    },
+    "Fireside": {
+     "Open": {
+      "status": "pending",
+      "scheduledLead": "Madison F.",
+      "recaps": []
+     },
+     "Mid": {
+      "status": "pending",
+      "scheduledLead": "Taylor R.",
+      "recaps": []
+     },
+     "Close": {
+      "status": "pending",
+      "scheduledLead": "Cory B.",
+      "recaps": []
+     }
+    },
+    "Manz": {
+     "Open": {
+      "status": "pending",
+      "scheduledLead": "Madison W.",
+      "recaps": []
+     },
+     "Mid": {
+      "status": "pending",
+      "scheduledLead": "Amari M.",
+      "recaps": []
+     },
+     "Close": {
+      "status": "pending",
+      "scheduledLead": "Lydia H.",
+      "recaps": []
+     }
+    },
+    "OV": {
+     "Open": {
+      "status": "pending",
+      "scheduledLead": "Alexis W.",
+      "recaps": []
+     },
+     "Mid": {
+      "status": "pending",
+      "scheduledLead": "Christopher H.",
+      "recaps": []
+     },
+     "Close": {
+      "status": "pending",
+      "scheduledLead": "Heidi J.",
+      "recaps": []
+     }
+    },
+    "Winding": {
+     "Open": {
+      "status": "pending",
+      "scheduledLead": "Carsen T.",
+      "recaps": []
+     },
+     "Mid": {
+      "status": "pending",
+      "scheduledLead": "Palina D.",
+      "recaps": []
+     },
+     "Close": {
+      "status": "pending",
+      "scheduledLead": "Alexander C.",
+      "recaps": []
+     }
+    }
+   }
+  },
   {
    "date": "2026-11-05",
    "shops": {
@@ -93,9 +251,39 @@
       ]
      },
      "Close": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": "Andrew T.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Andrew",
+        "submittedAt": "2026-11-05T23:05:52",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Harmony was so awesome tonight. Just really held it down on bar!"
+         },
+         {
+          "kind": "bad",
+          "text": "Didn’t run it"
+         }
+        ],
+        "answers": {
+         "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+         "Line times / leaderboard": "About 1min 30seconds and we were top 3 all night! ",
+         "Team player / needed to step up": "Harmony was so awesome tonight. Just really held it down on bar!",
+         "Tardy / early out": "No",
+         "Food inventory sheet": "Yes",
+         "Safety hazards": "No",
+         "Xbro / non-negotiables": "Didn’t run it ",
+         "Closing: Verifone WiFi": "Yes",
+         "Closing checklist": "Split Tips, Was parking lot trash picked up?",
+         "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
+         "Who killed it on window/service today?": "Haley"
+        }
+       }
+      ]
      }
     },
     "Fair Oaks": {
@@ -139,9 +327,33 @@
       ]
      },
      "Close": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": "Laci D.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Laci",
+        "submittedAt": "2026-11-05T23:07:53",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Julia was knocking out all of the closing tasks"
+         }
+        ],
+        "answers": {
+         "Staffing": "​​Perfect (sometimes struggling, sometimes ahead - evened out)",
+         "Line times / leaderboard": "We had food line times, it was a slower night ",
+         "Team player / needed to step up": "Julia was knocking out all of the closing tasks",
+         "Tardy / early out": "None ",
+         "Food inventory sheet": "Blank",
+         "Safety hazards": "None",
+         "Xbro / non-negotiables": "Slow night ",
+         "Closing: Verifone WiFi": "Yes",
+         "Quarterly contest: choose 1 barista who stood out on shift (had a great sense of urgency, very fast on bar, knocked out chores for the crew etc.)": "Julia"
+        }
+       }
+      ]
      }
     },
     "Auburn": {
@@ -192,18 +404,62 @@
       ]
      },
      "Mid": {
-      "status": "filed",
+      "status": "late",
       "scheduledLead": "Ashlee S.",
       "recaps": [
        {
         "submittedBy": "Ashlee s.",
+        "submittedAt": "2026-11-05T18:33:27",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Sophia and justin were so awesome today! Holding down the fort cause there were some busy rushes but they communicated well!"
+         },
+         {
+          "kind": "bad",
+          "text": "Tardy/early-out note: None today :)"
+         },
+         {
+          "kind": "bad",
+          "text": "Hazard reported: Not to my knowledge!"
+         },
+         {
+          "kind": "bad",
+          "text": "Recap submitted late — arrived 6:33 PM, after the 18:15 grace-period cutoff for Mid."
+         }
+        ],
+        "answers": {
+         "Staffing": "Well staffed! It was PERFECT!",
+         "Line times / leaderboard": "The times were honestly not bad at all considering the amount of people we had on shift today! We were around 1:30 and under!",
+         "Safety hazards": "Not to my knowledge!",
+         "Xbro / non-negotiables": "Xbro was good for the moments I was doing it. There were times were I had to hop on pit and help push the line just due to us having a short staff but overall xbro was good with running drinks, helping my fellow bars and just having good communication!",
+         "Closing: Verifone WiFi": "Not the night SL",
+         "Tardy / early-out": "None today :)",
+         "Expired milk check": "DONE! It all looked good!",
+         "Best team player / wear more hats": "Sophia and justin were so awesome today! Holding down the fort cause there were some busy rushes but they communicated well!"
+        }
+       }
+      ]
+     },
+     "Close": {
+      "status": "late",
+      "scheduledLead": "Haleigh S.",
+      "recaps": [
+       {
+        "submittedBy": "Ashlee s.",
         "submittedAt": "2026-11-05T10:11:48",
-        "late": false,
-        "shiftFromSchedule": true,
+        "late": true,
+        "shiftFromSchedule": false,
         "flags": [
          {
           "kind": "good",
           "text": "Dezi boo! She was so amazing tonight and just knocking out lots of closing chores while still slaying drinks!"
+         },
+         {
+          "kind": "bad",
+          "text": "Recap submitted late — arrived 10:11 AM, after the 00:20 grace-period cutoff for Close."
          }
         ],
         "answers": {
@@ -218,11 +474,6 @@
         }
        }
       ]
-     },
-     "Close": {
-      "status": "pending",
-      "scheduledLead": "Haleigh S.",
-      "recaps": []
      }
     },
     "Mad": {
@@ -293,7 +544,7 @@
       ]
      },
      "Close": {
-      "status": "pending",
+      "status": "missing",
       "scheduledLead": "Lillie M.",
       "recaps": []
      }
@@ -343,14 +594,51 @@
       ]
      },
      "Mid": {
-      "status": "pending",
+      "status": "missing",
       "scheduledLead": "Ben B.",
       "recaps": []
      },
      "Close": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": "Ash A.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Ash A.",
+        "submittedAt": "2026-11-05T23:55:53",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "jayden! she was so helpful at cleaning and closing tasks and helping shut down pit, clean drains, and the soft top bottles :)"
+         },
+         {
+          "kind": "bad",
+          "text": "Tardy/early-out note: i had joey shut down bar early"
+         },
+         {
+          "kind": "bad",
+          "text": "Hazard reported: alarm still weird"
+         },
+         {
+          "kind": "good",
+          "text": "when cleaning the soft top bottles we had an extra one that was just soft top (?) so we made it a peppermint one :)"
+         }
+        ],
+        "answers": {
+         "Staffing": "Well staffed! It was PERFECT!",
+         "Line times / leaderboard": "times: 2:05 (super slower taking orders at window) // leaderboard: 6th-7th",
+         "Times throughout shift": "jayden! :)",
+         "Best team player / wear more hats": "jayden! she was so helpful at cleaning and closing tasks and helping shut down pit, clean drains, and the soft top bottles :)",
+         "Tardy / early out": "i had joey shut down bar early ",
+         "Safety hazards": "alarm still weird",
+         "Additional comments": "when cleaning the soft top bottles we had an extra one that was just soft top (?) so we made it a peppermint one :)",
+         "Closing checklist": "iPads plugged in, locked, and turned off of low power mode, verifones are covered by a rag, iPad locker is locked up, all doors & windows are locked, ALL keys are locked and put away, all money is locked up in the bottom safe + text has been sent, nightly food inventory is done + text has been sent, Alarm is about to be set and turned on",
+         "Closing: Verifone WiFi": "Yes",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log if nothing went bad, let us know :)": "nothing :)"
+        }
+       }
+      ]
      }
     },
     "Fireside": {
@@ -399,14 +687,47 @@
       ]
      },
      "Mid": {
-      "status": "pending",
+      "status": "missing",
       "scheduledLead": "Cory B.",
       "recaps": []
      },
      "Close": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": "Jacob M.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Jacob M.",
+        "submittedAt": "2026-11-05T23:13:35",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Zeya held it down Rick came in clutch"
+         },
+         {
+          "kind": "bad",
+          "text": "xbruh was good no struggles"
+         },
+         {
+          "kind": "good",
+          "text": "nope"
+         }
+        ],
+        "answers": {
+         "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+         "Line times / leaderboard": "2:30 7th place ",
+         "Best team player / wear more hats": "Zeya held it down Rick came in clutch ",
+         "Tardy / early out": "nope",
+         "Xbro / non-negotiables": "xbruh was good no struggles ",
+         "Safety hazards": "nope",
+         "Additional comments": "nope",
+         "Fridge seals cleaned": "Done!",
+         "Closing: Verifone WiFi": "Yes",
+         "Closing: safe/tills/iPads/doors checklist": "All good !"
+        }
+       }
+      ]
      }
     },
     "Manz": {
@@ -438,14 +759,66 @@
       ]
      },
      "Mid": {
-      "status": "pending",
+      "status": "late",
       "scheduledLead": "Desi S.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Desiree S.",
+        "submittedAt": "2026-11-05T19:26:04",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "best team player was Mollly my goatttt she’s such a fun person to work with and was super helpful with pre-close stuff"
+         },
+         {
+          "kind": "bad",
+          "text": "Recap submitted late — arrived 7:26 PM, after the 19:15 grace-period cutoff for Mid (Tue/Thu/Fri/Sun schedule)."
+         }
+        ],
+        "answers": {
+         "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+         "Line times / leaderboard": "lines were pretty consistent with some random slow periods ",
+         "Best team player / wear more hats": "best team player was Mollly my goatttt she’s such a fun person to work with and was super helpful with pre-close stuff",
+         "Tardy / early out": "No tardies but maggie was sent home early",
+         "Safety hazards": "nope ",
+         "Xbro / non-negotiables": "Xbro was great and used to restock bars and finish pre closing list",
+         "Closing: Verifone WiFi": "N/A // Not on the night shift",
+         "*MID & NIGHT SL ONLY* text managers the number of food & bakery items thawing in the fridge, and ready to go for tomorrow! Do this for each type of bakery & food item!": "done! just texted you guys!",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "no"
+        }
+       }
+      ]
      },
      "Close": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": "Alyssa G.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Alyssa G.",
+        "submittedAt": "2026-11-05T23:09:47",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Aj was amazing to close with."
+         }
+        ],
+        "answers": {
+         "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+         "Line times / leaderboard": "Normal closing line times.",
+         "Best team player / wear more hats": "Aj was amazing to close with.",
+         "Tardy / early out": "No one was tardy or sent home early.",
+         "Safety hazards": "N/a",
+         "Xbro / non-negotiables": "Xbro was good! ",
+         "Closing: Verifone WiFi": "Yes",
+         "*MID & NIGHT SL ONLY* text managers the number of food & bakery items thawing in the fridge, and ready to go for tomorrow! Do this for each type of bakery & food item!": "done! just texted you guys!",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing expired."
+        }
+       }
+      ]
      }
     },
     "OV": {
@@ -584,14 +957,66 @@
       ]
      },
      "Mid": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": "Katelyn L.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Leake",
+        "submittedAt": "2026-11-05T18:10:35",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Paris was such a superstar today!! Couldn’t have done it without her"
+         },
+         {
+          "kind": "bad",
+          "text": "Tardy/early-out note: Paris did clock in early (oops lol) but she didn’t start working till. 2:30"
+         },
+         {
+          "kind": "bad",
+          "text": "Hazard reported: The sweet cream was totally in date but still was sour and exploded on me so that really wasn’t cool of it. No hazards at all but I do have to say the fedex guy who dropped off packages today was extremely off putting. He came to the back door and started banging on it even after I acknowledged him and motioned I needed a second (I was putting tips in cubbies) which kind of rubbed me the wrong way but I’m j venting tbh"
+         }
+        ],
+        "answers": {
+         "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+         "Line times / leaderboard": "We were rolling dranks out at 1:45-2:10 today ",
+         "Team player / needed to step up": "Paris was such a superstar today!! Couldn’t have done it without her ",
+         "Tardy / early out": "Paris did clock in early (oops lol) but she didn’t start working till. 2:30 ",
+         "Safety hazards": "The sweet cream was totally in date but still was sour and exploded on me so that really wasn’t cool of it. No hazards at all but I do have to say the fedex guy who dropped off packages today was extremely off putting. He came to the back door and started banging on it even after I acknowledged him and motioned I needed a second (I was putting tips in cubbies) which kind of rubbed me the wrong way but I’m j venting tbh ",
+         "Xbro / non-negotiables": "No bro today ",
+         "Closing: Verifone WiFi": "N/A // Not on the night shift",
+         "Expired product": "No expires just some weird ah sweet cream that decided it wanted to be pancake mix today "
+        }
+       }
+      ]
      },
      "Close": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": null,
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Moriah A.",
+        "submittedAt": "2026-11-05T22:53:12",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Simone was the best team player on shift"
+         }
+        ],
+        "answers": {
+         "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+         "Line times / leaderboard": "1:48 hour avg, 2nd place ",
+         "Team player / needed to step up": "Simone was the best team player on shift ",
+         "Tardy / early out": "No",
+         "Xbro / non-negotiables": "Great",
+         "Closing: Verifone WiFi": "Yes"
+        }
+       }
+      ]
      }
     }
    }
@@ -4977,868 +5402,6 @@
         }
        }
       ]
-     }
-    }
-   }
-  },
-  {
-   "date": "2026-10-30",
-   "shops": {
-    "Antelope": {
-     "Open": {
-      "status": "filed",
-      "scheduledLead": "Nico S.",
-      "recaps": [
-       {
-        "submittedBy": "NICO",
-        "submittedAt": "2026-10-30T08:04:08",
-        "late": false,
-        "shiftFromSchedule": false,
-        "flags": [
-         {
-          "kind": "good",
-          "text": "Izzy was super great and willing to take over for me bc I’m not feeling well"
-         },
-         {
-          "kind": "bad",
-          "text": "Tardy/early-out note: I left at 8"
-         },
-         {
-          "kind": "bad",
-          "text": "Didn’t prep, mostly hot drinks/iced coffee today, gsd instead"
-         },
-         {
-          "kind": "good",
-          "text": "NA"
-         }
-        ],
-        "answers": {
-         "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
-         "Line times / leaderboard": "Good times",
-         "Team player / needed to step up": "Izzy was super great and willing to take over for me bc I’m not feeling well",
-         "Tardy / early out": "I left at 8",
-         "Food inventory sheet": "Blank",
-         "Safety hazards": "NA",
-         "Xbro / non-negotiables": " Didn’t prep, mostly hot drinks/iced coffee today, gsd instead",
-         "Additional comments": "NA",
-         "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
-         "Closing checklist": "Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc)"
-        }
-       }
-      ]
-     },
-     "Mid": {
-      "status": "filed",
-      "scheduledLead": "Ariana V.",
-      "recaps": [
-       {
-        "submittedBy": "Ariana V.",
-        "submittedAt": "2026-10-30T18:12:03",
-        "late": false,
-        "shiftFromSchedule": false,
-        "flags": [
-         {
-          "kind": "good",
-          "text": "Best team player was Hei H.. Harmony was a lil grumpy towards the end"
-         }
-        ],
-        "answers": {
-         "Staffing": "Overstaffed (trying to find things to do, sent people home)",
-         "Line times / leaderboard": "Amazing ",
-         "Team player / needed to step up": "Best team player was Hei H.. Harmony was a lil grumpy towards the end ",
-         "Tardy / early out": "No one. And I sent Hei H. and Lily hour early ",
-         "Food inventory sheet": "Yes",
-         "Safety hazards": "None",
-         "Xbro / non-negotiables": "Great! ",
-         "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
-         "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
-         "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
-         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
-        }
-       }
-      ]
-     },
-     "Close": {
-      "status": "filed",
-      "scheduledLead": "Darius W.",
-      "recaps": [
-       {
-        "submittedBy": "Darius",
-        "submittedAt": "2026-10-30T23:11:19",
-        "late": false,
-        "shiftFromSchedule": false,
-        "flags": [
-         {
-          "kind": "good",
-          "text": "Kimi did awesome tonight!! She was everywhere I asked same with Kaycie!"
-         },
-         {
-          "kind": "bad",
-          "text": "Hazard reported: Yes, we had an issue with a high schooler, someone was doing donuts then a customer started filling then, then the highschooler started calling the customer the F slur and the whole group of them came to walk up. So naturally I told them to leave and one of them got in my face a little calling me the F slur and an asshole, but they left eventually after I didn’t react."
-         },
-         {
-          "kind": "good",
-          "text": "Solid close, kinda wild customer and people wise, but everything was perfect staffing and crew wise"
-         }
-        ],
-        "answers": {
-         "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
-         "Line times / leaderboard": "1st ",
-         "Team player / needed to step up": "Kimi did awesome tonight!! She was everywhere I asked same with Kaycie! ",
-         "Tardy / early out": "Nope ",
-         "Food inventory sheet": "Yes",
-         "Safety hazards": "Yes, we had an issue with a high schooler, someone was doing donuts then a customer started filling then, then the highschooler started calling the customer the F slur and the whole group of them came to walk up. So naturally I told them to leave and one of them got in my face a little calling me the F slur and an asshole, but they left eventually after I didn’t react. ",
-         "Xbro / non-negotiables": "Nor ",
-         "Additional comments": "Solid close, kinda wild customer and people wise, but everything was perfect staffing and crew wise ",
-         "Closing: Verifone WiFi": "Yes",
-         "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
-         "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!"
-        }
-       }
-      ]
-     }
-    },
-    "Fair Oaks": {
-     "Open": {
-      "status": "filed",
-      "scheduledLead": "Graci H.",
-      "recaps": [
-       {
-        "submittedBy": "Graci",
-        "submittedAt": "2026-10-30T12:21:43",
-        "late": false,
-        "shiftFromSchedule": false,
-        "flags": [
-         {
-          "kind": "good",
-          "text": "I think everyone was a little bit slacking today on shift. Maybe some Halloween blues :("
-         }
-        ],
-        "answers": {
-         "Staffing": "​​Perfect (sometimes struggling, sometimes ahead - evened out)",
-         "Line times / leaderboard": "Average. We had some highs and some lows! ",
-         "Team player / needed to step up": "I think everyone was a little bit slacking today on shift. Maybe some Halloween blues :( ",
-         "Tardy / early out": "No",
-         "Food inventory sheet": "Blank",
-         "Safety hazards": "No",
-         "Xbro / non-negotiables": "Kind of chaotic today. ",
-         "Closing: Verifone WiFi": "Not the night SL",
-         "Did the daily chore get done on your shift today? (If not, please explain why). (Pit is responsible for PM chore!)": "Yes"
-        }
-       }
-      ]
-     },
-     "Mid": {
-      "status": "filed",
-      "scheduledLead": "Rebecca E.",
-      "recaps": [
-       {
-        "submittedBy": "Becca O.",
-        "submittedAt": "2026-10-30T17:23:06",
-        "late": false,
-        "shiftFromSchedule": false,
-        "flags": [
-         {
-          "kind": "good",
-          "text": "Dillon did great today!"
-         },
-         {
-          "kind": "bad",
-          "text": "Tardy/early-out note: I sent Josephine and beni and Jill home early. Jill cleaned her bar early"
-         }
-        ],
-        "answers": {
-         "Staffing": "Overstaffed (trying to find things to do, sent people home)",
-         "Line times / leaderboard": "Good today!",
-         "Team player / needed to step up": "Dillon did great today! ",
-         "Tardy / early out": "I sent Josephine and beni and Jill home early. Jill cleaned her bar early ",
-         "Food inventory sheet": "Blank",
-         "Safety hazards": "No",
-         "Xbro / non-negotiables": "Good today ",
-         "Closing: Verifone WiFi": "Not the night SL",
-         "Did the daily chore get done on your shift today? (If not, please explain why). (Pit is responsible for PM chore!)": "Yes",
-         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "2 gallons of protein milk were bad on the 28th and had to be dumped",
-         "Quarterly contest: choose 1 barista who stood out on shift (had a great sense of urgency, very fast on bar, knocked out chores for the crew etc.)": "Dillon"
-        }
-       }
-      ]
-     },
-     "Close": {
-      "status": "filed",
-      "scheduledLead": "Joel L.",
-      "recaps": [
-       {
-        "submittedBy": "Joel",
-        "submittedAt": "2026-10-30T22:24:25",
-        "late": false,
-        "shiftFromSchedule": false,
-        "flags": [
-         {
-          "kind": "good",
-          "text": "Cass and Scarlett did great"
-         },
-         {
-          "kind": "bad",
-          "text": "Tardy/early-out note: Dillon was sent home 15 mins early just to start his chore"
-         }
-        ],
-        "answers": {
-         "Staffing": "​​Perfect (sometimes struggling, sometimes ahead - evened out)",
-         "Line times / leaderboard": "Pretty much all in the green",
-         "Team player / needed to step up": "Cass and Scarlett did great",
-         "Tardy / early out": "Dillon was sent home 15 mins early just to start his chore",
-         "Food inventory sheet": "Blank",
-         "Safety hazards": "No",
-         "Xbro / non-negotiables": "Good",
-         "Closing: Verifone WiFi": "Yes"
-        }
-       }
-      ]
-     }
-    },
-    "Auburn": {
-     "Open": {
-      "status": "filed",
-      "scheduledLead": "Ashlee S.",
-      "recaps": [
-       {
-        "submittedBy": "Ashlee s.",
-        "submittedAt": "2026-10-30T12:29:43",
-        "late": false,
-        "shiftFromSchedule": false,
-        "flags": [
-         {
-          "kind": "good",
-          "text": "Alyssa was super helpful as our breaker this morning so shoutout her! And also sky was crushing it outside linebusting!"
-         },
-         {
-          "kind": "bad",
-          "text": "Tardy/early-out note: Cadence was a bit late but she let managers know!"
-         }
-        ],
-        "answers": {
-         "Staffing": "Well staffed! It was PERFECT!",
-         "Line times / leaderboard": "They were good this morning but could be a bit faster! We were at first and then went down to second!",
-         "Safety hazards": "None!",
-         "Xbro / non-negotiables": "It went really good this morning! I came into a clean shop which looked great so shoutout closers cause ik it was a merch drop too lol. The communication was great this morning between the crew but I do feel we could been moving at a faster pace then we were, but overall good morning!",
-         "Closing: Verifone WiFi": "Not the night SL",
-         "Tardy / early-out": "Cadence was a bit late but she let managers know!",
-         "Expired milk check": "DONE! It all looked good!",
-         "Best team player / wear more hats": "Alyssa was super helpful as our breaker this morning so shoutout her! And also sky was crushing it outside linebusting!"
-        }
-       }
-      ]
-     },
-     "Mid": {
-      "status": "filed",
-      "scheduledLead": "Greta G.",
-      "recaps": [
-       {
-        "submittedBy": "Greta G.",
-        "submittedAt": "2026-10-30T17:39:09",
-        "late": false,
-        "shiftFromSchedule": false,
-        "flags": [
-         {
-          "kind": "good",
-          "text": "Lily was a huge team player,  great communication from her and she’s always wanting to ask questions and learn more as she’s new to the shop which I really appreciated.  she’s also super great with customers!"
-         },
-         {
-          "kind": "bad",
-          "text": "Tardy/early-out note: lily was a few minutes late due to traffic"
-         },
-         {
-          "kind": "bad",
-          "text": "Hazard reported: x"
-         }
-        ],
-        "answers": {
-         "Staffing": "Well staffed! It was PERFECT!",
-         "Line times / leaderboard": "at or under 1:00 the whole shift top 5 most the shift.  Everyone was cooking today",
-         "Safety hazards": "x",
-         "Xbro / non-negotiables": "Xbro went great communication was wonderful and honestly I have no complaints about how today went it was lovely",
-         "Closing: Verifone WiFi": "Not the night SL",
-         "Tardy / early-out": "lily was a few minutes late due to traffic",
-         "Expired milk check": "DONE! It all looked good!",
-         "Best team player / wear more hats": "Lily was a huge team player,  great communication from her and she’s always wanting to ask questions and learn more as she’s new to the shop which I really appreciated.  she’s also super great with customers! "
-        }
-       }
-      ]
-     },
-     "Close": {
-      "status": "missing",
-      "scheduledLead": "Jalissa P.",
-      "recaps": []
-     }
-    },
-    "Mad": {
-     "Open": {
-      "status": "filed",
-      "scheduledLead": "Taylor M.",
-      "recaps": [
-       {
-        "submittedBy": "Taylor",
-        "submittedAt": "2026-10-30T12:15:16",
-        "late": false,
-        "shiftFromSchedule": false,
-        "flags": [
-         {
-          "kind": "good",
-          "text": "Everyone was on their A game but Phenix and Lola did good at running and staying on task. Chase and Dom did great on bar keeping everything flowing."
-         },
-         {
-          "kind": "good",
-          "text": "Nope"
-         }
-        ],
-        "answers": {
-         "Staffing": "​​Perfect (sometimes struggling, sometimes ahead - evened out)",
-         "Line times / leaderboard": "N/a",
-         "Best team player / wear more hats": "Everyone was on their A game but Phenix and Lola did good at running and staying on task. Chase and Dom did great on bar keeping everything flowing. ",
-         "Tardy / early out": "No ",
-         "Morning SL: gravers feedback": "Looked great 10/10 ",
-         "Safety hazards": "Nada ",
-         "Additional comments": "Nope ",
-         "Xbro non-negotiables struggle": "Nope ",
-         "Shift chore completed": "Yes ",
-         "Closing: Verifone WiFi": "N/A // Not on the night shift",
-         "Closing: bakery item inventory": "No",
-         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "7 Protein Milk",
-         "! QUARTERLY COMP ! Down below, state the line times & leaderboard position for each hour! Also include who you think contributed the most to keeping window times down!": "4-5am 1st (1:58)\n5-6am 2nd (2:33) \n6-7am  1st(1:26)(1:50)\n7-8am 1st (0:55)(1:35) \n8-9am 4th (1:08)(1:18) \n9-10am 2nd (2:30)(1:52)\n10-11am 2nd (1:57)(1:27) \n11-12pm 6th (2:06)(1:57) \n\nEveryone did a great job contributing to the windows! Our times were great and proud of how the shift went! During the last hour we got busy and it was just 3 of us but times flowed."
-        }
-       }
-      ]
-     },
-     "Mid": {
-      "status": "filed",
-      "scheduledLead": "Kylie H.",
-      "recaps": [
-       {
-        "submittedBy": "Kylie,",
-        "submittedAt": "2026-10-30T17:08:46",
-        "late": false,
-        "shiftFromSchedule": false,
-        "flags": [
-         {
-          "kind": "good",
-          "text": "everyone was great. Alex H. was super awesome. she always helps wherever she can. katelan & her were great at handing out drinks. lina was an amazing runner. we were pretty busy & she did great jumping between lines. nobody did bad, everyone was great, those people just stood out"
-         },
-         {
-          "kind": "bad",
-          "text": "Tardy/early-out note: diego clocked in like right at 5 idk if that counts, & i sent katelan home like an hour early as well as alex"
-         },
-         {
-          "kind": "good",
-          "text": "everyone was great handling the rushes, super proud"
-         }
-        ],
-        "answers": {
-         "Staffing": "​​Perfect (sometimes struggling, sometimes ahead - evened out)",
-         "Best team player / wear more hats": "everyone was great. Alex H. was super awesome. she always helps wherever she can. katelan & her were great at handing out drinks. lina was an amazing runner. we were pretty busy & she did great jumping between lines. nobody did bad, everyone was great, those people just stood out ",
-         "Tardy / early out": "diego clocked in like right at 5 idk if that counts, & i sent katelan home like an hour early as well as alex ",
-         "Morning SL: gravers feedback": "n/a",
-         "Safety hazards": "no",
-         "Additional comments": "everyone was great handling the rushes, super proud ",
-         "Xbro non-negotiables struggle": "no",
-         "Shift chore completed": "yes",
-         "Closing: Verifone WiFi": "N/A // Not on the night shift",
-         "! QUARTERLY COMP ! Down below, state the line times & leaderboard position for each hour! Also include who you think contributed the most to keeping window times down!": "12-1: (1:37) (1:41) 1st\n1-2: (2:14) (2:24) 8th\n2-3: (1:58) (1:49) 5th\n3-4: (2:01) (1:53) 3rd\n4-5: (1:49) (1:51) 4th"
-        }
-       }
-      ]
-     },
-     "Close": {
-      "status": "filed",
-      "scheduledLead": "Diego A.",
-      "recaps": [
-       {
-        "submittedBy": "Diego A.",
-        "submittedAt": "2026-10-30T23:52:36",
-        "late": false,
-        "shiftFromSchedule": false,
-        "flags": [
-         {
-          "kind": "good",
-          "text": "Malachi rocked it glad he helped kill the rush"
-         }
-        ],
-        "answers": {
-         "Staffing": "​​Perfect (sometimes struggling, sometimes ahead - evened out)",
-         "Best team player / wear more hats": "Malachi rocked it glad he helped kill the rush ",
-         "Tardy / early out": "No ",
-         "Safety hazards": "No ",
-         "Xbro non-negotiables struggle": "No ",
-         "Shift chore completed": "Yes",
-         "Closing: Verifone WiFi": "Yes",
-         "Closing: bakery item inventory": "Yes",
-         "! QUARTERLY COMP ! Down below, state the line times & leaderboard position for each hour! Also include who you think contributed the most to keeping window times down!": "5-6: 3( 3:11) (2:54) \n7-8: 4 (2:24)\n8-9: 3 (2:43) \n9-10: 1 (2:18) \n10-11: 1 (1:54) \n11-12: 1 (3:13)"
-        }
-       }
-      ]
-     }
-    },
-    "Lichen": {
-     "Open": {
-      "status": "filed",
-      "scheduledLead": "Kaylee R.",
-      "recaps": [
-       {
-        "submittedBy": "Kaylee R.",
-        "submittedAt": "2026-10-30T11:59:37",
-        "late": false,
-        "shiftFromSchedule": false,
-        "flags": [
-         {
-          "kind": "good",
-          "text": "AMOS+DYLAN(with a side of gianna and courtney) they were the only people actually putting their “spare time” to use. I was getting ultra super mega frustrated with Daphne, Adam, Megan and Joey today, when every time i asked them to do something that’s not leaning and work on our cleaning list I was met with some remark or even an eye roll coming from Daphne! Even when I said that it was manager directed that there is no more nice shift lead nobody seemed to care"
-         },
-         {
-          "kind": "bad",
-          "text": "Xbro was good for the most part…except for daphne,, I just really have not been impressed with her continuously hopping off bar without telling one because she was “going to the bathroom” and spending the time it takes someone to make 3 drinks to make 1 drink, and she will stand and stare at the iPad and wait for someone else to claim a drink before claiming it herself"
-         },
-         {
-          "kind": "bad",
-          "text": "Hazard reported: The alarm,, will came and looked at the rapid rinser and I think he looked at the alarm?? But it was going off every 5 mins this morning it was AWESOME"
-         },
-         {
-          "kind": "good",
-          "text": "Nope"
-         }
-        ],
-        "answers": {
-         "Staffing": "Well staffed! It was PERFECT!",
-         "Line times / leaderboard": "We averaged 38 seconds mostly all morning, high of 1 min and we stayed in top 3",
-         "Times throughout shift": "Dylan!! He was on drive bar but even when hopping off to be on chef or gsd he was the first to greet ",
-         "Best team player / wear more hats": "AMOS+DYLAN(with a side of gianna and courtney) they were the only people actually putting their “spare time” to use. I was getting ultra super mega frustrated with Daphne, Adam, Megan and Joey today, when every time i asked them to do something that’s not leaning and work on our cleaning list I was met with some remark or even an eye roll coming from Daphne! Even when I said that it was manager directed that there is no more nice shift lead nobody seemed to care ",
-         "Tardy / early out": "Nope and nope ",
-         "Safety hazards": "The alarm,, will came and looked at the rapid rinser and I think he looked at the alarm?? But it was going off every 5 mins this morning it was AWESOME ",
-         "Additional comments": "Nope",
-         "Closing checklist": "not the night lead",
-         "Xbro non-negotiables struggle": "Xbro was good for the most part…except for daphne,, I just really have not been impressed with her continuously hopping off bar without telling one because she was “going to the bathroom” and spending the time it takes someone to make 3 drinks to make 1 drink, and she will stand and stare at the iPad and wait for someone else to claim a drink before claiming it herself ",
-         "Chef position feedback": "Chef was great, we started the day with someone getting 10 choc chip muffins so I had to thaw more but it was good",
-         "Closing: Verifone WiFi": "N/A // Not on the night shift"
-        }
-       }
-      ]
-     },
-     "Mid": {
-      "status": "filed",
-      "scheduledLead": "Gabriel Z.",
-      "recaps": [
-       {
-        "submittedBy": "Gabriel Z.",
-        "submittedAt": "2026-10-30T19:10:13",
-        "late": false,
-        "shiftFromSchedule": false,
-        "flags": [
-         {
-          "kind": "good",
-          "text": "Ash was everywhere all at once the whole shift! As soon as it slowed down she’d work on cleaning the stand and the moment it picked up she’d hop back on position again! I know she’s a vet, but she’s a slayer and working with her is always a breath of fresh air!"
-         },
-         {
-          "kind": "bad",
-          "text": "Today was a lot slower than I think we expected, especially for it being the Friday before Halloween, so we might get slammed later tonight, but I did what I could to set them up!"
-         }
-        ],
-        "answers": {
-         "Staffing": "Overstaffed (trying to find things to do, sent people home)",
-         "Line times / leaderboard": "Our times were pretty decent!",
-         "Times throughout shift": "The whole crew was on it today! But definitely wanna shout out Sid, I could hear her from the back of the shop greeting customers today and I know she’s usually a bit quieter on shift!",
-         "Best team player / wear more hats": "Ash was everywhere all at once the whole shift! As soon as it slowed down she’d work on cleaning the stand and the moment it picked up she’d hop back on position again! I know she’s a vet, but she’s a slayer and working with her is always a breath of fresh air!",
-         "Tardy / early out": "No one late! I sent Gianna, and Courtney both home early!",
-         "Safety hazards": "Nothing to note today!",
-         "Additional comments": "Today was a lot slower than I think we expected, especially for it being the Friday before Halloween, so we might get slammed later tonight, but I did what I could to set them up!",
-         "Closing checklist": "not the night lead",
-         "Closing: Verifone WiFi": "N/A // Not on the night shift",
-         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log if nothing went bad, let us know :)": "Nothing to note!"
-        }
-       }
-      ]
-     },
-     "Close": {
-      "status": "late",
-      "scheduledLead": "Ben B.",
-      "recaps": [
-       {
-        "submittedBy": "Benjamin B.",
-        "submittedAt": "2026-10-31T00:13:00",
-        "late": true,
-        "shiftFromSchedule": false,
-        "flags": [
-         {
-          "kind": "good",
-          "text": "Best team player was Kyler. He did most of the closing chores while me and Tina kept the line moving."
-         },
-         {
-          "kind": "bad",
-          "text": "Tardy/early-out note: Nobody was tardy or sent home early my"
-         },
-         {
-          "kind": "bad",
-          "text": "Xbro was great nobody struggled."
-         },
-         {
-          "kind": "good",
-          "text": "N/A"
-         }
-        ],
-        "answers": {
-         "Staffing": "Well staffed! It was PERFECT!",
-         "Line times / leaderboard": "Line times stayed around 1.30. We stayed at 4th on the leaderboard. ",
-         "Times throughout shift": "Kristina rocked it on window today. Consistently greeted customers at the window throughout the night. ",
-         "Best team player / wear more hats": "Best team player was Kyler. He did most of the closing chores while me and Tina kept the line moving. ",
-         "Tardy / early out": "Nobody was tardy or sent home early my ",
-         "Safety hazards": "No safety hazards or concerns. ",
-         "Additional comments": "N/A",
-         "Closing checklist": "iPads plugged in, locked, and turned off of low power mode, verifones are covered by a rag, iPad locker is locked up, all doors & windows are locked, ALL keys are locked and put away, all money is locked up in the bottom safe + text has been sent, nightly food inventory is done + text has been sent, Alarm is about to be set and turned on",
-         "Xbro non-negotiables struggle": "Xbro was great nobody struggled. ",
-         "Chef position feedback": "Chef position went great, nothing was hindering flow.",
-         "Closing: Verifone WiFi": "Yes",
-         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log if nothing went bad, let us know :)": "Nothing went bad."
-        }
-       }
-      ]
-     }
-    },
-    "Fireside": {
-     "Open": {
-      "status": "late",
-      "scheduledLead": "Taylor R.",
-      "recaps": [
-       {
-        "submittedBy": "Taylor R.",
-        "submittedAt": "2026-10-30T11:54:21",
-        "late": true,
-        "shiftFromSchedule": false,
-        "flags": [
-         {
-          "kind": "good",
-          "text": "Kelli O. was the best team player today! She hustled all shift long, and greeted each and every customer at the window, she killed it!!!"
-         },
-         {
-          "kind": "bad",
-          "text": "Hazard reported: A rubber band broke off of the right shot head on drive bar. Erica reached out to addy to inform him and we were told it was still okay to use that head for drink making !"
-         },
-         {
-          "kind": "good",
-          "text": "Overall a very busy morning at Fireside!! \n- We started out busy right at opening and were consistent the entire day!! \n- Very expected with it being Friday and starting \n off Halloween weekend! The morning went so awesome and we had a blast"
-         },
-         {
-          "kind": "bad",
-          "text": "Recap submitted late — arrived 11:54 AM, after the 11:30 grace-period cutoff for Open."
-         }
-        ],
-        "answers": {
-         "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
-         "Line times / leaderboard": "We were pretty speedy today! An average of 45 seconds to a minute window time today!",
-         "Best team player / wear more hats": "Kelli O. was the best team player today! She hustled all shift long, and greeted each and every customer at the window, she killed it!!!",
-         "Tardy / early out": "No",
-         "Xbro / non-negotiables": "It went great! We had a very strong crew on shift this morning and everybody worked so hard and made the shift go so smooth!",
-         "Safety hazards": "A rubber band broke off of the right shot head on drive bar. Erica reached out to addy to inform him and we were told it was still okay to use that head for drink making !",
-         "Additional comments": "Overall a very busy morning at Fireside!! \n- We started out busy right at opening and were consistent the entire day!! \n- Very expected with it being Friday and starting \n off Halloween weekend! The morning went so awesome and we had a blast",
-         "Fridge seals cleaned": "Done!",
-         "Closing: Verifone WiFi": "Not the night SL",
-         "Closing: food inventory texted to managers": "Not the Night Shift lead",
-         "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing that I noticed on the morning shift"
-        }
-       }
-      ]
-     },
-     "Mid": {
-      "status": "late",
-      "scheduledLead": "Jacob M.",
-      "recaps": [
-       {
-        "submittedBy": "Jacob M.",
-        "submittedAt": "2026-10-30T18:39:29",
-        "late": true,
-        "shiftFromSchedule": false,
-        "flags": [
-         {
-          "kind": "good",
-          "text": "Maddy M was the best team player did very well on bar and running overall GOAT"
-         },
-         {
-          "kind": "bad",
-          "text": "Tardy/early-out note: i sent bri home like 30 minutes early.. I also finished my food slacking early on shift n stayed clocked in as barista to break sasha from 6-6:30"
-         },
-         {
-          "kind": "bad",
-          "text": "Hazard reported: one of the chargers for the window ipad/veriphone broke at the wall outlet"
-         },
-         {
-          "kind": "bad",
-          "text": "xbruh was good no one struggled just coached a couple small things to maddy m like flavor combos"
-         },
-         {
-          "kind": "good",
-          "text": "fun fact: Octopuses have three hearts, blue blood, and their arms can actually taste what they touch!"
-         },
-         {
-          "kind": "bad",
-          "text": "Recap submitted late — arrived 6:39 PM, after the 18:15 grace-period cutoff for Mid."
-         }
-        ],
-        "answers": {
-         "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
-         "Line times / leaderboard": "the average time throughout the shift was 1:11 and the average place was 6th",
-         "Best team player / wear more hats": "Maddy M was the best team player did very well on bar and running overall GOAT",
-         "Tardy / early out": "i sent bri home like 30 minutes early.. I also finished my food slacking early on shift n stayed clocked in as barista to break sasha from 6-6:30",
-         "Xbro / non-negotiables": "xbruh was good no one struggled just coached a couple small things to maddy m like flavor combos",
-         "Safety hazards": "one of the chargers for the window ipad/veriphone broke at the wall outlet",
-         "Additional comments": "fun fact: Octopuses have three hearts, blue blood, and their arms can actually taste what they touch!",
-         "Fridge seals cleaned": "Done!",
-         "Closing: Verifone WiFi": "Not the night SL",
-         "Closing: safe/tills/iPads/doors checklist": "not the night SL",
-         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope"
-        }
-       }
-      ]
-     },
-     "Close": {
-      "status": "late",
-      "scheduledLead": "Kaylee C.",
-      "recaps": [
-       {
-        "submittedBy": "Kaylee",
-        "submittedAt": "2026-10-31T01:04:07",
-        "late": true,
-        "shiftFromSchedule": false,
-        "flags": [
-         {
-          "kind": "good",
-          "text": "Sasha was amazing she was so helpful with everything!!"
-         },
-         {
-          "kind": "good",
-          "text": "Na"
-         }
-        ],
-        "answers": {
-         "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
-         "Line times / leaderboard": "We were about 3-4mins around the bottom of the board ",
-         "Best team player / wear more hats": "Sasha was amazing she was so helpful with everything!!",
-         "Tardy / early out": "Nope!",
-         "Xbro / non-negotiables": "It was great!",
-         "Safety hazards": "Nope",
-         "Additional comments": "Na",
-         "Fridge seals cleaned": "Done!",
-         "Closing: Verifone WiFi": "Yes",
-         "Closing: food inventory texted to managers": "Yes",
-         "Closing: safe/tills/iPads/doors checklist": "All good !"
-        }
-       }
-      ]
-     }
-    },
-    "Manz": {
-     "Open": {
-      "status": "filed",
-      "scheduledLead": "Alyssa G.",
-      "recaps": [
-       {
-        "submittedBy": "Alyssa G.",
-        "submittedAt": "2026-10-30T10:47:21",
-        "late": false,
-        "shiftFromSchedule": false,
-        "flags": [
-         {
-          "kind": "bad",
-          "text": "Shift reported understaffed."
-         },
-         {
-          "kind": "good",
-          "text": "Everyone was amazing, Lilia was amazing to open with."
-         },
-         {
-          "kind": "good",
-          "text": "Definitely could have used an extra body during our morning rush, it was busy."
-         }
-        ],
-        "answers": {
-         "Staffing": "Understaffed (we were struggling most of the shift)",
-         "Line times / leaderboard": "Good morning times , mostly green and yellow.",
-         "Best team player / wear more hats": "Everyone was amazing, Lilia was amazing to open with.",
-         "Tardy / early out": "No one was tardy.",
-         "Safety hazards": "No safety hazards.",
-         "Xbro / non-negotiables": "Xbro was good !",
-         "Additional comments": "Definitely could have used an extra body during our morning rush, it was busy.",
-         "Closing: Verifone WiFi": "N/A // Not on the night shift",
-         "*MID & NIGHT SL ONLY* text managers the number of food & bakery items thawing in the fridge, and ready to go for tomorrow! Do this for each type of bakery & food item!": "done! just texted you guys!",
-         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing expired."
-        }
-       }
-      ]
-     },
-     "Mid": {
-      "status": "missing",
-      "scheduledLead": "Cameron H.",
-      "recaps": []
-     },
-     "Close": {
-      "status": "filed",
-      "scheduledLead": "Lydia H.",
-      "recaps": [
-       {
-        "submittedBy": "Lydia H.",
-        "submittedAt": "2026-10-30T23:16:41",
-        "late": false,
-        "shiftFromSchedule": false,
-        "flags": [
-         {
-          "kind": "good",
-          "text": "Best team player liv?????"
-         },
-         {
-          "kind": "bad",
-          "text": "Hazard reported: Customer cussed out Edwin, cause he cut the line."
-         }
-        ],
-        "answers": {
-         "Staffing": "Good staffing but rushes kept us on our toes!",
-         "Line times / leaderboard": "Like 2 minutes we had crazy rush like 7:30-8 ",
-         "Best team player / wear more hats": "Best team player liv?????",
-         "Tardy / early out": "Nope",
-         "Safety hazards": "Customer cussed out Edwin, cause he cut the line. ",
-         "Xbro / non-negotiables": "Xbro great!",
-         "Closing: Verifone WiFi": "Yes",
-         "*MID & NIGHT SL ONLY* text managers the number of food & bakery items thawing in the fridge, and ready to go for tomorrow! Do this for each type of bakery & food item!": "done! just texted you guys!"
-        }
-       }
-      ]
-     }
-    },
-    "OV": {
-     "Open": {
-      "status": "filed",
-      "scheduledLead": "Isa V.",
-      "recaps": [
-       {
-        "submittedBy": "Isabelle",
-        "submittedAt": "2026-10-30T12:26:31",
-        "late": false,
-        "shiftFromSchedule": false,
-        "flags": [
-         {
-          "kind": "good",
-          "text": "Chris and Lex just for being great managers and being super helpful with the rush  being wherever needed more focus"
-         }
-        ],
-        "answers": {
-         "staffing": "Perfect (sometimes struggling, sometimes ahead- evened out",
-         "lineTimes": "I believe our busiest/ peak hour we were around 3-4 with a time of 1:15. Our not so busiest we were at 7-9 with a 1:53 ",
-         "teamPlayer": "Chris and Lex just for being great managers and being super helpful with the rush  being wherever needed more focus ",
-         "tardy": "Na ",
-         "foodInventory": "No / In progress",
-         "safety": "Na ",
-         "xbro": "Xbro ran pretty good. I think bar can be so used to/ in the zone of pulling their own rebel/ freeze. A few times we made duplicates because bars weren’t making sure they did claim something.  ",
-         "closingVerifone": "N/A ; Not closing shift lead",
-         "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A"
-        }
-       }
-      ]
-     },
-     "Mid": {
-      "status": "filed",
-      "scheduledLead": "Matthew W.",
-      "recaps": [
-       {
-        "submittedBy": "Matthew W.",
-        "submittedAt": "2026-10-30T17:46:16",
-        "late": false,
-        "shiftFromSchedule": false,
-        "flags": [
-         {
-          "kind": "bad",
-          "text": "Shift reported understaffed."
-         },
-         {
-          "kind": "good",
-          "text": "I would say the best team player would be Lexi L. She was killing it all shift being as helpful as possible! I wouldn’t say anyone needed to where any more hats I thought everyone did a great job!"
-         },
-         {
-          "kind": "bad",
-          "text": "Hazard reported: No hazards :)"
-         },
-         {
-          "kind": "bad",
-          "text": "Xbro went great, no one struggled, therefore no coaching moments :)"
-         },
-         {
-          "kind": "good",
-          "text": "No comments great shift :)"
-         }
-        ],
-        "answers": {
-         "staffing": "Understaffed (we were struggling most of the shift)",
-         "lineTimes": "1:00 - 1:15",
-         "teamPlayer": "I would say the best team player would be Lexi L. She was killing it all shift being as helpful as possible! I wouldn’t say anyone needed to where any more hats I thought everyone did a great job!",
-         "tardy": "No :)",
-         "foodInventory": "Yes",
-         "safety": "No hazards :)",
-         "xbro": "Xbro went great, no one struggled, therefore no coaching moments :)",
-         "comments": "No comments great shift :)",
-         "closingVerifone": "N/A ; Not closing shift lead",
-         "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!"
-        }
-       }
-      ]
-     },
-     "Close": {
-      "status": "filed",
-      "scheduledLead": "Heidi J.",
-      "recaps": [
-       {
-        "submittedBy": "Heidi",
-        "submittedAt": "2026-10-30T22:55:45",
-        "late": false,
-        "shiftFromSchedule": false,
-        "flags": [
-         {
-          "kind": "good",
-          "text": "Ally"
-         },
-         {
-          "kind": "bad",
-          "text": "Tardy/early-out note: Sent Myah home about an hour early"
-         },
-         {
-          "kind": "bad",
-          "text": "Hazard reported: Camera screen in the back by bathroom won’t connect"
-         }
-        ],
-        "answers": {
-         "staffing": "Perfect (sometimes struggling, sometimes ahead- evened out",
-         "lineTimes": "Busier than usual 3rd body tonight was great!",
-         "teamPlayer": "Ally",
-         "tardy": "Sent Myah home about an hour early",
-         "foodInventory": "No / In progress",
-         "safety": "Camera screen in the back by bathroom won’t connect",
-         "xbro": "Na",
-         "closingVerifone": "Yes",
-         "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
-         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nope!"
-        }
-       }
-      ]
-     }
-    },
-    "Winding": {
-     "Open": {
-      "status": "missing",
-      "scheduledLead": "Carsen T.",
-      "recaps": []
-     },
-     "Mid": {
-      "status": "missing",
-      "scheduledLead": "Katelyn L.",
-      "recaps": []
-     },
-     "Close": {
-      "status": "missing",
-      "scheduledLead": "Madison W.",
-      "recaps": []
      }
     }
    }
