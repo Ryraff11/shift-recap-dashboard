@@ -1,10 +1,10 @@
 {
- "generatedAt": "2026-11-06T04:19:51-08:00",
+ "generatedAt": "2026-11-06T12:08:22-08:00",
  "date": "2026-11-06",
  "shops": {
   "Antelope": {
    "Open": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": "Isabelle M.",
     "recaps": []
    },
@@ -89,9 +89,38 @@
   },
   "Fireside": {
    "Open": {
-    "status": "pending",
+    "status": "filed",
     "scheduledLead": "Madison F.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Furton",
+      "submittedAt": "2026-11-06T10:46:27",
+      "late": false,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Everyone did so awesome!"
+       },
+       {
+        "kind": "good",
+        "text": "Lvs birthday shift was so awesome! We had a good amount of bodies and the on and off flows kept us busy. When slower, cleaning doing chores, preclose etc."
+       }
+      ],
+      "answers": {
+       "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+       "Line times / leaderboard": "Good about a min",
+       "Best team player / wear more hats": "Everyone did so awesome!",
+       "Tardy / early out": "Nope",
+       "Xbro / non-negotiables": "Xbro was good today",
+       "Safety hazards": "Nope",
+       "Additional comments": "Lvs birthday shift was so awesome! We had a good amount of bodies and the on and off flows kept us busy. When slower, cleaning doing chores, preclose etc.\n\n",
+       "Fridge seals cleaned": "Done!",
+       "Closing: Verifone WiFi": "Not the night SL",
+       "Closing: safe/tills/iPads/doors checklist": "not the night SL"
+      }
+     }
+    ]
    },
    "Mid": {
     "status": "pending",
@@ -106,9 +135,36 @@
   },
   "Manz": {
    "Open": {
-    "status": "pending",
+    "status": "filed",
     "scheduledLead": "Madison W.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Madison W.",
+      "submittedAt": "2026-11-06T10:07:53",
+      "late": false,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "alyssa rocked window/pit! that girl was EVERYWHERE!"
+       },
+       {
+        "kind": "good",
+        "text": "Raff go ahead and give yourself a pat on the back 👏🏼👏🏼"
+       }
+      ],
+      "answers": {
+       "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+       "Line times / leaderboard": "1 😏 go ahead and ask who was on bar 😂",
+       "Best team player / wear more hats": "alyssa rocked window/pit! that girl was EVERYWHERE! ",
+       "Tardy / early out": "nope! ",
+       "Safety hazards": "nope! ",
+       "Xbro / non-negotiables": "nope! ",
+       "Additional comments": "Raff go ahead and give yourself a pat on the back 👏🏼👏🏼",
+       "Closing: Verifone WiFi": "N/A // Not on the night shift"
+      }
+     }
+    ]
    },
    "Mid": {
     "status": "pending",
