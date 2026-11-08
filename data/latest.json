@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-08T00:08:23-08:00",
+ "generatedAt": "2026-11-08T04:17:26-08:00",
  "windowDays": 60,
  "shops": [
   "Antelope",
@@ -435,9 +435,40 @@
       ]
      },
      "Close": {
-      "status": "missing",
+      "status": "late",
       "scheduledLead": "Ashlee S.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Ashlee s.",
+        "submittedAt": "2026-11-08T01:45:59",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "I gotta give it to my girl lily! She did so much to help out tonight and was just such a fun person to close with!"
+         },
+         {
+          "kind": "bad",
+          "text": "I didn’t really xbro too much tonight tbh, just cause I had to help make drinks a lot of the night but overall was a good shift with two amazing closers! It was def busy the last 2 hours I would say but we managed well and drinks were getting out!"
+         },
+         {
+          "kind": "bad",
+          "text": "Recap submitted late — arrived 1:45 AM, after the 00:20 grace-period cutoff for Close."
+         }
+        ],
+        "answers": {
+         "Staffing": "Well staffed! It was PERFECT!",
+         "Line times / leaderboard": "They were good towards the beginning around 1:10 and under then towards the end of the night it was a bit rougher :(",
+         "Safety hazards": "None!",
+         "Xbro / non-negotiables": "I didn’t really xbro too much tonight tbh, just cause I had to help make drinks a lot of the night but overall was a good shift with two amazing closers! It was def busy the last 2 hours I would say but we managed well and drinks were getting out! ",
+         "Closing: Verifone WiFi": "Yes",
+         "Tardy / early-out": "Nope :)",
+         "Expired milk check": "DONE! It all looked good!",
+         "Best team player / wear more hats": "I gotta give it to my girl lily! She did so much to help out tonight and was just such a fun person to close with!"
+        }
+       }
+      ]
      }
     },
     "Mad": {
@@ -611,9 +642,52 @@
       ]
      },
      "Close": {
-      "status": "missing",
+      "status": "late",
       "scheduledLead": "Ben B.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Benjamin B.",
+        "submittedAt": "2026-11-08T00:25:02",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Best team player was Faith. Kept the line moving while I got chores done. No one needed more hats."
+         },
+         {
+          "kind": "bad",
+          "text": "Tardy/early-out note: Nobody was tardy. Sent Noelle home early."
+         },
+         {
+          "kind": "bad",
+          "text": "Xbro went great. Nobody struggled one needed coaching."
+         },
+         {
+          "kind": "good",
+          "text": "N/A"
+         },
+         {
+          "kind": "bad",
+          "text": "Recap submitted late — arrived 12:25 AM, after the 00:15 grace-period cutoff for Close."
+         }
+        ],
+        "answers": {
+         "Staffing": "Well staffed! It was PERFECT!",
+         "Line times / leaderboard": "Times stayed around 1.40. We stayed at 4th on the leaderboards ",
+         "Times throughout shift": "Faith rocked it on window today. ",
+         "Best team player / wear more hats": "Best team player was Faith. Kept the line moving while I got chores done. No one needed more hats.",
+         "Tardy / early out": "Nobody was tardy. Sent Noelle home early. ",
+         "Safety hazards": "No safety hazards or concerns. ",
+         "Additional comments": "N/A",
+         "Closing checklist": "iPads plugged in, locked, and turned off of low power mode, verifones are covered by a rag, iPad locker is locked up, all doors & windows are locked, ALL keys are locked and put away, all money is locked up in the bottom safe + text has been sent, nightly food inventory is done + text has been sent, Alarm is about to be set and turned on",
+         "Xbro non-negotiables struggle": "Xbro went great. Nobody struggled one needed coaching. ",
+         "Chef position feedback": "Chef position went greats nothing. Nothing was hindering flow. ",
+         "Closing: Verifone WiFi": "Yes",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log if nothing went bad, let us know :)": "Nothing went bad."
+        }
+       }
+      ]
      }
     },
     "Fireside": {
