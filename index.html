@@ -772,7 +772,7 @@ function getPacificNow(){
 const days = 60; // 60-day data window powers the Late Submissions tally; the recaps day-strip below stays a fixed trailing 7 days so the grid is unchanged
 const TODAY_INDEX = days - 1;
 const TODAY_DATE = new Date(2026, 10, 10); // auto-updated by refresh_dashboard.py;
-const BUILD_STAMP = "Tue · Nov 10 · updated 12:07 PM PT"; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
+const BUILD_STAMP = "Tue · Nov 10 · updated 6:07 PM PT"; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // auto-updated by refresh_dashboard.py; // July 25, 2026 (updated to align with real Antelope recap data)
 
 function dateForIndex(i){
   const dt = new Date(TODAY_DATE);
@@ -62044,6 +62044,67 @@ const REAL_MANZ_RECORDS = [
         "source": "best team player was mollly my amazing goat. she\u2019s great and super helpful!"
       }
     ]
+  },
+  {
+    "shop": "Manz",
+    "shift": "Open",
+    "dayIndex": 59,
+    "timestamp": "11/10/2026 12:10:19",
+    "employee": "Lydia H.",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "No comments, standard shift.",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Best team player liv! She\u2019s so helpful and never complains"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Tardy/early-out note: Senior left early cause he was sick"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Hazard reported: The bar started leaking, addy came and fixed"
+      }
+    ],
+    "fullRecap": {
+      "Staffing": "Good staffing but rushes kept us on our toes!",
+      "Line times / leaderboard": "Line times low and higher on the board when we had enough people.",
+      "Best percentage / leaderboard hour": "",
+      "What could have gone smoother": "",
+      "Best team player / wear more hats": "Best team player liv! She\u2019s so helpful and never complains ",
+      "Tardy / early out": "Senior left early cause he was sick ",
+      "Tips split confirmed": "",
+      "Safety hazards": "The bar started leaking, addy came and fixed ",
+      "Fridge gaskets wiped": "",
+      "Xbro / non-negotiables": "Xbro good, when I could, was hectic with only one bar",
+      "Additional comments": "",
+      "Bought into new system": "",
+      "Struggled with new staffing": "",
+      "Biggest clamp": "",
+      "XBRO feedback": "",
+      "Forgot single-drink-claim comp": "",
+      "Perfect pour comp": "",
+      "Remake comp": "",
+      "Caught fraud apps / bday drinks w/o ID": "",
+      "Got shift change": "",
+      "Best hourly window average": "",
+      "Cleanest person on shift": "",
+      "Window contest winner": "",
+      "Window contest: why": "",
+      "Cleanliness contest winner": "",
+      "Cleanliness contest: why": "",
+      "Closing: Verifone WiFi": "N/A // Not on the night shift"
+    },
+    "namedMentions": []
   }
 ]
 const REAL_OV_RECORDS = [
@@ -69838,6 +69899,119 @@ const REAL_OV_RECORDS = [
         "name": "Katie",
         "kind": "good",
         "source": "Katie, she was killing it all shift! Genuinely being so helpful, I was really impressed by how fast and efficient she was!"
+      }
+    ]
+  },
+  {
+    "shop": "OV",
+    "shift": "Open",
+    "dayIndex": 59,
+    "timestamp": "11/10/2026 13:20:31",
+    "employee": "Myah",
+    "isLate": true,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "No comments, standard shift.",
+    "flags": [
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "kelli!! she did sooo great today! she is making so much progress on bar and is always looking for something to stock or clean up whenever we are slow. she killed it! no one needed to wear more hats"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "xbro was better today. it was harder when we got super busy to be on xbro because we did get a good bit of food, we did have a chef position but they were also on window and i felt like we needed to prioritize that over the food. no coaching moments!!"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Recap submitted late \u2014 arrived 1:20 PM, after the 12:30 grace-period cutoff for Open."
+      }
+    ],
+    "fullRecap": {
+      "staffing": "Good staffing but rushes kept us on our toes",
+      "lineTimes": "8-9am we were at a 44 second pace! we were reallly busy but my crew did so well today! we were placed at about 2nd-4th throughout the hour and i am so proud",
+      "teamPlayer": "kelli!! she did sooo great today! she is making so much progress on bar and is always looking for something to stock or clean up whenever we are slow. she killed it! no one needed to wear more hats",
+      "tardy": "no ",
+      "foodInventory": "No / In progress",
+      "safety": "no",
+      "xbro": "xbro was better today. it was harder when we got super busy to be on xbro because we did get a good bit of food, we did have a chef position but they were also on window and i felt like we needed to prioritize that over the food. no coaching moments!! ",
+      "comments": "",
+      "closingVerifone": "N/A ; Not closing shift lead",
+      "closingChecklist": "",
+      "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
+      "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "nope"
+    },
+    "namedMentions": [
+      {
+        "name": "Moments",
+        "kind": "bad",
+        "source": "xbro was better today. it was harder when we got super busy to be on xbro because we did get a good bit of food, we did have a chef position but they were also "
+      }
+    ]
+  },
+  {
+    "shop": "OV",
+    "shift": "Mid",
+    "dayIndex": 59,
+    "timestamp": "11/10/2026 17:55:10",
+    "employee": "Matthew W.",
+    "isLate": false,
+    "bestPlayer": null,
+    "needsHats": null,
+    "tardy": null,
+    "hazard": null,
+    "xbroStruggle": null,
+    "comment": "The expo iPad is still having the app scan glitch",
+    "flags": [
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Shift reported understaffed."
+      },
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "Audrey and Kelli were both being such great team players, I was super stoked to see how much progress the both of them have made since I first met them they\u2019ve both gotten super good at there job!"
+      },
+      {
+        "kind": "bad",
+        "employee": null,
+        "text": "Hazard reported: No hazards :)"
+      },
+      {
+        "kind": "good",
+        "employee": null,
+        "text": "The expo iPad is still having the app scan glitch"
+      }
+    ],
+    "fullRecap": {
+      "staffing": "Understaffed (we were struggling most of the shift)",
+      "lineTimes": "4 th",
+      "teamPlayer": "Audrey and Kelli were both being such great team players, I was super stoked to see how much progress the both of them have made since I first met them they\u2019ve both gotten super good at there job!",
+      "tardy": "No :)",
+      "foodInventory": "Yes",
+      "safety": "No hazards :)",
+      "xbro": "No xbro :(",
+      "comments": "The expo iPad is still having the app scan glitch ",
+      "closingVerifone": "N/A ; Not closing shift lead",
+      "closingChecklist": "",
+      "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!"
+    },
+    "namedMentions": [
+      {
+        "name": "Audrey",
+        "kind": "good",
+        "source": "Audrey and Kelli were both being such great team players, I was super stoked to see how much progress the both of them have made since I first met them they\u2019ve "
+      },
+      {
+        "name": "Kelli",
+        "kind": "good",
+        "source": "Audrey and Kelli were both being such great team players, I was super stoked to see how much progress the both of them have made since I first met them they\u2019ve "
       }
     ]
   }
