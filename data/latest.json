@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-12T00:10:50-08:00",
+ "generatedAt": "2026-11-12T04:20:25-08:00",
  "windowDays": 60,
  "shops": [
   "Antelope",
@@ -455,9 +455,44 @@
       ]
      },
      "Close": {
-      "status": "missing",
+      "status": "late",
       "scheduledLead": "Taylor M.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Taylor",
+        "submittedAt": "2026-11-12T00:15:49",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Everyone did a good job! Jewel was helping out a lot. Karis did a good job running and coming back in to help."
+         },
+         {
+          "kind": "bad",
+          "text": "Hazard reported: The black homeless guy with the ball cap hat usually pays/ and is nice but he’s been asking for food/drinks more often without money also he has a bat now that he carries. He hasn’t been aggressive just kind of intimidating at night when he comes to the door."
+         },
+         {
+          "kind": "bad",
+          "text": "I was able to fix the veriphone on McDonald’s side. It just took a couple of restarts and I plugged it in the bathroom then brought back in after connecting to a diff ipad. \n\nAlso the cardboard is crazy lol I think if people broke them down we would have more room. Also I’ve been noticing that on bar shut done people haven’t been able to finish everything or they leave the garbage outside the door and the grinds for the next person. I’m not sure how to go about that bc they would go past the 45 min mark but also seems a little unfair for the next person to deal with."
+         }
+        ],
+        "answers": {
+         "Staffing": "​​Perfect (sometimes struggling, sometimes ahead - evened out)",
+         "Line times / leaderboard": "We were super busy today and got random hits of rushes so they were kind of all over the place. But mostly top 5 but towards the end of the night when it was just me and Lina are times struggled. But everything went smoothly just big orders and running back and forth to grab things ect. ",
+         "Best team player / wear more hats": "Everyone did a good job! Jewel was helping out a lot. Karis did a good job running and coming back in to help. ",
+         "Tardy / early out": "Nope ",
+         "Morning SL: gravers feedback": "N/a",
+         "Safety hazards": "The black homeless guy with the ball cap hat usually pays/ and is nice but he’s been asking for food/drinks more often without money also he has a bat now that he carries. He hasn’t been aggressive just kind of intimidating at night when he comes to the door. ",
+         "Additional comments": "I was able to fix the veriphone on McDonald’s side. It just took a couple of restarts and I plugged it in the bathroom then brought back in after connecting to a diff ipad. \n\nAlso the cardboard is crazy lol I think if people broke them down we would have more room. Also I’ve been noticing that on bar shut done people haven’t been able to finish everything or they leave the garbage outside the door and the grinds for the next person. I’m not sure how to go about that bc they would go past the 45 min mark but also seems a little unfair for the next person to deal with. ",
+         "Xbro non-negotiables struggle": "Nope ",
+         "Shift chore completed": "Yes ",
+         "Closing: Verifone WiFi": "Yes",
+         "Closing: bakery item inventory": "Yes",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "None"
+        }
+       }
+      ]
      }
     },
     "Lichen": {
@@ -543,9 +578,52 @@
       ]
      },
      "Close": {
-      "status": "missing",
+      "status": "late",
       "scheduledLead": "Ben B.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Benjamin B.",
+        "submittedAt": "2026-11-12T00:20:47",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Best team player was Tessa. She held it down on bar while also getting chores done."
+         },
+         {
+          "kind": "bad",
+          "text": "Tardy/early-out note: Nobody was tardy."
+         },
+         {
+          "kind": "bad",
+          "text": "Xbro went perfect. Nobody struggled."
+         },
+         {
+          "kind": "good",
+          "text": "N/A"
+         },
+         {
+          "kind": "bad",
+          "text": "Recap submitted late — arrived 12:20 AM, after the 00:15 grace-period cutoff for Close."
+         }
+        ],
+        "answers": {
+         "Staffing": "Well staffed! It was PERFECT!",
+         "Line times / leaderboard": "Line times stayed around 2 minutes. We stayed at. 7th in the leaderboard.",
+         "Times throughout shift": "Tessa did a great job greeting customers at window today. ",
+         "Best team player / wear more hats": "Best team player was Tessa. She held it down on bar while also getting chores done. ",
+         "Tardy / early out": "Nobody was tardy. ",
+         "Safety hazards": "No hazards or concerns. ",
+         "Additional comments": "N/A",
+         "Closing checklist": "iPads plugged in, locked, and turned off of low power mode, verifones are covered by a rag, iPad locker is locked up, all doors & windows are locked, ALL keys are locked and put away, all money is locked up in the bottom safe + text has been sent, nightly food inventory is done + text has been sent, Alarm is about to be set and turned on",
+         "Xbro non-negotiables struggle": "Xbro went perfect. Nobody struggled.",
+         "Chef position feedback": "Chef position went great. Nothing was hindering flow. ",
+         "Closing: Verifone WiFi": "Yes",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log if nothing went bad, let us know :)": "Nothing went bad."
+        }
+       }
+      ]
      }
     },
     "Fireside": {
