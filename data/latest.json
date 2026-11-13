@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-13T00:09:05-08:00",
+ "generatedAt": "2026-11-13T04:20:07-08:00",
  "windowDays": 60,
  "shops": [
   "Antelope",
@@ -668,9 +668,43 @@
       ]
      },
      "Close": {
-      "status": "missing",
+      "status": "late",
       "scheduledLead": "Sidney B.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Sidney B.",
+        "submittedAt": "2026-11-13T00:31:12",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Kristina is a great team player and was working hard as always!!"
+         },
+         {
+          "kind": "good",
+          "text": "N/a"
+         },
+         {
+          "kind": "bad",
+          "text": "Recap submitted late — arrived 12:31 AM, after the 00:15 grace-period cutoff for Close."
+         }
+        ],
+        "answers": {
+         "Staffing": "Good staffing but rushes kept us on our toes!",
+         "Line times / leaderboard": "The line times were around 2 minutes and we were 4th or 5th on the leaderboard ",
+         "Best team player / wear more hats": "Kristina is a great team player and was working hard as always!!",
+         "Tardy / early out": "No",
+         "Safety hazards": "No",
+         "Additional comments": "N/a",
+         "Closing checklist": "iPads plugged in, locked, and turned off of low power mode, verifones are covered by a rag, iPad locker is locked up, all doors & windows are locked, ALL keys are locked and put away, all money is locked up in the bottom safe + text has been sent, nightly food inventory is done + text has been sent, Alarm is about to be set and turned on",
+         "Xbro non-negotiables struggle": "No xbro ",
+         "Chef position feedback": "Good",
+         "Closing: Verifone WiFi": "Yes",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log if nothing went bad, let us know :)": "Nothing!"
+        }
+       }
+      ]
      }
     },
     "Fireside": {
@@ -16582,7 +16616,7 @@
          "Staffing": "Well staffed! It was PERFECT!",
          "Line times / leaderboard": "line times were good we avg 1:23 throughout the shift and we were jumping from 3rd and 4th place on the leaderboard all day ",
          "Best team player / wear more hats": "jayden definitely was the best team player was on top of making drinks during our rushes and during down time was consistently making sure the stand got restocked/cleaned to be prepared. It was a really good crew everyone was a team player including landen, olivia, and joey all crushed it as well nobody hindered us at all or brought the team down ",
-         "Tardy / early out": "no one was tardy, and I sent Sidney B. home early ",
+         "Tardy / early out": "no one was tardy, and I sent Sidney b. home early ",
          "Safety hazards": "no",
          "Additional comments": "everyone was amazing help today, team player, and hardworking no complaints at all",
          "Closing checklist": "not the night lead",
@@ -52027,7 +52061,7 @@
          },
          {
           "kind": "bad",
-          "text": "Tardy/early-out note: Nobody tardy, Kyler went home a little early and so did Sidney B."
+          "text": "Tardy/early-out note: Nobody tardy, Kyler went home a little early and so did Sidney b."
          },
          {
           "kind": "bad",
@@ -52042,7 +52076,7 @@
          "Staffing": "Well staffed! It was PERFECT!",
          "Line times / leaderboard": "We averaged 1 and a half mins and stayed around 2-5",
          "Best team player / wear more hats": "LANDEN!! Made me a proud trainer today he came in and got straight to work, was on every position without question and always wanting and trying to help his crew ",
-         "Tardy / early out": "Nobody tardy, Kyler went home a little early and so did Sidney B. ",
+         "Tardy / early out": "Nobody tardy, Kyler went home a little early and so did Sidney b. ",
          "Safety hazards": "Nope",
          "Additional comments": "Nope ",
          "Closing checklist": "not the night lead",
