@@ -1,0 +1,189 @@
+{
+ "generatedAt": "2026-11-13T00:09:05-08:00",
+ "date": "2026-11-13",
+ "shops": {
+  "Antelope": {
+   "Open": {
+    "status": "pending",
+    "scheduledLead": "Isabelle M.",
+    "recaps": []
+   },
+   "Mid": {
+    "status": "pending",
+    "scheduledLead": "Darius W.",
+    "recaps": []
+   },
+   "Close": {
+    "status": "pending",
+    "scheduledLead": "Nico S.",
+    "recaps": []
+   }
+  },
+  "Fair Oaks": {
+   "Open": {
+    "status": "pending",
+    "scheduledLead": "Graci H.",
+    "recaps": []
+   },
+   "Mid": {
+    "status": "pending",
+    "scheduledLead": "Joel L.",
+    "recaps": []
+   },
+   "Close": {
+    "status": "pending",
+    "scheduledLead": "Brendin M.",
+    "recaps": []
+   }
+  },
+  "Auburn": {
+   "Open": {
+    "status": "pending",
+    "scheduledLead": "Greta G.",
+    "recaps": []
+   },
+   "Mid": {
+    "status": "pending",
+    "scheduledLead": "Grace H.",
+    "recaps": []
+   },
+   "Close": {
+    "status": "pending",
+    "scheduledLead": "Sully C.",
+    "recaps": []
+   }
+  },
+  "Mad": {
+   "Open": {
+    "status": "pending",
+    "scheduledLead": "Diego A.",
+    "recaps": []
+   },
+   "Mid": {
+    "status": "pending",
+    "scheduledLead": "Taylor M.",
+    "recaps": []
+   },
+   "Close": {
+    "status": "pending",
+    "scheduledLead": "Zackary O.",
+    "recaps": []
+   }
+  },
+  "Lichen": {
+   "Open": {
+    "status": "pending",
+    "scheduledLead": "Ash A.",
+    "recaps": []
+   },
+   "Mid": {
+    "status": "pending",
+    "scheduledLead": "Madysun C.",
+    "recaps": []
+   },
+   "Close": {
+    "status": "pending",
+    "scheduledLead": "Ben B.",
+    "recaps": []
+   }
+  },
+  "Fireside": {
+   "Open": {
+    "status": "pending",
+    "scheduledLead": "Taylor R.",
+    "recaps": []
+   },
+   "Mid": {
+    "status": "pending",
+    "scheduledLead": "Cory B.",
+    "recaps": []
+   },
+   "Close": {
+    "status": "pending",
+    "scheduledLead": "Jacob M.",
+    "recaps": []
+   }
+  },
+  "Manz": {
+   "Open": {
+    "status": "pending",
+    "scheduledLead": "Alyssa G.",
+    "recaps": []
+   },
+   "Mid": {
+    "status": "pending",
+    "scheduledLead": "Amari M.",
+    "recaps": []
+   },
+   "Close": {
+    "status": "pending",
+    "scheduledLead": "Desi S.",
+    "recaps": []
+   }
+  },
+  "OV": {
+   "Open": {
+    "status": "filed",
+    "scheduledLead": "Alexis W.",
+    "recaps": [
+     {
+      "submittedBy": "Chrisssss",
+      "submittedAt": "2026-11-13T00:04:22",
+      "late": false,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Aduhm"
+       },
+       {
+        "kind": "good",
+        "text": "Butter close!"
+       }
+      ],
+      "answers": {
+       "staffing": "Perfect (sometimes struggling, sometimes ahead- evened out",
+       "lineTimes": "We were 2 urggggg",
+       "teamPlayer": "Aduhm",
+       "tardy": "Nope",
+       "foodInventory": "No / In progress",
+       "safety": "Nope",
+       "xbro": "No xbro since it was a close!",
+       "comments": "Butter close!",
+       "closingVerifone": "Yes",
+       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
+       "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Naur"
+      }
+     }
+    ]
+   },
+   "Mid": {
+    "status": "pending",
+    "scheduledLead": "Myah N.",
+    "recaps": []
+   },
+   "Close": {
+    "status": "pending",
+    "scheduledLead": "Matthew W.",
+    "recaps": []
+   }
+  },
+  "Winding": {
+   "Open": {
+    "status": "pending",
+    "scheduledLead": "Carsen T.",
+    "recaps": []
+   },
+   "Mid": {
+    "status": "pending",
+    "scheduledLead": "Sophia D.",
+    "recaps": []
+   },
+   "Close": {
+    "status": "pending",
+    "scheduledLead": "Katelyn L.",
+    "recaps": []
+   }
+  }
+ }
+}
