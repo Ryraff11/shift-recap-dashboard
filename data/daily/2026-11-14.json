@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-14T00:07:35-08:00",
+ "generatedAt": "2026-11-14T04:16:46-08:00",
  "date": "2026-11-14",
  "shops": {
   "Antelope": {
@@ -123,9 +123,42 @@
   },
   "OV": {
    "Open": {
-    "status": "pending",
+    "status": "filed",
     "scheduledLead": "Aria W.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Alexis",
+      "submittedAt": "2026-11-14T00:54:10",
+      "late": false,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "heidi and sarah! they both were flexible on where I needed them"
+       },
+       {
+        "kind": "bad",
+        "text": "xbro was super chill, we werent very busy so I never found myself struggling"
+       },
+       {
+        "kind": "good",
+        "text": "no"
+       }
+      ],
+      "answers": {
+       "staffing": "Overstaffed (trying to find things to do, sent bodies home)",
+       "lineTimes": "5th",
+       "teamPlayer": "heidi and sarah! they both were flexible on where I needed them ",
+       "tardy": "no // sent home isa and allyson early ",
+       "foodInventory": "No / In progress",
+       "safety": "no",
+       "xbro": "xbro was super chill, we werent very busy so I never found myself struggling ",
+       "comments": "no",
+       "closingVerifone": "N/A ; Not closing shift lead",
+       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A"
+      }
+     }
+    ]
    },
    "Mid": {
     "status": "pending",
