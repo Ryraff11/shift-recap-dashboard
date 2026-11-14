@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-14T04:16:46-08:00",
+ "generatedAt": "2026-11-14T12:07:41-08:00",
  "windowDays": 7,
  "shops": [
   "Antelope",
@@ -74,9 +74,34 @@
     },
     "Mad": {
      "Open": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": "Devon A.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "DevonOpen",
+        "submittedAt": "2026-11-14T12:04:34",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Alex H. did a good job on bar"
+         }
+        ],
+        "answers": {
+         "Staffing": "Overstaffed (trying to find things to do, sent people home)",
+         "Line times / leaderboard": "We were at 4 most of the time ",
+         "Best team player / wear more hats": "Alex H. did a good job on bar ",
+         "Tardy / early out": "No one was tardy but I sent Izzy home early ",
+         "Morning SL: gravers feedback": "The grave was good ",
+         "Safety hazards": "No ",
+         "Xbro non-negotiables struggle": "No",
+         "Shift chore completed": "Yes ",
+         "Closing: Verifone WiFi": "N/A // Not on the night shift",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Yess"
+        }
+       }
+      ]
      },
      "Mid": {
       "status": "pending",
@@ -91,9 +116,37 @@
     },
     "Lichen": {
      "Open": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": "Ash A.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Ash A.",
+        "submittedAt": "2026-11-14T12:05:48",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "mianne! she was freaking flying on M3 and also such a speedy chef and was just super solid all around :)"
+         },
+         {
+          "kind": "good",
+          "text": "started slow and then got pretty consistent with rushes but light work no reaction, runners were pretty solid today and only had a few little detail mistakes but overall them reading back orders and getting the details in there and also coming in to help GSD when the line was ran/during down time was super helpful"
+         }
+        ],
+        "answers": {
+         "Staffing": "Well staffed! It was PERFECT!",
+         "Line times / leaderboard": "times: 54 seconds // leaderboard: 6th-7th",
+         "Times throughout shift": "jayden! :)",
+         "Best team player / wear more hats": "mianne! she was freaking flying on M3 and also such a speedy chef and was just super solid all around :)",
+         "Tardy / early out": "no :)",
+         "Safety hazards": "nothing :)",
+         "Additional comments": "started slow and then got pretty consistent with rushes but light work no reaction, runners were pretty solid today and only had a few little detail mistakes but overall them reading back orders and getting the details in there and also coming in to help GSD when the line was ran/during down time was super helpful",
+         "Closing checklist": "not the night lead",
+         "Closing: Verifone WiFi": "N/A // Not on the night shift"
+        }
+       }
+      ]
      },
      "Mid": {
       "status": "pending",
@@ -125,7 +178,7 @@
     },
     "Manz": {
      "Open": {
-      "status": "pending",
+      "status": "missing",
       "scheduledLead": "Alyssa G.",
       "recaps": []
      },
@@ -192,9 +245,32 @@
     },
     "Winding": {
      "Open": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": "Palina D.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Pauly",
+        "submittedAt": "2026-11-14T11:11:25",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "simone was great! she hopped on and caddied instantly \n\nsmall things with abi, she forgets small details on drinks and i think she tries to skip the harder ones lol but i would just walk over and click it for her. we talked about this during her 90 day review as well!"
+         }
+        ],
+        "answers": {
+         "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+         "Line times / leaderboard": "they weren’t the besttt but not the worst! random things like grinder issues slowed us down but bounced around middle of the leaderboard. slower morning for us! ",
+         "Team player / needed to step up": "simone was great! she hopped on and caddied instantly \n\nsmall things with abi, she forgets small details on drinks and i think she tries to skip the harder ones lol but i would just walk over and click it for her. we talked about this during her 90 day review as well!",
+         "Tardy / early out": "no! ",
+         "Safety hazards": "no!",
+         "Xbro / non-negotiables": "it was good! definitely helped the bars speed up ",
+         "Closing: Verifone WiFi": "N/A // Not on the night shift",
+         "Expired product": "4.5 ice cream"
+        }
+       }
+      ]
      },
      "Mid": {
       "status": "pending",
