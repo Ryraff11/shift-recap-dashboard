@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-14T18:10:31-08:00",
+ "generatedAt": "2026-11-15T00:08:24-08:00",
  "date": "2026-11-14",
  "shops": {
   "Antelope": {
@@ -40,7 +40,7 @@
     ]
    },
    "Close": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": "Daniel G.",
     "recaps": []
    }
@@ -125,7 +125,7 @@
     ]
    },
    "Close": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": "Maxwell",
     "recaps": []
    }
@@ -196,7 +196,7 @@
     ]
    },
    "Close": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": "Grace H.",
     "recaps": []
    }
@@ -265,7 +265,7 @@
     ]
    },
    "Close": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": "Zackary O.",
     "recaps": []
    }
@@ -305,12 +305,54 @@
     ]
    },
    "Mid": {
-    "status": "pending",
+    "status": "late",
     "scheduledLead": "Sidney B.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Sidney B.",
+      "submittedAt": "2026-11-14T20:00:27",
+      "late": true,
+      "shiftFromSchedule": true,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "The best team players were Mady, Kristina and Kyler. Landen and Gabe needed to wear more hats: \n- Near the beginning of the shift, I noticed that there was an order that came in thru the drive thru with two large drinks and one of them was discounted under ‘employee discount’. I saw that it said Landen took the order so I asked him and he confirmed he took the order. I asked why he put that and he said that he meant to click Birthday drink. I told him that we still can’t do a birthday drink for a large or an adult and he said he asked the guy for his ID and that he didn’t have the app. I told him that we still can’t do that which I would think he would know… and I also asked him if he knew the person and he said no. This just seemed off to me because I have seen previously that he has used his discount for friends/family in the drive thru and other leads have reported this and so it seemed to me that this was a situation of that happening again and I think it’s unfair for him to be abusing his discount in this way. I told Noelle about this during the shift since she was there also. \n- Gabe was scheduled to shut down machine 3 from 6-6:45pm. At around 6:47/6:50 I saw him clock out and walk out the door without saying anything. The bar still had sauce bottles not filled, the grind bin not with a new bag, the drain dirty, syrups not stocked, etc. he then came back in a couple minutes later and continued working on the bar. I asked him if he had clocked out and he said yes so I said he’s not allowed to keep working off the clock to which he said “yes that’s true”. I then asked him if there was a specific reason it took so long to shut down the bar. The reason I asked this was because it was machine 3, which has much less things on it to have to do when shutting down. It also was already softly shut down earlier in the day. I don’t feel like there was any reason he should have taken almost an hour and still not have so many things done. I also thought it was weird to clock out and continue, and that he should have just told me he didn’t finish in time or just finished up the last things since he already had gone over the 45 minutes. He then said “it was pretty hard to work around all of the boxes”. He is referring to a bunch of small, empty boxes that I had put on the floor while doing the food thaw. This makes no sense considering this was empty boxes that he easily could have pushed away, asked me to move, etc. they also were not in the way of the sink and he was doing dishes almost the entire shut down time. This felt like a way to try to blame it on me or have some type of attitude which I have experienced from him before. I also had broken down and gotten rid of the boxes about 20 minutes into him shutting down which I explained to him. I told him he can’t work off the clock and I would finish the tasks for him and then he left."
+       },
+       {
+        "kind": "bad",
+        "text": "Good"
+       },
+       {
+        "kind": "bad",
+        "text": "Hazard reported: The ceiling is leaking"
+       },
+       {
+        "kind": "good",
+        "text": "No"
+       },
+       {
+        "kind": "bad",
+        "text": "Recap submitted late — arrived 8:00 PM, after the 19:15 grace-period cutoff for Mid (shift set from the Deputy schedule)."
+       }
+      ],
+      "answers": {
+       "Staffing": "Well staffed! It was PERFECT!",
+       "Line times / leaderboard": "The line times were around 1-1:40 and the shift was around 3/4 on the leaderboard. We had some rushes and some slower times. ",
+       "Best team player / wear more hats": "The best team players were Mady, Kristina and Kyler. Landen and Gabe needed to wear more hats: \n- Near the beginning of the shift, I noticed that there was an order that came in thru the drive thru with two large drinks and one of them was discounted under ‘employee discount’. I saw that it said Landen took the order so I asked him and he confirmed he took the order. I asked why he put that and he said that he meant to click Birthday drink. I told him that we still can’t do a birthday drink for a large or an adult and he said he asked the guy for his ID and that he didn’t have the app. I told him that we still can’t do that which I would think he would know… and I also asked him if he knew the person and he said no. This just seemed off to me because I have seen previously that he has used his discount for friends/family in the drive thru and other leads have reported this and so it seemed to me that this was a situation of that happening again and I think it’s unfair for him to be abusing his discount in this way. I told Noelle about this during the shift since she was there also. \n- Gabe was scheduled to shut down machine 3 from 6-6:45pm. At around 6:47/6:50 I saw him clock out and walk out the door without saying anything. The bar still had sauce bottles not filled, the grind bin not with a new bag, the drain dirty, syrups not stocked, etc. he then came back in a couple minutes later and continued working on the bar. I asked him if he had clocked out and he said yes so I said he’s not allowed to keep working off the clock to which he said “yes that’s true”. I then asked him if there was a specific reason it took so long to shut down the bar. The reason I asked this was because it was machine 3, which has much less things on it to have to do when shutting down. It also was already softly shut down earlier in the day. I don’t feel like there was any reason he should have taken almost an hour and still not have so many things done. I also thought it was weird to clock out and continue, and that he should have just told me he didn’t finish in time or just finished up the last things since he already had gone over the 45 minutes. He then said “it was pretty hard to work around all of the boxes”. He is referring to a bunch of small, empty boxes that I had put on the floor while doing the food thaw. This makes no sense considering this was empty boxes that he easily could have pushed away, asked me to move, etc. they also were not in the way of the sink and he was doing dishes almost the entire shut down time. This felt like a way to try to blame it on me or have some type of attitude which I have experienced from him before. I also had broken down and gotten rid of the boxes about 20 minutes into him shutting down which I explained to him. I told him he can’t work off the clock and I would finish the tasks for him and then he left. \n",
+       "Tardy / early out": "No ",
+       "Safety hazards": "The ceiling is leaking ",
+       "Additional comments": "No",
+       "Closing checklist": "not the night lead",
+       "Xbro non-negotiables struggle": "Good ",
+       "Chef position feedback": "Good",
+       "Closing: Verifone WiFi": "N/A // Not on the night shift",
+       "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log if nothing went bad, let us know :)": "Nothing"
+      }
+     }
+    ]
    },
    "Close": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": "Ethan P.",
     "recaps": []
    }
@@ -364,12 +406,55 @@
     ]
    },
    "Mid": {
-    "status": "pending",
+    "status": "late",
     "scheduledLead": "Taylor R.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Taylor R.",
+      "submittedAt": "2026-11-14T19:22:17",
+      "late": true,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "bad",
+        "text": "Shift reported understaffed."
+       },
+       {
+        "kind": "good",
+        "text": "Izzy and Nico were flowing very well on bar !! The entire crew worked so hard and crushed it today with this insanely busy promo!!!"
+       },
+       {
+        "kind": "bad",
+        "text": "Tardy/early-out note: Niki , Kira and Nico, and Kaylee all extended their shifts!! I also had Justin Mayonette come in to help us out!"
+       },
+       {
+        "kind": "bad",
+        "text": "It was so so busy another body or two would’ve helped us get cars through the line quicker!! If we had another person who was a designated walkup order taker or someone who just focused on expo’ing / flexing and getting the stand back into shape it would’ve helped speed things up a lot because I had to hop off lots and do those small tasks around the stand and then the flow of things would slow down a bit \n\n\nOverall though it was such a busy day and such a successful promo!!! Literally from 1045 AM when I started to 7 PM when I was out of here there wasn’t a second of down time it was SLAMMED all day!!\n\nI didn’t slack my food I stayed on until 7 and just helped XBRO but LV said she will slack food on the close!"
+       },
+       {
+        "kind": "bad",
+        "text": "Recap submitted late — arrived 7:22 PM, after the 18:15 grace-period cutoff for Mid."
+       }
+      ],
+      "answers": {
+       "Staffing": "Understaffed (we were struggling most of the shift)",
+       "Line times / leaderboard": "I would say an average of 1 minute 30 - 2 mins + ",
+       "Best team player / wear more hats": "Izzy and Nico were flowing very well on bar !! The entire crew worked so hard and crushed it today with this insanely busy promo!!!",
+       "Tardy / early out": "Niki , Kira and Nico, and Kaylee all extended their shifts!! I also had Justin Mayonette come in to help us out! ",
+       "Xbro / non-negotiables": "it was one of the busiest shifts of my life today!!! I was truly running around everywhere! The crew was super locked in and hustled the entire time! I focused on tending to the bars, and I hopped off lots of grab walkup orders and helped window organize drinks / expo if needed! everyone moved with speed and urgency and it was such an amazing time!",
+       "Safety hazards": "No ",
+       "Additional comments": "It was so so busy another body or two would’ve helped us get cars through the line quicker!! If we had another person who was a designated walkup order taker or someone who just focused on expo’ing / flexing and getting the stand back into shape it would’ve helped speed things up a lot because I had to hop off lots and do those small tasks around the stand and then the flow of things would slow down a bit \n\n\nOverall though it was such a busy day and such a successful promo!!! Literally from 1045 AM when I started to 7 PM when I was out of here there wasn’t a second of down time it was SLAMMED all day!!\n\nI didn’t slack my food I stayed on until 7 and just helped XBRO but LV said she will slack food on the close! ",
+       "Fridge seals cleaned": "Done!",
+       "Closing: Verifone WiFi": "Not the night SL",
+       "Closing: food inventory texted to managers": "Not the night shift lead! ",
+       "Closing: safe/tills/iPads/doors checklist": "not the night SL",
+       "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Nothing I noticed on the mid shift!!!"
+      }
+     }
+    ]
    },
    "Close": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": "Elvina M.",
     "recaps": []
    }
@@ -414,7 +499,7 @@
     ]
    },
    "Mid": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": "Desi S.",
     "recaps": []
    },
@@ -441,6 +526,32 @@
        "Safety hazards": "no",
        "Xbro / non-negotiables": "Xbro was good i used it to clean and restock bars. Finish up preclose and help on window",
        "Closing: Verifone WiFi": "N/A // Not on the night shift"
+      }
+     },
+     {
+      "submittedBy": "Lydia H.",
+      "submittedAt": "2026-11-14T22:55:00",
+      "late": false,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Molly best team player!"
+       },
+       {
+        "kind": "bad",
+        "text": "Hazard reported: Ice machine randomly turn med off but I turned it back on."
+       }
+      ],
+      "answers": {
+       "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+       "Line times / leaderboard": "Around 2 minutes the whole shift, all over the board ",
+       "Best team player / wear more hats": "Molly best team player!",
+       "Tardy / early out": "Nope!",
+       "Safety hazards": "Ice machine randomly turn med off but I turned it back on.",
+       "Xbro / non-negotiables": "Xbro not needed",
+       "Closing: Verifone WiFi": "Yes",
+       "*MID & NIGHT SL ONLY* text managers the number of food & bakery items thawing in the fridge, and ready to go for tomorrow! Do this for each type of bakery & food item!": "done! just texted you guys!"
       }
      }
     ]
@@ -518,14 +629,39 @@
     ]
    },
    "Mid": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": "Christopher H.",
     "recaps": []
    },
    "Close": {
-    "status": "pending",
+    "status": "filed",
     "scheduledLead": "Isa V.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Isabelle",
+      "submittedAt": "2026-11-14T23:09:46",
+      "late": false,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Adam, just being a good closing partner"
+       }
+      ],
+      "answers": {
+       "staffing": "Perfect (sometimes struggling, sometimes ahead- evened out",
+       "lineTimes": "We were at 2-4 from 6-7 with I believe 1:20 sec av ",
+       "teamPlayer": "Adam, just being a good closing partner ",
+       "tardy": "Na ",
+       "foodInventory": "No / In progress",
+       "safety": "Na ",
+       "xbro": "Na ",
+       "closingVerifone": "Yes",
+       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A",
+       "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Yes nonfat about 3 and half jugs"
+      }
+     }
+    ]
    }
   },
   "Winding": {
@@ -588,9 +724,40 @@
     ]
    },
    "Close": {
-    "status": "pending",
+    "status": "filed",
     "scheduledLead": "Emma O.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Emma O.",
+      "submittedAt": "2026-11-14T23:04:51",
+      "late": false,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Only worked with Khamari, but he did good."
+       },
+       {
+        "kind": "bad",
+        "text": "Hazard reported: Line buster 5 card reader was tweaking. Going from black to white speed super fast and charging/fidgeting with it did not help."
+       },
+       {
+        "kind": "bad",
+        "text": "No coaching."
+       }
+      ],
+      "answers": {
+       "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+       "Line times / leaderboard": "Line times were great. Low on boards ",
+       "Team player / needed to step up": "Only worked with Khamari, but he did good. ",
+       "Tardy / early out": "No ",
+       "Safety hazards": "Line buster 5 card reader was tweaking. Going from black to white speed super fast and charging/fidgeting with it did not help. ",
+       "Xbro / non-negotiables": "No coaching. ",
+       "Closing: Verifone WiFi": "Yes",
+       "Expired product": "No "
+      }
+     }
+    ]
    }
   }
  }
