@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-15T00:08:24-08:00",
+ "generatedAt": "2026-11-15T04:17:04-08:00",
  "date": "2026-11-14",
  "shops": {
   "Antelope": {
@@ -196,9 +196,50 @@
     ]
    },
    "Close": {
-    "status": "missing",
+    "status": "late",
     "scheduledLead": "Grace H.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Grace",
+      "submittedAt": "2026-11-15T00:20:05",
+      "late": true,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Margot and Kaelei were my biggest team players. They both worked hard the whole shift getting chores done, staying productive and killing it on their positions."
+       },
+       {
+        "kind": "good",
+        "text": "Culture competition: 3 jugs of ice cream mix"
+       },
+       {
+        "kind": "bad",
+        "text": "Tardy/early-out note: Sent Kaelei home at 11"
+       },
+       {
+        "kind": "bad",
+        "text": "Hazard reported: Pipe under drive bar broke again"
+       },
+       {
+        "kind": "good",
+        "text": "Na"
+       }
+      ],
+      "answers": {
+       "Staffing": "Overstaffed! We didn't need the xtra bodies/sent bodies home!",
+       "Line times / leaderboard": "Overall pretty solid, stayed in top 4 majority of shift. Sent Kaelei home at 11",
+       "Safety hazards": "Pipe under drive bar broke again",
+       "Xbro / non-negotiables": "Na",
+       "Closing: Verifone WiFi": "Yes",
+       "Tardy / early-out": "Sent Kaelei home at 11",
+       "Expired milk check": "Needed some rearranging/stuff was off!",
+       "Additional comments": "Na",
+       "Best team player / wear more hats": "Margot and Kaelei were my biggest team players. They both worked hard the whole shift getting chores done, staying productive and killing it on their positions. ",
+       "Culture competition": "3 jugs of ice cream mix"
+      }
+     }
+    ]
    }
   },
   "Mad": {
@@ -265,9 +306,47 @@
     ]
    },
    "Close": {
-    "status": "missing",
+    "status": "late",
     "scheduledLead": "Zackary O.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Zackary",
+      "submittedAt": "2026-11-15T00:19:40",
+      "late": true,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Everyone did good"
+       },
+       {
+        "kind": "bad",
+        "text": "Hazard reported: The back fridge magnets"
+       },
+       {
+        "kind": "good",
+        "text": "Rag bags ran out and I’m not sure where to find them."
+       },
+       {
+        "kind": "bad",
+        "text": "Recap submitted late — arrived 12:19 AM, after the 00:15 grace-period cutoff for Close."
+       }
+      ],
+      "answers": {
+       "Staffing": "​​Perfect (sometimes struggling, sometimes ahead - evened out)",
+       "Line times / leaderboard": "Good day at top",
+       "Best team player / wear more hats": "Everyone did good",
+       "Tardy / early out": "No",
+       "Safety hazards": "The back fridge magnets ",
+       "Additional comments": "Rag bags ran out and I’m not sure where to find them.",
+       "Xbro non-negotiables struggle": "No Edgar and phenix did great",
+       "Shift chore completed": "Yes",
+       "Closing: Verifone WiFi": "Yes",
+       "Closing: bakery item inventory": "Yes",
+       "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "None"
+      }
+     }
+    ]
    }
   },
   "Lichen": {
@@ -352,9 +431,43 @@
     ]
    },
    "Close": {
-    "status": "missing",
+    "status": "late",
     "scheduledLead": "Ethan P.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Ethan P.",
+      "submittedAt": "2026-11-15T00:30:14",
+      "late": true,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Tessa was fantastic today as usual on any close with her."
+       },
+       {
+        "kind": "good",
+        "text": "None."
+       },
+       {
+        "kind": "bad",
+        "text": "Recap submitted late — arrived 12:30 AM, after the 00:15 grace-period cutoff for Close."
+       }
+      ],
+      "answers": {
+       "Staffing": "Well staffed! It was PERFECT!",
+       "Line times / leaderboard": "Times were OK we weren’t all too.",
+       "Times throughout shift": "Faith!",
+       "Best team player / wear more hats": "Tessa was fantastic today as usual on any close with her.",
+       "Tardy / early out": "None.",
+       "Safety hazards": "None.",
+       "Additional comments": "None.",
+       "Closing checklist": "iPads plugged in, locked, and turned off of low power mode, verifones are covered by a rag, iPad locker is locked up, all doors & windows are locked, ALL keys are locked and put away, all money is locked up in the bottom safe + text has been sent, nightly food inventory is done + text has been sent, Alarm is about to be set and turned on",
+       "Xbro non-negotiables struggle": "N/A",
+       "Chef position feedback": "We had 2 to 3 items all night, so not much chef.",
+       "Closing: Verifone WiFi": "Yes"
+      }
+     }
+    ]
    }
   },
   "Fireside": {
