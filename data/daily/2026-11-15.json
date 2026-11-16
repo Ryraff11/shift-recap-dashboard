@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-15T18:07:51-08:00",
+ "generatedAt": "2026-11-16T00:12:33-08:00",
  "date": "2026-11-15",
  "shops": {
   "Antelope": {
@@ -40,12 +40,43 @@
     ]
    },
    "Mid": {
-    "status": "pending",
+    "status": "filed",
     "scheduledLead": "Johnathan G.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Johnathan G.",
+      "submittedAt": "2026-11-15T18:09:06",
+      "late": false,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Kc was awesome today she got a ton done around the stand and didnt complain once, ella was also great today in terms of working but complained about her position a few times"
+       },
+       {
+        "kind": "bad",
+        "text": "Tardy/early-out note: I was late today unfortunately, I thought I closed after looking at the wrong weeks schedule Im very sorry and it wont happen again, I sent a few people home early at different times, generally around 45-50 min early"
+       }
+      ],
+      "answers": {
+       "Staffing": "Good staffing but rushes kept us on our toes!",
+       "Line times / leaderboard": "Line tome were under a min all day, we were too two as well",
+       "Team player / needed to step up": "Kc was awesome today she got a ton done around the stand and didnt complain once, ella was also great today in terms of working but complained about her position a few times",
+       "Tardy / early out": "I was late today unfortunately, I thought I closed after looking at the wrong weeks schedule Im very sorry and it wont happen again, I sent a few people home early at different times, generally around 45-50 min early ",
+       "Food inventory sheet": "Yes",
+       "Safety hazards": "One of the mop sticks broke",
+       "Xbro / non-negotiables": "It went great always had drinks prepped and flowing",
+       "Closing: Verifone WiFi": "N/A ; Not closing shift lead",
+       "Closing checklist": "Cash Pull (Done after bank run by bags/bank person and at 6pm by mid SL), Split Tips, Chore Completed, Check in with next Shift Lead (Low on product, how is the crew, how are the vibes, etc), Was parking lot trash picked up?",
+       "Food prepper, did you fill out the food inventory sheet?": "Yes Chef!",
+       "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No",
+       "Who killed it on window/service today?": "Marlena was awesome on window and with the customers"
+      }
+     }
+    ]
    },
    "Close": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": "Ariana V.",
     "recaps": []
    }
@@ -124,7 +155,7 @@
     ]
    },
    "Close": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": "Joel L.",
     "recaps": []
    }
@@ -159,12 +190,51 @@
     ]
    },
    "Mid": {
-    "status": "pending",
+    "status": "late",
     "scheduledLead": "Greta G.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Greta G.",
+      "submittedAt": "2026-11-15T20:24:02",
+      "late": true,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "bad",
+        "text": "Shift reported understaffed."
+       },
+       {
+        "kind": "good",
+        "text": "Jill and Lily absolutely locked into today and killed it.  10/10 energy on shift today from both of them couldn’t have made it through the shift without then"
+       },
+       {
+        "kind": "bad",
+        "text": "Tardy/early-out note: Lucy was 1 minute late back from 10"
+       },
+       {
+        "kind": "bad",
+        "text": "Hazard reported: M1 pipe under bar twisted during open but wasn’t leaking unless it was pushed to the side.  Just had to be careful with the ice bin it just needs to get secured"
+       },
+       {
+        "kind": "bad",
+        "text": "Recap submitted late — arrived 8:24 PM, after the 18:15 grace-period cutoff for Mid."
+       }
+      ],
+      "answers": {
+       "Staffing": "Understaffed! Def could've used an xtra body or more!",
+       "Line times / leaderboard": "Top 3 in the green until 3:00 we dropped down to 4 bodies (understaffed here there was also call outs though! dropped into the red the rest of the shift as we only had 2 bodies inside and 1 outside (breaks) ",
+       "Safety hazards": "M1 pipe under bar twisted during open but wasn’t leaking unless it was pushed to the side.  Just had to be careful with the ice bin it just needs to get secured",
+       "Xbro / non-negotiables": "Xbro went great,  only ran it till 3pm.  Great communication from everyone ",
+       "Closing: Verifone WiFi": "Not the night SL",
+       "Tardy / early-out": "Lucy was 1 minute late back from 10",
+       "Expired milk check": "DONE! It all looked good!",
+       "Best team player / wear more hats": "Jill and Lily absolutely locked into today and killed it.  10/10 energy on shift today from both of them couldn’t have made it through the shift without then"
+      }
+     }
+    ]
    },
    "Close": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": "Grace H.",
     "recaps": []
    }
@@ -239,9 +309,48 @@
     ]
    },
    "Close": {
-    "status": "pending",
+    "status": "late",
     "scheduledLead": "Kylie H.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Kylie,",
+      "submittedAt": "2026-11-16T00:06:43",
+      "late": true,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "taylor was amazing as well as edgar. those were the only 2 i was with. they were both great with cleaning & stocking in down time, & just staying productive overall throughout the shift"
+       },
+       {
+        "kind": "bad",
+        "text": "Tardy/early-out note: no. i had izzy do maintenance at 5 instead of 645 though"
+       },
+       {
+        "kind": "bad",
+        "text": "Hazard reported: no, but the drain under the tri sink has not been getting cleaned on graves. i cleaned it on the shift & it was absolutely foul & i think the last time it was cleaned was when i cleaned it 2 sundays ago on my other night shift"
+       },
+       {
+        "kind": "good",
+        "text": "no"
+       }
+      ],
+      "answers": {
+       "Staffing": "​​Perfect (sometimes struggling, sometimes ahead - evened out)",
+       "Line times / leaderboard": "usually green or yellow. mostly green ",
+       "Best team player / wear more hats": "taylor was amazing as well as edgar. those were the only 2 i was with. they were both great with cleaning & stocking in down time, & just staying productive overall throughout the shift ",
+       "Tardy / early out": "no. i had izzy do maintenance at 5 instead of 645 though",
+       "Morning SL: gravers feedback": "n/a",
+       "Safety hazards": "no, but the drain under the tri sink has not been getting cleaned on graves. i cleaned it on the shift & it was absolutely foul & i think the last time it was cleaned was when i cleaned it 2 sundays ago on my other night shift",
+       "Additional comments": "no",
+       "Xbro non-negotiables struggle": "no",
+       "Shift chore completed": "yes. i also did the mid chore for today because it wasn’t done ",
+       "Closing: Verifone WiFi": "Yes",
+       "Closing: bakery item inventory": "Yes",
+       "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "yes a crate total of ice cream mix. there was also 4 in the fridge inside that nobody had noticed it was expired & was being used.. it was dated to expire on 11/8….."
+      }
+     }
+    ]
    }
   },
   "Lichen": {
@@ -279,12 +388,12 @@
     ]
    },
    "Mid": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": "Sidney B.",
     "recaps": []
    },
    "Close": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": "Ben B.",
     "recaps": []
    }
@@ -334,14 +443,77 @@
     ]
    },
    "Mid": {
-    "status": "pending",
+    "status": "late",
     "scheduledLead": "Madison F.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Furton",
+      "submittedAt": "2026-11-15T18:28:37",
+      "late": true,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Tay and Vi did awesome today"
+       },
+       {
+        "kind": "good",
+        "text": "Mid was a good flow of custies, not enough to send someone home not so much to where we couldnt get everything done. \n\nI had Bri, Ava, and Cooper on bar. They all needed help with steaming but all taking in the info well. Building familiarity with hot teas etc.\n\nShowed cooper how to clean the oven.\n\n\nHanded out stickers all day and we still have a good amount left!\n\nBut mid was good tay helped so much with pre close and vi did great running outside\n\nBri and ava did lose a life today sadly :’("
+       },
+       {
+        "kind": "bad",
+        "text": "Recap submitted late — arrived 6:28 PM, after the 18:15 grace-period cutoff for Mid."
+       }
+      ],
+      "answers": {
+       "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+       "Line times / leaderboard": "About 1:10 mid to top board",
+       "Best team player / wear more hats": "Tay and Vi did awesome today",
+       "Tardy / early out": "No but i did forget to clock back in from my 10 oopsies",
+       "Xbro / non-negotiables": "Xbro was decent today, was checking quality heavy during the day today",
+       "Safety hazards": "Nope",
+       "Additional comments": "Mid was a good flow of custies, not enough to send someone home not so much to where we couldnt get everything done. \n\nI had Bri, Ava, and Cooper on bar. They all needed help with steaming but all taking in the info well. Building familiarity with hot teas etc.\n\nShowed cooper how to clean the oven.\n\n\nHanded out stickers all day and we still have a good amount left!\n\nBut mid was good tay helped so much with pre close and vi did great running outside\n\nBri and ava did lose a life today sadly :’(",
+       "Fridge seals cleaned": "Done!",
+       "Closing: Verifone WiFi": "Not the night SL",
+       "Closing: safe/tills/iPads/doors checklist": "not the night SL"
+      }
+     }
+    ]
    },
    "Close": {
-    "status": "pending",
+    "status": "filed",
     "scheduledLead": "Kaylee C.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Kaylee",
+      "submittedAt": "2026-11-15T22:11:39",
+      "late": false,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Jacob was the goat"
+       },
+       {
+        "kind": "good",
+        "text": "Na"
+       }
+      ],
+      "answers": {
+       "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+       "Line times / leaderboard": "We were about 3 mins all night we were in the middle closer to the top",
+       "Best team player / wear more hats": "Jacob was the goat",
+       "Tardy / early out": "Nope",
+       "Xbro / non-negotiables": "Na xbro was chill",
+       "Safety hazards": "Na",
+       "Additional comments": "Na",
+       "Fridge seals cleaned": "Done!",
+       "Closing: Verifone WiFi": "Yes",
+       "Closing: food inventory texted to managers": "Yes",
+       "Closing: safe/tills/iPads/doors checklist": "All good !"
+      }
+     }
+    ]
    }
   },
   "Manz": {
@@ -412,9 +584,40 @@
     ]
    },
    "Close": {
-    "status": "pending",
+    "status": "filed",
     "scheduledLead": "Madison W.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Madison W.",
+      "submittedAt": "2026-11-15T23:19:29",
+      "late": false,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "aj i guessssss lol no he killed it!"
+       },
+       {
+        "kind": "bad",
+        "text": "Hazard reported: there is a leak in the ceiling by the back door above the mini freezer. it’s just a drip so i put a pitcher on top of the freezer and notified the managers!"
+       },
+       {
+        "kind": "bad",
+        "text": "no struggle toniiiight"
+       }
+      ],
+      "answers": {
+       "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+       "Line times / leaderboard": "1-4",
+       "Best team player / wear more hats": "aj i guessssss lol no he killed it! ",
+       "Tardy / early out": "nope! ",
+       "Safety hazards": "there is a leak in the ceiling by the back door above the mini freezer. it’s just a drip so i put a pitcher on top of the freezer and notified the managers! ",
+       "Xbro / non-negotiables": "no struggle toniiiight ",
+       "Closing: Verifone WiFi": "Yes",
+       "*MID & NIGHT SL ONLY* text managers the number of food & bakery items thawing in the fridge, and ready to go for tomorrow! Do this for each type of bakery & food item!": "done! just texted you guys!"
+      }
+     }
+    ]
    }
   },
   "OV": {
@@ -495,9 +698,39 @@
     ]
    },
    "Close": {
-    "status": "pending",
+    "status": "filed",
     "scheduledLead": "Aria W.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Ariana",
+      "submittedAt": "2026-11-15T22:28:39",
+      "late": false,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Everyone did great Kelli and Allyson helped a lot with doing closing chores to help us out."
+       },
+       {
+        "kind": "good",
+        "text": "I prepped the big nog for tomorrows drop"
+       }
+      ],
+      "answers": {
+       "staffing": "Perfect (sometimes struggling, sometimes ahead- evened out",
+       "lineTimes": "4th ",
+       "teamPlayer": "Everyone did great Kelli and Allyson helped a lot with doing closing chores to help us out. ",
+       "tardy": "No ",
+       "foodInventory": "Yes",
+       "safety": "No",
+       "xbro": "No",
+       "comments": "I prepped the big nog for tomorrows drop ",
+       "closingVerifone": "Yes",
+       "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!",
+       "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No but some none fat does tomorrow night"
+      }
+     }
+    ]
    }
   },
   "Winding": {
@@ -532,12 +765,40 @@
     ]
    },
    "Mid": {
-    "status": "pending",
+    "status": "late",
     "scheduledLead": "Palina D.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Pauly",
+      "submittedAt": "2026-11-15T18:34:16",
+      "late": true,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "simone! she extended her shift to help cover the call out and is always a super solid body \n\nno coaching moments today"
+       },
+       {
+        "kind": "bad",
+        "text": "Recap submitted late — arrived 6:34 PM, after the 18:15 grace-period cutoff for Mid."
+       }
+      ],
+      "answers": {
+       "Staffing": "Good staffing but rushes kept us on our toes!",
+       "Line times / leaderboard": "they were mid! bounced around the middle of the leaderboard, but stayed green. i sent emma home early which came back to bite us a wee bit. but our rushes come in spurts, so it wasn’t too bad ",
+       "Team player / needed to step up": "simone! she extended her shift to help cover the call out and is always a super solid body \n\nno coaching moments today ",
+       "Tardy / early out": "no!",
+       "Safety hazards": "no!",
+       "Xbro / non-negotiables": "it was good when we were able to actually run it ! \n\nm",
+       "Closing: Verifone WiFi": "N/A // Not on the night shift",
+       "Expired product": "no! ",
+       "*NOV COMP* Did anyone lose any lives? Who had the most drinks ready when the car got to the window?": "tmr!"
+      }
+     }
+    ]
    },
    "Close": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": "Sophia D.",
     "recaps": []
    }
