@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-17T00:08:29-08:00",
+ "generatedAt": "2026-11-17T04:19:36-08:00",
  "date": "2026-11-17",
  "shops": {
   "Antelope": {
@@ -77,9 +77,36 @@
     "recaps": []
    },
    "Mid": {
-    "status": "pending",
+    "status": "filed",
     "scheduledLead": "Sidney B.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Unknown",
+      "submittedAt": "2026-11-17T00:14:50",
+      "late": false,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "tina is so hardworking and uncivil speedy and kind! such a breeze to work with her always"
+       },
+       {
+        "kind": "good",
+        "text": "nope"
+       }
+      ],
+      "answers": {
+       "Staffing": "Well staffed! It was PERFECT!",
+       "Line times / leaderboard": "we stayed in the :55 - 1:15 range for mallory of the shift! \nalso started in the 3 spot mainly",
+       "Best team player / wear more hats": "tina is so hardworking and uncivil speedy and kind! such a breeze to work with her always",
+       "Tardy / early out": "nope",
+       "Safety hazards": "nope",
+       "Additional comments": "nope",
+       "Closing checklist": "iPads plugged in, locked, and turned off of low power mode, verifones are covered by a rag, iPad locker is locked up, all doors & windows are locked, ALL keys are locked and put away, all money is locked up in the bottom safe + text has been sent, nightly food inventory is done + text has been sent, Alarm is about to be set and turned on",
+       "Closing: Verifone WiFi": "Yes"
+      }
+     }
+    ]
    },
    "Close": {
     "status": "pending",
