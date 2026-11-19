@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-19T00:09:57-08:00",
+ "generatedAt": "2026-11-19T04:18:29-08:00",
  "windowDays": 60,
  "shops": [
   "Antelope",
@@ -610,9 +610,46 @@
       ]
      },
      "Close": {
-      "status": "missing",
+      "status": "late",
       "scheduledLead": "Gabriel Z.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Gabriel Z.",
+        "submittedAt": "2026-11-19T00:29:15",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Jayden is always just so goated, but Tessa is a way better closer compared to the last time I closed with her! She’s really stepped up her game in a pretty short time I think!"
+         },
+         {
+          "kind": "bad",
+          "text": "Hazard reported: When Jayden cleaned her frost tonight (freeze 6) it genuinely smelled like creamed corn to me. I know we clean them on a regular basis, but I think when it’s slow we really aren’t using that frost machine as much as our other machines with dairy in them. I don’t know that it’s a perfect solution, but I think we should have one of the leads just check its quality every day or something different than letting milk just go bad in that machine semi regularly"
+         },
+         {
+          "kind": "good",
+          "text": "Nothing to note! Smooth close tonight"
+         },
+         {
+          "kind": "bad",
+          "text": "Recap submitted late — arrived 12:29 AM, after the 00:15 grace-period cutoff for Close."
+         }
+        ],
+        "answers": {
+         "Staffing": "Well staffed! It was PERFECT!",
+         "Line times / leaderboard": "Our times were decent tonight! Jayden and Tessa had the custies moving anytime they showed up!",
+         "Times throughout shift": "Tessa!",
+         "Best team player / wear more hats": "Jayden is always just so goated, but Tessa is a way better closer compared to the last time I closed with her! She’s really stepped up her game in a pretty short time I think!",
+         "Tardy / early out": "No one late, no one home early",
+         "Safety hazards": "When Jayden cleaned her frost tonight (freeze 6) it genuinely smelled like creamed corn to me. I know we clean them on a regular basis, but I think when it’s slow we really aren’t using that frost machine as much as our other machines with dairy in them. I don’t know that it’s a perfect solution, but I think we should have one of the leads just check its quality every day or something different than letting milk just go bad in that machine semi regularly",
+         "Additional comments": "Nothing to note! Smooth close tonight",
+         "Closing checklist": "iPads plugged in, locked, and turned off of low power mode, verifones are covered by a rag, iPad locker is locked up, all doors & windows are locked, ALL keys are locked and put away, all money is locked up in the bottom safe + text has been sent, nightly food inventory is done + text has been sent, Alarm is about to be set and turned on",
+         "Closing: Verifone WiFi": "Yes",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log if nothing went bad, let us know :)": "Nothing that I saw tonight!"
+        }
+       }
+      ]
      }
     },
     "Fireside": {
@@ -21950,7 +21987,7 @@
          "Staffing": "Well staffed! It was PERFECT!",
          "Line times / leaderboard": "line times were good we avg 1:23 throughout the shift and we were jumping from 3rd and 4th place on the leaderboard all day ",
          "Best team player / wear more hats": "jayden definitely was the best team player was on top of making drinks during our rushes and during down time was consistently making sure the stand got restocked/cleaned to be prepared. It was a really good crew everyone was a team player including landen, olivia, and joey all crushed it as well nobody hindered us at all or brought the team down ",
-         "Tardy / early out": "no one was tardy, and I sent Sidney B. home early ",
+         "Tardy / early out": "no one was tardy, and I sent Sidney b. home early ",
          "Safety hazards": "no",
          "Additional comments": "everyone was amazing help today, team player, and hardworking no complaints at all",
          "Closing checklist": "not the night lead",
