@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-20T00:11:06-08:00",
+ "generatedAt": "2026-11-20T04:19:31-08:00",
  "date": "2026-11-19",
  "shops": {
   "Antelope": {
@@ -284,6 +284,28 @@
        "Best team player / wear more hats": "Anna🤍",
        "Culture competition": "12 NF,  8 2%"
       }
+     },
+     {
+      "submittedBy": "Sully",
+      "submittedAt": "2026-11-20T00:18:08",
+      "late": true,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Paulina was great she hasnt been feeling well but i can always trust her to get things done and keep her bar clean!"
+       }
+      ],
+      "answers": {
+       "Staffing": "Well staffed! It was PERFECT!",
+       "Line times / leaderboard": "They could’ve been better hot drinks were slowing us down, we were pretty low on back stock which was slowing us down too. We were around 5th place most of the night with a 1:54 avg time on cars when I wasn’t running and grabbing them in advance an average of 54-1:20 when i did grab the orders",
+       "Safety hazards": "Nada",
+       "Xbro / non-negotiables": "N/a",
+       "Closing: Verifone WiFi": "Yes",
+       "Tardy / early-out": "Nada",
+       "Expired milk check": "DONE! It all looked good!",
+       "Best team player / wear more hats": "Paulina was great she hasnt been feeling well but i can always trust her to get things done and keep her bar clean!"
+      }
      }
     ]
    }
@@ -464,9 +486,43 @@
     ]
    },
    "Close": {
-    "status": "missing",
+    "status": "late",
     "scheduledLead": "Ethan P.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Ethan P.",
+      "submittedAt": "2026-11-20T00:22:45",
+      "late": true,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Tessa on the close but they people on the mid set us up for absolute success."
+       },
+       {
+        "kind": "good",
+        "text": "None"
+       },
+       {
+        "kind": "bad",
+        "text": "Recap submitted late — arrived 12:22 AM, after the 00:15 grace-period cutoff for Close."
+       }
+      ],
+      "answers": {
+       "Staffing": "Overstaffed (trying to find things to do, sent people home)",
+       "Line times / leaderboard": "Solid times, wasn’t busy.",
+       "Times throughout shift": "Tessa and also myself I will say",
+       "Best team player / wear more hats": "Tessa on the close but they people on the mid set us up for absolute success.",
+       "Tardy / early out": "None",
+       "Safety hazards": "None",
+       "Additional comments": "None",
+       "Closing checklist": "iPads plugged in, locked, and turned off of low power mode, verifones are covered by a rag, iPad locker is locked up, all doors & windows are locked, ALL keys are locked and put away, all money is locked up in the bottom safe + text has been sent, nightly food inventory is done + text has been sent, Alarm is about to be set and turned on, not the night lead",
+       "Xbro non-negotiables struggle": "None",
+       "Chef position feedback": "Had little to no food",
+       "Closing: Verifone WiFi": "Yes"
+      }
+     }
+    ]
    }
   },
   "Fireside": {
