@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-21T00:07:50-08:00",
+ "generatedAt": "2026-11-21T04:17:16-08:00",
  "windowDays": 7,
  "shops": [
   "Antelope",
@@ -607,9 +607,46 @@
       ]
      },
      "Close": {
-      "status": "missing",
+      "status": "late",
       "scheduledLead": "Gabriel Z.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Gabriel Z.",
+        "submittedAt": "2026-11-21T00:26:43",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Tessa is seriously slaying these closes!! Kym also had an amazing first shift back!"
+         },
+         {
+          "kind": "bad",
+          "text": "Tardy/early-out note: Kym was like a minute late, but she messaged me giving me a heads up she was stuck in traffic"
+         },
+         {
+          "kind": "good",
+          "text": "Overall a smooth close! Things should be all set for Courtney in the morning :)"
+         },
+         {
+          "kind": "bad",
+          "text": "Recap submitted late — arrived 12:26 AM, after the 00:15 grace-period cutoff for Close."
+         }
+        ],
+        "answers": {
+         "Staffing": "Well staffed! It was PERFECT!",
+         "Line times / leaderboard": "Our times were decent through out the night! I think we could’ve gotten customers through a bit faster, but we were still top half of the board!",
+         "Times throughout shift": "Kym!",
+         "Best team player / wear more hats": "Tessa is seriously slaying these closes!! Kym also had an amazing first shift back!",
+         "Tardy / early out": "Kym was like a minute late, but she messaged me giving me a heads up she was stuck in traffic",
+         "Safety hazards": "Nothing to note tonight!",
+         "Additional comments": "Overall a smooth close! Things should be all set for Courtney in the morning :)",
+         "Closing checklist": "iPads plugged in, locked, and turned off of low power mode, verifones are covered by a rag, iPad locker is locked up, all doors & windows are locked, ALL keys are locked and put away, all money is locked up in the bottom safe + text has been sent, nightly food inventory is done + text has been sent, Alarm is about to be set and turned on",
+         "Closing: Verifone WiFi": "Yes",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log if nothing went bad, let us know :)": "Nothing that I saw tonight!"
+        }
+       }
+      ]
      }
     },
     "Fireside": {
