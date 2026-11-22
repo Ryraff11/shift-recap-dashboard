@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-22T00:08:30-08:00",
+ "generatedAt": "2026-11-22T04:17:12-08:00",
  "windowDays": 60,
  "shops": [
   "Antelope",
@@ -505,9 +505,48 @@
       ]
      },
      "Close": {
-      "status": "missing",
+      "status": "late",
       "scheduledLead": "Taylor M.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Taylor",
+        "submittedAt": "2026-11-22T00:24:28",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Zach and Dom did great. Everyone did good though no complaints"
+         },
+         {
+          "kind": "bad",
+          "text": "Tardy/early-out note: I sent Phenix and Izzy home we were super slow until like 10:30 then we got busy up until midnight"
+         },
+         {
+          "kind": "good",
+          "text": "good night!"
+         },
+         {
+          "kind": "bad",
+          "text": "Recap submitted late — arrived 12:24 AM, after the 00:15 grace-period cutoff for Close."
+         }
+        ],
+        "answers": {
+         "Staffing": "​​Perfect (sometimes struggling, sometimes ahead - evened out)",
+         "Line times / leaderboard": "They were good! Top 3 but then at 10 ish we got rlly busy and dropped to like 5 but made our way back up. Drinks went out smoothly and happy customers ",
+         "Best team player / wear more hats": "Zach and Dom did great. Everyone did good though no complaints ",
+         "Tardy / early out": "I sent Phenix and Izzy home we were super slow until like 10:30 then we got busy up until midnight ",
+         "Morning SL: gravers feedback": "Na ",
+         "Safety hazards": "Nope ",
+         "Additional comments": "good night! ",
+         "Xbro non-negotiables struggle": "Nope ",
+         "Shift chore completed": "Yes….it was gross the outside trash had hella liquid and Zach and me both had to carry it and liquid went everywhere lol. ",
+         "Closing: Verifone WiFi": "Yes",
+         "Closing: bakery item inventory": "Yes",
+         "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "None"
+        }
+       }
+      ]
      }
     },
     "Lichen": {
