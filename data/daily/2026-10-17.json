@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-22T18:07:20-08:00",
+ "generatedAt": "2026-11-23T00:08:41-08:00",
  "date": "2026-10-17",
  "shops": {
   "Antelope": {
@@ -735,19 +735,14 @@
     ]
    },
    "Mid": {
-    "status": "missing",
+    "status": "late",
     "scheduledLead": "Aria W.",
-    "recaps": []
-   },
-   "Close": {
-    "status": "filed",
-    "scheduledLead": "Matthew W.",
     "recaps": [
      {
-      "submittedBy": "Ariana",
+      "submittedBy": "Aria",
       "submittedAt": "2026-10-17T22:43:47",
-      "late": false,
-      "shiftFromSchedule": false,
+      "late": true,
+      "shiftFromSchedule": true,
       "flags": [
        {
         "kind": "good",
@@ -764,6 +759,10 @@
        {
         "kind": "good",
         "text": "We are running very low or completely out of some food items I did let the managers know"
+       },
+       {
+        "kind": "bad",
+        "text": "Recap submitted late — arrived 10:43 PM, after the 18:15 grace-period cutoff for Mid (shift set from the Deputy schedule)."
        }
       ],
       "answers": {
@@ -779,7 +778,13 @@
        "Food prepperrrrrr; did you fill out out the food inventory sheet?": "Yes CHEFFFFF!",
        "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "No"
       }
-     },
+     }
+    ]
+   },
+   "Close": {
+    "status": "filed",
+    "scheduledLead": "Matthew W.",
+    "recaps": [
      {
       "submittedBy": "Matthew W.",
       "submittedAt": "2026-10-17T23:20:45",
