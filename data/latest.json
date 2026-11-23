@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-23T00:08:41-08:00",
+ "generatedAt": "2026-11-23T04:20:09-08:00",
  "windowDays": 60,
  "shops": [
   "Antelope",
@@ -152,9 +152,37 @@
       "recaps": []
      },
      "Close": {
-      "status": "pending",
+      "status": "late",
       "scheduledLead": "Aria W.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Aria",
+        "submittedAt": "2026-11-23T01:32:09",
+        "late": true,
+        "shiftFromSchedule": true,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Just me and leyla tonight she did great"
+         },
+         {
+          "kind": "bad",
+          "text": "Recap submitted late — arrived 1:32 AM, after the 23:30 grace-period cutoff for Close (shift set from the Deputy schedule)."
+         }
+        ],
+        "answers": {
+         "staffing": "Perfect (sometimes struggling, sometimes ahead- evened out",
+         "lineTimes": "7",
+         "teamPlayer": "Just me and leyla tonight she did great",
+         "tardy": "No",
+         "foodInventory": "No / In progress",
+         "safety": "No ",
+         "xbro": "NA",
+         "closingVerifone": "Yes",
+         "Food prepperrrrrr; did you fill out out the food inventory sheet?": "no chef, N/A"
+        }
+       }
+      ]
      }
     },
     "Winding": {
