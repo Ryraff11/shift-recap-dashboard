@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-24T04:18:51-08:00",
+ "generatedAt": "2026-11-24T12:08:27-08:00",
  "windowDays": 7,
  "shops": [
   "Antelope",
@@ -23,13 +23,13 @@
    "shops": {
     "Antelope": {
      "Open": {
-      "status": "pending",
+      "status": "missing",
       "scheduledLead": "Nico S.",
       "recaps": []
      },
      "Mid": {
       "status": "pending",
-      "scheduledLead": "Daniel G.",
+      "scheduledLead": "Igor M.",
       "recaps": []
      },
      "Close": {
@@ -57,9 +57,46 @@
     },
     "Auburn": {
      "Open": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": "Grace H.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Grace",
+        "submittedAt": "2026-11-24T12:04:44",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Kaelei and cadence were my rockstars, they both had the best attitude and killed it on all their positions"
+         },
+         {
+          "kind": "bad",
+          "text": "Tardy/early-out note: Alyssa was late to her 5:50 shift. She was less than 2 hours late"
+         },
+         {
+          "kind": "bad",
+          "text": "No coaching, xbro went smoothly today"
+         },
+         {
+          "kind": "good",
+          "text": "Na"
+         }
+        ],
+        "answers": {
+         "Staffing": "Overstaffed! We didn't need the xtra bodies/sent bodies home!",
+         "Line times / leaderboard": "Overall solid, struggled earlier in the morning but by the end of the shift we were cookin",
+         "Safety hazards": "Na",
+         "Xbro / non-negotiables": "No coaching, xbro went smoothly today",
+         "Closing: Verifone WiFi": "Not the night SL",
+         "Tardy / early-out": "Alyssa was late to her 5:50 shift. She was less than 2 hours late",
+         "Expired milk check": "DONE! It all looked good!",
+         "Additional comments": "Na",
+         "Best team player / wear more hats": "Kaelei and cadence were my rockstars, they both had the best attitude and killed it on all their positions ",
+         "Culture competition": "Na"
+        }
+       }
+      ]
      },
      "Mid": {
       "status": "pending",
@@ -108,9 +145,42 @@
     },
     "Fireside": {
      "Open": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": "Jacob M.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Jacob M.",
+        "submittedAt": "2026-11-24T11:11:26",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Julian did a great job on bar and running outside helped out with shift change as well"
+         },
+         {
+          "kind": "bad",
+          "text": "xbruh was good no struggles no coaching"
+         },
+         {
+          "kind": "good",
+          "text": "Super slow today would’ve sent people home but their shifts overlapped into mid leads shift"
+         }
+        ],
+        "answers": {
+         "Staffing": "Overstaffed (trying to find things to do, sent people home)",
+         "Line times / leaderboard": "average time 1:25 average place 5th",
+         "Best team player / wear more hats": "Julian did a great job on bar and running outside helped out with shift change as well",
+         "Tardy / early out": "no tardys sent destiny home 2 hours early sent myself home an hour early lol",
+         "Xbro / non-negotiables": "xbruh was good no struggles no coaching ",
+         "Safety hazards": "nope",
+         "Additional comments": "Super slow today would’ve sent people home but their shifts overlapped into mid leads shift",
+         "Fridge seals cleaned": "Done!",
+         "Closing: Verifone WiFi": "Not the night SL",
+         "Closing: safe/tills/iPads/doors checklist": "not the night SL"
+        }
+       }
+      ]
      },
      "Mid": {
       "status": "pending",
@@ -183,9 +253,45 @@
     },
     "Winding": {
      "Open": {
-      "status": "pending",
+      "status": "filed",
       "scheduledLead": "Emma O.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Emma O.",
+        "submittedAt": "2026-11-24T11:32:12",
+        "late": false,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "Simone! Working hard all through shift \nGot her machine done early and just a strong body on bar. Abby was not locked in this morning, barely helped open the shop and I had to strongly push her to get stuff done in a timely manner."
+         },
+         {
+          "kind": "bad",
+          "text": "Tardy/early-out note: Both kale and Simone did machines early, sent home Abby and kale early."
+         },
+         {
+          "kind": "bad",
+          "text": "Hazard reported: Noticed there’s not enough pour spots for all of the bars, pit was missing like 6 spouts."
+         },
+         {
+          "kind": "bad",
+          "text": "Xbro went well, coached Abby on only one scoop of flavor in blended 9-1-1 as well as paying attention to her dubs as I noticed she put in bad dubs."
+         }
+        ],
+        "answers": {
+         "Staffing": "Overstaffed (trying to find things to do, sent people home)",
+         "Line times / leaderboard": "Like tines were good\nLower on boardsb",
+         "Team player / needed to step up": "Simone! Working hard all through shift \nGot her machine done early and just a strong body on bar. Abby was not locked in this morning, barely helped open the shop and I had to strongly push her to get stuff done in a timely manner. ",
+         "Tardy / early out": "Both kale and Simone did machines early, sent home Abby and kale early. ",
+         "Safety hazards": "Noticed there’s not enough pour spots for all of the bars, pit was missing like 6 spouts. ",
+         "Xbro / non-negotiables": "Xbro went well, coached Abby on only one scoop of flavor in blended 9-1-1 as well as paying attention to her dubs as I noticed she put in bad dubs. ",
+         "Closing: Verifone WiFi": "N/A // Not on the night shift",
+         "Expired product": "No ",
+         "*NOV COMP* Did anyone lose any lives? Who had the most drinks ready when the car got to the window?": "Abby lost a life, and most ready would probably be Simone"
+        }
+       }
+      ]
      },
      "Mid": {
       "status": "pending",
