@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-24T00:08:01-08:00",
+ "generatedAt": "2026-11-24T04:18:51-08:00",
  "date": "2026-11-23",
  "shops": {
   "Antelope": {
@@ -169,9 +169,46 @@
     ]
    },
    "Close": {
-    "status": "missing",
+    "status": "late",
     "scheduledLead": "Will M.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Will M.",
+      "submittedAt": "2026-11-24T00:11:44",
+      "late": true,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Nolan was absolutely killer tonight, held it down when on bar and while I was on break, then did more than his part after his maintenance helping tidy things up around the shop. Lots of credit to him for setting us up for success. Whole crew was great tonight, plenty of hats were worn"
+       },
+       {
+        "kind": "bad",
+        "text": "Tardy/early-out note: Nobody!"
+       },
+       {
+        "kind": "bad",
+        "text": "Hazard reported: Some almost broken mix cups, but they are not a major concern"
+       },
+       {
+        "kind": "good",
+        "text": "This was probably my best close yet IMO, cleaning and stocking everything was timed very well while still hustling to keep the line moving. A great night at Auburn blvd"
+       }
+      ],
+      "answers": {
+       "Staffing": "Well staffed! It was PERFECT!",
+       "Line times / leaderboard": "Window times were fluctuating the whole shift, when we had more bodies it was faster, but as the night went on it skewed from the goal sadly",
+       "Safety hazards": "Some almost broken mix cups, but they are not a major concern ",
+       "Xbro / non-negotiables": "Not much xbro tonight ",
+       "Closing: Verifone WiFi": "Yes",
+       "Tardy / early-out": "Nobody! ",
+       "Expired milk check": "DONE! It all looked good!",
+       "Additional comments": "This was probably my best close yet IMO, cleaning and stocking everything was timed very well while still hustling to keep the line moving. A great night at Auburn blvd ",
+       "Best team player / wear more hats": "Nolan was absolutely killer tonight, held it down when on bar and while I was on break, then did more than his part after his maintenance helping tidy things up around the shop. Lots of credit to him for setting us up for success. Whole crew was great tonight, plenty of hats were worn",
+       "Culture competition": "Nothin! "
+      }
+     }
+    ]
    }
   },
   "Mad": {
@@ -367,9 +404,49 @@
     ]
    },
    "Close": {
-    "status": "missing",
+    "status": "late",
     "scheduledLead": "Kaylee R.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Kaylee R.",
+      "submittedAt": "2026-11-24T00:22:42",
+      "late": true,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Faith and I were definitely equal team players tonight, we had a car at window literally all night so we had to be very talkative on what needed to be done"
+       },
+       {
+        "kind": "bad",
+        "text": "Tardy/early-out note: Nobody late, Joey went home with Jayden around 8ish"
+       },
+       {
+        "kind": "bad",
+        "text": "Hazard reported: The alarm is being weird?? I had to bypass to get it to set\n\nAlso our main speaker above the front hand wash sink is busteddd"
+       },
+       {
+        "kind": "good",
+        "text": "Nope"
+       },
+       {
+        "kind": "bad",
+        "text": "Recap submitted late — arrived 12:22 AM, after the 00:15 grace-period cutoff for Close."
+       }
+      ],
+      "answers": {
+       "Staffing": "Good staffing but rushes kept us on our toes!",
+       "Line times / leaderboard": "We averaged around 1 1/2 mins tonight bounced all over",
+       "Best team player / wear more hats": "Faith and I were definitely equal team players tonight, we had a car at window literally all night so we had to be very talkative on what needed to be done",
+       "Tardy / early out": "Nobody late, Joey went home with Jayden around 8ish",
+       "Safety hazards": "The alarm is being weird?? I had to bypass to get it to set\n\nAlso our main speaker above the front hand wash sink is busteddd",
+       "Additional comments": "Nope",
+       "Closing checklist": "iPads plugged in, locked, and turned off of low power mode, verifones are covered by a rag, iPad locker is locked up, all doors & windows are locked, ALL keys are locked and put away, all money is locked up in the bottom safe + text has been sent, nightly food inventory is done + text has been sent, Alarm is about to be set and turned on",
+       "Closing: Verifone WiFi": "Yes",
+       "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log if nothing went bad, let us know :)": "Nothin"
+      }
+     }
+    ]
    }
   },
   "Fireside": {
