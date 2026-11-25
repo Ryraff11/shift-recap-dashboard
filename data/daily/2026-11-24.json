@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-25T00:10:22-08:00",
+ "generatedAt": "2026-11-25T04:16:33-08:00",
  "date": "2026-11-24",
  "shops": {
   "Antelope": {
@@ -185,9 +185,35 @@
     "recaps": []
    },
    "Close": {
-    "status": "missing",
+    "status": "late",
     "scheduledLead": "Greta G.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Greta G.",
+      "submittedAt": "2026-11-25T00:11:34",
+      "late": true,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Isa was my team player fs she helped a ton with closing tasks.\n\nI think Lily could definetly wear more hats.  She took it upon herself to help out with a lot of chores but I had to remind her to make the DT priority as she was skipping cars/ leaving Isa alone on bar while I was already Gsding something.  So maybe not more hats but learning how to balance the right hats"
+       },
+       {
+        "kind": "bad",
+        "text": "Hazard reported: X"
+       }
+      ],
+      "answers": {
+       "Staffing": "Well staffed! It was PERFECT!",
+       "Line times / leaderboard": "top 3 most the shift it was quite a chill nigjt",
+       "Safety hazards": "X",
+       "Xbro / non-negotiables": "X",
+       "Closing: Verifone WiFi": "Not the night SL",
+       "Expired milk check": "DONE! It all looked good!",
+       "Best team player / wear more hats": "Isa was my team player fs she helped a ton with closing tasks.\n\nI think Lily could definetly wear more hats.  She took it upon herself to help out with a lot of chores but I had to remind her to make the DT priority as she was skipping cars/ leaving Isa alone on bar while I was already Gsding something.  So maybe not more hats but learning how to balance the right hats"
+      }
+     }
+    ]
    }
   },
   "Mad": {
