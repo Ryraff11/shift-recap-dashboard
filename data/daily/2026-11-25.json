@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-26T00:09:30-08:00",
+ "generatedAt": "2026-11-26T04:18:32-08:00",
  "date": "2026-11-25",
  "shops": {
   "Antelope": {
@@ -224,9 +224,36 @@
     ]
    },
    "Close": {
-    "status": "missing",
+    "status": "late",
     "scheduledLead": "Sully C.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Sully",
+      "submittedAt": "2026-11-26T00:12:49",
+      "late": true,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Everyone was on top of it I was able to send Grace and Lucy home a little early since they finished their maintenance and I was set up for the close."
+       },
+       {
+        "kind": "bad",
+        "text": "Tardy/early-out note: Grace and Lucy were sent home slightly early"
+       }
+      ],
+      "answers": {
+       "Staffing": "Well staffed! It was PERFECT!",
+       "Line times / leaderboard": "We were pretty consistent tonight i was surprised honestly with the bigger orders before thanksgiving but, we stayed number one but occasionally our avg times spiked up to almost 2 minutes but only if there was like a miscommunication with order details!",
+       "Safety hazards": "Nada",
+       "Xbro / non-negotiables": "N/a",
+       "Closing: Verifone WiFi": "Yes",
+       "Tardy / early-out": "Grace and Lucy were sent home slightly early",
+       "Expired milk check": "DONE! It all looked good!",
+       "Best team player / wear more hats": "Everyone was on top of it I was able to send Grace and Lucy home a little early since they finished their maintenance and I was set up for the close. "
+      }
+     }
+    ]
    }
   },
   "Mad": {
@@ -309,9 +336,47 @@
     ]
    },
    "Close": {
-    "status": "missing",
+    "status": "late",
     "scheduledLead": "Lillie M.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Lillie",
+      "submittedAt": "2026-11-26T00:10:09",
+      "late": true,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Jewel team player"
+       },
+       {
+        "kind": "bad",
+        "text": "Hazard reported: Regular in the red SUV came back a little while after ordering. Something in his drink. Gave him a refund and email to feedback. He was said he was going to contact his lawyer and asked where to send his medical bill. I just told him to contact feedback and there was nothing else we could do except remake or refund the drink."
+       },
+       {
+        "kind": "bad",
+        "text": "Shift chore not completed: Alex W.. Cleaned boba bins"
+       },
+       {
+        "kind": "good",
+        "text": "We’re out of mango boba. \nI also had so much fun with Jadan"
+       }
+      ],
+      "answers": {
+       "Staffing": "​​Perfect (sometimes struggling, sometimes ahead - evened out)",
+       "Line times / leaderboard": "Line times: 1:37-2:15 \nLeaderboard average 3rd",
+       "Best team player / wear more hats": "Jewel team player ",
+       "Tardy / early out": "N/A",
+       "Safety hazards": "Regular in the red SUV came back a little while after ordering. Something in his drink. Gave him a refund and email to feedback. He was said he was going to contact his lawyer and asked where to send his medical bill. I just told him to contact feedback and there was nothing else we could do except remake or refund the drink. ",
+       "Additional comments": "We’re out of mango boba. \nI also had so much fun with Jadan ",
+       "Xbro non-negotiables struggle": "N/a",
+       "Shift chore completed": "Alex W.. Cleaned boba bins",
+       "Closing: Verifone WiFi": "Yes",
+       "Closing: bakery item inventory": "Yes",
+       "Did anything expire today? If so, what and how much? (food,milk,other) Please fill out this - Food Waste Log": "Crate of nonfat milk"
+      }
+     }
+    ]
    }
   },
   "Lichen": {
