@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-26T18:07:47-08:00",
+ "generatedAt": "2026-11-27T00:07:55-08:00",
  "date": "2026-11-26",
  "shops": {
   "Antelope": {
@@ -53,16 +53,50 @@
     ]
    },
    "Close": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": null,
     "recaps": []
    }
   },
   "Fair Oaks": {
    "Open": {
-    "status": "missing",
+    "status": "late",
     "scheduledLead": "Aryana A.",
-    "recaps": []
+    "recaps": [
+     {
+      "submittedBy": "Aryana",
+      "submittedAt": "2026-11-26T22:23:09",
+      "late": true,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Everybody did great today!"
+       },
+       {
+        "kind": "good",
+        "text": "Turkey emoji turkey emoji"
+       },
+       {
+        "kind": "bad",
+        "text": "Recap submitted late — arrived 10:23 PM, after the 13:00 grace-period cutoff for Open."
+       }
+      ],
+      "answers": {
+       "Staffing": "​​Perfect (sometimes struggling, sometimes ahead - evened out)",
+       "Line times / leaderboard": "Good! Top 3",
+       "Team player / needed to step up": "Everybody did great today!",
+       "Tardy / early out": "No",
+       "Food inventory sheet": "Blank",
+       "Safety hazards": "No",
+       "Xbro / non-negotiables": "Great",
+       "Additional comments": "Turkey emoji turkey emoji",
+       "Closing: Verifone WiFi": "Not the night SL",
+       "Did the daily chore get done on your shift today? (If not, please explain why). (Pit is responsible for PM chore!)": "Yes",
+       "Quarterly contest: choose 1 barista who stood out on shift (had a great sense of urgency, very fast on bar, knocked out chores for the crew etc.)": "Honestly nobody stood out today – I felt I had to remind the crew as a whole many times to get started on drinks on the board/gsd once drinks were cleared + we weren’t super busy until the last 10 minutes or so of my shift."
+      }
+     }
+    ]
    },
    "Mid": {
     "status": "missing",
@@ -143,7 +177,7 @@
     ]
    },
    "Mid": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": "Jalissa P.",
     "recaps": []
    },
@@ -221,7 +255,7 @@
     "recaps": []
    },
    "Close": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": null,
     "recaps": []
    }
@@ -272,7 +306,7 @@
     ]
    },
    "Mid": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": null,
     "recaps": []
    },
@@ -362,7 +396,7 @@
     ]
    },
    "Mid": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": null,
     "recaps": []
    },
@@ -445,12 +479,12 @@
     ]
    },
    "Mid": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": "Madison W.",
     "recaps": []
    },
    "Close": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": null,
     "recaps": []
    }
@@ -496,7 +530,7 @@
     ]
    },
    "Close": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": null,
     "recaps": []
    }
@@ -590,11 +624,36 @@
        "Closing: Verifone WiFi": "Yes",
        "*NOV COMP* Did anyone lose any lives? Who had the most drinks ready when the car got to the window?": "no one lost a life, but ella had the most drinks ready"
       }
+     },
+     {
+      "submittedBy": "Moriah A.",
+      "submittedAt": "2026-11-26T22:42:14",
+      "late": true,
+      "shiftFromSchedule": false,
+      "flags": [
+       {
+        "kind": "good",
+        "text": "Natasha was super helpful with closing"
+       },
+       {
+        "kind": "bad",
+        "text": "Recap submitted late — arrived 10:42 PM, after the 18:15 grace-period cutoff for Mid."
+       }
+      ],
+      "answers": {
+       "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+       "Line times / leaderboard": "Didn’t check, 4th place ",
+       "Team player / needed to step up": "Natasha was super helpful with closing ",
+       "Tardy / early out": "No",
+       "Xbro / non-negotiables": "Great",
+       "Closing: Verifone WiFi": "Yes",
+       "*NOV COMP* Did anyone lose any lives? Who had the most drinks ready when the car got to the window?": "No lives lost, Natasha"
+      }
      }
     ]
    },
    "Close": {
-    "status": "pending",
+    "status": "missing",
     "scheduledLead": "Palina D.",
     "recaps": []
    }
