@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-28T00:07:36-08:00",
+ "generatedAt": "2026-11-28T04:16:31-08:00",
  "windowDays": 60,
  "shops": [
   "Antelope",
@@ -421,9 +421,35 @@
       ]
      },
      "Close": {
-      "status": "missing",
+      "status": "late",
       "scheduledLead": "Greta G.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Greta G.",
+        "submittedAt": "2026-11-28T00:19:08",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "sofia is such a killer to have on closes,  she knows exactly what to get done and is always down to do more.  Marylena was also a huge help tonight!"
+         },
+         {
+          "kind": "bad",
+          "text": "Hazard reported: x"
+         }
+        ],
+        "answers": {
+         "Staffing": "Well staffed! It was PERFECT!",
+         "Line times / leaderboard": "Top 3 most the shift it was a chill night later in the day",
+         "Safety hazards": "x",
+         "Xbro / non-negotiables": "x",
+         "Closing: Verifone WiFi": "Yes",
+         "Expired milk check": "Needed some rearranging/stuff was off!",
+         "Best team player / wear more hats": "sofia is such a killer to have on closes,  she knows exactly what to get done and is always down to do more.  Marylena was also a huge help tonight!\n\n\n"
+        }
+       }
+      ]
      }
     },
     "Mad": {
@@ -1019,9 +1045,36 @@
       ]
      },
      "Close": {
-      "status": "missing",
+      "status": "late",
       "scheduledLead": "Sophia D.",
-      "recaps": []
+      "recaps": [
+       {
+        "submittedBy": "Sophia D.",
+        "submittedAt": "2026-11-28T02:56:53",
+        "late": true,
+        "shiftFromSchedule": false,
+        "flags": [
+         {
+          "kind": "good",
+          "text": "abby did great, although she did ask to take a ten in the last hour of her shift. i told her she could because she didn’t know it was a rule, but to be more mindful about that next time"
+         },
+         {
+          "kind": "bad",
+          "text": "Recap submitted late — arrived 2:56 AM, after the 00:15 grace-period cutoff for Close."
+         }
+        ],
+        "answers": {
+         "Staffing": "Perfect (sometimes struggling, sometimes ahead - evened out)",
+         "Line times / leaderboard": "they were good! we were at the middle to bottom most of the time",
+         "Team player / needed to step up": "abby did great, although she did ask to take a ten in the last hour of her shift. i told her she could because she didn’t know it was a rule, but to be more mindful about that next time ",
+         "Tardy / early out": "no",
+         "Safety hazards": "no",
+         "Xbro / non-negotiables": "no x bro not enough bodies, everyone did great",
+         "Closing: Verifone WiFi": "Yes",
+         "*NOV COMP* Did anyone lose any lives? Who had the most drinks ready when the car got to the window?": "no lives lost, abby got the most drinks out"
+        }
+       }
+      ]
      }
     }
    }
